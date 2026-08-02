@@ -1,0 +1,366 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #0f172a;
+  --color-secondary: #D5B25D;
+  --color-accent: #1e293b;
+  --color-gold: #E1BF67;
+  --color-muted: #64748b;
+
+  --font-heading: var(--font-cairo), sans-serif;
+  --font-body: var(--font-cairo), sans-serif;
+
+  --breakpoint-xs: 400px;
+}
+
+:root {
+  --background: #000000; /* default site background: black */
+  --foreground: #ffffff; /* force all text to white */
+  --primary: #f8fafc;
+  --secondary: #D5B25D;
+  --gold: #E1BF67;
+  --card-bg: #0f172a; /* darker cards on default */
+  --card-border: rgba(225,191,103,0.06);
+  --nav-bg: rgba(0,0,0,0.6);
+}
+
+/* Light Mode Variables (html.dark = visual light) */
+.dark {
+  --background: #f8fafc;
+  --foreground: #1e293b;
+  --primary: #0f172a;
+  --secondary: #D5B25D;
+  --gold: #E1BF67;
+  --card-bg: #ffffff;
+  --card-border: rgba(15,23,42,0.05);
+  --nav-bg: rgba(255,255,255,0.97);
+}
+
+/* ── LIGHT MODE (html.dark) TEXT & BG OVERRIDES ─────────────────────── */
+
+/* Non-hero sections: white text → dark */
+html.dark section:not(.image-hero) [class*="text-white"] {
+  color: #1e293b !important;
+}
+
+/* Non-hero sections: semi-transparent white backgrounds → solid white card */
+html.dark section:not(.image-hero) [class*="bg-white\/"] {
+  background-color: #ffffff !important;
+}
+
+/* Non-hero sections: semi-transparent black backgrounds → light */
+html.dark section:not(.image-hero) [class*="bg-black\/"] {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+}
+
+/* Non-hero sections: explicit bg-black elements → light */
+html.dark section:not(.image-hero) .bg-black {
+  background-color: #1e293b !important;
+}
+
+/* Reset map/embed iframe filters in light mode */
+html.dark section iframe {
+  filter: none !important;
+}
+
+/* Non-hero sections: explicit bg-black → use theme background */
+html.dark section:not(.image-hero).bg-black,
+html.dark main section:not(.image-hero).bg-black {
+  background-color: var(--background) !important;
+}
+
+/* Non-hero sections: white/transparent borders → subtle dark */
+html.dark section:not(.image-hero) [class*="border-white\/"] {
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+html.dark section:not(.image-hero) .border-white {
+  border-color: rgba(15, 23, 42, 0.18) !important;
+}
+
+/* Input / form field backgrounds in light mode */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+  color: #1e293b !important;
+}
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: rgba(15, 23, 42, 0.4) !important;
+}
+html.dark option {
+  background-color: #ffffff;
+  color: #1e293b;
+}
+
+/* Section background default — without !important so utility classes can override */
+section,
+main {
+  background-color: var(--background);
+}
+
+/* Force mobile nav panel to always be solid black - overrides everything */
+.mobile-nav-panel,
+.mobile-nav-panel * {
+  --tw-bg-opacity: 1 !important;
+}
+.mobile-nav-panel {
+  background-color: #000000 !important;
+  background: #000000 !important;
+}
+
+.dark .bg-white { background-color: var(--card-bg) !important; box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important; }
+.dark .bg-\[\#eaeaea\] { background-color: #f1f5f9 !important; }
+.dark .bg-slate-50, .dark .bg-slate-100 { background-color: #f8fafc !important; }
+
+.dark .text-slate-700, .dark .text-slate-600, .dark .text-slate-800, .dark .text-primary {
+  color: #1e293b !important;
+}
+
+/* Normalize legacy slate text to foreground (white) */
+.text-slate-500, .dark .text-slate-500 { color: var(--foreground) !important; }
+
+.dark .border-slate-200, .dark .border-slate-300, .dark .border-slate-100 {
+  border-color: rgba(213,178,93,0.15) !important;
+}
+
+/* Footer handled via inline conditional in Footer.js */
+
+  * {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary) var(--background);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
+  }
+
+  html,
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    /* ensure plain text defaults to foreground (white) */
+    color: var(--foreground) !important;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
+  }
+
+  /* Responsive base improvements */
+  * {
+    box-sizing: border-box;
+  }
+    
+  img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+
+
+  .logo-footer {
+    height: 150px !important;
+    width: auto !important;
+    max-width: 100%;
+  }
+
+
+  /* Prevent text overflow on mobile */
+  .text-overflow-break {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  /* Better touch targets for mobile */
+  @media (max-width: 768px) {
+
+    button,
+    a,
+    input,
+    textarea,
+    select {
+      min-height: 44px;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  /* Custom Utilities */
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #D5B25D 0%, #E1BF67 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes slow-zoom {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.15) translate(10px, 10px);
+    }
+  }
+
+  .animate-slow-zoom {
+    animation: slow-zoom 25s ease-in-out infinite alternate;
+  }
+
+  /* Mobile: disable hero zoom animation and reset any initial scale */
+  @media (max-width: 767px) {
+    .animate-slow-zoom {
+      animation: none !important;
+      transform: none !important;
+    }
+
+    /* Mobile: hero sections are at least the visible viewport tall.
+       height: auto lets content-heavy heroes (app, contact) grow beyond the
+       viewport instead of clipping with overflow-hidden. */
+    section.image-hero {
+      height: auto !important;
+      min-height: 100svh !important;
+    }
+
+    /* CTA/secondary sections that use image-hero only for light-mode exemption
+       but should NOT be forced to full viewport height on mobile */
+    section.image-hero.no-mobile-vh {
+      min-height: 0 !important;
+      height: auto !important;
+    }
+
+    /* Mobile: always center hero background images */
+    section.image-hero img {
+      object-position: center center !important;
+    }
+  }
+
+  @keyframes cursor-blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-cursor-blink {
+    animation: cursor-blink 1s step-end infinite;
+  }
+
+  /* AOS Tweaks */
+  [data-aos] {
+    pointer-events: none;
+  }
+
+  [data-aos].aos-animate {
+    pointer-events: auto;
+  }
+
+  /* Accessibility: disable all AOS animations for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-aos] {
+      transition: none !important;
+      animation: none !important;
+      opacity: 1 !important;
+  }
+}
+
+/* ── Multilingual Navbar Sizing & Spacing Optimizations ────────────────── */
+
+@media (min-width: 1024px) {
+  /* 1. Responsive Navbar Container Padding — increased edge padding so the
+     whole bar sits with clear, deliberate breathing room from the browser
+     edges, not just gaps between the internal elements. */
+  .nav-container-responsive {
+    padding-left: clamp(20px, 2.6vw, 64px) !important;
+    padding-right: clamp(20px, 2.6vw, 64px) !important;
+  }
+
+  /* 2. Responsive Logo Margin — matches the separator's total contribution
+     on the opposite side (2 × separator margin + 1px line), so the
+     logo↔first-link gap and the last-link↔actions gap stay equal while both
+     read as clearly bigger. */
+  .nav-logo-responsive {
+          margin-inline-end: clamp(21px, 6.4vw, 80px) !important;
+
+  }
+  /* 3. Responsive Nav links — 13-15px professional desktop range. */
+  .nav-link-responsive {
+    font-size: clamp(13px, 0.95vw, 15px) !important;
+    padding-left: clamp(8px, 0.9vw, 16px) !important;
+    padding-right: clamp(8px, 0.9vw, 16px) !important;
+  }
+
+  /* 4. Responsive Special (Cost Calculator) Link */
+  .nav-link-special-responsive {
+    font-size: clamp(12px, 0.85vw, 13.5px) !important;
+    padding-left: clamp(6px, 0.8vw, 16px) !important;
+    padding-right: clamp(6px, 0.8vw, 16px) !important;
+    margin-left: clamp(4px, 0.5vw, 8px) !important;
+    margin-right: clamp(4px, 0.5vw, 8px) !important;
+  }
+
+  /* 5. Responsive Separator Margin — matched to the logo margin (see #2)
+     so "وظائف"↔actions-group and logo↔"الرئيسية" are the same visible gap. */
+  .nav-separator-responsive {
+    margin-left: clamp(10px, 1.2vw, 24px) !important;
+    margin-right: clamp(10px, 6.2vw, 80px) !important;
+
+  }
+
+  /* 6. Responsive Actions Gap */
+  .nav-actions-responsive {
+    gap: clamp(4px, 0.5vw, 8px) !important;
+  }
+
+  /* 7. Responsive Individual Actions Buttons — matched proportionally to the
+     enlarged nav-link text so "البروفايل" reads consistent, not oversized. */
+  .nav-action-btn-responsive {
+    font-size: clamp(12px, 0.85vw, 13.5px) !important;
+    padding-left: clamp(6px, 0.8vw, 12px) !important;
+    padding-right: clamp(6px, 0.8vw, 12px) !important;
+  }
+
+  /* 8. Responsive Action Icon Buttons */
+  .nav-action-icon-btn-responsive {
+    width: clamp(28px, 2.2vw, 36px) !important;
+    height: clamp(28px, 2.2vw, 36px) !important;
+  }
+}
