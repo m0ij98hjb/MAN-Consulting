@@ -17,8 +17,25 @@ const cairo = Cairo({
 });
 
 export const metadata = {
-  title: "شركة ام ان سى للانشاءات: MNC",
-  description: "خدماتنا ; مشاريع مقاولات. دراسة وتنفيذ ; التصميم المعماري. الأفكار والحلول ; إدارة المشاريع. إدارة التنفيذ ; التصميم الداخلي. الديكور والتشطيب ...",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://man-consultancy.com"),
+  title: {
+    default: "مكتب MAN للاستشارات الهندسية | MAN Engineering Consultancy",
+    template: "%s | MAN Engineering Consultancy",
+  },
+  description: "مكتب MAN للاستشارات الهندسية — استشارات هندسية متكاملة في جدة والمملكة العربية السعودية: تصميم معماري وإنشائي، تصميم كهروميكانيكي، تراخيص بناء، تقارير هندسية، إدارة مشاريع وإشراف موقعي.",
+  keywords: ["Engineering Consultancy", "استشارات هندسية", "Architecture", "تصميم معماري", "Structural Design", "تصميم إنشائي", "Saudi Arabia", "Jeddah", "جدة", "MAN Engineering Consultancy"],
+  openGraph: {
+    title: "مكتب MAN للاستشارات الهندسية | MAN Engineering Consultancy",
+    description: "استشارات هندسية متكاملة في جدة والمملكة العربية السعودية: تصميم معماري وإنشائي، تراخيص بناء، تقارير هندسية، إدارة مشاريع وإشراف موقعي.",
+    siteName: "MAN Engineering Consultancy",
+    locale: "ar_SA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "مكتب MAN للاستشارات الهندسية | MAN Engineering Consultancy",
+    description: "استشارات هندسية متكاملة في جدة والمملكة العربية السعودية.",
+  },
   icons: {
     icon: [
       { url: "/favicon-32.png",  type: "image/png", sizes: "32x32" },
@@ -31,9 +48,36 @@ export const metadata = {
   },
 };
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://man-consultancy.com";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "MAN Engineering Consultancy",
+  alternateName: "مكتب MAN للاستشارات الهندسية",
+  url: siteUrl,
+  email: "info@man-consultancy.com",
+  telephone: "+966598242385",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Al-Andalus District - Abdulrahman Al-Tubaishi St. Villa 72",
+    addressLocality: "Jeddah",
+    postalCode: "21451",
+    addressCountry: "SA",
+  },
+  areaServed: "SA",
+  priceRange: "$$",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className="antialiased flex flex-col min-h-screen relative">
         <AuthProvider>
         <ThemeProvider>

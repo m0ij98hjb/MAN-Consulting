@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { Phone, Mail, MapPin, Send, ClipboardList, ArrowLeft, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { COMPANY } from "@/config/company";
@@ -65,26 +64,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-
-            {/* Purchasing module entry point */}
-            <Link
-              href="/purchase-request"
-              data-aos="fade-up" data-aos-delay="420"
-              className="group flex items-center gap-4 md:gap-5 rounded-xl border border-[rgba(15,23,42,0.08)] bg-[var(--card-bg)] p-4 md:p-5 shadow-sm hover:border-[var(--secondary)] transition-all duration-300"
-            >
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center border border-[rgba(15,23,42,0.06)] bg-[var(--background)] group-hover:border-[var(--secondary)] transition-all duration-300 shrink-0">
-                <ClipboardList className="text-secondary" size={18} md:size={20} />
-              </div>
-              <div className="flex-1 min-w-0 text-start rtl:text-right">
-                <p className="text-base md:text-lg font-bold text-[var(--foreground)] group-hover:text-[var(--secondary)] transition-colors">
-                  {t('contact.purchasingCard.title')}
-                </p>
-                <p className="text-[var(--foreground)]/60 text-xs md:text-sm mt-0.5">{t('contact.purchasingCard.desc')}</p>
-              </div>
-              {lang === 'ar' || lang === 'ur'
-                ? <ArrowLeft size={18} className="text-secondary shrink-0 group-hover:-translate-x-1 transition-transform" />
-                : <ArrowRight size={18} className="text-secondary shrink-0 group-hover:translate-x-1 transition-transform" />}
-            </Link>
           </div>
 
           {/* Form Side (Left in RTL) */}
@@ -115,6 +94,7 @@ const Contact = () => {
                     <option className="bg-slate-800">{t('contactPage.formServiceOptions.construction')}</option>
                     <option className="bg-slate-800">{t('contactPage.formServiceOptions.architecture')}</option>
                     <option className="bg-slate-800">{t('contactPage.formServiceOptions.management')}</option>
+                    <option className="bg-slate-800">{t('contactPage.formServiceOptions.engineeringInquiry')}</option>
                     <option className="bg-slate-800">{t('contactPage.formServiceOptions.other')}</option>
                   </select>
                 </div>

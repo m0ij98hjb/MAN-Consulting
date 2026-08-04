@@ -37,7 +37,7 @@ export default function BackgroundMusicButton() {
       {/* Outer glow ring */}
       <div className={`absolute inset-0 rounded-full transition-all duration-500 ${
         isMusicPlaying
-          ? 'bg-[#D5B25D]/10 shadow-[0_0_25px_rgba(213,178,93,0.3)] border border-[#D5B25D]/40'
+          ? 'bg-[#F2B233]/10 shadow-[0_0_25px_rgba(242,178,51,0.3)] border border-[#F2B233]/40'
           : 'bg-white/5 shadow-[0_0_15px_rgba(255,255,255,0.05)] border border-white/10'
       }`} />
 
@@ -46,7 +46,7 @@ export default function BackgroundMusicButton() {
         {isMusicPlaying && (
           <>
             <motion.div
-              className="absolute inset-[-4px] rounded-full border border-[#D5B25D]/30"
+              className="absolute inset-[-4px] rounded-full border border-[#F2B233]/30"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{
                 opacity: [0.5, 0],
@@ -59,7 +59,7 @@ export default function BackgroundMusicButton() {
               }}
             />
             <motion.div
-              className="absolute inset-[-2px] rounded-full border border-[#D5B25D]/20"
+              className="absolute inset-[-2px] rounded-full border border-[#F2B233]/20"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{
                 opacity: [0.4, 0],
@@ -77,7 +77,7 @@ export default function BackgroundMusicButton() {
       </AnimatePresence>
 
       {/* Glass background */}
-      <div className="absolute inset-[2px] rounded-full bg-gradient-to-br from-black/60 to-black/80 backdrop-blur-xl" />
+      <div className="absolute inset-[2px] rounded-full bg-gradient-to-br from-black/60 to-black/80 " />
 
       {/* Icon */}
       <div className="relative z-10 flex items-center justify-center">
@@ -92,11 +92,11 @@ export default function BackgroundMusicButton() {
             >
               {/* Speaker with sound waves icon */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#D5B25D" fillOpacity="0.3" stroke="#D5B25D" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#F2B233" fillOpacity="0.3" stroke="#F2B233" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 {/* Sound wave lines */}
                 <motion.path
                   d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 11.995C17.004 13.3208 16.4774 14.5924 15.54 15.53"
-                  stroke="#D5B25D"
+                  stroke="#F2B233"
                   strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -106,7 +106,7 @@ export default function BackgroundMusicButton() {
                 />
                 <motion.path
                   d="M18.07 5.93C19.9447 7.80528 20.9979 10.3478 20.9979 13C20.9979 15.6522 19.9447 18.1947 18.07 20.07"
-                  stroke="#D5B25D"
+                  stroke="#F2B233"
                   strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -140,7 +140,7 @@ export default function BackgroundMusicButton() {
 
       {/* Tooltip label */}
       <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-bold uppercase tracking-wider transition-all duration-300 opacity-0 group-hover:opacity-100 ${
-        isMusicPlaying ? 'text-[#D5B25D]' : 'text-white/50'
+        isMusicPlaying ? 'text-[#F2B233]' : 'text-white/50'
       }`}>
         {isMusicPlaying ? '♪ ON' : '♪ OFF'}
       </div>
@@ -152,7 +152,7 @@ export default function BackgroundMusicButton() {
             {BAR_CONFIG.map((cfg, i) => (
               <motion.div
                 key={i}
-                className="w-[2px] rounded-full bg-[#D5B25D]"
+                className="w-[2px] rounded-full bg-[#F2B233]"
                 initial={{ height: 2 }}
                 animate={{
                   height: [3, cfg.peak1, 4, cfg.peak2, 3],

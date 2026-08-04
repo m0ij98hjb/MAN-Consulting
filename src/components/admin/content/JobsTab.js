@@ -63,7 +63,7 @@ export default function JobsTab() {
         <p className="text-sm text-white/40">{jobs.length} {t('admin.contentTabs.jobsTab.jobsCountLabel')} · {jobs.filter(j => j.visible).length} {t('admin.contentTabs.jobsTab.visibleCountLabel')}</p>
         <button onClick={openNew}
           className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all"
-          style={{ background: 'rgba(201,163,77,0.10)', border: '1px solid rgba(201,163,77,0.30)', color: '#c8a96e' }}>
+          style={{ background: 'rgba(201,163,77,0.10)', border: '1px solid rgba(201,163,77,0.30)', color: '#F2B233' }}>
           <Plus size={13} /> {t('admin.contentTabs.jobsTab.newJobBtn')}
         </button>
       </div>
@@ -79,7 +79,7 @@ export default function JobsTab() {
             <div key={job.id}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${!job.visible ? 'opacity-40' : ''}`}
               style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
-              <Briefcase size={13} className="text-[#c8a96e]/50 flex-shrink-0" />
+              <Briefcase size={13} className="text-[#F2B233]/50 flex-shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-white truncate">{job.title_ar || job.title_en || '—'}</p>
                 <p className="text-xs text-white/30">{job.type in TYPE_LABEL_KEYS ? t(TYPE_LABEL_KEYS[job.type]) : job.type} · {job.location}</p>
@@ -137,7 +137,7 @@ export default function JobsTab() {
             <div className="flex gap-3 pt-2">
               <button onClick={applyDraft}
                 className="flex-1 py-2.5 rounded-xl text-sm font-bold"
-                style={{ background: 'rgba(201,163,77,0.12)', border: '1px solid rgba(201,163,77,0.35)', color: '#c8a96e' }}>
+                style={{ background: 'rgba(201,163,77,0.12)', border: '1px solid rgba(201,163,77,0.35)', color: '#F2B233' }}>
                 {t('admin.contentTabs.jobsTab.confirmBtn')}
               </button>
               <button onClick={close} className="px-5 py-2.5 rounded-xl text-sm text-white/40 hover:text-white transition-colors">

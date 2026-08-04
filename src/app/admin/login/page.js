@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
-      style={{ background: '#000000' }}
+      style={{ background: '#5F6368' }}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <style>{`
@@ -61,12 +61,8 @@ export default function AdminLoginPage() {
           0%,100% { transform: translateY(0); }
           50%      { transform: translateY(-6px); }
         }
-        @keyframes gold-glow {
-          0%,100% { box-shadow: 0 0 40px rgba(213,178,93,0.07), 0 0 0 1px rgba(213,178,93,0.14); }
-          50%      { box-shadow: 0 0 70px rgba(213,178,93,0.14), 0 0 0 1px rgba(213,178,93,0.22); }
-        }
         .login-input { transition: border-color 0.25s, background 0.25s; }
-        .login-input:focus { border-color: rgba(213,178,93,0.38) !important; background: rgba(213,178,93,0.03) !important; outline: none; }
+        .login-input:focus { border-color: rgba(242,178,51,0.38) !important; background: rgba(242,178,51,0.03) !important; outline: none; }
       `}</style>
 
       {/* ── Stars ── */}
@@ -80,7 +76,7 @@ export default function AdminLoginPage() {
               top:  `${s.y}%`,
               width:  `${s.size}px`,
               height: `${s.size}px`,
-              background: '#D5B25D',
+              background: '#F2B233',
               '--op': s.opacity,
               animation: `twinkle ${s.dur}s ease-in-out ${s.delay}s infinite`,
             }}
@@ -93,26 +89,15 @@ export default function AdminLoginPage() {
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(213,178,93,1) 1px,transparent 1px),linear-gradient(90deg,rgba(213,178,93,1) 1px,transparent 1px)',
+            'linear-gradient(rgba(242,178,51,1) 1px,transparent 1px),linear-gradient(90deg,rgba(242,178,51,1) 1px,transparent 1px)',
           backgroundSize: '80px 80px',
-        }}
-      />
-
-      {/* ── Ambient radial glow ── */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          top: '50%', left: '50%',
-          transform: 'translate(-50%,-52%)',
-          width: '800px', height: '700px',
-          background: 'radial-gradient(ellipse,rgba(213,178,93,0.06) 0%,rgba(15,23,42,0.25) 50%,transparent 70%)',
         }}
       />
 
       {/* ── Top gold accent line ── */}
       <div
         className="absolute top-0 inset-x-0 h-[2px] pointer-events-none"
-        style={{ background: 'linear-gradient(90deg,transparent,rgba(213,178,93,0.5) 40%,rgba(225,191,103,0.8) 50%,rgba(213,178,93,0.5) 60%,transparent)' }}
+        style={{ background: 'linear-gradient(90deg,transparent,rgba(242,178,51,0.5) 40%,rgba(225,191,103,0.8) 50%,rgba(242,178,51,0.5) 60%,transparent)' }}
       />
 
       {/* ── Main card wrapper ── */}
@@ -121,18 +106,14 @@ export default function AdminLoginPage() {
         {/* Logo section */}
         <div className="flex flex-col items-center mb-8">
           <div style={{ animation: 'logo-float 5s ease-in-out infinite' }} className="mb-6">
-            {/* Glow behind logo */}
-            <div
-              className="absolute -inset-6 rounded-full pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse,rgba(213,178,93,0.12) 0%,transparent 65%)', filter: 'blur(8px)' }}
-            />
             <Image
-              src="/asstes/logo-navbar.png"
-              alt="MNC"
-              width={280}
-              height={140}
+              src="/brand/logo-navbar-real.png"
+              alt="MAN Engineering Consultancy"
+              width={1029}
+              height={461}
+              unoptimized
               className="relative h-24 sm:h-28 w-auto object-contain"
-              style={{ filter: 'drop-shadow(0 4px 24px rgba(213,178,93,0.25))' }}
+              style={{ filter: 'drop-shadow(0 4px 24px rgba(242,178,51,0.25))' }}
               priority
             />
           </div>
@@ -140,12 +121,12 @@ export default function AdminLoginPage() {
           {/* Title badge */}
           <div
             className="flex items-center gap-2 rounded-full px-5 py-2 mb-2"
-            style={{ background: 'rgba(213,178,93,0.07)', border: '1px solid rgba(213,178,93,0.2)' }}
+            style={{ background: 'rgba(242,178,51,0.07)', border: '1px solid rgba(242,178,51,0.2)' }}
           >
-            <ShieldCheck size={13} style={{ color: '#D5B25D' }} />
+            <ShieldCheck size={13} style={{ color: '#F2B233' }} />
             <span
               className="text-[11px] font-black uppercase tracking-[2px]"
-              style={{ color: '#D5B25D' }}
+              style={{ color: '#F2B233' }}
             >
               {t('admin.loginTitle')}
             </span>
@@ -157,9 +138,9 @@ export default function AdminLoginPage() {
 
           {/* Gold separator */}
           <div className="flex items-center gap-3 mt-5">
-            <div className="h-px w-12" style={{ background: 'linear-gradient(90deg,transparent,rgba(213,178,93,0.3))' }} />
-            <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(213,178,93,0.5)' }} />
-            <div className="h-px w-12" style={{ background: 'linear-gradient(90deg,rgba(213,178,93,0.3),transparent)' }} />
+            <div className="h-px w-12" style={{ background: 'linear-gradient(90deg,transparent,rgba(242,178,51,0.3))' }} />
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(242,178,51,0.5)' }} />
+            <div className="h-px w-12" style={{ background: 'linear-gradient(90deg,rgba(242,178,51,0.3),transparent)' }} />
           </div>
         </div>
 
@@ -168,11 +149,8 @@ export default function AdminLoginPage() {
           onSubmit={handleSubmit}
           className="rounded-2xl p-7 sm:p-8 space-y-5"
           style={{
-            background: 'rgba(255,255,255,0.03)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            border: '1px solid rgba(213,178,93,0.16)',
-            animation: 'gold-glow 4s ease-in-out infinite',
+            background: 'rgba(0,0,0,0.18)',
+            border: '1px solid rgba(242,178,51,0.16)',
           }}
         >
           {/* Error */}
@@ -189,7 +167,7 @@ export default function AdminLoginPage() {
           <div>
             <label
               className={`block text-[10px] font-black uppercase tracking-[2px] mb-2 ${isRTL ? 'text-right' : 'text-left'}`}
-              style={{ color: 'rgba(213,178,93,0.55)' }}
+              style={{ color: 'rgba(242,178,51,0.55)' }}
             >
               {t('admin.emailLabel')}
             </label>
@@ -197,7 +175,7 @@ export default function AdminLoginPage() {
               <Mail
                 size={14}
                 className={`absolute ${isRTL ? 'right-3.5' : 'left-3.5'} top-1/2 -translate-y-1/2 pointer-events-none`}
-                style={{ color: 'rgba(213,178,93,0.3)' }}
+                style={{ color: 'rgba(242,178,51,0.3)' }}
               />
               <input
                 type="email"
@@ -205,12 +183,12 @@ export default function AdminLoginPage() {
                 onChange={e => { setEmail(e.target.value); setError?.(''); }}
                 required
                 dir="ltr"
-                placeholder="admin@mnc.com"
-                className={`login-input w-full rounded-xl py-3.5 text-sm text-white placeholder:text-white/15
+                placeholder="admin@man-consultancy.com"
+                className={`login-input w-full rounded-xl py-3.5 text-sm text-white placeholder:text-white/70
                   ${isRTL ? 'pr-10 pl-4' : 'pl-10 pr-4'}`}
                 style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.07)',
+                  background: 'rgba(0,0,0,0.14)',
+                  border: '1px solid rgba(255,255,255,0.12)',
                 }}
               />
             </div>
@@ -220,7 +198,7 @@ export default function AdminLoginPage() {
           <div>
             <label
               className={`block text-[10px] font-black uppercase tracking-[2px] mb-2 ${isRTL ? 'text-right' : 'text-left'}`}
-              style={{ color: 'rgba(213,178,93,0.55)' }}
+              style={{ color: 'rgba(242,178,51,0.55)' }}
             >
               {t('admin.passwordLabel')}
             </label>
@@ -228,7 +206,7 @@ export default function AdminLoginPage() {
               <Lock
                 size={14}
                 className={`absolute ${isRTL ? 'right-3.5' : 'left-3.5'} top-1/2 -translate-y-1/2 pointer-events-none`}
-                style={{ color: 'rgba(213,178,93,0.3)' }}
+                style={{ color: 'rgba(242,178,51,0.3)' }}
               />
               <input
                 type={showPass ? 'text' : 'password'}
@@ -237,11 +215,11 @@ export default function AdminLoginPage() {
                 required
                 dir="ltr"
                 placeholder="••••••••"
-                className={`login-input w-full rounded-xl py-3.5 text-sm text-white placeholder:text-white/15
+                className={`login-input w-full rounded-xl py-3.5 text-sm text-white placeholder:text-white/70
                   ${isRTL ? 'pr-10 pl-10' : 'pl-10 pr-10'}`}
                 style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.07)',
+                  background: 'rgba(0,0,0,0.14)',
+                  border: '1px solid rgba(255,255,255,0.12)',
                 }}
               />
               <button
@@ -249,7 +227,7 @@ export default function AdminLoginPage() {
                 onClick={() => setShowPass(v => !v)}
                 className={`absolute ${isRTL ? 'left-3.5' : 'right-3.5'} top-1/2 -translate-y-1/2 transition-colors duration-200`}
                 style={{ color: 'rgba(255,255,255,0.18)' }}
-                onMouseEnter={e => e.currentTarget.style.color = 'rgba(213,178,93,0.65)'}
+                onMouseEnter={e => e.currentTarget.style.color = 'rgba(242,178,51,0.65)'}
                 onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.18)'}
               >
                 {showPass ? <EyeOff size={14} /> : <Eye size={14} />}
@@ -263,13 +241,13 @@ export default function AdminLoginPage() {
             disabled={loading}
             className="w-full py-4 rounded-xl text-[13px] font-black tracking-[2.5px] uppercase flex items-center justify-center gap-2.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
             style={{
-              background: 'linear-gradient(135deg,#8a6a1e 0%,#D5B25D 40%,#e8c96e 55%,#D5B25D 70%,#8a6a1e 100%)',
+              background: 'linear-gradient(135deg,#8a6a1e 0%,#F2B233 40%,#e8c96e 55%,#F2B233 70%,#8a6a1e 100%)',
               color: '#000',
-              boxShadow: '0 4px 24px rgba(213,178,93,0.3)',
+              boxShadow: '0 4px 24px rgba(242,178,51,0.3)',
               marginTop: '4px',
             }}
-            onMouseEnter={e => { if (!loading) e.currentTarget.style.boxShadow = '0 6px 32px rgba(213,178,93,0.5)'; }}
-            onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 4px 24px rgba(213,178,93,0.3)'; }}
+            onMouseEnter={e => { if (!loading) e.currentTarget.style.boxShadow = '0 6px 32px rgba(242,178,51,0.5)'; }}
+            onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 4px 24px rgba(242,178,51,0.3)'; }}
           >
             {loading && <Loader2 size={15} className="animate-spin" />}
             {loading ? t('admin.loggingIn') : t('admin.loginBtn')}
@@ -281,7 +259,7 @@ export default function AdminLoginPage() {
           className="text-center text-[9.5px] font-medium mt-6 uppercase tracking-[3.5px]"
           style={{ color: 'rgba(255,255,255,0.1)' }}
         >
-          MNC Construction © {new Date().getFullYear()}
+          MAN Engineering Consultancy © {new Date().getFullYear()}
         </p>
       </div>
     </div>

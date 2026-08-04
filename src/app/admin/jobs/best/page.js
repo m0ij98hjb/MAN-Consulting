@@ -30,7 +30,7 @@ function scoreApp(app) {
   return { expScore, cityScore, total: expScore + cityScore };
 }
 
-const RANK_COLORS = ['#f59e0b', '#94a3b8', '#c8a96e'];
+const RANK_COLORS = ['#f59e0b', '#94a3b8', '#F2B233'];
 const RANK_ICONS  = [Trophy, Medal, Award];
 const RANK_BG     = ['rgba(245,158,11,0.12)', 'rgba(148,163,184,0.10)', 'rgba(200,169,110,0.10)'];
 const RANK_BORDER = ['rgba(245,158,11,0.3)', 'rgba(148,163,184,0.25)', 'rgba(200,169,110,0.25)'];
@@ -63,7 +63,7 @@ export default function BestJobsPage() {
     return (
       <AdminPageLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Sparkles size={28} className="text-[#c8a96e] animate-pulse" />
+          <Sparkles size={28} className="text-[#F2B233] animate-pulse" />
         </div>
       </AdminPageLayout>
     );
@@ -176,7 +176,7 @@ export default function BestJobsPage() {
                       <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-black shrink-0 ${
                         i === 0 ? 'bg-amber-500/20 text-amber-400' :
                         i === 1 ? 'bg-slate-500/20 text-slate-400' :
-                        i === 2 ? 'bg-[#c8a96e]/20 text-[#c8a96e]' :
+                        i === 2 ? 'bg-[#F2B233]/20 text-[#F2B233]' :
                         'bg-white/5 text-white/25'
                       }`}>
                         {i + 1}
@@ -221,7 +221,7 @@ export default function BestJobsPage() {
 
                       {app.cvUrl && (
                         <a href={app.cvUrl} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center justify-center w-8 h-8 rounded-lg border border-[#c8a96e]/25 text-[#c8a96e]/60 hover:text-[#c8a96e] hover:border-[#c8a96e]/50 hover:bg-[#c8a96e]/8 transition-all shrink-0"
+                          className="flex items-center justify-center w-8 h-8 rounded-lg border border-[#F2B233]/25 text-[#F2B233]/60 hover:text-[#F2B233] hover:border-[#F2B233]/50 hover:bg-[#F2B233]/8 transition-all shrink-0"
                           title={t('admin.downloadCV')}>
                           <Download size={13} />
                         </a>

@@ -142,21 +142,21 @@ export default function ProjectsTab() {
           <button
             onClick={openNew}
             className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all"
-            style={{ background: 'rgba(201,163,77,0.10)', border: '1px solid rgba(201,163,77,0.30)', color: '#c8a96e' }}
+            style={{ background: 'rgba(201,163,77,0.10)', border: '1px solid rgba(201,163,77,0.30)', color: '#F2B233' }}
           >
             <Plus size={13} /> {t('admin.contentTabs.projectsTab.newProjectBtn')}
           </button>
         </div>
       </div>
 
-      {importMsg && <p className="text-xs text-[#c8a96e] text-center">{importMsg}</p>}
+      {importMsg && <p className="text-xs text-[#F2B233] text-center">{importMsg}</p>}
 
       {/* Filters */}
       <div className="flex flex-wrap gap-2 items-center">
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="px-3 py-2 rounded-xl text-xs text-white bg-black/40 border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none"
+          className="px-3 py-2 rounded-xl text-xs text-white bg-black/40 border border-white/10 focus:border-[#F2B233]/50 focus:outline-none"
         >
           <option value="all" className="bg-[#0a0e17]">{getCategoryLabel('all', lang)}</option>
           {PROJECT_CATEGORY_IDS.map((id) => (
@@ -169,11 +169,11 @@ export default function ProjectsTab() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t('admin.contentTabs.projectsTab.searchPlaceholder')}
-            className="w-full pl-9 pr-3 py-2 rounded-xl text-xs text-white bg-black/40 border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none"
+            className="w-full pl-9 pr-3 py-2 rounded-xl text-xs text-white bg-black/40 border border-white/10 focus:border-[#F2B233]/50 focus:outline-none"
           />
         </div>
         <label className="flex items-center gap-1.5 text-xs text-white/40 px-2">
-          <input type="checkbox" checked={showArchived} onChange={(e) => setShowArchived(e.target.checked)} className="accent-[#c8a96e]" />
+          <input type="checkbox" checked={showArchived} onChange={(e) => setShowArchived(e.target.checked)} className="accent-[#F2B233]" />
           {t('admin.contentTabs.projectsTab.showArchivedLabel')}
         </label>
       </div>
@@ -207,7 +207,7 @@ export default function ProjectsTab() {
               <button
                 onClick={() => toggle(p, 'featured')}
                 title={t('admin.contentTabs.projectsTab.featuredLabel')}
-                className={`p-1.5 rounded-lg transition-all ${p.featured ? 'text-[#c8a96e]' : 'text-white/20 hover:text-white/50'}`}
+                className={`p-1.5 rounded-lg transition-all ${p.featured ? 'text-[#F2B233]' : 'text-white/20 hover:text-white/50'}`}
               >
                 <Star size={13} fill={p.featured ? 'currentColor' : 'none'} />
               </button>

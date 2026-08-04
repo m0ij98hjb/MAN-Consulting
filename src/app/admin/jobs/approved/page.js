@@ -63,7 +63,7 @@ export default function ApprovedJobsPage() {
           </Link>
           <div>
             <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-              <CalendarCheck size={22} className="text-[#c8a96e]" />
+              <CalendarCheck size={22} className="text-[#F2B233]" />
               {t('admin.approvedApplicantsTitle')}
             </h1>
             <p className="text-white/35 text-xs mt-0.5">{t('admin.approvedApplicantsSubtitle')}</p>
@@ -76,16 +76,16 @@ export default function ApprovedJobsPage() {
             <Search size={15} className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 -translate-y-1/2 text-white/30`} />
             <input value={search} onChange={e => setSearch(e.target.value)}
               placeholder={t('admin.searchApprovedPlaceholder')}
-              className={`w-full bg-white/5 border border-white/10 rounded-xl py-2.5 ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#c8a96e]/40`} />
+              className={`w-full bg-white/5 border border-white/10 rounded-xl py-2.5 ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#F2B233]/40`} />
           </div>
-          <div className="px-3 py-2 bg-[#c8a96e]/10 border border-[#c8a96e]/20 rounded-xl text-[#c8a96e] text-xs font-bold">
+          <div className="px-3 py-2 bg-[#F2B233]/10 border border-[#F2B233]/20 rounded-xl text-[#F2B233] text-xs font-bold">
             {apps.length} {t('admin.acceptedCount')}
           </div>
         </div>
 
         {/* Content */}
         {loading ? (
-          <div className="flex justify-center py-24"><Loader2 size={28} className="text-[#c8a96e] animate-spin" /></div>
+          <div className="flex justify-center py-24"><Loader2 size={28} className="text-[#F2B233] animate-spin" /></div>
         ) : visible.length === 0 ? (
           <div className="text-center py-24">
             <CalendarCheck size={40} className="text-white/10 mx-auto mb-3" />
@@ -96,13 +96,13 @@ export default function ApprovedJobsPage() {
             {visible.map(app => (
               <div key={app.id}
                 onClick={() => setSelected(app)}
-                className="bg-white/[0.02] border border-white/[0.07] rounded-2xl p-5 cursor-pointer hover:border-[#c8a96e]/25 hover:bg-white/[0.035] transition-all group">
+                className="bg-white/[0.02] border border-white/[0.07] rounded-2xl p-5 cursor-pointer hover:border-[#F2B233]/25 hover:bg-white/[0.035] transition-all group">
 
                 {/* Top */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#c8a96e]/12 border border-[#c8a96e]/25 flex items-center justify-center shrink-0">
-                      <span className="text-[#c8a96e] font-black text-sm">{app.fullName?.[0]?.toUpperCase()}</span>
+                    <div className="w-10 h-10 rounded-full bg-[#F2B233]/12 border border-[#F2B233]/25 flex items-center justify-center shrink-0">
+                      <span className="text-[#F2B233] font-black text-sm">{app.fullName?.[0]?.toUpperCase()}</span>
                     </div>
                     <div>
                       <p className="text-white font-bold text-sm leading-tight">{app.fullName}</p>
@@ -123,7 +123,7 @@ export default function ApprovedJobsPage() {
                     { icon: <Clock size={11} />,  val: app.experience || '—' },
                   ].map((row, i) => (
                     <div key={i} className="flex items-center gap-2 text-xs text-white/45">
-                      <span className="text-[#c8a96e]/70 shrink-0">{row.icon}</span>
+                      <span className="text-[#F2B233]/70 shrink-0">{row.icon}</span>
                       <span className="truncate">{row.val}</span>
                     </div>
                   ))}
@@ -131,19 +131,19 @@ export default function ApprovedJobsPage() {
 
                 {/* Interview details */}
                 {app.interviewDetails && (
-                  <div className="bg-[#c8a96e]/6 border border-[#c8a96e]/15 rounded-xl p-3 space-y-1.5">
-                    <p className="text-[#c8a96e] text-[10px] font-black uppercase tracking-wider mb-2">{t('admin.interviewDetailsTitle')}</p>
+                  <div className="bg-[#F2B233]/6 border border-[#F2B233]/15 rounded-xl p-3 space-y-1.5">
+                    <p className="text-[#F2B233] text-[10px] font-black uppercase tracking-wider mb-2">{t('admin.interviewDetailsTitle')}</p>
                     <div className="flex items-center gap-2 text-[11px] text-white/55">
-                      <Calendar size={10} className="text-[#c8a96e]/60" />
+                      <Calendar size={10} className="text-[#F2B233]/60" />
                       {app.interviewDetails.interviewDate} — {app.interviewDetails.interviewTime}
                     </div>
                     <div className="flex items-center gap-2 text-[11px] text-white/55">
-                      <Briefcase size={10} className="text-[#c8a96e]/60" />
+                      <Briefcase size={10} className="text-[#F2B233]/60" />
                       {TYPE_LABEL_KEYS[app.interviewDetails.interviewType] ? t(TYPE_LABEL_KEYS[app.interviewDetails.interviewType]) : app.interviewDetails.interviewType}
                     </div>
                     {app.interviewDetails.interviewLocation && (
                       <div className="flex items-center gap-2 text-[11px] text-white/55">
-                        <MapPin size={10} className="text-[#c8a96e]/60" />
+                        <MapPin size={10} className="text-[#F2B233]/60" />
                         {app.interviewDetails.interviewLocation}
                       </div>
                     )}
@@ -159,13 +159,13 @@ export default function ApprovedJobsPage() {
 
       {/* ─── Detail modal ─── */}
       {selected && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)' }}>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.8)' }}>
           <div className="w-full max-w-lg bg-[#111118] border border-white/10 rounded-2xl overflow-hidden shadow-2xl" dir={isRTL ? 'rtl' : 'ltr'}>
 
             <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.07] bg-[#0d0d14]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#c8a96e]/12 border border-[#c8a96e]/25 flex items-center justify-center">
-                  <span className="text-[#c8a96e] font-black text-sm">{selected.fullName?.[0]?.toUpperCase()}</span>
+                <div className="w-10 h-10 rounded-full bg-[#F2B233]/12 border border-[#F2B233]/25 flex items-center justify-center">
+                  <span className="text-[#F2B233] font-black text-sm">{selected.fullName?.[0]?.toUpperCase()}</span>
                 </div>
                 <div>
                   <h2 className="text-white font-bold text-sm">{selected.fullName}</h2>
@@ -195,8 +195,8 @@ export default function ApprovedJobsPage() {
 
               {/* Interview card */}
               {selected.interviewDetails && (
-                <div className="bg-[#c8a96e]/8 border border-[#c8a96e]/20 rounded-xl p-4">
-                  <p className="text-[#c8a96e] text-[10px] font-black uppercase tracking-widest mb-3">{t('admin.interviewDetailsTitle')}</p>
+                <div className="bg-[#F2B233]/8 border border-[#F2B233]/20 rounded-xl p-4">
+                  <p className="text-[#F2B233] text-[10px] font-black uppercase tracking-widest mb-3">{t('admin.interviewDetailsTitle')}</p>
                   <div className="space-y-2">
                     {[
                       { label: t('admin.dateLabel'), val: selected.interviewDetails.interviewDate },
@@ -222,7 +222,7 @@ export default function ApprovedJobsPage() {
               {/* Cover letter */}
               {selected.coverLetter && (
                 <div>
-                  <p className="text-[#c8a96e] text-[10px] font-black uppercase tracking-widest mb-2">{t('admin.coverLetterAdmin')}</p>
+                  <p className="text-[#F2B233] text-[10px] font-black uppercase tracking-widest mb-2">{t('admin.coverLetterAdmin')}</p>
                   <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
                     <p className="text-white/60 text-xs leading-relaxed whitespace-pre-wrap">{selected.coverLetter}</p>
                   </div>
@@ -232,7 +232,7 @@ export default function ApprovedJobsPage() {
               {/* CV */}
               {selected.cvUrl && (
                 <a href={selected.cvUrl} target="_blank" rel="noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#c8a96e]/10 border border-[#c8a96e]/25 text-[#c8a96e] text-sm font-bold hover:bg-[#c8a96e]/18 transition-all">
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#F2B233]/10 border border-[#F2B233]/25 text-[#F2B233] text-sm font-bold hover:bg-[#F2B233]/18 transition-all">
                   <Download size={15} />
                   {t('admin.downloadCV')}
                 </a>

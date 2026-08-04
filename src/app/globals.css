@@ -1,11 +1,24 @@
 @import "tailwindcss";
 
+/* ── MAN Engineering Consultancy — premium dark corporate theme ──
+   Official brand background is #5F6368, applied uniformly to the page
+   AND to cards — no white surfaces anywhere. Gold accent (#F2B233),
+   white typography. This is the default, applied when no ".dark" class
+   is present. A light theme remains available as an OPTIONAL user
+   preference via the navbar toggle, which adds the ".dark" class — the
+   historical (if confusingly named) convention this codebase uses:
+   every component's `isLightMode = theme === 'dark'` flag keys off that
+   same class, so keeping the class name means none of those existing
+   branches need to be rewritten. Because the default state is dark
+   (white text, dark "cards") and the optional state is light (dark
+   text, white cards) — opposite polarities — the normalization rules
+   below are split into an `html:not(.dark)` set and an `html.dark` set. */
 @theme inline {
-  --color-primary: #0f172a;
-  --color-secondary: #D5B25D;
-  --color-accent: #1e293b;
-  --color-gold: #E1BF67;
-  --color-muted: #64748b;
+  --color-primary: #F2B233;
+  --color-secondary: #4B5563;
+  --color-accent: #4B5563;
+  --color-gold: #F6C55C;
+  --color-muted: #9CA3AF;
 
   --font-heading: var(--font-cairo), sans-serif;
   --font-body: var(--font-cairo), sans-serif;
@@ -13,30 +26,127 @@
   --breakpoint-xs: 400px;
 }
 
+/* Official default theme: dark slate brand background, no white surfaces */
 :root {
-  --background: #000000; /* default site background: black */
-  --foreground: #ffffff; /* force all text to white */
-  --primary: #f8fafc;
-  --secondary: #D5B25D;
-  --gold: #E1BF67;
-  --card-bg: #0f172a; /* darker cards on default */
-  --card-border: rgba(225,191,103,0.06);
-  --nav-bg: rgba(0,0,0,0.6);
+  --background: #5F6368;
+  --foreground: #ffffff;
+  --primary: #F2B233;
+  --secondary: #F2B233;
+  --gold: #F6C55C;
+  --card-bg: #6B7075;
+  --card-border: rgba(255,255,255,0.12);
+  --nav-bg: rgba(95,99,104,0.92);
 }
 
-/* Light Mode Variables (html.dark = visual light) */
+/* Optional light theme (user preference, toggled on) */
 .dark {
-  --background: #f8fafc;
-  --foreground: #1e293b;
-  --primary: #0f172a;
-  --secondary: #D5B25D;
-  --gold: #E1BF67;
+  --background: #F5F5F5;
+  --foreground: #1F2937;
+  --primary: #F2B233;
+  --secondary: #F2B233;
+  --gold: #F6C55C;
   --card-bg: #ffffff;
-  --card-border: rgba(15,23,42,0.05);
+  --card-border: #D1D5DB;
   --nav-bg: rgba(255,255,255,0.97);
 }
 
-/* ── LIGHT MODE (html.dark) TEXT & BG OVERRIDES ─────────────────────── */
+/* Section background default — without !important so utility classes can override */
+section,
+main {
+  background-color: var(--background);
+}
+
+/* Mobile nav panel: always a solid brand-dark chrome color */
+.mobile-nav-panel,
+.mobile-nav-panel * {
+  --tw-bg-opacity: 1 !important;
+}
+.mobile-nav-panel {
+  background-color: #5F6368 !important;
+  background: #5F6368 !important;
+}
+
+/* ── DEFAULT (dark, no white surfaces) NORMALIZATION ────────────────────── */
+
+/* "White card" style surfaces → the dark brand card color */
+html:not(.dark) .bg-white,
+html:not(.dark) [class*="bg-white\/"],
+html:not(.dark) .bg-\[\#eaeaea\],
+html:not(.dark) .bg-slate-50,
+html:not(.dark) .bg-slate-100 {
+  background-color: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.20) !important;
+}
+
+/* Dark "card text" classes (authored assuming a white card) → white, per
+   global readability rule: no dark text colors on dark surfaces. */
+html:not(.dark) .text-slate-500,
+html:not(.dark) .text-slate-600,
+html:not(.dark) .text-slate-700,
+html:not(.dark) .text-slate-800,
+html:not(.dark) .text-slate-900,
+html:not(.dark) .text-gray-500,
+html:not(.dark) .text-gray-600,
+html:not(.dark) .text-gray-700,
+html:not(.dark) .text-gray-800,
+html:not(.dark) .text-gray-900,
+html:not(.dark) .text-primary,
+html:not(.dark) .text-\[\#1F2937\],
+html:not(.dark) .text-\[\#374151\],
+html:not(.dark) .text-\[\#4B5563\],
+html:not(.dark) .text-\[\#111827\],
+html:not(.dark) .text-\[\#1e293b\] {
+  color: #ffffff !important;
+}
+
+html:not(.dark) .border-slate-200,
+html:not(.dark) .border-slate-300,
+html:not(.dark) .border-slate-100 {
+  border-color: rgba(255,255,255,0.16) !important;
+}
+
+/* Inputs: dark surface, light text */
+html:not(.dark) input,
+html:not(.dark) textarea,
+html:not(.dark) select {
+  background-color: rgba(255,255,255,0.07) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  color: #ffffff !important;
+}
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: rgba(255,255,255,0.7) !important;
+}
+html:not(.dark) option {
+  background-color: #5F6368;
+  color: #ffffff;
+}
+
+/* Headings always use the brand gold accent */
+h1, h2, h3, h4, h5, h6 {
+  color: #F2B233 !important;
+}
+
+/* Body text, paragraphs, descriptions, form labels: white by default.
+   Only affects elements without their own explicit text-color utility —
+   class selectors elsewhere still win via specificity. */
+html:not(.dark) p,
+html:not(.dark) label {
+  color: #ffffff;
+}
+
+/* Links: white by default, gold on hover — only affects anchors that don't
+   already carry an explicit text-color utility (class selectors below
+   still win via specificity, so deliberately-colored links are unaffected) */
+html:not(.dark) a {
+  color: #ffffff;
+}
+html:not(.dark) a:hover {
+  color: #F2B233;
+}
+
+/* ── OPTIONAL LIGHT THEME (html.dark) NORMALIZATION ─────────────────────── */
 
 /* Non-hero sections: white text → dark */
 html.dark section:not(.image-hero) [class*="text-white"] {
@@ -94,34 +204,17 @@ html.dark option {
   color: #1e293b;
 }
 
-/* Section background default — without !important so utility classes can override */
-section,
-main {
-  background-color: var(--background);
-}
+html.dark .bg-white { background-color: var(--card-bg) !important; box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important; }
+html.dark .bg-\[\#eaeaea\] { background-color: #f1f5f9 !important; }
+html.dark .bg-slate-50, html.dark .bg-slate-100 { background-color: #f8fafc !important; }
 
-/* Force mobile nav panel to always be solid black - overrides everything */
-.mobile-nav-panel,
-.mobile-nav-panel * {
-  --tw-bg-opacity: 1 !important;
-}
-.mobile-nav-panel {
-  background-color: #000000 !important;
-  background: #000000 !important;
-}
-
-.dark .bg-white { background-color: var(--card-bg) !important; box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important; }
-.dark .bg-\[\#eaeaea\] { background-color: #f1f5f9 !important; }
-.dark .bg-slate-50, .dark .bg-slate-100 { background-color: #f8fafc !important; }
-
-.dark .text-slate-700, .dark .text-slate-600, .dark .text-slate-800, .dark .text-primary {
+html.dark .text-slate-700, html.dark .text-slate-600, html.dark .text-slate-800, html.dark .text-primary {
   color: #1e293b !important;
 }
 
-/* Normalize legacy slate text to foreground (white) */
-.text-slate-500, .dark .text-slate-500 { color: var(--foreground) !important; }
+html.dark .text-slate-500 { color: var(--foreground) !important; }
 
-.dark .border-slate-200, .dark .border-slate-300, .dark .border-slate-100 {
+html.dark .border-slate-200, html.dark .border-slate-300, html.dark .border-slate-100 {
   border-color: rgba(213,178,93,0.15) !important;
 }
 
@@ -213,14 +306,12 @@ main {
 
   /* Custom Utilities */
   .glass-morphism {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #D5B25D 0%, #E1BF67 100%);
+    background: linear-gradient(135deg, #F2B233 0%, #F6C55C 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -309,23 +400,22 @@ main {
      whole bar sits with clear, deliberate breathing room from the browser
      edges, not just gaps between the internal elements. */
   .nav-container-responsive {
-    padding-left: clamp(20px, 2.6vw, 64px) !important;
-    padding-right: clamp(20px, 2.6vw, 64px) !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
   }
 
-  /* 2. Responsive Logo Margin — matches the separator's total contribution
-     on the opposite side (2 × separator margin + 1px line), so the
-     logo↔first-link gap and the last-link↔actions gap stay equal while both
-     read as clearly bigger. */
+  /* 2. Logo margin — zone separation is now handled by the 3-column grid
+     (Zone 1/2/3), so no extra push margin is needed here. */
   .nav-logo-responsive {
-          margin-inline-end: clamp(21px, 6.4vw, 80px) !important;
-
+    margin-inline-end: 0 !important;
   }
-  /* 3. Responsive Nav links — 13-15px professional desktop range. */
+  /* 3. Nav links — 16px / 600 weight; spacing comes from the flex gap on
+     the parent zone rather than per-link padding. */
   .nav-link-responsive {
-    font-size: clamp(13px, 0.95vw, 15px) !important;
-    padding-left: clamp(8px, 0.9vw, 16px) !important;
-    padding-right: clamp(8px, 0.9vw, 16px) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
   }
 
   /* 4. Responsive Special (Cost Calculator) Link */
@@ -345,22 +435,21 @@ main {
 
   }
 
-  /* 6. Responsive Actions Gap */
+  /* 6. Actions Gap — 8px between all left-zone controls. */
   .nav-actions-responsive {
-    gap: clamp(4px, 0.5vw, 8px) !important;
+    gap: 8px !important;
   }
 
-  /* 7. Responsive Individual Actions Buttons — matched proportionally to the
-     enlarged nav-link text so "البروفايل" reads consistent, not oversized. */
+  /* 7. Individual Actions Buttons — pill buttons (language, admin, profile). */
   .nav-action-btn-responsive {
-    font-size: clamp(12px, 0.85vw, 13.5px) !important;
-    padding-left: clamp(6px, 0.8vw, 12px) !important;
-    padding-right: clamp(6px, 0.8vw, 12px) !important;
+    font-size: clamp(12px, 0.8vw, 13px) !important;
+    padding-left: clamp(8px, 0.7vw, 12px) !important;
+    padding-right: clamp(8px, 0.7vw, 12px) !important;
   }
 
-  /* 8. Responsive Action Icon Buttons */
+  /* 8. Action Icon Buttons — square icon buttons. */
   .nav-action-icon-btn-responsive {
-    width: clamp(28px, 2.2vw, 36px) !important;
-    height: clamp(28px, 2.2vw, 36px) !important;
+    width: clamp(30px, 2vw, 34px) !important;
+    height: clamp(30px, 2vw, 34px) !important;
   }
 }

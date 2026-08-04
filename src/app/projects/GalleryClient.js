@@ -127,7 +127,7 @@ export default function GalleryClient({ galleries }) {
                         unoptimized
                       />
                       <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                        <div className="bg-[var(--card-bg)]/20 backdrop-blur-md p-4 rounded-full transform scale-50 group-hover:scale-100 transition-transform duration-500">
+                        <div className="bg-[var(--card-bg)]/20 p-4 rounded-full transform scale-50 group-hover:scale-100 transition-transform duration-500">
                           <ZoomIn size={32} className="text-[var(--foreground)]" />
                         </div>
                       </div>
@@ -164,10 +164,10 @@ export default function GalleryClient({ galleries }) {
           ) : gallery.id === "interior" ? (
             <div className="pb-12 relative px-4 md:px-24 group">
               {/* Custom Navigation Buttons */}
-              <button className={`swiper-prev-${gallery.id} absolute ${isRTL ? 'right-0 md:right-4' : 'left-0 md:left-4'} top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-[var(--card-bg)]/10 backdrop-blur-md border border-[rgba(255,255,255,0.2)] text-[var(--secondary)] rounded-2xl hover:bg-[var(--secondary)] hover:text-[var(--foreground)] transition-all duration-300 shadow-xl opacity-0 group-hover:opacity-100 hidden md:flex`}>
+              <button className={`swiper-prev-${gallery.id} absolute ${isRTL ? 'right-0 md:right-4' : 'left-0 md:left-4'} top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-[var(--card-bg)]/10 border border-[rgba(255,255,255,0.2)] text-[var(--secondary)] rounded-2xl hover:bg-[var(--secondary)] hover:text-[var(--foreground)] transition-all duration-300 shadow-xl opacity-0 group-hover:opacity-100 hidden md:flex`}>
                 {isRTL ? <ChevronRight size={32} /> : <ChevronLeft size={32} />}
               </button>
-              <button className={`swiper-next-${gallery.id} absolute ${isRTL ? 'left-0 md:left-4' : 'right-0 md:right-4'} top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-[var(--card-bg)]/10 backdrop-blur-md border border-[rgba(255,255,255,0.2)] text-[var(--secondary)] rounded-2xl hover:bg-[var(--secondary)] hover:text-[var(--foreground)] transition-all duration-300 shadow-xl opacity-0 group-hover:opacity-100 hidden md:flex`}>
+              <button className={`swiper-next-${gallery.id} absolute ${isRTL ? 'left-0 md:left-4' : 'right-0 md:right-4'} top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-[var(--card-bg)]/10 border border-[rgba(255,255,255,0.2)] text-[var(--secondary)] rounded-2xl hover:bg-[var(--secondary)] hover:text-[var(--foreground)] transition-all duration-300 shadow-xl opacity-0 group-hover:opacity-100 hidden md:flex`}>
                 {isRTL ? <ChevronLeft size={32} /> : <ChevronRight size={32} />}
               </button>
 
@@ -200,7 +200,7 @@ export default function GalleryClient({ galleries }) {
                   <SwiperSlide key={imgIndex} className="py-10">
                     <div
                       onClick={() => openLightbox(gallery.images, imgIndex, gallery.title)}
-                      className="group/slide relative w-full aspect-square rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer bg-slate-100 border-4 md:border-8 border-white/50 backdrop-blur-sm transition-all duration-500 hover:z-10"
+                      className="group/slide relative w-full aspect-square rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer bg-slate-100 border-4 md:border-8 border-white/50 transition-all duration-500 hover:z-10"
                     >
                       <Image
                         src={imgSrc}
@@ -212,7 +212,7 @@ export default function GalleryClient({ galleries }) {
                       
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover/slide:opacity-100 transition-opacity duration-700"></div>
                       
-                      <div className={`absolute bottom-6 ${isRTL ? 'right-6' : 'left-6'} md:bottom-10 ${isRTL ? 'md:right-10' : 'md:left-10'} opacity-0 group-hover/slide:opacity-100 translate-y-10 group-hover/slide:translate-y-0 transition-all duration-700 bg-[var(--card-bg)]/10 backdrop-blur-xl border border-[rgba(255,255,255,0.2)] p-3 md:p-4 rounded-2xl`}>
+                      <div className={`absolute bottom-6 ${isRTL ? 'right-6' : 'left-6'} md:bottom-10 ${isRTL ? 'md:right-10' : 'md:left-10'} opacity-0 group-hover/slide:opacity-100 translate-y-10 group-hover/slide:translate-y-0 transition-all duration-700 bg-[var(--card-bg)]/10 border border-[rgba(255,255,255,0.2)] p-3 md:p-4 rounded-2xl`}>
                         <div className={`flex items-center gap-4 ${isRTL ? 'flex-row' : 'flex-row-reverse'}`}>
                           <div className="w-10 h-10 md:w-12 md:h-12 bg-secondary rounded-full flex items-center justify-center">
                             <ZoomIn size={20} className="text-[var(--foreground)]" />
@@ -262,7 +262,7 @@ export default function GalleryClient({ galleries }) {
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                    <div className="bg-[var(--card-bg)]/20 backdrop-blur-md p-4 rounded-full transform scale-50 group-hover:scale-100 transition-transform duration-500">
+                    <div className="bg-[var(--card-bg)]/20 p-4 rounded-full transform scale-50 group-hover:scale-100 transition-transform duration-500">
                       <ZoomIn size={32} className="text-[var(--foreground)]" />
                     </div>
                   </div>

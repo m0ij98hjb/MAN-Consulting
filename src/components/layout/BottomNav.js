@@ -33,11 +33,9 @@ export default function BottomNav() {
           background: isLight
             ? 'rgba(255,255,255,0.97)'
             : 'rgba(6,6,8,0.97)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
           borderTop: isLight
-            ? '1px solid rgba(213,178,93,0.18)'
-            : '1px solid rgba(213,178,93,0.22)',
+            ? '1px solid rgba(242,178,51,0.18)'
+            : '1px solid rgba(242,178,51,0.22)',
           boxShadow: isLight
             ? '0 -4px 24px rgba(0,0,0,0.06)'
             : '0 -4px 32px rgba(0,0,0,0.8)',
@@ -60,15 +58,15 @@ export default function BottomNav() {
                     className="flex items-center justify-center w-9 h-7 rounded-xl"
                     style={{
                       background: isActive
-                        ? '#D5B25D'
-                        : 'linear-gradient(135deg,rgba(213,178,93,0.15),rgba(213,178,93,0.08))',
+                        ? '#F2B233'
+                        : 'linear-gradient(135deg,rgba(242,178,51,0.15),rgba(242,178,51,0.08))',
                     }}
                   >
-                    <Icon size={15} style={{ color: isActive ? '#000' : '#D5B25D' }} />
+                    <Icon size={15} style={{ color: isActive ? '#000' : '#F2B233' }} />
                   </span>
                   <span
                     className="text-[9px] font-black tracking-wide leading-none truncate max-w-[52px] text-center"
-                    style={{ color: '#D5B25D' }}
+                    style={{ color: '#F2B233' }}
                   >
                     {t(key)}
                   </span>
@@ -87,7 +85,7 @@ export default function BottomNav() {
                     size={isActive ? 20 : 18}
                     style={{
                       color: isActive
-                        ? '#D5B25D'
+                        ? '#F2B233'
                         : isLight ? 'rgba(30,41,59,0.4)' : 'rgba(255,255,255,0.3)',
                       transition: 'all 0.2s',
                     }}
@@ -97,7 +95,7 @@ export default function BottomNav() {
                   className="text-[9px] font-bold leading-none truncate max-w-[52px] text-center transition-colors duration-200"
                   style={{
                     color: isActive
-                      ? '#D5B25D'
+                      ? '#F2B233'
                       : isLight ? 'rgba(30,41,59,0.45)' : 'rgba(255,255,255,0.3)',
                   }}
                 >
@@ -106,7 +104,7 @@ export default function BottomNav() {
                 {isActive && (
                   <span
                     className="absolute bottom-0 w-8 h-[2px] rounded-full"
-                    style={{ background: 'linear-gradient(90deg,transparent,#D5B25D,transparent)' }}
+                    style={{ background: 'linear-gradient(90deg,transparent,#F2B233,transparent)' }}
                   />
                 )}
               </Link>

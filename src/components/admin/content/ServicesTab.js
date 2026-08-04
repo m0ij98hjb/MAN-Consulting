@@ -67,7 +67,7 @@ function ServiceCard({ svc, onChange }) {
         onClick={() => setOpen(p => !p)}
       >
         <div className="flex items-center gap-3">
-          <Wrench size={13} className="text-[#c8a96e]" />
+          <Wrench size={13} className="text-[#F2B233]" />
           <span className="text-sm font-bold text-white">{svc.name_ar}</span>
           <span className="text-xs text-white/25">{svc.name_en}</span>
         </div>

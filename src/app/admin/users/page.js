@@ -11,26 +11,12 @@ import { ROLES, ROLE_LABELS } from '@/lib/roleBasedAccess';
 import { useRouter } from 'next/navigation';
 import {
   Users, Plus, X, Loader2, Power, ShieldCheck, ShieldOff,
-  Building2, Briefcase, MessageSquare, ShoppingCart, BarChart2,
+  Briefcase, MessageSquare, BarChart2,
   Check, User, Phone, Mail, Lock, Edit2, Trash2,
 } from 'lucide-react';
 
 /* ─── Permission definitions ─── */
 const PERMISSION_KEYS = [
-  {
-    id: 'purchasing_module',
-    labelKey: 'admin.purchasingMenu',
-    descKey: 'admin.permPurchasingDesc',
-    icon: ShoppingCart,
-    color: '#c8a96e',
-  },
-  {
-    id: 'suppliers_module',
-    labelKey: 'admin.suppliersMenu',
-    descKey: 'admin.permSuppliersDesc',
-    icon: Building2,
-    color: '#a78bfa',
-  },
   {
     id: 'jobs_module',
     labelKey: 'admin.jobsMenu',
@@ -60,8 +46,8 @@ const ROLE_OPTIONS = Object.entries(ROLE_LABELS).map(([key, label]) => ({
   label: label,
 }));
 
-const inputCls = 'w-full bg-black border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/20 focus:border-[#c8a96e]/50 outline-none transition-all';
-const labelCls = 'text-[#c8a96e] text-[10px] font-black uppercase tracking-widest block mb-1.5';
+const inputCls = 'w-full bg-black border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/20 focus:border-[#F2B233]/50 outline-none transition-all';
+const labelCls = 'text-[#F2B233] text-[10px] font-black uppercase tracking-widest block mb-1.5';
 
 /* ─── Add / Edit User Modal ─── */
 function UserModal({ onClose, currentUid, editUser = null }) {
@@ -72,7 +58,6 @@ function UserModal({ onClose, currentUid, editUser = null }) {
   );
   const [role, setRole] = useState(editUser?.role || ROLES.PROJECT_MANAGER);
   const [permissions, setPermissions] = useState(editUser?.permissions ?? []);
-  const [purchasingRole, setPurchasingRole] = useState(editUser?.purchasingRole ?? 'site_supervisor');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const set = (f, v) => setForm(x => ({ ...x, [f]: v }));
@@ -99,14 +84,12 @@ function UserModal({ onClose, currentUid, editUser = null }) {
           ...form,
           role,
           permissions,
-          purchasingRole: permissions.includes('purchasing_module') ? purchasingRole : null,
         });
       } else {
         await createAdminUser({
           ...form,
           role,
           permissions,
-          purchasingRole: permissions.includes('purchasing_module') ? purchasingRole : null,
           createdByUid: currentUid,
         });
       }
@@ -121,7 +104,7 @@ function UserModal({ onClose, currentUid, editUser = null }) {
   return (
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-      style={{ background: 'rgba(0,0,0,0.82)', backdropFilter: 'blur(10px)' }}
+      style={{ background: 'rgba(0,0,0,0.82)' }}
     >
       <div
         className="w-full max-w-xl bg-[#0d1117] border border-white/10 rounded-2xl overflow-hidden shadow-2xl max-h-[92vh] overflow-y-auto"
@@ -130,8 +113,8 @@ function UserModal({ onClose, currentUid, editUser = null }) {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.07]">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-[#c8a96e]/15 flex items-center justify-center">
-              {editUser ? <Edit2 size={14} className="text-[#c8a96e]" /> : <Plus size={14} className="text-[#c8a96e]" />}
+            <div className="w-8 h-8 rounded-xl bg-[#F2B233]/15 flex items-center justify-center">
+              {editUser ? <Edit2 size={14} className="text-[#F2B233]" /> : <Plus size={14} className="text-[#F2B233]" />}
             </div>
             <h2 className="text-white font-bold text-base">
               {editUser ? t('admin.editUserTitle') : t('admin.addUserTitle')}
@@ -161,7 +144,7 @@ function UserModal({ onClose, currentUid, editUser = null }) {
                 <>
                   <div>
                     <label className={labelCls}><Mail size={10} className="inline me-1" />{t('admin.emailLabel')}</label>
-                    <input type="email" dir="ltr" className={inputCls} value={form.email} onChange={e => set('email', e.target.value)} placeholder="user@mnc.com" />
+                    <input type="email" dir="ltr" className={inputCls} value={form.email} onChange={e => set('email', e.target.value)} placeholder="user@man-consultancy.com" />
                   </div>
                   <div>
                     <label className={labelCls}><Lock size={10} className="inline me-1" />{t('admin.initialPasswordLabel')}</label>
@@ -170,15 +153,15 @@ function UserModal({ onClose, currentUid, editUser = null }) {
                 </>
               )}
               <div>
-                <label className={labelCls}><Phone size={10} className="inline me-1" />{t('purchasing.requesterPhone')}</label>
+                <label className={labelCls}><Phone size={10} className="inline me-1" />{t('admin.requesterPhone')}</label>
                 <input dir="ltr" className={inputCls} value={form.phone} onChange={e => set('phone', e.target.value)} placeholder="+966 5xx xxx xxx" />
               </div>
               <div>
-                <label className={labelCls}>{t('purchasing.jobTitle')}</label>
+                <label className={labelCls}>{t('admin.jobTitleLabel')}</label>
                 <input className={inputCls} value={form.jobTitle} onChange={e => set('jobTitle', e.target.value)} placeholder={t('admin.jobTitlePlaceholder')} />
               </div>
               <div className="col-span-2">
-                <label className={labelCls}>{t('purchasing.department')}</label>
+                <label className={labelCls}>{t('admin.departmentLabel')}</label>
                 <input className={inputCls} value={form.department} onChange={e => set('department', e.target.value)} placeholder={t('admin.departmentPlaceholder')} />
               </div>
             </div>
@@ -188,7 +171,7 @@ function UserModal({ onClose, currentUid, editUser = null }) {
           <div>
             <p className="text-[10px] font-black text-white/30 uppercase tracking-widest mb-3">{t('admin.jobAndRoleTitle')}</p>
             <div>
-              <label className={labelCls}>{t('purchasing.roleLabel')}</label>
+              <label className={labelCls}>{t('admin.roleLabel')}</label>
               <select
                 className={inputCls}
                 value={role}
@@ -216,7 +199,7 @@ function UserModal({ onClose, currentUid, editUser = null }) {
                     onClick={() => togglePerm(id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border text-start transition-all duration-200 ${
                       checked
-                        ? 'border-[#c8a96e]/40 bg-[#c8a96e]/8'
+                        ? 'border-[#F2B233]/40 bg-[#F2B233]/8'
                         : 'border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.04]'
                     }`}
                   >
@@ -231,7 +214,7 @@ function UserModal({ onClose, currentUid, editUser = null }) {
                       <p className="text-[11px] text-white/25 mt-0.5">{t(descKey)}</p>
                     </div>
                     <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-                      checked ? 'border-[#c8a96e] bg-[#c8a96e]' : 'border-white/20'
+                      checked ? 'border-[#F2B233] bg-[#F2B233]' : 'border-white/20'
                     }`}>
                       {checked && <Check size={11} className="text-black" strokeWidth={3} />}
                     </div>
@@ -254,9 +237,9 @@ function UserModal({ onClose, currentUid, editUser = null }) {
             onClick={submit}
             disabled={saving}
             className="flex-1 py-2.5 rounded-xl text-black text-sm font-black flex items-center justify-center gap-2 disabled:opacity-60 transition-all"
-            style={{ background: 'linear-gradient(135deg,#8a6a1e,#D5B25D,#e8c96e,#D5B25D,#8a6a1e)' }}
+            style={{ background: 'linear-gradient(135deg,#8a6a1e,#F2B233,#e8c96e,#F2B233,#8a6a1e)' }}
           >
-            {saving ? <Loader2 size={15} className="animate-spin" /> : (editUser ? t('admin.saveChangesBtn') : t('purchasing.createUser'))}
+            {saving ? <Loader2 size={15} className="animate-spin" /> : (editUser ? t('admin.saveChangesBtn') : t('admin.createUserBtn'))}
           </button>
         </div>
       </div>
@@ -292,50 +275,11 @@ function UsersContent() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    let adminDocs = [];
-    let purchDocs = [];
-
-    const mergeUsers = () => {
-      const adminMap = new Map();
-      adminDocs.forEach(d => adminMap.set(d.id, d));
-
-      purchDocs.forEach(p => {
-        if (!adminMap.has(p.id)) {
-          // User exists in purchasingUsers but not in adminUsers
-          adminMap.set(p.id, {
-            id: p.id,
-            name: p.name || t('admin.purchasingUserFallbackName'),
-            email: p.email || '',
-            role: 'user',
-            permissions: ['purchasing_module'],
-            purchasingRole: p.role || 'site_supervisor',
-            active: p.active !== false,
-            createdAt: p.createdAt,
-            phone: p.phone || '',
-            department: p.department || '',
-            jobTitle: p.jobTitle || '',
-          });
-        }
-      });
-
-      setUsers(Array.from(adminMap.values()));
-    };
-
-    const unsub1 = onSnapshot(collection(db, 'adminUsers'), snap => {
-      adminDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      mergeUsers();
+    const unsub = onSnapshot(collection(db, 'adminUsers'), snap => {
+      setUsers(snap.docs.map(d => ({ id: d.id, ...d.data() })));
     });
-
-    const unsub2 = onSnapshot(collection(db, 'purchasingUsers'), snap => {
-      purchDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      mergeUsers();
-    });
-
-    return () => {
-      unsub1();
-      unsub2();
-    };
-  }, [t]);
+    return unsub;
+  }, []);
 
   const toggleActive = async (u) => {
     setError('');
@@ -355,7 +299,7 @@ function UsersContent() {
       <div className="flex items-center justify-between mb-7">
         <div>
           <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-            <Users size={20} className="text-[#c8a96e]" />
+            <Users size={20} className="text-[#F2B233]" />
             {t('admin.usersManagementTitle')}
           </h1>
           <p className="text-sm text-white/30 mt-1">{t('admin.usersManagementSubtitle')}</p>
@@ -363,9 +307,9 @@ function UsersContent() {
         <button
           onClick={() => { setEditUser(null); setShowModal(true); }}
           className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-black shadow-lg transition-all hover:scale-105"
-          style={{ background: 'linear-gradient(135deg,#8a6a1e,#D5B25D,#e8c96e,#D5B25D,#8a6a1e)' }}
+          style={{ background: 'linear-gradient(135deg,#8a6a1e,#F2B233,#e8c96e,#F2B233,#8a6a1e)' }}
         >
-          <Plus size={14} /> {t('purchasing.addUser')}
+          <Plus size={14} /> {t('admin.addUserBtn')}
         </button>
       </div>
 
@@ -379,7 +323,7 @@ function UsersContent() {
       <div className="bg-white/[0.02] border border-white/[0.07] rounded-2xl overflow-hidden">
         {users === null ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 size={28} className="text-[#c8a96e] animate-spin" />
+            <Loader2 size={28} className="text-[#F2B233] animate-spin" />
           </div>
         ) : users.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 gap-3">
@@ -391,7 +335,7 @@ function UsersContent() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-white/[0.07]">
-                  {[t('admin.nameLabel'), t('admin.emailLabel'), t('purchasing.roleLabel'), t('purchasing.department'), t('admin.statusCol'), t('admin.actionsCol')].map(h => (
+                  {[t('admin.nameLabel'), t('admin.emailLabel'), t('admin.roleLabel'), t('admin.departmentLabel'), t('admin.statusCol'), t('admin.actionsCol')].map(h => (
                     <th key={h} className="text-start text-xs text-white/30 font-medium px-5 py-3.5 whitespace-nowrap">
                       {h}
                     </th>
@@ -426,7 +370,7 @@ function UsersContent() {
                     </td>
                     <td className="px-5 py-4 text-white/50 text-xs" dir="ltr">{u.email}</td>
                     <td className="px-5 py-4">
-                      <span className="text-[#c8a96e] text-xs font-medium">
+                      <span className="text-[#F2B233] text-xs font-medium">
                         {ROLE_LABELS[u.role] || u.role || '—'}
                       </span>
                     </td>
@@ -438,8 +382,8 @@ function UsersContent() {
                           : 'text-red-400 bg-red-500/12 border border-red-500/20'
                       }`}>
                         {u.active !== false
-                          ? <><ShieldCheck size={9} /> {t('purchasing.activeLabel')}</>
-                          : <><ShieldOff size={9} /> {t('purchasing.inactiveLabel')}</>
+                          ? <><ShieldCheck size={9} /> {t('admin.activeLabel')}</>
+                          : <><ShieldOff size={9} /> {t('admin.inactiveLabel')}</>
                         }
                       </span>
                     </td>
@@ -447,7 +391,7 @@ function UsersContent() {
                       <div className="flex items-center gap-1">
                         <button
                           onClick={() => openEdit(u)}
-                          className="p-1.5 rounded-lg text-white/40 hover:text-[#c8a96e] hover:bg-[#c8a96e]/10 transition-all"
+                          className="p-1.5 rounded-lg text-white/40 hover:text-[#F2B233] hover:bg-[#F2B233]/10 transition-all"
                           title={t('admin.editLabel')}
                         >
                           <Edit2 size={13} />
@@ -494,7 +438,7 @@ function UsersContent() {
       {deleteTarget && (
         <div
           className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-          style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
+          style={{ background: 'rgba(0,0,0,0.85)' }}
         >
           <div className="w-full max-w-md bg-[#0d1117] border border-white/10 rounded-2xl p-6 shadow-2xl" dir="rtl">
             <div className="flex items-center gap-3 text-red-500 mb-4">
@@ -553,7 +497,7 @@ export default function AdminUsersPage() {
     return (
       <AdminPageLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 size={28} className="animate-spin text-[#c8a96e]" />
+          <Loader2 size={28} className="animate-spin text-[#F2B233]" />
         </div>
       </AdminPageLayout>
     );

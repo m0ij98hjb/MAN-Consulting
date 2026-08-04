@@ -13,8 +13,8 @@ import { storage, db } from '@/lib/firebase';
 import {
   LayoutDashboard, Users, CheckCircle, BarChart2,
   ChevronRight, ChevronLeft, LogOut, Briefcase, PenSquare,
-  Camera, X, Loader2, MessageSquare, ShoppingCart, UserCog,
-  Award, Settings, Image as ImageIcon, Calculator, FileText,
+  Camera, X, Loader2, MessageSquare, UserCog,
+  Award, Settings, Image as ImageIcon, FileText,
 } from 'lucide-react';
 
 // Icon mapping
@@ -25,14 +25,11 @@ const ICON_MAP = {
   BarChart2,
   Briefcase,
   PenSquare,
-  Camera,
   UserCog,
   MessageSquare,
-  ShoppingCart,
   Award,
   Settings,
   ImageIcon,
-  Calculator,
   FileText,
 };
 
@@ -86,6 +83,21 @@ export default function AdminSidebar() {
           borderInlineEnd: '1px solid rgba(255,255,255,0.07)',
         }}
       >
+        {/* Logo */}
+        <div className="flex items-center justify-center px-4 pt-5 pb-4 border-b border-white/[0.06]">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/brand/logo-navbar-real.png"
+              alt="MAN Engineering Consultancy"
+              width={1029}
+              height={461}
+              unoptimized
+              className="h-10 w-auto object-contain"
+              priority
+            />
+          </Link>
+        </div>
+
         {/* Director profile */}
         <div className="flex flex-col items-center px-4 pt-5 pb-4 border-b border-white/[0.06]">
           {/* Photo — click to open modal (director only) */}
@@ -156,11 +168,11 @@ export default function AdminSidebar() {
           )}
 
           {/* Role Label */}
-          <p className="text-[13px] font-bold text-[#c8a96e] leading-tight text-center">
+          <p className="text-[13px] font-bold text-[#F2B233] leading-tight text-center">
             {roleLabel}
           </p>
           {/* Gold underline */}
-          <div className="mt-2.5 w-8 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-[#c8a96e]/50 to-transparent" />
+          <div className="mt-2.5 w-8 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-[#F2B233]/50 to-transparent" />
         </div>
 
         {/* Navigation */}
@@ -175,7 +187,7 @@ export default function AdminSidebar() {
                   href={href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200
                     ${active
-                      ? 'bg-[#c8a96e]/10 text-[#c8a96e] font-semibold'
+                      ? 'bg-[#F2B233]/10 text-[#F2B233] font-semibold'
                       : 'text-white/45 hover:text-white hover:bg-white/5'
                     }`}
                 >
@@ -238,7 +250,7 @@ export default function AdminSidebar() {
             </div>
 
             {/* Name */}
-            <p className="text-[13px] font-bold text-[#c8a96e] text-center leading-snug">
+            <p className="text-[13px] font-bold text-[#F2B233] text-center leading-snug">
               {profile?.name || roleLabel}
             </p>
 
@@ -259,11 +271,11 @@ export default function AdminSidebar() {
               style={{
                 background: 'rgba(201,163,77,0.10)',
                 border: '1px solid rgba(201,163,77,0.28)',
-                color: '#c8a96e',
+                color: '#F2B233',
               }}
             >
               {isUploading
-                ? <><Loader2 size={14} className="animate-spin" /> {t('purchasing.uploading')}</>
+                ? <><Loader2 size={14} className="animate-spin" /> {t('admin.uploading')}</>
                 : <><Camera size={14} /> {t('admin.changePhoto')}</>
               }
             </button>

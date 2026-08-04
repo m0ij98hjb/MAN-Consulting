@@ -135,7 +135,7 @@ export default function JobDetailPage() {
     return (
       <AdminPageLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 size={32} className="text-[#c8a96e] animate-spin" />
+          <Loader2 size={32} className="text-[#F2B233] animate-spin" />
         </div>
       </AdminPageLayout>
     );
@@ -233,7 +233,7 @@ export default function JobDetailPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   download
-                  className="inline-flex items-center gap-2 py-2.5 px-4 rounded-xl bg-[#c8a96e]/10 border border-[#c8a96e]/25 text-[#c8a96e] text-sm font-bold hover:bg-[#c8a96e]/18 transition-all"
+                  className="inline-flex items-center gap-2 py-2.5 px-4 rounded-xl bg-[#F2B233]/10 border border-[#F2B233]/25 text-[#F2B233] text-sm font-bold hover:bg-[#F2B233]/18 transition-all"
                 >
                   <Download size={15} />
                   {t('admin.downloadCV')}
@@ -268,7 +268,7 @@ export default function JobDetailPage() {
                 <div className="mt-4">
                   <button
                     onClick={() => { setShowInterviewForm(v => !v); setSendStatus(''); setSendError(''); }}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#c8a96e]/10 hover:bg-[#c8a96e]/20 border border-[#c8a96e]/20 text-[#c8a96e] text-sm font-semibold transition-colors"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#F2B233]/10 hover:bg-[#F2B233]/20 border border-[#F2B233]/20 text-[#F2B233] text-sm font-semibold transition-colors"
                   >
                     <CalendarCheck size={14} />
                     {t('admin.jobScheduleBtn')}
@@ -278,30 +278,30 @@ export default function JobDetailPage() {
                     <div className="mt-3 space-y-3 border-t border-white/[0.07] pt-4">
                       <div className="grid grid-cols-2 gap-3">
                         <div className="space-y-1.5">
-                          <label className="text-xs text-[#c8a96e] block">{t('admin.interviewDate')} *</label>
+                          <label className="text-xs text-[#F2B233] block">{t('admin.interviewDate')} *</label>
                           <input
                             type="date" required value={interviewDate}
                             onChange={e => setInterviewDate(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:border-[#c8a96e]/50 outline-none transition-colors"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:border-[#F2B233]/50 outline-none transition-colors"
                           />
                         </div>
                         <div className="space-y-1.5">
-                          <label className="text-xs text-[#c8a96e] block">{t('admin.interviewTime')} *</label>
+                          <label className="text-xs text-[#F2B233] block">{t('admin.interviewTime')} *</label>
                           <input
                             type="time" required value={interviewTime}
                             onChange={e => setInterviewTime(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:border-[#c8a96e]/50 outline-none transition-colors"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:border-[#F2B233]/50 outline-none transition-colors"
                           />
                         </div>
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs text-[#c8a96e] block">{t('admin.interviewType')}</label>
+                        <label className="text-xs text-[#F2B233] block">{t('admin.interviewType')}</label>
                         <div className="relative">
                           <select
                             value={interviewType}
                             onChange={e => setInterviewType(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:border-[#c8a96e]/50 outline-none transition-colors appearance-none cursor-pointer"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:border-[#F2B233]/50 outline-none transition-colors appearance-none cursor-pointer"
                           >
                             <option value="in_person" className="bg-[#111]">{t('admin.inPerson')}</option>
                             <option value="video"     className="bg-[#111]">{t('admin.videoCall')}</option>
@@ -312,22 +312,22 @@ export default function JobDetailPage() {
                       </div>
 
                       <div className="space-y-1.5">
-                          <label className="text-xs text-[#c8a96e] block">{t('admin.interviewLocation')}</label>
+                          <label className="text-xs text-[#F2B233] block">{t('admin.interviewLocation')}</label>
                           <input
                             type="text" value={interviewLocation}
                             onChange={e => setInterviewLocation(e.target.value)}
                             placeholder={interviewType === 'in_person' ? t('admin.jobLocationPlaceholder_inPerson') : interviewType === 'video' ? t('admin.jobLocationPlaceholder_video') : t('admin.jobLocationPlaceholder_phone')}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white placeholder-white/20 focus:border-[#c8a96e]/50 outline-none transition-colors"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white placeholder-white/20 focus:border-[#F2B233]/50 outline-none transition-colors"
                           />
                         </div>
 
                       <div className="space-y-1.5">
-                          <label className="text-xs text-[#c8a96e] block">{t('admin.additionalMessage')}</label>
+                          <label className="text-xs text-[#F2B233] block">{t('admin.additionalMessage')}</label>
                           <textarea
                             rows={3} value={additionalMessage}
                             onChange={e => setAdditionalMessage(e.target.value)}
                             placeholder={t('admin.jobAdditionalPlaceholder')}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white placeholder-white/20 focus:border-[#c8a96e]/50 outline-none transition-colors resize-none"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white placeholder-white/20 focus:border-[#F2B233]/50 outline-none transition-colors resize-none"
                           />
                         </div>
 
@@ -341,7 +341,7 @@ export default function JobDetailPage() {
                       <button
                         onClick={handleSendInterview}
                         disabled={sending || !interviewDate || !interviewTime}
-                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-r from-[#c8a96e] to-[#B8923A] text-black text-sm font-black transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90"
+                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-r from-[#F2B233] to-[#F2B233] text-black text-sm font-black transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90"
                       >
                         {sending ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}
                         {t('admin.sendAcceptance')}
@@ -369,7 +369,7 @@ export default function JobDetailPage() {
                     <p className="text-white/30 text-[10px]">{t('admin.locScoreLabel')}</p>
                   </div>
                   <div>
-                    <p className="text-[#c8a96e] font-black text-lg">{sc.total}</p>
+                    <p className="text-[#F2B233] font-black text-lg">{sc.total}</p>
                     <p className="text-white/30 text-[10px]">{t('admin.totalScoreLabel')}</p>
                   </div>
                 </div>
@@ -381,19 +381,19 @@ export default function JobDetailPage() {
       {/* Success Dialog */}
       {sendStatus === 'success' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-md" onClick={closeSuccessDialog} />
+          <div className="absolute inset-0 bg-black/70 " onClick={closeSuccessDialog} />
 
           <div
             className="relative z-10 w-full max-w-sm"
             dir="rtl"
           >
             {/* Glow */}
-            <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-[#c8a96e]/40 to-transparent blur-xl pointer-events-none" />
+            <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-[#F2B233]/40 to-transparent blur-xl pointer-events-none" />
 
-            <div className="relative rounded-3xl border border-[#c8a96e]/20 bg-[#0e0d0a] overflow-hidden shadow-2xl">
+            <div className="relative rounded-3xl border border-[#F2B233]/20 bg-[#0e0d0a] overflow-hidden shadow-2xl">
 
               {/* Top bar */}
-              <div className="h-1 w-full bg-gradient-to-r from-transparent via-[#c8a96e] to-transparent" />
+              <div className="h-1 w-full bg-gradient-to-r from-transparent via-[#F2B233] to-transparent" />
 
               <div className="p-8 flex flex-col items-center text-center gap-6">
 
@@ -410,7 +410,7 @@ export default function JobDetailPage() {
                     <p className="text-white font-black text-xl tracking-tight">{t('admin.jobSuccessTitle')}</p>
                     <p className="text-white/40 text-sm leading-relaxed">
                       {t('admin.jobSuccessSub')}<br />
-                      <span className="text-[#c8a96e] font-semibold">{app.fullName}</span>
+                      <span className="text-[#F2B233] font-semibold">{app.fullName}</span>
                     </p>
                   </div>
 
@@ -435,7 +435,7 @@ export default function JobDetailPage() {
                   {/* Button */}
                   <button
                     onClick={closeSuccessDialog}
-                    className="w-full py-3 rounded-xl bg-gradient-to-r from-[#c8a96e] to-[#B8923A] text-black font-black text-sm tracking-wide hover:opacity-90 transition-opacity"
+                    className="w-full py-3 rounded-xl bg-gradient-to-r from-[#F2B233] to-[#F2B233] text-black font-black text-sm tracking-wide hover:opacity-90 transition-opacity"
                   >
                     {t('admin.jobDoneBtn')}
                 </button>
@@ -452,7 +452,7 @@ export default function JobDetailPage() {
 function Card({ title, children }) {
   return (
     <div className="bg-white/[0.02] border border-white/[0.07] rounded-2xl p-5">
-      <h3 className="text-xs font-semibold text-[#c8a96e] uppercase tracking-wider mb-4">{title}</h3>
+      <h3 className="text-xs font-semibold text-[#F2B233] uppercase tracking-wider mb-4">{title}</h3>
       {children}
     </div>
   );

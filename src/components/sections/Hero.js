@@ -65,7 +65,7 @@ const Hero = () => {
               <SwiperSlide key={idx} className="relative h-full w-full overflow-hidden">
                 <Image
                   src={src}
-                  alt={`MNC Hero Slideshow ${idx + 1}`}
+                  alt={`MAN Hero Slideshow ${idx + 1}`}
                   fill
                   className="object-cover object-center opacity-90 scale-105 animate-slow-zoom"
                   priority={idx === 0}
@@ -126,7 +126,8 @@ const Hero = () => {
               as={Link}
               href="/contact"
               size="lg"
-              className="flex-1 flex items-center justify-center text-sm font-bold rounded-[4px] bg-white text-slate-950 border border-white hover:bg-white/90 active:scale-95 transition-all duration-300 py-3"
+              className="flex-1 flex items-center justify-center text-sm font-bold rounded-[4px] border border-white hover:bg-[#f2f2f2] active:scale-95 transition-all duration-300 py-3"
+              style={{ backgroundColor: '#ffffff', color: '#000000' }}
             >
               {requestConsultText}
             </Button>
@@ -177,7 +178,7 @@ const Hero = () => {
               <SwiperSlide key={idx} className="relative h-full w-full overflow-hidden">
                 <Image
                   src={src}
-                  alt={`MNC Hero Slideshow ${idx + 1}`}
+                  alt={`MAN Hero Slideshow ${idx + 1}`}
                   fill
                   className="object-cover object-center opacity-90 scale-105 animate-slow-zoom"
                   priority={idx === 0}
@@ -215,12 +216,12 @@ const Hero = () => {
             >
               <TypewriterText
                 texts={
-                  { ar: ["بصمة هندسية", "متميزة"], en: ["Distinctive", "Engineering Mark"],
-                    zh: ["独特的", "工程印记"], es: ["Sello", "De Ingeniería Distintivo"],
-                    fr: ["Empreinte", "D'ingénierie Distinctive"], de: ["Einzigartige", "Ingenieursleistung"],
-                    tr: ["Belirgin", "Mühendislik İzi"], ur: ["منفرد", "انجینئرنگ نشان"],
-                    hi: ["विशिष्ट", "इंजीनियरिंग छाप"], ru: ["Выдающийся", "Инженерный След"]
-                  }[lang] || ["Distinctive", "Engineering Mark"]
+                  { ar: ["حلول هندسية", "مبنية على الخبرة"], en: ["Engineering Solutions", "Built on Experience"],
+                    zh: ["工程解决方案", "基于丰富经验"], es: ["Soluciones de Ingeniería", "Construidas sobre la Experiencia"],
+                    fr: ["Solutions d'Ingénierie", "Fondées sur l'Expérience"], de: ["Ingenieurlösungen", "Gebaut auf Erfahrung"],
+                    tr: ["Mühendislik Çözümleri", "Deneyim Üzerine İnşa Edildi"], ur: ["انجینئرنگ حل", "تجربے کی بنیاد پر"],
+                    hi: ["इंजीनियरिंग समाधान", "अनुभव पर निर्मित"], ru: ["Инженерные решения", "Построенные на опыте"]
+                  }[lang] || ["Engineering Solutions", "Built on Experience"]
                 }
                 typingSpeed={120} deletingSpeed={60} pauseDuration={2000} loop
                 className="text-white" textClassNames={["", "text-secondary"]}

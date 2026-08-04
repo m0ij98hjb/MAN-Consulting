@@ -6,8 +6,8 @@ import { Field, TextArea, Section, SaveBtn, ImageUpload, Grid2, TabLoading } fro
 import { useLanguage } from '@/context/LanguageContext';
 
 const DEF = {
-  about_ar: 'شركة MNC للمقاولات، رائدة في تقديم حلول البناء والتشييد بالمملكة العربية السعودية منذ أكثر من 38 عامًا.',
-  about_en: 'MNC Contracting Company, a leader in construction solutions in Saudi Arabia for over 38 years.',
+  about_ar: 'مكتب MAN للاستشارات الهندسية، رائد في تقديم حلول التصميم والاستشارات الهندسية بالمملكة العربية السعودية منذ أكثر من 38 عامًا.',
+  about_en: 'MAN Engineering Consultancy, a leader in engineering design and consultancy solutions in Saudi Arabia for over 38 years.',
   director_name: 'م. مروان أحمد ناظر',
   director_pos_ar: 'المدير العام',
   director_pos_en: 'General Manager',
@@ -18,10 +18,10 @@ const DEF = {
     { value: '99%', label_ar: 'رضى العملاء',   label_en: 'Client Satisfaction' },
     { value: '300+', label_ar: 'عضو في الفريق', label_en: 'Team Members' },
   ],
-  vision_ar: 'أن نكون الشركة الأولى في مجال المقاولات في المنطقة',
-  vision_en: 'To be the leading contracting company in the region',
-  mission_ar: 'تقديم حلول بناء متكاملة بأعلى معايير الجودة والاحترافية',
-  mission_en: 'Providing comprehensive building solutions with the highest quality and professionalism',
+  vision_ar: 'أن نكون مكتب الاستشارات الهندسية الأول في المنطقة',
+  vision_en: 'To be the leading engineering consultancy office in the region',
+  mission_ar: 'تقديم حلول هندسية متكاملة بأعلى معايير الجودة والاحترافية',
+  mission_en: 'Providing comprehensive engineering solutions with the highest quality and professionalism',
   values: [
     { title_ar: 'الجودة',       title_en: 'Quality',       desc_ar: 'لا نتنازل عن الجودة في أي مرحلة', desc_en: 'We never compromise on quality' },
     { title_ar: 'الالتزام',     title_en: 'Commitment',    desc_ar: 'التزام تام بالمواعيد والعقود',     desc_en: 'Full commitment to deadlines and contracts' },
@@ -112,7 +112,7 @@ export default function AboutTab() {
               </Grid2>
             </div>
           ))}
-          <button onClick={addVal} className="flex items-center gap-1.5 text-xs text-[#c8a96e]/60 hover:text-[#c8a96e] transition-colors">
+          <button onClick={addVal} className="flex items-center gap-1.5 text-xs text-[#F2B233]/60 hover:text-[#F2B233] transition-colors">
             <Plus size={12} /> {t('admin.contentTabs.aboutTab.addValueBtn')}
           </button>
         </div>

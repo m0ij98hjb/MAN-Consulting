@@ -4,7 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAuth } from '@/context/AuthContext';
 import { useRoleAccess } from '@/hooks/useRoleAccess';
-import { LayoutDashboard, Users, CheckCircle, BarChart2, LogOut, Briefcase, MessageSquare, ShoppingCart, PenSquare, Camera, UserCog, Award, Settings, Calculator, FileText } from 'lucide-react';
+import { LayoutDashboard, Users, CheckCircle, BarChart2, LogOut, Briefcase, MessageSquare, PenSquare, UserCog, Award, Settings, FileText } from 'lucide-react';
 
 // Icon mapping
 const ICON_MAP = {
@@ -14,13 +14,10 @@ const ICON_MAP = {
   BarChart2,
   Briefcase,
   PenSquare,
-  Camera,
   UserCog,
   MessageSquare,
-  ShoppingCart,
   Award,
   Settings,
-  Calculator,
   FileText,
 };
 
@@ -47,9 +44,7 @@ export default function AdminBottomNav() {
       <nav
         className="lg:hidden fixed bottom-0 inset-x-0 z-[95] print:hidden"
         style={{
-          background: 'rgba(5,5,8,0.97)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          background: 'rgba(95,99,104,0.97)',
           borderTop: '1px solid rgba(201,163,77,0.28)',
           boxShadow: '0 -4px 24px rgba(0,0,0,0.7)',
           /* safe-area padding BELOW the 72px content row */
@@ -73,18 +68,18 @@ export default function AdminBottomNav() {
                 {active && (
                   <span
                     className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[2px] rounded-full"
-                    style={{ background: 'linear-gradient(90deg,transparent,#C9A34D,transparent)' }}
+                    style={{ background: 'linear-gradient(90deg,transparent,#F2B233,transparent)' }}
                   />
                 )}
                 {Icon && (
                   <Icon
                     size={active ? 20 : 18}
-                    style={{ color: active ? '#C9A34D' : 'rgba(255,255,255,0.65)', transition: 'all 0.2s' }}
+                    style={{ color: active ? '#F2B233' : 'rgba(255,255,255,0.65)', transition: 'all 0.2s' }}
                   />
                 )}
                 <span
                   className="text-[10px] font-bold leading-tight text-center w-full"
-                  style={{ color: active ? '#C9A34D' : 'rgba(255,255,255,0.65)' }}
+                  style={{ color: active ? '#F2B233' : 'rgba(255,255,255,0.65)' }}
                 >
                   {label}
                 </span>

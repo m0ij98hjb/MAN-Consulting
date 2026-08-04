@@ -206,7 +206,7 @@ export default function ProjectDirectory({ projects, categories }) {
       </div>
       
       {/* ── Filters & Search Section ── */}
-      <div ref={projectsSectionRef} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6">
+      <div ref={projectsSectionRef} className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6">
         
         {/* Search and Category Tabs Row */}
         <div className="flex flex-col lg:flex-row gap-6 items-stretch lg:items-center justify-between">
@@ -233,7 +233,7 @@ export default function ProjectDirectory({ projects, categories }) {
                   onClick={() => setActiveCategory(cat.id)}
                   className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 ${
                     isActive
-                      ? "bg-gradient-to-r from-secondary to-[#E1BF67] text-black shadow-lg shadow-secondary/20"
+                      ? "bg-gradient-to-r from-secondary to-[#F6C55C] text-black shadow-lg shadow-secondary/20"
                       : "bg-white/5 text-white/80 hover:bg-white/10"
                   }`}
                 >
@@ -251,7 +251,7 @@ export default function ProjectDirectory({ projects, categories }) {
           
           {/* City Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-[#D5B25D] tracking-wider block">
+            <label className="text-xs font-bold text-[#F2B233] tracking-wider block">
               {t("projectsSection.directory.cityLabel")}
             </label>
             <div className="relative">
@@ -275,7 +275,7 @@ export default function ProjectDirectory({ projects, categories }) {
 
           {/* Year Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-[#D5B25D] tracking-wider block">
+            <label className="text-xs font-bold text-[#F2B233] tracking-wider block">
               {t("projectsSection.directory.yearLabel")}
             </label>
             <div className="relative">
@@ -299,7 +299,7 @@ export default function ProjectDirectory({ projects, categories }) {
 
           {/* Status Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-[#D5B25D] tracking-wider block">
+            <label className="text-xs font-bold text-[#F2B233] tracking-wider block">
               {t("projectsSection.directory.statusLabel")}
             </label>
             <div className="relative">
@@ -375,7 +375,7 @@ export default function ProjectDirectory({ projects, categories }) {
                   </span>
 
                   {/* Photo Count Badge */}
-                  <span className={`absolute bottom-4 ${isRTL ? 'right-4' : 'left-4'} bg-black/60 backdrop-blur-md text-white/90 text-[10px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 border border-white/10`}>
+                  <span className={`absolute bottom-4 ${isRTL ? 'right-4' : 'left-4'} bg-black/60 text-white/90 text-[10px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 border border-white/10`}>
                     <Layers size={11} />
                     {p.gallery.length} {t("projectsSection.directory.photosCount")}
                   </span>
@@ -450,7 +450,7 @@ export default function ProjectDirectory({ projects, categories }) {
               {/* Close Button */}
               <button
                 onClick={closeLightbox}
-                className="p-2.5 rounded-xl bg-secondary hover:bg-[#E1BF67] border border-secondary/20 text-black font-black transition-all"
+                className="p-2.5 rounded-xl bg-secondary hover:bg-[#F6C55C] border border-secondary/20 text-black font-black transition-all"
                 title={t("aboutUsPage.closeLabel")}
               >
                 <X size={18} />

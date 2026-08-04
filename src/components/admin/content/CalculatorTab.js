@@ -72,7 +72,7 @@ export default function CalculatorTab() {
                         type="number"
                         value={rates[type]?.[q] ?? 0}
                         onChange={e => setRate(type, q, e.target.value)}
-                        className="w-full px-2 py-2 rounded-lg text-center text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none transition-colors"
+                        className="w-full px-2 py-2 rounded-lg text-center text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none transition-colors"
                       />
                     </td>
                   ))}
@@ -93,7 +93,7 @@ export default function CalculatorTab() {
                 type="number"
                 value={rates.hotel?.[rating] ?? 0}
                 onChange={e => setRate('hotel', rating, e.target.value)}
-                className="w-full px-2 py-2 rounded-lg text-center text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none transition-colors"
+                className="w-full px-2 py-2 rounded-lg text-center text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none transition-colors"
               />
             </div>
           ))}
@@ -124,7 +124,7 @@ export default function CalculatorTab() {
                         type="number"
                         value={rates[type]?.[q] ?? 0}
                         onChange={e => setRate(type, q, e.target.value)}
-                        className="w-full px-2 py-2 rounded-lg text-center text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none transition-colors"
+                        className="w-full px-2 py-2 rounded-lg text-center text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none transition-colors"
                       />
                     </td>
                   ))}

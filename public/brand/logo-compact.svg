@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 110" fill="none">
+  <!-- Mark: drafting compass over a T-square corner, in a rounded gold badge -->
+  <rect x="2" y="5" width="100" height="100" rx="22" fill="#F2B233"/>
+  <g stroke="#1F2937" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- compass legs -->
+    <path d="M52 26 L30 78"/>
+    <path d="M52 26 L74 78"/>
+    <circle cx="52" cy="26" r="5" fill="#1F2937"/>
+    <!-- compass hinge cap -->
+    <path d="M44 40 L60 40"/>
+    <!-- baseline / drafting rule -->
+    <path d="M24 84 L80 84"/>
+  </g>
+
+  <!-- Compact wordmark: icon + "MAN" only, no tagline — for tight nav space -->
+  <text x="122" y="76" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="58" letter-spacing="1" fill="#F2B233">MAN</text>
+</svg>

@@ -120,7 +120,7 @@ export default function MediaPicker({ open, onClose, onSelect, accept = 'image',
               key={id}
               onClick={() => setTab(id)}
               className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                tab === id ? 'bg-[#c8a96e]/12 text-[#c8a96e]' : 'text-white/35 hover:text-white/70 hover:bg-white/5'
+                tab === id ? 'bg-[#F2B233]/12 text-[#F2B233]' : 'text-white/35 hover:text-white/70 hover:bg-white/5'
               }`}
               style={tab === id ? { border: '1px solid rgba(201,163,77,0.30)' } : { border: '1px solid transparent' }}
             >
@@ -142,7 +142,7 @@ export default function MediaPicker({ open, onClose, onSelect, accept = 'image',
             }}
           >
             {uploading ? (
-              <Loader2 size={28} className="text-[#c8a96e] mx-auto mb-2 animate-spin" />
+              <Loader2 size={28} className="text-[#F2B233] mx-auto mb-2 animate-spin" />
             ) : (
               <Upload size={28} className="text-white/15 mx-auto mb-2" />
             )}
@@ -166,7 +166,7 @@ export default function MediaPicker({ open, onClose, onSelect, accept = 'image',
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={t('admin.contentTabs.mediaLibrary.searchPlaceholder')}
-                className="w-full pl-9 pr-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none"
+                className="w-full pl-9 pr-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none"
               />
             </div>
             {assets.length === 0 ? (
@@ -181,7 +181,7 @@ export default function MediaPicker({ open, onClose, onSelect, accept = 'image',
                       type="button"
                       onClick={() => toggleSelect(asset)}
                       className="relative aspect-square rounded-xl overflow-hidden border transition-all"
-                      style={{ borderColor: isSelected ? '#c8a96e' : 'rgba(255,255,255,0.1)' }}
+                      style={{ borderColor: isSelected ? '#F2B233' : 'rgba(255,255,255,0.1)' }}
                     >
                       {asset.type === 'image' ? (
                         <img src={asset.url} alt="" className="w-full h-full object-cover" />
@@ -192,8 +192,8 @@ export default function MediaPicker({ open, onClose, onSelect, accept = 'image',
                         </div>
                       )}
                       {isSelected && (
-                        <div className="absolute inset-0 bg-[#c8a96e]/20 flex items-center justify-center">
-                          <Check size={18} className="text-[#c8a96e]" />
+                        <div className="absolute inset-0 bg-[#F2B233]/20 flex items-center justify-center">
+                          <Check size={18} className="text-[#F2B233]" />
                         </div>
                       )}
                     </button>
@@ -206,7 +206,7 @@ export default function MediaPicker({ open, onClose, onSelect, accept = 'image',
                 onClick={confirmMultiSelect}
                 disabled={!selected.length}
                 className="w-full py-2.5 rounded-xl text-sm font-bold transition-all disabled:opacity-40"
-                style={{ background: 'rgba(201,163,77,0.12)', border: '1px solid rgba(201,163,77,0.35)', color: '#c8a96e' }}
+                style={{ background: 'rgba(201,163,77,0.12)', border: '1px solid rgba(201,163,77,0.35)', color: '#F2B233' }}
               >
                 {t('admin.contentTabs.mediaLibrary.useSelected')} ({selected.length})
               </button>

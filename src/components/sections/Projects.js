@@ -113,7 +113,7 @@ const Projects = () => {
               {/* Tag */}
               <div className="absolute top-3 left-3 z-10">
                 <div className="glass-morphism px-3 py-1 rounded-full text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
-                  MNC
+                  MAN
                 </div>
               </div>
             </div>

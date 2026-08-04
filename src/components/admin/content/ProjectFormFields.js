@@ -42,14 +42,14 @@ export function SlugField({ label, value, onChange, sourceText, currentSlug }) {
           value={value ?? ''}
           onChange={(e) => { onChange(slugify(e.target.value)); setStatus(null); }}
           onBlur={checkUnique}
-          className="flex-1 px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none transition-colors"
+          className="flex-1 px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none transition-colors"
           dir="ltr"
         />
         <button
           type="button"
           onClick={regenerate}
           title={t('admin.contentTabs.projectsTab.regenerateSlug')}
-          className="p-2.5 rounded-xl text-white/40 hover:text-[#c8a96e] hover:bg-white/5 transition-all flex-shrink-0"
+          className="p-2.5 rounded-xl text-white/40 hover:text-[#F2B233] hover:bg-white/5 transition-all flex-shrink-0"
         >
           <RefreshCw size={13} />
         </button>
@@ -80,7 +80,7 @@ export function TagsInput({ label, value = [], onChange }) {
       <div className="flex flex-wrap gap-1.5">
         {value.map((tag) => (
           <span key={tag} className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs"
-            style={{ background: 'rgba(201,163,77,0.08)', border: '1px solid rgba(201,163,77,0.25)', color: '#c8a96e' }}>
+            style={{ background: 'rgba(201,163,77,0.08)', border: '1px solid rgba(201,163,77,0.25)', color: '#F2B233' }}>
             {tag}
             <button type="button" onClick={() => remove(tag)} className="hover:text-red-400"><XIcon size={11} /></button>
           </span>
@@ -92,9 +92,9 @@ export function TagsInput({ label, value = [], onChange }) {
           onChange={(e) => setDraft(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); commit(); } }}
           placeholder={t('admin.contentTabs.projectsTab.tagsPlaceholder')}
-          className="flex-1 px-3 py-2 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none"
+          className="flex-1 px-3 py-2 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none"
         />
-        <button type="button" onClick={commit} className="px-3 py-2 rounded-xl text-white/40 hover:text-[#c8a96e] hover:bg-white/5">
+        <button type="button" onClick={commit} className="px-3 py-2 rounded-xl text-white/40 hover:text-[#F2B233] hover:bg-white/5">
           <Plus size={14} />
         </button>
       </div>
@@ -156,7 +156,7 @@ export function MultiImageUpload({ label, value = [], onChange }) {
         <button
           type="button"
           onClick={() => setPickerOpen(true)}
-          className="w-16 h-16 rounded-xl flex items-center justify-center border border-dashed border-white/15 text-white/30 hover:text-[#c8a96e] hover:border-[#c8a96e]/40 transition-all"
+          className="w-16 h-16 rounded-xl flex items-center justify-center border border-dashed border-white/15 text-white/30 hover:text-[#F2B233] hover:border-[#F2B233]/40 transition-all"
         >
           <Plus size={18} />
         </button>
@@ -178,7 +178,7 @@ export function PdfUpload({ label, value, onChange }) {
       <div className="flex items-center gap-3">
         {value?.url && (
           <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10">
-            <FileText size={14} className="text-[#c8a96e]" />
+            <FileText size={14} className="text-[#F2B233]" />
             <span className="text-xs text-white/60 truncate max-w-[140px]">{value.url.split('/').pop()}</span>
             <button type="button" onClick={() => onChange(null)} className="text-red-400/50 hover:text-red-400">
               <XIcon size={12} />
@@ -189,7 +189,7 @@ export function PdfUpload({ label, value, onChange }) {
           type="button"
           onClick={() => setPickerOpen(true)}
           className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all"
-          style={{ background: 'rgba(201,163,77,0.08)', border: '1px solid rgba(201,163,77,0.25)', color: '#c8a96e' }}
+          style={{ background: 'rgba(201,163,77,0.08)', border: '1px solid rgba(201,163,77,0.25)', color: '#F2B233' }}
         >
           <FileText size={12} /> {value?.url ? t('admin.contentTabs.shared.change') : t('admin.contentTabs.projectsTab.uploadPdf')}
         </button>
@@ -231,7 +231,7 @@ export function SingleImageUpload({ label, value, onChange }) {
           type="button"
           onClick={() => setPickerOpen(true)}
           className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all flex-shrink-0"
-          style={{ background: 'rgba(201,163,77,0.08)', border: '1px solid rgba(201,163,77,0.25)', color: '#c8a96e' }}
+          style={{ background: 'rgba(201,163,77,0.08)', border: '1px solid rgba(201,163,77,0.25)', color: '#F2B233' }}
         >
           {value?.url ? t('admin.contentTabs.shared.change') : t('admin.contentTabs.shared.uploadImage')}
         </button>
@@ -250,7 +250,7 @@ export function SingleImageUpload({ label, value, onChange }) {
 export function StatusToggleGroup({ draft, archived, onChangeDraft, onChangeArchived }) {
   const { t } = useLanguage();
   const pill = (active) => `flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-    active ? 'bg-[#c8a96e]/12 text-[#c8a96e] border border-[#c8a96e]/30' : 'text-white/35 border border-white/10 hover:text-white/60'
+    active ? 'bg-[#F2B233]/12 text-[#F2B233] border border-[#F2B233]/30' : 'text-white/35 border border-white/10 hover:text-white/60'
   }`;
   return (
     <div className="flex flex-wrap gap-4">

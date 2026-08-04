@@ -37,10 +37,10 @@ export async function POST(req) {
         <tr>
           <td style="background:linear-gradient(135deg,#1a1408,#0a0a0f);padding:40px;text-align:center;border-bottom:1px solid rgba(200,169,110,0.15);">
             <div style="display:inline-block;background:#ffffff;border-radius:14px;padding:10px 18px;margin-bottom:18px;">
-              <img src="cid:mnc-logo" alt="MNC" width="160" style="display:block;max-height:60px;width:auto;" />
+              <img src="cid:mnc-logo" alt="MAN" width="160" style="display:block;max-height:60px;width:auto;" />
             </div>
-            <h1 style="color:#c8a96e;margin:0;font-size:22px;font-weight:900;letter-spacing:1px;">شركة MNC للإنشاءات</h1>
-            <p style="color:rgba(255,255,255,0.4);margin:8px 0 0;font-size:13px;">MNC Construction</p>
+            <h1 style="color:#F2B233;margin:0;font-size:22px;font-weight:900;letter-spacing:1px;">مكتب MAN للاستشارات الهندسية</h1>
+            <p style="color:rgba(255,255,255,0.4);margin:8px 0 0;font-size:13px;">MAN Engineering Consultancy</p>
           </td>
         </tr>
         <!-- Body -->
@@ -48,15 +48,15 @@ export async function POST(req) {
           <td style="padding:40px;">
             <h2 style="color:#fff;font-size:20px;font-weight:800;margin:0 0 8px;">مبروك! تم قبول طلبك ✨</h2>
             <p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.8;margin:0 0 28px;">
-              عزيزي/عزيزتي <strong style="color:#c8a96e;">${applicantName}</strong>،<br/>
+              عزيزي/عزيزتي <strong style="color:#F2B233;">${applicantName}</strong>،<br/>
               يسعدنا إخبارك أنه تم مراجعة طلب التوظيف المقدم لوظيفة
-              <strong style="color:#c8a96e;">${position}</strong>
+              <strong style="color:#F2B233;">${position}</strong>
               وتم قبولك للمرحلة التالية.
             </p>
 
             <!-- Interview Details Card -->
             <div style="background:rgba(184,146,58,0.06);border:1px solid rgba(184,146,58,0.2);border-radius:16px;padding:24px;margin-bottom:28px;">
-              <h3 style="color:#c8a96e;font-size:15px;font-weight:800;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(184,146,58,0.15);">
+              <h3 style="color:#F2B233;font-size:15px;font-weight:800;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(184,146,58,0.15);">
                 📅 تفاصيل المقابلة
               </h3>
               <table width="100%" cellpadding="0" cellspacing="0">
@@ -75,7 +75,7 @@ export async function POST(req) {
                 ${interviewLocation ? `
                 <tr>
                   <td style="padding:8px 0;color:rgba(255,255,255,0.5);font-size:13px;">📍 الموقع / الرابط</td>
-                  <td style="padding:8px 0;color:#c8a96e;font-size:14px;font-weight:700;">${interviewLocation}</td>
+                  <td style="padding:8px 0;color:#F2B233;font-size:14px;font-weight:700;">${interviewLocation}</td>
                 </tr>` : ''}
               </table>
             </div>
@@ -94,7 +94,7 @@ export async function POST(req) {
         <!-- Footer -->
         <tr>
           <td style="background:rgba(0,0,0,0.3);padding:24px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.05);">
-            <p style="color:rgba(255,255,255,0.25);font-size:12px;margin:0;">شركة MNC للإنشاءات — جدة، المملكة العربية السعودية</p>
+            <p style="color:rgba(255,255,255,0.25);font-size:12px;margin:0;">مكتب MAN للاستشارات الهندسية — جدة، المملكة العربية السعودية</p>
           </td>
         </tr>
       </table>
@@ -113,10 +113,10 @@ export async function POST(req) {
         <tr>
           <td style="background:linear-gradient(135deg,#1a1408,#0a0a0f);padding:40px;text-align:center;border-bottom:1px solid rgba(200,169,110,0.15);">
             <div style="display:inline-block;background:#ffffff;border-radius:14px;padding:10px 18px;margin-bottom:18px;">
-              <img src="cid:mnc-logo" alt="MNC" width="160" style="display:block;max-height:60px;width:auto;" />
+              <img src="cid:mnc-logo" alt="MAN" width="160" style="display:block;max-height:60px;width:auto;" />
             </div>
-            <h1 style="color:#c8a96e;margin:0;font-size:22px;font-weight:900;letter-spacing:1px;">MNC Construction</h1>
-            <p style="color:rgba(255,255,255,0.4);margin:8px 0 0;font-size:13px;">شركة MNC للإنشاءات</p>
+            <h1 style="color:#F2B233;margin:0;font-size:22px;font-weight:900;letter-spacing:1px;">MAN Engineering Consultancy</h1>
+            <p style="color:rgba(255,255,255,0.4);margin:8px 0 0;font-size:13px;">مكتب MAN للاستشارات الهندسية</p>
           </td>
         </tr>
         <!-- Body -->
@@ -124,15 +124,15 @@ export async function POST(req) {
           <td style="padding:40px;">
             <h2 style="color:#fff;font-size:20px;font-weight:800;margin:0 0 8px;">Congratulations! Your application has been accepted ✨</h2>
             <p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.8;margin:0 0 28px;">
-              Dear <strong style="color:#c8a96e;">${applicantName}</strong>,<br/>
+              Dear <strong style="color:#F2B233;">${applicantName}</strong>,<br/>
               We're pleased to let you know that your job application for
-              <strong style="color:#c8a96e;">${position}</strong>
+              <strong style="color:#F2B233;">${position}</strong>
               has been reviewed and you've been accepted for the next stage.
             </p>
 
             <!-- Interview Details Card -->
             <div style="background:rgba(184,146,58,0.06);border:1px solid rgba(184,146,58,0.2);border-radius:16px;padding:24px;margin-bottom:28px;">
-              <h3 style="color:#c8a96e;font-size:15px;font-weight:800;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(184,146,58,0.15);">
+              <h3 style="color:#F2B233;font-size:15px;font-weight:800;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(184,146,58,0.15);">
                 📅 Interview Details
               </h3>
               <table width="100%" cellpadding="0" cellspacing="0">
@@ -151,7 +151,7 @@ export async function POST(req) {
                 ${interviewLocation ? `
                 <tr>
                   <td style="padding:8px 0;color:rgba(255,255,255,0.5);font-size:13px;">📍 Location / Link</td>
-                  <td style="padding:8px 0;color:#c8a96e;font-size:14px;font-weight:700;">${interviewLocation}</td>
+                  <td style="padding:8px 0;color:#F2B233;font-size:14px;font-weight:700;">${interviewLocation}</td>
                 </tr>` : ''}
               </table>
             </div>
@@ -170,7 +170,7 @@ export async function POST(req) {
         <!-- Footer -->
         <tr>
           <td style="background:rgba(0,0,0,0.3);padding:24px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.05);">
-            <p style="color:rgba(255,255,255,0.25);font-size:12px;margin:0;">MNC Construction — Jeddah, Saudi Arabia</p>
+            <p style="color:rgba(255,255,255,0.25);font-size:12px;margin:0;">MAN Engineering Consultancy — Jeddah, Saudi Arabia</p>
           </td>
         </tr>
       </table>
@@ -180,9 +180,9 @@ export async function POST(req) {
 </html>`;
 
     await transporter.sendMail({
-      from: isAr ? `"MNC للإنشاءات" <${COMPANY.email}>` : `"${COMPANY.name}" <${COMPANY.email}>`,
+      from: isAr ? `"مكتب MAN للاستشارات الهندسية" <${COMPANY.email}>` : `"${COMPANY.name}" <${COMPANY.email}>`,
       to:      applicantEmail,
-      subject: isAr ? `دعوة مقابلة — ${position} | MNC Construction` : `Interview Invitation — ${position} | MNC Construction`,
+      subject: isAr ? `دعوة مقابلة — ${position} | MAN Engineering Consultancy` : `Interview Invitation — ${position} | MAN Engineering Consultancy`,
       html,
       attachments: [{
         filename: 'logo.png',

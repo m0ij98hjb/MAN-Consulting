@@ -204,8 +204,8 @@ export default function MessagesPage() {
 
         {/* ── Header ── */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-9 h-9 rounded-xl bg-[#c8a96e]/10 border border-[#c8a96e]/20 flex items-center justify-center">
-            <MessageSquare size={16} className="text-[#c8a96e]" />
+          <div className="w-9 h-9 rounded-xl bg-[#F2B233]/10 border border-[#F2B233]/20 flex items-center justify-center">
+            <MessageSquare size={16} className="text-[#F2B233]" />
           </div>
           <h1 className="text-2xl font-bold text-white">{t('admin.messagesMenu')}</h1>
         </div>
@@ -234,7 +234,7 @@ export default function MessagesPage() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder={t('admin.messages.searchPlaceholder')}
-              className={`w-full bg-white/5 border border-white/10 rounded-xl py-2.5 ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#c8a96e]/40`}
+              className={`w-full bg-white/5 border border-white/10 rounded-xl py-2.5 ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#F2B233]/40`}
             />
           </div>
 
@@ -247,7 +247,7 @@ export default function MessagesPage() {
                 <button key={s} onClick={() => setFilter(s)}
                   className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all ${
                     filter === s
-                      ? 'bg-[#c8a96e]/15 text-[#c8a96e] border border-[#c8a96e]/30'
+                      ? 'bg-[#F2B233]/15 text-[#F2B233] border border-[#F2B233]/30'
                       : 'text-white/40 border border-white/8 hover:text-white/70'
                   }`}>
                   {label}
@@ -261,7 +261,7 @@ export default function MessagesPage() {
             <select
               value={dateFilter}
               onChange={e => setDateFilter(e.target.value)}
-              className={`bg-white/5 border border-white/10 rounded-xl py-2.5 ${isRTL ? 'pr-3 pl-9' : 'pl-3 pr-9'} text-white text-xs focus:outline-none focus:border-[#c8a96e]/40 appearance-none cursor-pointer`}
+              className={`bg-white/5 border border-white/10 rounded-xl py-2.5 ${isRTL ? 'pr-3 pl-9' : 'pl-3 pr-9'} text-white text-xs focus:outline-none focus:border-[#F2B233]/40 appearance-none cursor-pointer`}
             >
               <option value="all"   className="bg-black">{t('admin.messages.allTime')}</option>
               <option value="today" className="bg-black">{t('admin.messages.today')}</option>
@@ -274,7 +274,7 @@ export default function MessagesPage() {
 
         {/* ── Table ── */}
         {loading ? (
-          <div className="flex justify-center py-24"><Loader2 size={28} className="text-[#c8a96e] animate-spin" /></div>
+          <div className="flex justify-center py-24"><Loader2 size={28} className="text-[#F2B233] animate-spin" /></div>
         ) : visible.length === 0 ? (
           <div className="text-center py-24 text-white/25 text-sm">
             <MessageSquare size={32} className="mx-auto mb-3 opacity-20" />
@@ -326,7 +326,7 @@ export default function MessagesPage() {
                           </button>
                           {msg.email && (
                             <button onClick={() => openReply(msg)}
-                              className="p-1.5 rounded-lg text-white/30 hover:text-[#c8a96e] hover:bg-[#c8a96e]/8 transition-all"
+                              className="p-1.5 rounded-lg text-white/30 hover:text-[#F2B233] hover:bg-[#F2B233]/8 transition-all"
                               title={t('admin.messages.replyShort')}>
                               <CornerUpLeft size={14} />
                             </button>
@@ -385,7 +385,7 @@ export default function MessagesPage() {
               {/* Header */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.07]">
                 <div className="flex items-center gap-3">
-                  <MessageSquare size={15} className="text-[#c8a96e]" />
+                  <MessageSquare size={15} className="text-[#F2B233]" />
                   <h2 className="text-base font-bold text-white">{t('admin.messages.detailsTitle')}</h2>
                 </div>
                 <div className="flex items-center gap-2">
@@ -403,7 +403,7 @@ export default function MessagesPage() {
                 {/* Info Grid */}
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { icon: User,      color: '#c8a96e', bg: 'rgba(200,169,110,0.10)', label: t('admin.fullNameLabel'),        val: viewMsg.fullName || viewMsg.name || '—' },
+                    { icon: User,      color: '#F2B233', bg: 'rgba(200,169,110,0.10)', label: t('admin.fullNameLabel'),        val: viewMsg.fullName || viewMsg.name || '—' },
                     { icon: Mail,      color: '#3b82f6', bg: 'rgba(59,130,246,0.10)',  label: t('admin.emailLabel'),           val: viewMsg.email   || '—' },
                     { icon: Phone,     color: '#10b981', bg: 'rgba(16,185,129,0.10)',  label: t('admin.phoneCol'),             val: viewMsg.phone   || '—' },
                     { icon: Building2, color: '#a78bfa', bg: 'rgba(167,139,250,0.10)', label: t('admin.messages.companyLabel'), val: viewMsg.company || '—' },
@@ -430,8 +430,8 @@ export default function MessagesPage() {
 
                 {/* Admin Reply */}
                 {viewMsg.adminReply && (
-                  <div className="bg-[#c8a96e]/5 border border-[#c8a96e]/18 rounded-xl p-4">
-                    <p className="text-[10px] text-[#c8a96e]/55 uppercase tracking-wider mb-3">{t('admin.messages.adminReplyLabel')}</p>
+                  <div className="bg-[#F2B233]/5 border border-[#F2B233]/18 rounded-xl p-4">
+                    <p className="text-[10px] text-[#F2B233]/55 uppercase tracking-wider mb-3">{t('admin.messages.adminReplyLabel')}</p>
                     <p className="text-white/75 text-sm leading-relaxed whitespace-pre-wrap">{viewMsg.adminReply}</p>
                   </div>
                 )}
@@ -440,7 +440,7 @@ export default function MessagesPage() {
                 <div className="flex gap-2 flex-wrap pt-1 border-t border-white/[0.06]">
                   {viewMsg.email && (
                     <button onClick={() => { setViewMsg(null); openReply(viewMsg); }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#c8a96e]/10 border border-[#c8a96e]/25 text-[#c8a96e] hover:bg-[#c8a96e]/18">
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#F2B233]/10 border border-[#F2B233]/25 text-[#F2B233] hover:bg-[#F2B233]/18">
                       <CornerUpLeft size={12} /> {t('admin.messages.replyShort')}
                     </button>
                   )}
@@ -487,7 +487,7 @@ export default function MessagesPage() {
               {/* Header */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.07]">
                 <div className="flex items-center gap-3">
-                  <CornerUpLeft size={15} className="text-[#c8a96e]" />
+                  <CornerUpLeft size={15} className="text-[#F2B233]" />
                   <h2 className="text-base font-bold text-white">{t('admin.messages.sendReplyTitle')}</h2>
                 </div>
                 <button onClick={() => !replySending && setReplyMsg(null)}
@@ -530,7 +530,7 @@ export default function MessagesPage() {
                       <input
                         value={replySubject}
                         onChange={e => setReplySubject(e.target.value)}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:border-[#c8a96e]/40 focus:outline-none"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:border-[#F2B233]/40 focus:outline-none"
                       />
                     </div>
 
@@ -542,7 +542,7 @@ export default function MessagesPage() {
                         value={replyText}
                         onChange={e => setReplyText(e.target.value)}
                         placeholder={t('admin.messages.replyPlaceholder')}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:border-[#c8a96e]/40 focus:outline-none resize-none placeholder:text-white/20"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:border-[#F2B233]/40 focus:outline-none resize-none placeholder:text-white/20"
                       />
                     </div>
 
@@ -553,7 +553,7 @@ export default function MessagesPage() {
                       <button
                         onClick={sendReply}
                         disabled={replySending || !replyText.trim()}
-                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-[#c8a96e] to-[#E1BF67] text-black disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-[#F2B233] to-[#F6C55C] text-black disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {replySending ? <Loader2 size={13} className="animate-spin" /> : <Send size={13} />}
                         {replySending ? t('admin.sendingLabel') : t('admin.messages.sendReplyTitle')}

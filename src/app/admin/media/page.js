@@ -134,8 +134,8 @@ export default function MediaLibraryPage() {
     <AdminPageLayout>
       <div className="p-5 lg:p-7 max-w-5xl mx-auto" dir="rtl">
         <div className="mb-6 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-[#c8a96e]/10 border border-[#c8a96e]/20 flex items-center justify-center">
-            <ImageIcon size={16} className="text-[#c8a96e]" />
+          <div className="w-9 h-9 rounded-xl bg-[#F2B233]/10 border border-[#F2B233]/20 flex items-center justify-center">
+            <ImageIcon size={16} className="text-[#F2B233]" />
           </div>
           <div>
             <h1 className="text-xl font-black text-white">{t('admin.contentTabs.mediaLibrary.pageTitle')}</h1>
@@ -150,7 +150,7 @@ export default function MediaLibraryPage() {
               key={f}
               onClick={() => setType(f)}
               className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                type === f ? 'bg-[#c8a96e]/12 text-[#c8a96e]' : 'text-white/35 hover:text-white/70 hover:bg-white/5'
+                type === f ? 'bg-[#F2B233]/12 text-[#F2B233]' : 'text-white/35 hover:text-white/70 hover:bg-white/5'
               }`}
               style={type === f ? { border: '1px solid rgba(201,163,77,0.30)' } : { border: '1px solid transparent' }}
             >
@@ -163,7 +163,7 @@ export default function MediaLibraryPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t('admin.contentTabs.mediaLibrary.searchPlaceholder')}
-              className="w-full pl-9 pr-3 py-2 rounded-xl text-xs text-white bg-black/40 border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none"
+              className="w-full pl-9 pr-3 py-2 rounded-xl text-xs text-white bg-black/40 border border-white/10 focus:border-[#F2B233]/50 focus:outline-none"
             />
           </div>
         </div>

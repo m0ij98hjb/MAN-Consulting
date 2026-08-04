@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "مشاريعنا – MNC",
-  description: "استعرض أحدث مشاريعنا في المقاولات، التصميم المعماري، والتصميم الداخلي.",
+  title: "مشاريعنا",
+  description: "استعرض أعمالنا في التصميم الإنشائي والمعماري والداخلي، وإدارة المشاريع والإشراف الهندسي في جدة والمملكة.",
 };
 
 export default function ProjectsLayout({ children }) {

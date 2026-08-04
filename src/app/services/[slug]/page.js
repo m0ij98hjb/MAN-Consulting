@@ -10,10 +10,10 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const data = SERVICES_DATA[slug];
   if (!data) return {};
-  const title = data.content.ar?.title || data.content.en?.title || slug;
+  const title = data.content.en?.title || data.content.ar?.title || slug;
   return {
-    title: `${title} – MNC`,
-    description: data.content.ar?.description?.slice(0, 160),
+    title,
+    description: (data.content.en?.description || data.content.ar?.description)?.slice(0, 160),
   };
 }
 

@@ -15,7 +15,7 @@ export function Field({ label, value, onChange, type = 'text', placeholder = '',
         value={value ?? ''}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none transition-colors placeholder:text-white/15"
+        className="w-full px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none transition-colors placeholder:text-white/15"
       />
     </div>
   );
@@ -31,7 +31,7 @@ export function TextArea({ label, value, onChange, rows = 3, placeholder = '', c
         onChange={e => onChange(e.target.value)}
         rows={rows}
         placeholder={placeholder}
-        className="w-full px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none transition-colors placeholder:text-white/15 resize-none"
+        className="w-full px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none transition-colors placeholder:text-white/15 resize-none"
       />
     </div>
   );
@@ -43,7 +43,7 @@ export function Section({ title, icon: Icon, children, className = '' }) {
     <div className={`rounded-2xl p-5 space-y-4 ${className}`}
       style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
       <div className="flex items-center gap-2.5 pb-3.5 border-b border-white/[0.06]">
-        {Icon && <Icon size={14} className="text-[#c8a96e]" />}
+        {Icon && <Icon size={14} className="text-[#F2B233]" />}
         <h3 className="text-[13px] font-bold text-white">{title}</h3>
       </div>
       <div className="space-y-3">{children}</div>
@@ -63,7 +63,7 @@ export function SaveBtn({ saving, saved, onClick, label }) {
       style={{
         background: saved ? 'rgba(34,197,94,0.10)' : 'rgba(201,163,77,0.10)',
         border: `1px solid ${saved ? 'rgba(34,197,94,0.40)' : 'rgba(201,163,77,0.35)'}`,
-        color: saved ? '#22c55e' : '#c8a96e',
+        color: saved ? '#22c55e' : '#F2B233',
       }}
     >
       {saving ? <Loader2 size={14} className="animate-spin" />
@@ -117,7 +117,7 @@ export function ImageUpload({ label, value, onChange, className = '' }) {
           onClick={() => ref.current?.click()}
           disabled={uploading}
           className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all disabled:opacity-50 flex-shrink-0"
-          style={{ background: 'rgba(201,163,77,0.08)', border: '1px solid rgba(201,163,77,0.25)', color: '#c8a96e' }}
+          style={{ background: 'rgba(201,163,77,0.08)', border: '1px solid rgba(201,163,77,0.25)', color: '#F2B233' }}
         >
           {uploading ? <Loader2 size={12} className="animate-spin" /> : <Upload size={12} />}
           {uploading ? t('admin.contentTabs.shared.uploading') : value ? t('admin.contentTabs.shared.change') : t('admin.contentTabs.shared.uploadImage')}
@@ -144,7 +144,7 @@ export function ListEditor({ label, items = [], onChange }) {
             <input
               value={item}
               onChange={e => update(i, e.target.value)}
-              className="flex-1 px-3 py-2 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none transition-colors"
+              className="flex-1 px-3 py-2 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none transition-colors"
             />
             <button type="button" onClick={() => remove(i)} className="text-red-400/50 hover:text-red-400 transition-colors flex-shrink-0">
               <X size={14} />
@@ -153,7 +153,7 @@ export function ListEditor({ label, items = [], onChange }) {
         ))}
       </div>
       <button type="button" onClick={add}
-        className="flex items-center gap-1.5 text-xs text-[#c8a96e]/60 hover:text-[#c8a96e] transition-colors mt-1">
+        className="flex items-center gap-1.5 text-xs text-[#F2B233]/60 hover:text-[#F2B233] transition-colors mt-1">
         <Plus size={12} /> {t('admin.contentTabs.shared.addItem')}
       </button>
     </div>
@@ -164,7 +164,7 @@ export function ListEditor({ label, items = [], onChange }) {
 export function TabLoading() {
   return (
     <div className="flex items-center justify-center py-20">
-      <Loader2 size={22} className="animate-spin text-[#c8a96e]/40" />
+      <Loader2 size={22} className="animate-spin text-[#F2B233]/40" />
     </div>
   );
 }

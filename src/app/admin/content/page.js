@@ -12,7 +12,6 @@ const ServicesTab   = dynamic(() => import('@/components/admin/content/ServicesT
 const AboutTab      = dynamic(() => import('@/components/admin/content/AboutTab'),      { ssr: false });
 const ContactTab    = dynamic(() => import('@/components/admin/content/ContactTab'),    { ssr: false });
 const JobsTab       = dynamic(() => import('@/components/admin/content/JobsTab'),       { ssr: false });
-const AppTab        = dynamic(() => import('@/components/admin/content/AppTab'),        { ssr: false });
 const CalculatorTab = dynamic(() => import('@/components/admin/content/CalculatorTab'),{ ssr: false });
 const SettingsTab   = dynamic(() => import('@/components/admin/content/SettingsTab'),  { ssr: false });
 
@@ -23,7 +22,6 @@ const TABS = [
   { id: 'about',      labelKey: 'admin.contentTabs.contentPage.tabAbout',      emoji: '👤', component: AboutTab },
   { id: 'contact',    labelKey: 'admin.contentTabs.contentPage.tabContact',    emoji: '📞', component: ContactTab },
   { id: 'jobs',       labelKey: 'admin.contentTabs.contentPage.tabJobs',       emoji: '💼', component: JobsTab },
-  { id: 'app',        labelKey: 'admin.contentTabs.contentPage.tabApp',        emoji: '📱', component: AppTab },
   { id: 'calculator', labelKey: 'admin.contentTabs.contentPage.tabCalculator', emoji: '🧮', component: CalculatorTab },
   { id: 'settings',   labelKey: 'admin.contentTabs.contentPage.tabSettings',   emoji: '⚙️', component: SettingsTab },
 ];
@@ -61,7 +59,7 @@ export default function ContentPage() {
               onClick={() => setActive(tab.id)}
               className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 flex-shrink-0 ${
                 active === tab.id
-                  ? 'bg-[#c8a96e]/12 text-[#c8a96e]'
+                  ? 'bg-[#F2B233]/12 text-[#F2B233]'
                   : 'text-white/35 hover:text-white/70 hover:bg-white/5'
               }`}
               style={active === tab.id ? { border: '1px solid rgba(201,163,77,0.30)' } : { border: '1px solid transparent' }}

@@ -81,7 +81,7 @@ export default function ProjectEditorModal({ project, onClose, onSave, saving, e
               <select
                 value={form.category}
                 onChange={(e) => set('category', e.target.value)}
-                className="w-full px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none"
+                className="w-full px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none"
               >
                 {PROJECT_CATEGORY_IDS.map((id) => (
                   <option key={id} value={id} className="bg-[#0a0e17]">
@@ -95,7 +95,7 @@ export default function ProjectEditorModal({ project, onClose, onSave, saving, e
               <select
                 value={form.constructionStatus}
                 onChange={(e) => set('constructionStatus', e.target.value)}
-                className="w-full px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#c8a96e]/50 focus:outline-none"
+                className="w-full px-3 py-2.5 rounded-xl text-sm text-white bg-white/[0.04] border border-white/10 focus:border-[#F2B233]/50 focus:outline-none"
               >
                 <option value="ongoing" className="bg-[#0a0e17]">{t('admin.contentTabs.projectsTab.statusOngoing')}</option>
                 <option value="completed" className="bg-[#0a0e17]">{t('admin.contentTabs.projectsTab.statusCompleted')}</option>
@@ -156,7 +156,7 @@ export default function ProjectEditorModal({ project, onClose, onSave, saving, e
                     type="button"
                     onClick={() => toggleService(slug)}
                     className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-                      active ? 'bg-[#c8a96e]/12 text-[#c8a96e] border border-[#c8a96e]/30' : 'text-white/35 border border-white/10 hover:text-white/60'
+                      active ? 'bg-[#F2B233]/12 text-[#F2B233] border border-[#F2B233]/30' : 'text-white/35 border border-white/10 hover:text-white/60'
                     }`}
                   >
                     {title}
@@ -183,7 +183,7 @@ export default function ProjectEditorModal({ project, onClose, onSave, saving, e
           />
           <Grid2>
             <label className="flex items-center gap-2 text-sm text-white/70">
-              <input type="checkbox" checked={form.featured} onChange={(e) => set('featured', e.target.checked)} className="accent-[#c8a96e]" />
+              <input type="checkbox" checked={form.featured} onChange={(e) => set('featured', e.target.checked)} className="accent-[#F2B233]" />
               {t('admin.contentTabs.projectsTab.featuredLabel')}
             </label>
             <Field label={t('admin.contentTabs.projectsTab.orderLabel')} value={form.order} onChange={(v) => set('order', Number(v) || 0)} type="number" />
@@ -197,7 +197,7 @@ export default function ProjectEditorModal({ project, onClose, onSave, saving, e
             onClick={handleSubmit}
             disabled={saving || !form.name_ar || !form.name_en || !form.slug}
             className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-bold transition-all disabled:opacity-50"
-            style={{ background: 'rgba(201,163,77,0.12)', border: '1px solid rgba(201,163,77,0.35)', color: '#c8a96e' }}
+            style={{ background: 'rgba(201,163,77,0.12)', border: '1px solid rgba(201,163,77,0.35)', color: '#F2B233' }}
           >
             {saving && <Loader2 size={14} className="animate-spin" />}
             {t('admin.contentTabs.projectsTab.confirmBtn')}

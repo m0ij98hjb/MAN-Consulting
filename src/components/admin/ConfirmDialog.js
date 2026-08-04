@@ -5,7 +5,7 @@ import { useLanguage } from '@/context/LanguageContext';
 const VARIANTS = {
   danger:  { tint: 'rgba(239,68,68,0.10)',  color: '#ef4444', btn: 'bg-red-500 hover:bg-red-600 text-white' },
   warning: { tint: 'rgba(245,158,11,0.10)', color: '#f59e0b', btn: 'bg-amber-500 hover:bg-amber-600 text-black' },
-  default: { tint: 'rgba(201,163,77,0.10)', color: '#c8a96e', btn: 'bg-[#c8a96e] hover:bg-[#dcbb7d] text-black' },
+  default: { tint: 'rgba(201,163,77,0.10)', color: '#F2B233', btn: 'bg-[#F2B233] hover:bg-[#dcbb7d] text-black' },
 };
 
 export default function ConfirmDialog({
@@ -26,7 +26,7 @@ export default function ConfirmDialog({
   return (
     <div
       className="fixed inset-0 z-[500] flex items-center justify-center p-4"
-      style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
+      style={{ background: 'rgba(0,0,0,0.85)' }}
       onClick={mode === 'alert' ? onConfirm : onCancel}
     >
       <div

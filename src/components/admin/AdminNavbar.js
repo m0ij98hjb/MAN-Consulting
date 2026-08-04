@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import {
   LogOut, LayoutDashboard, ChevronDown, Globe,
-  Bell, Briefcase, Building2, ExternalLink, MessageSquare,
+  Bell, Briefcase, ExternalLink, MessageSquare,
 } from 'lucide-react';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -18,17 +18,11 @@ import { useRoleAccess } from '@/hooks/useRoleAccess';
 /* Route → i18n key map for the header page title */
 const PAGE_TITLE_KEYS = {
   '/admin/dashboard':      'admin.dashboard',
-  '/admin/suppliers':      'admin.suppliersMenu',
-  '/admin/suppliers/best': 'admin.bestSuppliersPageTitle',
-  '/admin/approved':       'admin.approvedMenu',
   '/admin/jobs':           'admin.jobsTitle',
   '/admin/jobs/approved':  'admin.jobsApprovedTitle',
   '/admin/jobs/best':      'admin.bestJobsPageTitle',
   '/admin/messages':       'admin.messagesMenu',
   '/admin/reports':        'admin.reportsTitle',
-  '/admin/cameras':        'admin.camerasMenu',
-  '/admin/cost-calculator': 'nav.costCalc',
-  '/admin/cost-reports':    'costReports.title',
 };
 
 /* Thin gold vertical divider */
@@ -86,9 +80,7 @@ export default function AdminNavbar() {
 
   const pageTitleKey =
     PAGE_TITLE_KEYS[pathname] ??
-    (pathname.startsWith('/admin/suppliers/') ? 'admin.supplierDetail' :
-     pathname.startsWith('/admin/jobs/')      ? 'admin.jobDetailTitle' :
-     pathname.startsWith('/admin/cost-reports/') ? 'costReports.detailsTitle' : 'admin.dashboard');
+    (pathname.startsWith('/admin/jobs/') ? 'admin.jobDetailTitle' : 'admin.dashboard');
   const pageTitle = t(pageTitleKey);
 
   const currentLang = LANGUAGES.find(l => l.code === lang) || LANGUAGES[0];
@@ -98,7 +90,7 @@ export default function AdminNavbar() {
       className="fixed inset-x-0 top-0 z-[100] print:hidden"
       style={{
         height: '72px',
-        background: '#000000',
+        background: '#5F6368',
         boxShadow: '0 2px 24px rgba(0,0,0,0.7)',
       }}
       dir="rtl"
@@ -109,17 +101,18 @@ export default function AdminNavbar() {
         {/* ── RIGHT: Logo ── */}
         <Link href="/" className="flex-shrink-0 pe-4">
           <Image
-            src="/asstes/logo-navbar.png"
-            alt="MNC"
-            width={180}
-            height={90}
+            src="/brand/logo-navbar-real.png"
+            alt="MAN Engineering Consultancy"
+            width={1029}
+            height={461}
+            unoptimized
             className="h-10 sm:h-11 w-auto object-contain"
             priority
           />
         </Link>
 
         {/* Right → Center separator */}
-        <div className="w-px h-8 bg-[#C9A34D]/18 flex-shrink-0" />
+        <div className="w-px h-8 bg-[#F2B233]/18 flex-shrink-0" />
 
         {/* ── CENTER: ADMIN PANEL + page name ── */}
         <div className="flex-1 flex flex-col items-center justify-center gap-0.5 min-w-0 px-4">
@@ -138,7 +131,7 @@ export default function AdminNavbar() {
         </div>
 
         {/* Center → Left separator */}
-        <div className="w-px h-8 bg-[#C9A34D]/18 flex-shrink-0" />
+        <div className="w-px h-8 bg-[#F2B233]/18 flex-shrink-0" />
 
         {/* ── LEFT ACTIONS (RTL: first child is visually rightmost of the left group) ── */}
         <div className="flex items-center flex-shrink-0 ps-3">
@@ -168,12 +161,12 @@ export default function AdminNavbar() {
                   className="object-cover object-top"
                 />
               </div>
-              <span className="hidden sm:block text-[11px] font-bold text-[#C9A34D] whitespace-nowrap leading-none">
+              <span className="hidden sm:block text-[11px] font-bold text-[#F2B233] whitespace-nowrap leading-none">
                 {displayName}
               </span>
               <ChevronDown
                 size={10}
-                className={`text-[#C9A34D]/50 transition-transform duration-200 ${isUserOpen ? 'rotate-180' : ''}`}
+                className={`text-[#F2B233]/50 transition-transform duration-200 ${isUserOpen ? 'rotate-180' : ''}`}
               />
             </button>
 
@@ -210,7 +203,7 @@ export default function AdminNavbar() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-[13px] font-bold text-white leading-none">{displayName}</p>
-                  <p className="text-[10px] text-[#C9A34D] mt-0.5 uppercase tracking-widest font-semibold">
+                  <p className="text-[10px] text-[#F2B233] mt-0.5 uppercase tracking-widest font-semibold">
                     {roleLabel}
                   </p>
                 </div>
@@ -218,9 +211,9 @@ export default function AdminNavbar() {
               <Link
                 href={getDashboard()}
                 onClick={() => setIsUserOpen(false)}
-                className="flex items-center gap-2.5 w-full px-4 py-3 text-[13px] font-semibold text-white/70 hover:text-white hover:bg-[#c8a96e]/15 transition-colors"
+                className="flex items-center gap-2.5 w-full px-4 py-3 text-[13px] font-semibold text-white/70 hover:text-white hover:bg-[#F2B233]/15 transition-colors"
               >
-                <LayoutDashboard size={14} className="text-[#C9A34D] flex-shrink-0" />
+                <LayoutDashboard size={14} className="text-[#F2B233] flex-shrink-0" />
                 {roleLabel}
               </Link>
               <div className="h-px mx-3 bg-white/[0.12]" />
@@ -286,11 +279,8 @@ export default function AdminNavbar() {
                     <p className="text-white/25 text-xs">{t('admin.noNotifications')}</p>
                   </div>
                 ) : allNotifications.map(n => {
-                  const isSupplier = n.type === 'supplier';
                   const isContact  = n.type === 'contact';
-                  const href       = isSupplier ? `/admin/suppliers/${n.id}`
-                                   : isContact  ? '/admin/messages'
-                                   :              '/admin/jobs';
+                  const href       = isContact ? '/admin/messages' : '/admin/jobs';
                   return (
                     <Link
                       key={n.id}
@@ -299,25 +289,22 @@ export default function AdminNavbar() {
                       className="flex items-start gap-3 px-4 py-3 hover:bg-white/[0.08] transition-colors"
                     >
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                        isSupplier ? 'bg-blue-500/20 border border-blue-500/40'
-                        : isContact ? 'bg-green-500/20 border border-green-500/40'
-                        :             'bg-[#c8a96e]/20 border border-[#c8a96e]/40'
+                        isContact ? 'bg-green-500/20 border border-green-500/40'
+                        :           'bg-[#F2B233]/20 border border-[#F2B233]/40'
                       }`}>
-                        {isSupplier ? <Building2 size={13} className="text-blue-400" />
-                        : isContact ? <MessageSquare size={13} className="text-green-400" />
-                        :             <Briefcase size={13} className="text-[#c8a96e]" />}
+                        {isContact ? <MessageSquare size={13} className="text-green-400" />
+                        :            <Briefcase size={13} className="text-[#F2B233]" />}
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-xs font-semibold truncate">
-                          {isSupplier ? n.companyName : (n.fullName || n.name || t('admin.customerFallback'))}
+                          {n.fullName || n.name || t('admin.customerFallback')}
                         </p>
                         <p className="text-white/60 text-[11px] mt-0.5 truncate">
-                          {isSupplier ? `${t('admin.supplierReqLabel')} · ${n.activity || ''}`
-                          : isContact ? `${t('admin.customerMessageLabel')} · ${n.subject || ''}`
-                          :             `${t('admin.jobReqLabel')} · ${n.position || ''}`}
+                          {isContact ? `${t('admin.customerMessageLabel')} · ${n.subject || ''}`
+                          :            `${t('admin.jobReqLabel')} · ${n.position || ''}`}
                         </p>
                       </div>
-                      <span className="w-2 h-2 rounded-full bg-[#c8a96e] shrink-0 mt-2" />
+                      <span className="w-2 h-2 rounded-full bg-[#F2B233] shrink-0 mt-2" />
                     </Link>
                   );
                 })}
@@ -325,17 +312,9 @@ export default function AdminNavbar() {
               {allNotifications.length > 0 && (
                 <div className="border-t border-white/[0.15] px-4 py-2.5 flex gap-2">
                   <Link
-                    href="/admin/suppliers"
-                    onClick={() => setIsBellOpen(false)}
-                    className="flex-1 text-center text-[11px] text-blue-400 hover:text-blue-300 transition-colors font-semibold"
-                  >
-                    {t('admin.suppliersMenu')}
-                  </Link>
-                  <div className="w-px bg-white/20" />
-                  <Link
                     href="/admin/jobs"
                     onClick={() => setIsBellOpen(false)}
-                    className="flex-1 text-center text-[11px] text-[#c8a96e] hover:text-[#d4b47a] transition-colors font-semibold"
+                    className="flex-1 text-center text-[11px] text-[#F2B233] hover:text-[#d4b47a] transition-colors font-semibold"
                   >
                     {t('admin.jobsMenu')}
                   </Link>
@@ -389,7 +368,7 @@ export default function AdminNavbar() {
                       onClick={() => { setLang(language.code); setIsLangOpen(false); }}
                       className={`flex items-center gap-2 px-2.5 py-2 rounded-xl text-start transition-all duration-200 ${
                         lang === language.code
-                          ? 'bg-[#C9A34D]/20 border border-[#C9A34D]/40 text-[#C9A34D]'
+                          ? 'bg-[#F2B233]/20 border border-[#F2B233]/40 text-[#F2B233]'
                           : 'border border-transparent text-white/60 hover:bg-white/10 hover:text-white'
                       }`}
                     >
@@ -399,7 +378,7 @@ export default function AdminNavbar() {
                         <p className="text-[8.5px] opacity-60 uppercase tracking-wide">{language.dir.toUpperCase()}</p>
                       </div>
                       {lang === language.code && (
-                        <span className="ms-auto w-1.5 h-1.5 rounded-full bg-[#C9A34D] flex-shrink-0" />
+                        <span className="ms-auto w-1.5 h-1.5 rounded-full bg-[#F2B233] flex-shrink-0" />
                       )}
                     </button>
                   ))}
@@ -418,7 +397,7 @@ export default function AdminNavbar() {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold whitespace-nowrap transition-all duration-200 active:scale-95"
               style={{
-                color: '#C9A34D',
+                color: '#F2B233',
                 border: '1px dashed rgba(201,163,77,0.50)',
               }}
               onMouseEnter={e => e.currentTarget.style.background = 'rgba(201,163,77,0.08)'}

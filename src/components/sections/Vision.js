@@ -84,8 +84,8 @@ const Vision = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(213,178,93,0.035) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(213,178,93,0.035) 1px, transparent 1px)
+            linear-gradient(rgba(242,178,51,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(242,178,51,0.035) 1px, transparent 1px)
           `,
           backgroundSize: "64px 64px",
         }}
@@ -93,10 +93,8 @@ const Vision = () => {
 
       {/* ── Ambient glows ───────────────────────────────────────────────── */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D5B25D]/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D5B25D]/10 to-transparent" />
-        <div className="absolute top-1/3 right-0 w-[600px] h-[600px] rounded-full bg-[#D5B25D]/[0.04] blur-[140px] -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#D5B25D]/[0.03] blur-[100px] translate-y-1/3 -translate-x-1/4" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2B233]/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2B233]/10 to-transparent" />
       </div>
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
@@ -106,20 +104,20 @@ const Vision = () => {
 
           {/* Eyebrow */}
           <div className={`inline-flex items-center gap-3 mb-5 ${isRTL ? 'flex-row' : 'flex-row-reverse'}`}>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#D5B25D]" />
-            <span className="text-[#D5B25D] font-bold tracking-[0.2em] uppercase text-[11px]">
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#F2B233]" />
+            <span className="text-[#F2B233] font-bold tracking-[0.2em] uppercase text-[11px]">
               {{ ar: "رؤية وخبرة", en: "Vision & Expertise", zh: "愿景与专长",
                  es: "Visión y experiencia", fr: "Vision et expertise",
                  de: "Vision & Expertise", tr: "Vizyon & Uzmanlık", ur: "وژن اور مہارت",
                  hi: "दृष्टि और विशेषज्ञता", ru: "Видение и опыт" }[lang] || "Vision & Expertise"}
             </span>
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#D5B25D]" />
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#F2B233]" />
           </div>
 
           {/* Title */}
           <h2 className="text-4xl md:text-5xl font-black leading-tight mb-4" data-aos="fade-up" data-aos-delay="100">
             <span className="text-white block">
-              {{ ar: "نحن لا نبني مشاريع فقط", en: "We Don't Just Build Projects",
+              {{ ar: "نحن لا نصمم مشاريع فقط", en: "We Don't Just Design Projects",
                  zh: "我们不只是建造项目", es: "No solo construimos proyectos",
                  fr: "Nous ne construisons pas que des projets",
                  de: "Wir bauen nicht nur Projekte",
@@ -127,7 +125,7 @@ const Vision = () => {
                  hi: "हम केवल परियोजनाएं नहीं बनाते", ru: "Мы не просто строим объекты" }[lang] || "We Don't Just Build Projects"}
             </span>
             <span className="text-gradient">
-              {{ ar: "نحن نصنع معالم معمارية خالدة", en: "We Create Timeless Architectural Landmarks",
+              {{ ar: "نحن نهندس معالم معمارية خالدة", en: "We Engineer Timeless Architectural Landmarks",
                  zh: "我们创造永恒的建筑地标", es: "Creamos hitos arquitectónicos atemporales",
                  fr: "Nous créons des repères architecturaux intemporels",
                  de: "Wir schaffen zeitlose architektonische Wahrzeichen",
@@ -137,21 +135,21 @@ const Vision = () => {
           </h2>
 
           {/* Gold underline */}
-          <div className={`h-1 w-16 rounded-full bg-gradient-to-r from-[#D5B25D] to-[#E1BF67] ${isRTL ? 'mr-0' : 'ml-0'}`} data-aos="fade-up" data-aos-delay="150" />
+          <div className={`h-1 w-16 rounded-full bg-gradient-to-r from-[#F2B233] to-[#F6C55C] ${isRTL ? 'mr-0' : 'ml-0'}`} data-aos="fade-up" data-aos-delay="150" />
 
           {/* Description */}
           <p className="mt-6 text-white/50 text-base md:text-lg leading-relaxed max-w-2xl" data-aos="fade-up" data-aos-delay="200">
-            {{ ar: "شركة MNC للمقاولات تجمع بين الخبرة الراسخة والرؤية الاستشرافية لتقديم مشاريع تتجاوز التوقعات — من التصميم إلى التسليم.",
-               en: "MNC Construction bridges deep expertise with forward-thinking vision to deliver projects that exceed expectations — from design to handover.",
-               zh: "MNC建筑将深厚的专业知识与前瞻性愿景相结合，提供超出预期的项目。",
-               fr: "MNC Construction allie expertise solide et vision prospective pour livrer des projets dépassant les attentes.",
-               es: "MNC Construction combina experiencia sólida con visión prospectiva para entregar proyectos que superan las expectativas.",
-               de: "MNC verbindet tiefe Expertise mit zukunftsorientierter Vision für Projekte, die Erwartungen übertreffen.",
-               tr: "MNC, derin uzmanlığı ileri görüşlü bir vizyonla birleştirerek beklentilerin ötesinde projeler sunar.",
-               ur: "MNC تعمیرات گہری مہارت اور دور اندیش وژن کو یکجا کرکے توقعات سے بڑھ کر منصوبے فراہم کرتی ہے۔",
-               hi: "MNC कंस्ट्रक्शन डिजाइन से लेकर हैंडओवर तक, अपेक्षाओं से परे परियोजनाएं देने के लिए गहरी विशेषज्ञता को दूरदर्शी दृष्टि के साथ जोड़ती है।",
-               ru: "MNC Construction объединяет глубокий опыт с перспективным видением для создания проектов, превосходящих ожидания."
-            }[lang] || "MNC Construction bridges deep expertise with forward-thinking vision to deliver projects that exceed expectations."}
+            {{ ar: "مكتب MAN للاستشارات الهندسية يجمع بين الخبرة الراسخة والرؤية الاستشرافية لتقديم مشاريع تتجاوز التوقعات — من التصميم إلى التسليم.",
+               en: "MAN Engineering Consultancy bridges deep expertise with forward-thinking vision to deliver projects that exceed expectations — from design to handover.",
+               zh: "MAN建筑将深厚的专业知识与前瞻性愿景相结合，提供超出预期的项目。",
+               fr: "MAN Engineering Consultancy allie expertise solide et vision prospective pour livrer des projets dépassant les attentes.",
+               es: "MAN Engineering Consultancy combina experiencia sólida con visión prospectiva para entregar proyectos que superan las expectativas.",
+               de: "MAN verbindet tiefe Expertise mit zukunftsorientierter Vision für Projekte, die Erwartungen übertreffen.",
+               tr: "MAN, derin uzmanlığı ileri görüşlü bir vizyonla birleştirerek beklentilerin ötesinde projeler sunar.",
+               ur: "MAN تعمیرات گہری مہارت اور دور اندیش وژن کو یکجا کرکے توقعات سے بڑھ کر منصوبے فراہم کرتی ہے۔",
+               hi: "MAN कंस्ट्रक्शन डिजाइन से लेकर हैंडओवर तक, अपेक्षाओं से परे परियोजनाएं देने के लिए गहरी विशेषज्ञता को दूरदर्शी दृष्टि के साथ जोड़ती है।",
+               ru: "MAN Engineering Consultancy объединяет глубокий опыт с перспективным видением для создания проектов, превосходящих ожидания."
+            }[lang] || "MAN Engineering Consultancy bridges deep expertise with forward-thinking vision to deliver projects that exceed expectations."}
           </p>
         </div>
 
@@ -160,8 +158,8 @@ const Vision = () => {
           {[
             {
               label: { ar: "رؤيتنا",    en: "Our Vision",   zh: "我们的愿景", fr: "Notre Vision",   es: "Nuestra Visión",   de: "Unsere Vision",  tr: "Vizyonumuz",  ur: "ہمارا وژن",  hi: "हमारी दृष्टि",  ru: "Наше видение"  },
-              text:  { ar: "أن نكون الشركة الرائدة في قطاع الإنشاءات على مستوى المنطقة، من خلال تقديم مشاريع استثنائية تجمع بين الجودة والابتكار والاستدامة.",
-                       en: "To be the leading construction company in the region by delivering exceptional projects that blend quality, innovation, and sustainability.",
+              text:  { ar: "أن نكون مكتب الاستشارات الهندسية الرائد على مستوى المنطقة، من خلال تقديم مشاريع استثنائية تجمع بين الجودة والابتكار والاستدامة.",
+                       en: "To be the leading engineering consultancy in the region by delivering exceptional projects that blend quality, innovation, and sustainability.",
                        hi: "गुणवत्ता, नवाचार और स्थिरता को जोड़ने वाली असाधारण परियोजनाएं प्रदान करके क्षेत्र में अग्रणी निर्माण कंपनी बनना।",
                        ru: "Быть ведущей строительной компанией в регионе, реализуя исключительные проекты, сочетающие качество, инновации и устойчивость.",
                        de: "Das führende Bauunternehmen der Region zu sein, indem wir außergewöhnliche Projekte liefern.",
@@ -191,48 +189,48 @@ const Vision = () => {
           ].map((card) => (
             <div
               key={card.num}
-              className="group relative rounded-2xl p-7 overflow-hidden transition-all duration-500 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5B25D]/60"
+              className="group relative rounded-2xl p-7 overflow-hidden transition-all duration-500 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F2B233]/60"
               tabIndex={0}
               style={{
                 background: "rgba(255,255,255,0.025)",
-                border: "1px solid rgba(213,178,93,0.1)",
+                border: "1px solid rgba(242,178,51,0.1)",
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.background = "rgba(213,178,93,0.05)";
-                e.currentTarget.style.border = "1px solid rgba(213,178,93,0.25)";
-                e.currentTarget.style.boxShadow = "0 0 40px rgba(213,178,93,0.08), 0 20px 60px rgba(0,0,0,0.4)";
+                e.currentTarget.style.background = "rgba(242,178,51,0.05)";
+                e.currentTarget.style.border = "1px solid rgba(242,178,51,0.25)";
+                e.currentTarget.style.boxShadow = "0 0 40px rgba(242,178,51,0.08), 0 20px 60px rgba(0,0,0,0.4)";
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.background = "rgba(255,255,255,0.025)";
-                e.currentTarget.style.border = "1px solid rgba(213,178,93,0.1)";
+                e.currentTarget.style.border = "1px solid rgba(242,178,51,0.1)";
                 e.currentTarget.style.boxShadow = "none";
               }}
               data-aos="fade-up"
               data-aos-delay={card.delay}
             >
               {/* Top accent line */}
-              <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D5B25D]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#F2B233]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Corner brackets */}
               <span aria-hidden="true"
                 className={`absolute top-3 w-4 h-4 transition-colors duration-500 ${isRTL ? 'right-3' : 'left-3'}`}
-                style={{ borderTop: '1px solid rgba(213,178,93,0.3)', [isRTL ? 'borderRight' : 'borderLeft']: '1px solid rgba(213,178,93,0.3)' }}
+                style={{ borderTop: '1px solid rgba(242,178,51,0.3)', [isRTL ? 'borderRight' : 'borderLeft']: '1px solid rgba(242,178,51,0.3)' }}
               />
               <span aria-hidden="true"
                 className={`absolute bottom-3 w-4 h-4 transition-colors duration-500 ${isRTL ? 'left-3' : 'right-3'}`}
-                style={{ borderBottom: '1px solid rgba(213,178,93,0.3)', [isRTL ? 'borderLeft' : 'borderRight']: '1px solid rgba(213,178,93,0.3)' }}
+                style={{ borderBottom: '1px solid rgba(242,178,51,0.3)', [isRTL ? 'borderLeft' : 'borderRight']: '1px solid rgba(242,178,51,0.3)' }}
               />
 
               {/* Number watermark */}
-              <span className={`absolute top-4 ${isRTL ? 'left-5' : 'right-5'} text-6xl font-black text-white/[0.03] group-hover:text-[#D5B25D]/[0.07] transition-colors duration-500 select-none leading-none`}>
+              <span className={`absolute top-4 ${isRTL ? 'left-5' : 'right-5'} text-6xl font-black text-white/[0.03] group-hover:text-[#F2B233]/[0.07] transition-colors duration-500 select-none leading-none`}>
                 {card.num}
               </span>
 
               {/* Gold pill label */}
               <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full"
-                style={{ background: "rgba(213,178,93,0.1)", border: "1px solid rgba(213,178,93,0.2)" }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D5B25D]" />
-                <span className="text-[#D5B25D] text-[11px] font-bold tracking-widest uppercase">
+                style={{ background: "rgba(242,178,51,0.1)", border: "1px solid rgba(242,178,51,0.2)" }}>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F2B233]" />
+                <span className="text-[#F2B233] text-[11px] font-bold tracking-widest uppercase">
                   {tx(card.label)}
                 </span>
               </div>
@@ -242,7 +240,7 @@ const Vision = () => {
               </p>
 
               {/* Bottom accent */}
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D5B25D]/0 to-transparent group-hover:via-[#D5B25D]/20 transition-all duration-500" />
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2B233]/0 to-transparent group-hover:via-[#F2B233]/20 transition-all duration-500" />
             </div>
           ))}
         </div>
@@ -252,32 +250,32 @@ const Vision = () => {
           {VALUES.map((val, i) => (
             <div
               key={i}
-              className="group flex items-start gap-4 rounded-xl p-5 transition-all duration-400 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5B25D]/60"
+              className="group flex items-start gap-4 rounded-xl p-5 transition-all duration-400 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F2B233]/60"
               tabIndex={0}
               style={{
                 background: "rgba(255,255,255,0.015)",
-                border: "1px solid rgba(213,178,93,0.07)",
+                border: "1px solid rgba(242,178,51,0.07)",
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.background = "rgba(213,178,93,0.04)";
-                e.currentTarget.style.border = "1px solid rgba(213,178,93,0.18)";
+                e.currentTarget.style.background = "rgba(242,178,51,0.04)";
+                e.currentTarget.style.border = "1px solid rgba(242,178,51,0.18)";
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.background = "rgba(255,255,255,0.015)";
-                e.currentTarget.style.border = "1px solid rgba(213,178,93,0.07)";
+                e.currentTarget.style.border = "1px solid rgba(242,178,51,0.07)";
               }}
               data-aos="fade-up"
               data-aos-delay={val.delay}
             >
               {/* Icon */}
               <div className="shrink-0 mt-0.5 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-                style={{ background: "rgba(213,178,93,0.1)", border: "1px solid rgba(213,178,93,0.2)" }}>
-                <CheckCircle2 size={16} className="text-[#D5B25D]" />
+                style={{ background: "rgba(242,178,51,0.1)", border: "1px solid rgba(242,178,51,0.2)" }}>
+                <CheckCircle2 size={16} className="text-[#F2B233]" />
               </div>
 
               {/* Text */}
               <div className="flex flex-col gap-1 min-w-0">
-                <h4 className="text-white font-bold text-sm md:text-base leading-snug group-hover:text-[#D5B25D] transition-colors duration-300">
+                <h4 className="text-white font-bold text-sm md:text-base leading-snug group-hover:text-[#F2B233] transition-colors duration-300">
                   {tx(val.title)}
                 </h4>
                 <p className="text-white/40 text-xs md:text-sm leading-relaxed group-hover:text-white/55 transition-colors duration-300">

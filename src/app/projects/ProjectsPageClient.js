@@ -8,7 +8,6 @@ import Navbar from "@/components/layout/Navbar";
 import GalleryClient from "./GalleryClient";
 import ProjectDirectory from "./ProjectDirectory";
 import BuildingJourney from "@/components/sections/BuildingJourney";
-import CameraTeaser from "@/components/sections/CameraTeaser";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ProjectsPageClient({ projects, categories }) {
@@ -163,18 +162,15 @@ export default function ProjectsPageClient({ projects, categories }) {
       {/* Video + Construction Journey */}
       <BuildingJourney />
 
-      {/* Camera Teaser */}
-      <CameraTeaser />
-
       {/* Call to Action */}
       <section className="py-20 bg-[var(--background)] border-t border-white/5 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-[#D5B25D]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-[#F2B233]/10 rounded-full pointer-events-none" />
         <div className="container relative z-10 mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-[var(--foreground)] mb-8 font-heading leading-normal py-2">
             {t('aboutUsPage.ctaTitle')}
           </h2>
           <div className="flex flex-col items-center gap-4">
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#D5B25D] to-[#E1BF67] text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(213,178,93,0.3)] hover:shadow-[0_0_40px_rgba(213,178,93,0.5)]">
+            <Link href="/contact" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F2B233] to-[#F6C55C] text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(242,178,51,0.3)] hover:shadow-[0_0_40px_rgba(242,178,51,0.5)]">
               <span>{t('aboutUsPage.ctaBtn')}</span>
               {isRTL ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
             </Link>

@@ -92,11 +92,15 @@ export default function CareersPage() {
      Only the internal DEPARTMENTS key (an identifier, not user-facing text)
      needs a lookup table. */
   const APPLY_DEPARTMENT_BY_KEY = {
-    pm: "pm", civil: "engineering", arch: "architecture", interior: "interior_design",
-    supervisor: "engineering", qty: "engineering", autocad: "architecture", sales: "administration",
-    mech: "engineering", elec: "engineering", safety: "hse", decor: "interior_design",
-    secretary: "administration", doccontrol: "administration", contracts: "contracts", it: "it",
-    intern_eng: "engineering", intern_design: "interior_design",
+    architect: "architecture", senior_architect: "architecture", interior: "architecture", cad: "architecture",
+    civil: "civil_structural", structural: "civil_structural", site_eng: "civil_structural",
+    mech: "mep", elec: "mep",
+    bim: "bim", revit: "bim",
+    qty: "quantities_cost", cost_eng: "quantities_cost",
+    pm: "project_management", planning: "project_management", tech_office: "project_management",
+    permit_eng: "permits_compliance", inspector: "permits_compliance",
+    doccontrol: "administration", admin_asst: "administration",
+    intern_eng: "civil_structural", intern_design: "architecture",
   };
   const handleApplyClick = (posCard) => {
     const dept = APPLY_DEPARTMENT_BY_KEY[posCard.key];
@@ -168,9 +172,9 @@ export default function CareersPage() {
     setExperience(""); setCoverLetter(""); setCvFile(null); setSubmitError("");
   };
 
-  const selectCls = `w-full bg-black/40 border border-white/10 rounded-xl py-3.5 text-sm text-white focus:border-[#B8923A]/60 outline-none transition-all duration-300 appearance-none cursor-pointer ${isRTL ? "pe-4 ps-10" : "ps-4 pe-10"}`;
-  const inputCls  = "w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/25 focus:border-[#B8923A]/60 focus:bg-black/60 outline-none transition-all duration-300";
-  const labelCls  = "text-[#B8923A] text-[11px] font-black uppercase tracking-widest block";
+  const selectCls = `w-full bg-black/40 border border-white/10 rounded-xl py-3.5 text-sm text-white focus:border-[#F2B233]/60 outline-none transition-all duration-300 appearance-none cursor-pointer ${isRTL ? "pe-4 ps-10" : "ps-4 pe-10"}`;
+  const inputCls  = "w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/25 focus:border-[#F2B233]/60 focus:bg-black/60 outline-none transition-all duration-300";
+  const labelCls  = "text-[#F2B233] text-[11px] font-black uppercase tracking-widest block";
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-white font-cairo">
@@ -181,22 +185,22 @@ export default function CareersPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=85&w=2070&auto=format&fit=crop"
-            alt="MNC Careers" fill className="object-cover object-center scale-105" priority
+            alt="MAN Careers" fill className="object-cover object-center scale-105" priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-[#070d1a]/97" />
           <div className="absolute inset-0 opacity-[0.07]"
-            style={{ backgroundImage: "repeating-linear-gradient(45deg,#B8923A 0px,#B8923A 1px,transparent 1px,transparent 80px)" }} />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#B8923A]/8 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#B8923A]/6 rounded-full blur-[100px]" />
+            style={{ backgroundImage: "repeating-linear-gradient(45deg,#F2B233 0px,#F2B233 1px,transparent 1px,transparent 80px)" }} />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#F2B233]/8 rounded-full " />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#F2B233]/6 rounded-full " />
         </div>
         <div className="relative z-10 container mx-auto px-6 text-center max-w-5xl pt-32 pb-24">
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#B8923A]/40 bg-[#B8923A]/10 text-[#B8923A] text-xs font-bold uppercase tracking-[3px] mb-8" data-aos="fade-down">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B8923A] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#F2B233]/40 bg-[#F2B233]/10 text-[#F2B233] text-xs font-bold uppercase tracking-[3px] mb-8" data-aos="fade-down">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F2B233] animate-pulse" />
             {t("careers.heroBadge")}
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.08] mb-6" data-aos="fade-up" data-aos-delay="100">
             {t("careers.heroTitle")}<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B8923A] via-[#E8D08A] to-[#B8923A]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F2B233] via-[#E8D08A] to-[#F2B233]">
               {t("careers.heroSubtitle")}
             </span>
           </h1>
@@ -205,40 +209,40 @@ export default function CareersPage() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center" data-aos="fade-up" data-aos-delay="300">
             <button onClick={() => availPosRef.current?.scrollIntoView({ behavior: "smooth" })}
-              className="group px-8 py-4 rounded-xl bg-[#B8923A] text-black font-black text-sm hover:bg-[#D5B25D] transition-all duration-300 hover:-translate-y-1 shadow-xl shadow-[#B8923A]/30 flex items-center gap-2">
+              className="group px-8 py-4 rounded-xl bg-[#F2B233] text-black font-black text-sm hover:bg-[#F2B233] transition-all duration-300 hover:-translate-y-1 shadow-xl shadow-[#F2B233]/30 flex items-center gap-2">
               {t("careers.exploreBtn")}
               <ArrowDown size={15} className="group-hover:translate-y-1 transition-transform duration-300" />
             </button>
             <button onClick={() => trainingRef.current?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 rounded-xl border border-[#B8923A]/40 text-[#B8923A] font-black text-sm hover:bg-[#B8923A]/10 hover:border-[#B8923A]/70 transition-all duration-300 hover:-translate-y-1 flex items-center gap-2">
+              className="px-8 py-4 rounded-xl border border-[#F2B233]/40 text-[#F2B233] font-black text-sm hover:bg-[#F2B233]/10 hover:border-[#F2B233]/70 transition-all duration-300 hover:-translate-y-1 flex items-center gap-2">
               <GraduationCap size={15} />
               {t("careers.trainingBadge")}
             </button>
           </div>
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30 animate-bounce">
-          <div className="w-px h-12 bg-gradient-to-b from-[#B8923A] to-transparent" />
+          <div className="w-px h-12 bg-gradient-to-b from-[#F2B233] to-transparent" />
         </div>
       </section>
 
       {/* ===== WHY JOIN US ===== */}
       <section className="py-28 bg-[var(--card-bg)] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #B8923A 1px, transparent 0)", backgroundSize: "32px 32px" }} />
+          style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #F2B233 1px, transparent 0)", backgroundSize: "32px 32px" }} />
         <div className="container mx-auto px-6 max-w-6xl relative z-10">
           <div className="text-center mb-16" data-aos="fade-up">
-            <span className="text-[#B8923A] text-xs font-bold uppercase tracking-[3px] mb-3 block">{t("careers.whyBadge")}</span>
+            <span className="text-[#F2B233] text-xs font-bold uppercase tracking-[3px] mb-3 block">{t("careers.whyBadge")}</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">{t("careers.whyTitle")}</h2>
             <p className="text-white/50 text-base max-w-xl mx-auto">{t("careers.whySubtitle")}</p>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#B8923A] to-[#D5B25D] mx-auto mt-6 rounded-full" />
+            <div className="w-20 h-1 bg-gradient-to-r from-[#F2B233] to-[#F2B233] mx-auto mt-6 rounded-full" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {Array.isArray(benefits) && benefits.map((benefit, i) => {
               const Icon = BENEFIT_ICONS[i];
               return (
-                <div key={i} className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-7 hover:border-[#B8923A]/35 hover:bg-[#B8923A]/5 transition-all duration-500 overflow-hidden" data-aos="fade-up" data-aos-delay={i * 80}>
-                  <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-[#B8923A]/5 group-hover:bg-[#B8923A]/12 transition-all duration-500 blur-xl" />
-                  <div className="w-12 h-12 rounded-xl bg-[#B8923A]/12 border border-[#B8923A]/20 flex items-center justify-center text-[#B8923A] mb-5 group-hover:scale-110 transition-transform duration-300">
+                <div key={i} className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-7 hover:border-[#F2B233]/35 hover:bg-[#F2B233]/5 transition-all duration-500 overflow-hidden" data-aos="fade-up" data-aos-delay={i * 80}>
+                  <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-[#F2B233]/5 group-hover:bg-[#F2B233]/12 transition-all duration-500 blur-xl" />
+                  <div className="w-12 h-12 rounded-xl bg-[#F2B233]/12 border border-[#F2B233]/20 flex items-center justify-center text-[#F2B233] mb-5 group-hover:scale-110 transition-transform duration-300">
                     <Icon size={22} />
                   </div>
                   <h3 className="text-white font-black text-base mb-2.5">{benefit.title}</h3>
@@ -254,21 +258,21 @@ export default function CareersPage() {
       <section ref={el => { positionsRef.current = el; availPosRef.current = el; }} className="py-28 bg-[var(--background)] relative">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="text-center mb-16" data-aos="fade-up">
-            <span className="text-[#B8923A] text-xs font-bold uppercase tracking-[3px] mb-3 block">{t("careers.positionsBadge")}</span>
+            <span className="text-[#F2B233] text-xs font-bold uppercase tracking-[3px] mb-3 block">{t("careers.positionsBadge")}</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">{t("careers.positionsTitle")}</h2>
             <p className="text-white/50 text-base max-w-xl mx-auto">{t("careers.positionsSubtitle")}</p>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#B8923A] to-[#D5B25D] mx-auto mt-6 rounded-full" />
+            <div className="w-20 h-1 bg-gradient-to-r from-[#F2B233] to-[#F2B233] mx-auto mt-6 rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {Array.isArray(positions) && positions.map((pos, i) => (
-              <div key={i} className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#B8923A]/30 hover:bg-[#B8923A]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay={i * 60}>
-                <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#B8923A]/0 to-transparent group-hover:via-[#B8923A]/50 transition-all duration-500" />
+              <div key={i} className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#F2B233]/30 hover:bg-[#F2B233]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay={i * 60}>
+                <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#F2B233]/0 to-transparent group-hover:via-[#F2B233]/50 transition-all duration-500" />
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#B8923A]/12 text-[#B8923A] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#B8923A]/20">{pos.dept}</span>
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#F2B233]/12 text-[#F2B233] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#F2B233]/20">{pos.dept}</span>
                     <h3 className="text-white font-black text-xl leading-tight">{pos.title}</h3>
                   </div>
-                  <div className="w-12 h-12 rounded-xl bg-[#B8923A]/8 border border-[#B8923A]/15 flex items-center justify-center text-[#B8923A] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#B8923A]/15 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-[#F2B233]/8 border border-[#F2B233]/15 flex items-center justify-center text-[#F2B233] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#F2B233]/15 transition-all duration-300">
                     <Briefcase size={19} />
                   </div>
                 </div>
@@ -279,7 +283,7 @@ export default function CareersPage() {
                     <span className="flex items-center gap-1.5"><Clock size={11} />{t("careers.fullTime")}</span>
                   </div>
                   <button onClick={() => handleApplyClick(pos)}
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#B8923A] to-[#C9A34D] text-black font-black text-xs hover:shadow-lg hover:shadow-[#B8923A]/25 hover:-translate-y-0.5 transition-all duration-300 active:scale-95">
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#F2B233] to-[#F2B233] text-black font-black text-xs hover:shadow-lg hover:shadow-[#F2B233]/25 hover:-translate-y-0.5 transition-all duration-300 active:scale-95">
                     {t("careers.applyNow")}
                   </button>
                 </div>
@@ -287,18 +291,18 @@ export default function CareersPage() {
             ))}
 
             {/* ── Card: وظائف الإشراف والإدارة الميدانية ── */}
-            <div className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#B8923A]/30 hover:bg-[#B8923A]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up">
-              <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#B8923A]/0 to-transparent group-hover:via-[#B8923A]/50 transition-all duration-500" />
+            <div className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#F2B233]/30 hover:bg-[#F2B233]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up">
+              <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#F2B233]/0 to-transparent group-hover:via-[#F2B233]/50 transition-all duration-500" />
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#B8923A]/12 text-[#B8923A] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#B8923A]/20">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#F2B233]/12 text-[#F2B233] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#F2B233]/20">
                     {t("careers.siteSupervisionBadge")}
                   </span>
                   <h3 className="text-white font-black text-xl leading-tight">
                     {t("careers.siteSupervisionTitle")}
                   </h3>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-[#B8923A]/8 border border-[#B8923A]/15 flex items-center justify-center text-[#B8923A] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#B8923A]/15 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-[#F2B233]/8 border border-[#F2B233]/15 flex items-center justify-center text-[#F2B233] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#F2B233]/15 transition-all duration-300">
                   <Briefcase size={19} />
                 </div>
               </div>
@@ -325,7 +329,7 @@ export default function CareersPage() {
                   <button onClick={handleApplyFromFormalCard} disabled={!cardFormalDept}
                     className={`px-5 py-2.5 rounded-xl font-black text-xs hover:-translate-y-0.5 transition-all duration-300 active:scale-95 ${
                       cardFormalDept
-                        ? "bg-gradient-to-r from-[#B8923A] to-[#C9A34D] text-black hover:shadow-lg hover:shadow-[#B8923A]/25"
+                        ? "bg-gradient-to-r from-[#F2B233] to-[#F2B233] text-black hover:shadow-lg hover:shadow-[#F2B233]/25"
                         : "bg-white/5 border border-white/8 text-white/25 cursor-not-allowed"
                     }`}>
                     {t("careers.applyNow")}
@@ -335,18 +339,18 @@ export default function CareersPage() {
             </div>
 
             {/* ── Card: وظائف المعلمين ── */}
-            <div className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#B8923A]/30 hover:bg-[#B8923A]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay="80">
-              <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#B8923A]/0 to-transparent group-hover:via-[#B8923A]/50 transition-all duration-500" />
+            <div className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#F2B233]/30 hover:bg-[#F2B233]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay="80">
+              <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#F2B233]/0 to-transparent group-hover:via-[#F2B233]/50 transition-all duration-500" />
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#B8923A]/12 text-[#B8923A] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#B8923A]/20">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#F2B233]/12 text-[#F2B233] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#F2B233]/20">
                     {t("careers.skilledTradesBadge")}
                   </span>
                   <h3 className="text-white font-black text-xl leading-tight">
                     {t("careers.skilledTradesTitle")}
                   </h3>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-[#B8923A]/8 border border-[#B8923A]/15 flex items-center justify-center text-[#B8923A] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#B8923A]/15 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-[#F2B233]/8 border border-[#F2B233]/15 flex items-center justify-center text-[#F2B233] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#F2B233]/15 transition-all duration-300">
                   <HardHat size={19} />
                 </div>
               </div>
@@ -371,7 +375,7 @@ export default function CareersPage() {
                   <button onClick={handleApplyFromSkillCard} disabled={!cardSkillTrade}
                     className={`px-5 py-2.5 rounded-xl font-black text-xs hover:-translate-y-0.5 transition-all duration-300 active:scale-95 ${
                       cardSkillTrade
-                        ? "bg-gradient-to-r from-[#B8923A] to-[#C9A34D] text-black hover:shadow-lg hover:shadow-[#B8923A]/25"
+                        ? "bg-gradient-to-r from-[#F2B233] to-[#F2B233] text-black hover:shadow-lg hover:shadow-[#F2B233]/25"
                         : "bg-white/5 border border-white/8 text-white/25 cursor-not-allowed"
                     }`}>
                     {t("careers.applyNow")}
@@ -387,38 +391,38 @@ export default function CareersPage() {
       {/* ===== TRAINING SECTION ===== */}
       <section ref={trainingRef} className="py-28 bg-[var(--card-bg)] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #B8923A 1px, transparent 0)", backgroundSize: "28px 28px" }} />
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#B8923A]/30 to-transparent" />
+          style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #F2B233 1px, transparent 0)", backgroundSize: "28px 28px" }} />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#F2B233]/30 to-transparent" />
         <div className="container mx-auto px-6 max-w-6xl relative z-10">
           <div className="text-center mb-16" data-aos="fade-up">
-            <span className="inline-flex items-center gap-2 text-[#B8923A] text-xs font-bold uppercase tracking-[3px] mb-3">
+            <span className="inline-flex items-center gap-2 text-[#F2B233] text-xs font-bold uppercase tracking-[3px] mb-3">
               <GraduationCap size={14} />{t("careers.trainingBadge")}
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">{t("careers.trainingTitle")}</h2>
             <p className="text-white/50 text-base max-w-2xl mx-auto">{t("careers.trainingDesc")}</p>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#B8923A] to-[#D5B25D] mx-auto mt-6 rounded-full" />
+            <div className="w-20 h-1 bg-gradient-to-r from-[#F2B233] to-[#F2B233] mx-auto mt-6 rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Array.isArray(trainingPositions) && trainingPositions.map((pos, i) => (
-              <div key={i} className="group relative bg-gradient-to-br from-[#B8923A]/8 to-[#B8923A]/3 border border-[#B8923A]/20 rounded-2xl p-7 hover:border-[#B8923A]/45 hover:from-[#B8923A]/12 hover:to-[#B8923A]/6 transition-all duration-500 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay={i * 100}>
-                <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#B8923A]/8 blur-3xl group-hover:bg-[#B8923A]/14 transition-all duration-500" />
+              <div key={i} className="group relative bg-gradient-to-br from-[#F2B233]/8 to-[#F2B233]/3 border border-[#F2B233]/20 rounded-2xl p-7 hover:border-[#F2B233]/45 hover:from-[#F2B233]/12 hover:to-[#F2B233]/6 transition-all duration-500 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay={i * 100}>
+                <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#F2B233]/8 blur-3xl group-hover:bg-[#F2B233]/14 transition-all duration-500" />
                 <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-[#B8923A]/15 border border-[#B8923A]/30 flex items-center justify-center text-[#B8923A] flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-[#F2B233]/15 border border-[#F2B233]/30 flex items-center justify-center text-[#F2B233] flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                     <GraduationCap size={24} />
                   </div>
                   <div>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#B8923A]/15 text-[#B8923A] text-[10px] font-black uppercase tracking-widest mb-2 border border-[#B8923A]/25">{pos.dept}</span>
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#F2B233]/15 text-[#F2B233] text-[10px] font-black uppercase tracking-widest mb-2 border border-[#F2B233]/25">{pos.dept}</span>
                     <h3 className="text-white font-black text-lg leading-tight">{pos.title}</h3>
                   </div>
                 </div>
                 <p className="text-white/55 text-sm leading-relaxed flex-1">{pos.desc}</p>
-                <div className="flex items-center justify-between pt-4 border-t border-[#B8923A]/12">
+                <div className="flex items-center justify-between pt-4 border-t border-[#F2B233]/12">
                   <div className="flex items-center gap-1.5 text-white/35 text-xs">
-                    <Zap size={11} className="text-[#B8923A]" />
-                    <span className="text-[#B8923A]/70">{t("careers.jeddah")}</span>
+                    <Zap size={11} className="text-[#F2B233]" />
+                    <span className="text-[#F2B233]/70">{t("careers.jeddah")}</span>
                   </div>
                   <button onClick={() => handleApplyClick(pos)}
-                    className="px-5 py-2.5 rounded-xl bg-[#B8923A]/15 border border-[#B8923A]/35 text-[#B8923A] font-black text-xs hover:bg-[#B8923A]/25 hover:border-[#B8923A]/60 hover:-translate-y-0.5 transition-all duration-300 active:scale-95">
+                    className="px-5 py-2.5 rounded-xl bg-[#F2B233]/15 border border-[#F2B233]/35 text-[#F2B233] font-black text-xs hover:bg-[#F2B233]/25 hover:border-[#F2B233]/60 hover:-translate-y-0.5 transition-all duration-300 active:scale-95">
                     {t("careers.applyNow")}
                   </button>
                 </div>
@@ -431,45 +435,45 @@ export default function CareersPage() {
       {/* ===== APPLICATION FORM ===== */}
       <section ref={formRef} className="py-28 bg-[var(--card-bg)] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #B8923A 1px, transparent 0)", backgroundSize: "28px 28px" }} />
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#B8923A]/30 to-transparent" />
+          style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #F2B233 1px, transparent 0)", backgroundSize: "28px 28px" }} />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#F2B233]/30 to-transparent" />
 
         <div className="container mx-auto px-6 max-w-3xl relative z-10">
           <div className="text-center mb-14" data-aos="fade-up">
-            <span className="text-[#B8923A] text-xs font-bold uppercase tracking-[3px] mb-3 block">{t("careers.formBadge")}</span>
+            <span className="text-[#F2B233] text-xs font-bold uppercase tracking-[3px] mb-3 block">{t("careers.formBadge")}</span>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">{t("careers.formTitle")}</h2>
             <p className="text-white/50 text-base max-w-xl mx-auto">{t("careers.formSubtitle")}</p>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#B8923A] to-[#D5B25D] mx-auto mt-6 rounded-full" />
+            <div className="w-20 h-1 bg-gradient-to-r from-[#F2B233] to-[#F2B233] mx-auto mt-6 rounded-full" />
           </div>
 
           {submitted ? (
-            <div className="bg-gradient-to-br from-[#B8923A]/10 to-[#B8923A]/5 border border-[#B8923A]/25 rounded-3xl p-14 text-center" data-aos="zoom-in">
+            <div className="bg-gradient-to-br from-[#F2B233]/10 to-[#F2B233]/5 border border-[#F2B233]/25 rounded-3xl p-14 text-center" data-aos="zoom-in">
               <div className="relative inline-block mb-7">
-                <div className="w-24 h-24 rounded-full bg-[#B8923A]/15 border border-[#B8923A]/30 flex items-center justify-center mx-auto">
-                  <CheckCircle2 size={44} className="text-[#B8923A]" />
+                <div className="w-24 h-24 rounded-full bg-[#F2B233]/15 border border-[#F2B233]/30 flex items-center justify-center mx-auto">
+                  <CheckCircle2 size={44} className="text-[#F2B233]" />
                 </div>
-                <div className="absolute inset-0 rounded-full bg-[#B8923A]/10 blur-xl animate-pulse" />
+                <div className="absolute inset-0 rounded-full bg-[#F2B233]/10 blur-xl animate-pulse" />
               </div>
               <h3 className="text-3xl font-black text-white mb-3">{t("careers.successTitle")}</h3>
               <p className="text-white/60 leading-relaxed max-w-md mx-auto mb-10 text-base">{t("careers.successDesc")}</p>
               <button onClick={handleReset}
-                className="px-10 py-4 rounded-xl bg-[#B8923A] text-black font-black text-sm hover:bg-[#D5B25D] transition-all duration-300 hover:-translate-y-1 shadow-xl shadow-[#B8923A]/25">
+                className="px-10 py-4 rounded-xl bg-[#F2B233] text-black font-black text-sm hover:bg-[#F2B233] transition-all duration-300 hover:-translate-y-1 shadow-xl shadow-[#F2B233]/25">
                 {t("careers.successBtn")}
               </button>
             </div>
           ) : (
             <div className="bg-white/[0.03] border border-white/8 rounded-3xl p-8 md:p-10 relative overflow-hidden" data-aos="fade-up">
-              <div className="absolute -top-24 -right-24 w-52 h-52 bg-[#B8923A]/6 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-20 -left-20 w-44 h-44 bg-[#B8923A]/4 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -top-24 -right-24 w-52 h-52 bg-[#F2B233]/6 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-20 -left-20 w-44 h-44 bg-[#F2B233]/4 rounded-full blur-3xl pointer-events-none" />
 
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
 
                 {/* Selected job summary banner */}
                 {jobType && (
-                  <div className="p-4 rounded-2xl bg-gradient-to-r from-[#B8923A]/10 to-[#B8923A]/5 border border-[#B8923A]/25">
+                  <div className="p-4 rounded-2xl bg-gradient-to-r from-[#F2B233]/10 to-[#F2B233]/5 border border-[#F2B233]/25">
                     <div className={`flex items-center gap-2 mb-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-                      <CheckCircle2 size={14} className="text-[#B8923A] flex-shrink-0" />
-                      <span className="text-[#B8923A] text-[11px] font-black uppercase tracking-widest">
+                      <CheckCircle2 size={14} className="text-[#F2B233] flex-shrink-0" />
+                      <span className="text-[#F2B233] text-[11px] font-black uppercase tracking-widest">
                         {t("careers.selectedPositionBannerLabel")}
                       </span>
                     </div>
@@ -628,7 +632,7 @@ export default function CareersPage() {
                   <label className={labelCls}>{t("careers.coverLetter")}</label>
                   <textarea rows={5} value={coverLetter} onChange={e => setCoverLetter(e.target.value)}
                     placeholder={t("careers.coverLetterPlaceholder")}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/25 focus:border-[#B8923A]/60 focus:bg-black/60 outline-none transition-all duration-300 resize-none" />
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/25 focus:border-[#F2B233]/60 focus:bg-black/60 outline-none transition-all duration-300 resize-none" />
                 </div>
 
                 {/* CV Upload */}
@@ -637,20 +641,20 @@ export default function CareersPage() {
                   <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}
                     onClick={() => document.getElementById("cvFileInput").click()}
                     className={`relative border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 ${
-                      isDragging ? "border-[#B8923A] bg-[#B8923A]/12 scale-[1.01]"
-                      : cvFile ? "border-[#B8923A]/60 bg-[#B8923A]/8"
-                      : "border-white/12 hover:border-[#B8923A]/35 hover:bg-white/3"}`}>
+                      isDragging ? "border-[#F2B233] bg-[#F2B233]/12 scale-[1.01]"
+                      : cvFile ? "border-[#F2B233]/60 bg-[#F2B233]/8"
+                      : "border-white/12 hover:border-[#F2B233]/35 hover:bg-white/3"}`}>
                     <input id="cvFileInput" type="file" accept=".pdf,.doc,.docx"
                       onChange={e => { const f = e.target.files?.[0]; if (f) setCvFile(f); }}
                       className="hidden" />
                     {cvFile ? (
                       <div className="flex items-center justify-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-[#B8923A]/20 border border-[#B8923A]/30 flex items-center justify-center flex-shrink-0">
-                          <FileText size={20} className="text-[#B8923A]" />
+                        <div className="w-10 h-10 rounded-xl bg-[#F2B233]/20 border border-[#F2B233]/30 flex items-center justify-center flex-shrink-0">
+                          <FileText size={20} className="text-[#F2B233]" />
                         </div>
                         <div className={isRTL ? "text-right" : "text-left"}>
                           <p className="text-white font-bold text-sm leading-tight">{cvFile.name}</p>
-                          <p className="text-[#B8923A] text-xs mt-0.5 font-bold">{t("careers.cvUploaded")}</p>
+                          <p className="text-[#F2B233] text-xs mt-0.5 font-bold">{t("careers.cvUploaded")}</p>
                         </div>
                       </div>
                     ) : (
@@ -668,7 +672,7 @@ export default function CareersPage() {
                 {submitError && <p className="text-red-400 text-sm text-center">{submitError}</p>}
 
                 <button type="submit" disabled={submitting}
-                  className="w-full mt-2 bg-gradient-to-r from-[#B8923A] to-[#C9A34D] hover:from-[#C9A34D] hover:to-[#D5B25D] text-black font-black py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 text-sm shadow-2xl shadow-[#B8923A]/20 hover:-translate-y-1 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+                  className="w-full mt-2 bg-gradient-to-r from-[#F2B233] to-[#F2B233] hover:from-[#F2B233] hover:to-[#F2B233] text-black font-black py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 text-sm shadow-2xl shadow-[#F2B233]/20 hover:-translate-y-1 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
                   <Send size={17} />
                   {submitting ? "..." : t("careers.submitApplication")}
                 </button>

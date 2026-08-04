@@ -122,7 +122,7 @@ export default function JobsPage() {
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <h1 className="text-2xl font-bold text-white">{t('admin.jobsTitle')}</h1>
           <Link href="/admin/jobs/approved"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#c8a96e]/10 border border-[#c8a96e]/25 text-[#c8a96e] text-xs font-bold hover:bg-[#c8a96e]/18 transition-all">
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#F2B233]/10 border border-[#F2B233]/25 text-[#F2B233] text-xs font-bold hover:bg-[#F2B233]/18 transition-all">
             <CalendarCheck size={14} />
             {t('admin.acceptedCount')} ({totalAccepted})
           </Link>
@@ -139,10 +139,10 @@ export default function JobsPage() {
             <p className="text-white/35 text-[11px] mt-1">{t('admin.acceptedCount')}</p>
           </div>
           <Link href="/admin/jobs/best"
-            className="bg-white/[0.02] border border-[#c8a96e]/25 rounded-xl p-4 text-center hover:bg-[#c8a96e]/8 hover:border-[#c8a96e]/45 transition-all group">
-            <p className="text-2xl font-black" style={{ color: '#c8a96e' }}>{bestMatches || apps.length}</p>
-            <p className="text-white/35 text-[11px] mt-1 flex items-center justify-center gap-1 group-hover:text-[#c8a96e]/70 transition-colors">
-              <Star size={11} className="text-[#c8a96e]" /> {t('admin.bestMatchLabel')}
+            className="bg-white/[0.02] border border-[#F2B233]/25 rounded-xl p-4 text-center hover:bg-[#F2B233]/8 hover:border-[#F2B233]/45 transition-all group">
+            <p className="text-2xl font-black" style={{ color: '#F2B233' }}>{bestMatches || apps.length}</p>
+            <p className="text-white/35 text-[11px] mt-1 flex items-center justify-center gap-1 group-hover:text-[#F2B233]/70 transition-colors">
+              <Star size={11} className="text-[#F2B233]" /> {t('admin.bestMatchLabel')}
             </p>
           </Link>
         </div>
@@ -153,12 +153,12 @@ export default function JobsPage() {
             <Search size={15} className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 -translate-y-1/2 text-white/30`} />
             <input value={search} onChange={e => setSearch(e.target.value)}
               placeholder={t('admin.searchJobsPlaceholder')}
-              className={`w-full bg-white/5 border border-white/10 rounded-xl py-2.5 ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#c8a96e]/40`} />
+              className={`w-full bg-white/5 border border-white/10 rounded-xl py-2.5 ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#F2B233]/40`} />
           </div>
           <div className="flex gap-2 flex-wrap items-center">
             {STATUS_FILTERS.map(s => (
               <button key={s} onClick={() => setFilter(s)}
-                className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all ${filter === s ? 'bg-[#c8a96e]/15 text-[#c8a96e] border border-[#c8a96e]/30' : 'text-white/40 border border-white/8 hover:text-white/70'}`}>
+                className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all ${filter === s ? 'bg-[#F2B233]/15 text-[#F2B233] border border-[#F2B233]/30' : 'text-white/40 border border-white/8 hover:text-white/70'}`}>
                 {s === 'all' ? t('admin.allStatuses') : t(STATUS_CONFIG[s]?.labelKey || s)}
               </button>
             ))}
@@ -184,7 +184,7 @@ export default function JobsPage() {
 
         {/* Table */}
         {loading ? (
-          <div className="flex justify-center py-24"><Loader2 size={28} className="text-[#c8a96e] animate-spin" /></div>
+          <div className="flex justify-center py-24"><Loader2 size={28} className="text-[#F2B233] animate-spin" /></div>
         ) : visible.length === 0 ? (
           <div className="text-center py-24 text-white/25 text-sm">{t('admin.noJobs')}</div>
         ) : (
@@ -231,7 +231,7 @@ export default function JobsPage() {
                           {/* CV */}
                           {app.cvUrl && (
                             <a href={app.cvUrl} target="_blank" rel="noreferrer"
-                              className="p-1.5 rounded-lg text-white/30 hover:text-[#c8a96e] hover:bg-[#c8a96e]/8 transition-all" title={t('admin.viewCV')}>
+                              className="p-1.5 rounded-lg text-white/30 hover:text-[#F2B233] hover:bg-[#F2B233]/8 transition-all" title={t('admin.viewCV')}>
                               <FileText size={14} />
                             </a>
                           )}

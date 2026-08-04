@@ -3,7 +3,12 @@ import { PROJECT_CATEGORIES } from "@/lib/projectCategories";
 import ProjectsPageClient from "./ProjectsPageClient";
 
 export default async function ProjectsPage() {
-  const raw = await getPublishedProjects();
+  let raw = [];
+  try {
+    raw = await getPublishedProjects();
+  } catch {
+    raw = [];
+  }
   const projects = raw.map(toLegacyProjectShape);
   return <ProjectsPageClient projects={projects} categories={PROJECT_CATEGORIES} />;
 }

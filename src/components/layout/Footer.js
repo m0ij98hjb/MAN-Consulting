@@ -108,7 +108,7 @@ const Footer = () => {
     alignItems: "center",
     justifyContent: "center",
     border: isLightMode ? "1px solid rgba(15,23,42,0.12)" : "1px solid rgba(255,255,255,0.1)",
-    color: "#B8923A",
+    color: "#F2B233",
     textDecoration: "none",
   };
 
@@ -118,13 +118,12 @@ const Footer = () => {
       { label: t("nav.projects"), href: "/projects" },
       { label: t("nav.services"), href: "/#services" },
       { label: t("nav.contact"), href: "/contact" },
-      { label: t('admin.suppliersNav'), href: "/suppliers", gold: true },
     ],
     services: [
-      { label: t("servicesSection.items.construction.title") },
-      { label: t("servicesSection.items.architecture.title") },
-      { label: t("servicesSection.items.management.title") },
-      { label: t("servicesSection.items.interior.title") },
+      { label: t("servicesSection.items.construction.title"), href: "/services/contracting" },
+      { label: t("servicesSection.items.architecture.title"), href: "/services/architectural-design" },
+      { label: t("servicesSection.items.management.title"),   href: "/services/project-management" },
+      { label: t("servicesSection.items.interior.title"),     href: "/services/interior-design" },
     ],
   };
 
@@ -134,7 +133,7 @@ const Footer = () => {
       dir={isRTL ? "rtl" : "ltr"}
     >
       {/* ── TOP DIVIDER ─────────────────────────────── */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-[#B8923A] to-transparent" />
+      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-[#F2B233] to-transparent" />
 
       {/* ── MAIN CONTENT ────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 py-14">
@@ -143,10 +142,11 @@ const Footer = () => {
           <div className="lg:col-span-2 flex flex-col gap-5">
             <div className="w-full max-w-sm">
               <Image
-                src="/asstes/logo-footer.png"
-                alt="MNC Logo"
-                width={520}
-                height={260}
+                src="/brand/logo-navbar-real.png"
+                alt="MAN Engineering Consultancy"
+                width={1029}
+                height={461}
+                unoptimized
                 className="logo-footer w-auto h-28 sm:max-h-32 md:max-h-36 object-contain"
                 priority
               />
@@ -187,7 +187,7 @@ const Footer = () => {
             <h4 className="text-[var(--secondary)] font-bold text-sm tracking-widest uppercase">
               {t("footer.quickLinks")}
             </h4>
-            <div className="w-8 h-[2px] bg-gradient-to-r from-[#B8923A] to-transparent" />
+            <div className="w-8 h-[2px] bg-gradient-to-r from-[#F2B233] to-transparent" />
             <ul className="flex flex-col gap-3">
               {links.company.map((l) => (
                 <li key={l.label}>
@@ -195,13 +195,13 @@ const Footer = () => {
                     href={l.href}
                     className={`text-sm transition-colors duration-200 flex items-center gap-2 group
                       ${l.gold
-                        ? 'text-[#C9A34D] hover:text-[#E1BF67] font-semibold'
+                        ? 'text-[#F2B233] hover:text-[#F6C55C] font-semibold'
                         : 'text-[var(--foreground)] hover:text-[var(--secondary)]'
                       }`}
                   >
                     <span className={`w-1 h-1 rounded-full transition-colors shrink-0
                       ${l.gold
-                        ? 'bg-[#C9A34D] group-hover:bg-[#E1BF67]'
+                        ? 'bg-[#F2B233] group-hover:bg-[#F6C55C]'
                         : 'bg-[var(--secondary)]/40 group-hover:bg-[var(--secondary)]'
                       }`}
                     />
@@ -217,15 +217,17 @@ const Footer = () => {
             <h4 className="text-[var(--secondary)] font-bold text-sm tracking-widest uppercase">
               {t("footer.services")}
             </h4>
-            <div className="w-8 h-[2px] bg-gradient-to-r from-[#B8923A] to-transparent" />
+            <div className="w-8 h-[2px] bg-gradient-to-r from-[#F2B233] to-transparent" />
             <ul className="flex flex-col gap-3">
               {links.services.map((s) => (
-                <li
-                  key={s.label}
-                  className="text-[var(--foreground)] text-sm flex items-center gap-2"
-                >
-                  <span className="w-1 h-1 rounded-full bg-[var(--secondary)]/40" />
-                  {s.label}
+                <li key={s.label}>
+                  <Link
+                    href={s.href}
+                    className="text-[var(--foreground)] hover:text-[var(--secondary)] text-sm flex items-center gap-2 group transition-colors duration-200"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-[var(--secondary)]/40 group-hover:bg-[var(--secondary)] transition-colors shrink-0" />
+                    {s.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -244,7 +246,7 @@ const Footer = () => {
             {t("footer.rightsReserved")}
           </p>
           <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B8923A] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F2B233] animate-pulse" />
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--secondary)] animate-pulse" />
             <span className="text-[var(--foreground)] text-xs">
               {t("footer.location")}
