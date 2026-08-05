@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, Sun, Moon, Calculator, Home, Info, Briefcase, FolderOpen, PhoneCall, Globe, Users, UserCircle, UserCog, LogOut, LayoutDashboard, Bell, Ruler, FileCheck, ClipboardList, Eye, Newspaper, Building2, Compass, FolderKanban, Sofa } from "lucide-react";
+import { Menu, X, ChevronDown, Calculator, Home, Info, Briefcase, FolderOpen, PhoneCall, Globe, Users, UserCircle, UserCog, LogOut, LayoutDashboard, Bell, Ruler, FileCheck, ClipboardList, Eye, Newspaper, Building2, Compass, FolderKanban, Sofa } from "lucide-react";
 import { useLanguage, LANGUAGES } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useAuth } from "@/context/AuthContext";
@@ -17,6 +17,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobileMoreOpen, setIsMobileMoreOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isMobileLangOpen, setIsMobileLangOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -35,6 +37,8 @@ const Navbar = () => {
     if (!user || isSuperAdmin) { setAdminProfile(null); return; }
     const unsub = onSnapshot(doc(db, 'adminUsers', user.uid), snap => {
       setAdminProfile(snap.exists() ? snap.data() : null);
+    }, (err) => {
+      setAdminProfile(null);
     });
     return unsub;
   }, [user, isSuperAdmin]);
@@ -73,7 +77,6 @@ const Navbar = () => {
   };
   const notif = useNotifications();
   const { allNotifications = [], unreadCount = 0, markBellOpened } = notif ?? {};
-  const isLightMode = theme === 'dark';
   const isAdmin = user !== null && user !== undefined;
   const isAdminPage = pathname.startsWith('/admin');
   const langDropdownRef = useRef(null);
@@ -146,8 +149,8 @@ const Navbar = () => {
     { name: t('nav.blog'),    href: "/blog",            icon: Newspaper,          isSecondary: true },
   ];
 
-  /* ── Engineering Services dropdown items — the 4 core service pages,
-       same slugs/labels as the homepage services teaser. ── */
+  /* â”€â”€ Engineering Services dropdown items â€” the 4 core service pages,
+       same slugs/labels as the homepage services teaser. â”€â”€ */
   const servicesList = [
     { name: t('servicesSection.items.construction.title'), href: "/services/contracting",         icon: Building2 },
     { name: t('servicesSection.items.architecture.title'), href: "/services/architectural-design", icon: Compass },
@@ -164,36 +167,28 @@ const Navbar = () => {
     es: { ar: 'Versión árabe',   en: 'Versión inglesa' },
     fr: { ar: 'Version arabe',   en: 'Version anglaise' },
     de: { ar: 'Arabische Version', en: 'Englische Version' },
-    tr: { ar: 'Arapça Sürümü',  en: 'İngilizce Sürümü' },
+    tr: { ar: 'Arapça Sürümü',   en: 'İngilizce Sürümü' },
     ur: { ar: 'عربی ورژن',       en: 'انگریزی ورژن' },
   };
   const tPortfolio = portfolioTranslations[lang] || portfolioTranslations['en'];
 
   return (
     <>
-      {/* ═══ MAIN NAVBAR ═══ */}
-      <nav className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${
-        scrolled
-          ? isLightMode
-            ? "bg-white/97 border-b border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.07)]"
-            : "border-b"
-          : isLightMode
-            ? "bg-white/80 border-b border-slate-100/70"
-            : "border-b"
-      }`}
-      style={isLightMode ? undefined : scrolled ? {
-        backgroundColor: 'rgba(80, 86, 92, 0.96)',
-        boxShadow: '0 10px 35px rgba(0,0,0,.28)',
-        borderBottomColor: 'rgba(242,178,51,.18)',
+      {/* â•â•â• MAIN NAVBAR â•â•â• */}
+      <nav className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 border-b`}
+      style={scrolled ? {
+        backgroundColor: 'rgba(36, 38, 43, 0.96)',
+        boxShadow: '0 10px 35px rgba(0,0,0,.35)',
+        borderBottomColor: 'rgba(212,168,67,.18)',
         transition: 'background-color .35s ease, box-shadow .35s ease, border-color .35s ease',
       } : {
-        backgroundColor: 'rgba(40, 44, 48, 0.72)',
+        backgroundColor: 'rgba(28, 30, 34, 0.72)',
         borderBottomColor: 'rgba(255,255,255,.08)',
         transition: 'background-color .35s ease, box-shadow .35s ease, border-color .35s ease',
       }}>
-        <div className="w-full max-w-7xl lg:max-w-[1440px] mx-auto flex items-center lg:grid lg:grid-cols-[minmax(150px,auto)_1fr_auto] nav-container-responsive px-4 sm:px-6 md:px-8 lg:px-[40px] py-3 sm:py-3.5 lg:py-0 lg:h-[92px]">
+        <div className="w-full max-w-7xl lg:max-w-[1440px] mx-auto flex items-center lg:grid lg:grid-cols-[minmax(150px,auto)_minmax(0,1fr)_auto] nav-container-responsive px-4 sm:px-6 md:px-8 lg:px-[40px] py-3 sm:py-3.5 lg:py-0 lg:h-[92px]">
 
-          {/* ── Zone 1 — Logo ── */}
+          {/* â”€â”€ Zone 1 â€” Logo â”€â”€ */}
           <div className="flex items-center lg:justify-center flex-shrink-0 nav-logo-responsive lg:pe-6">
             <Link href="/" onClick={handleLogoTap} className="flex items-center flex-shrink-0">
               <Image
@@ -208,9 +203,9 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* ── Zone 2 — Center Nav, perfectly centered ── */}
-          <div className="hidden lg:flex items-center lg:justify-center gap-4">
-            <nav className="flex items-center gap-4" aria-label={t('nav.ariaLabel')}>
+          {/* ── Zone 2 ── Center Nav, perfectly centered ── */}
+          <div className={`hidden lg:flex items-center lg:justify-center min-w-0 ${lang === 'ar' ? 'gap-6' : 'gap-3'}`}>
+            <nav className={`flex items-center flex-shrink-0 ${lang === 'ar' ? 'gap-6' : 'gap-3'}`} aria-label={t('nav.ariaLabel')}>
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
 
@@ -219,8 +214,8 @@ const Navbar = () => {
                     <Link key={link.name} href={link.href}
                       className={`flex items-center gap-1.5 text-[12px] xl:text-[13.5px] font-extrabold px-3.5 xl:px-4 py-[7px] xl:py-2 mx-1 xl:mx-1.5 rounded-full border transition-all duration-300 whitespace-nowrap nav-link-special-responsive ${
                         isActive
-                          ? "bg-[#F2B233] text-black border-transparent shadow-[0_4px_20px_rgba(242,178,51,0.45)]"
-                          : "bg-[#F2B233]/[0.07] text-[#F2B233] border-[#F2B233]/28 hover:bg-[#F2B233]/[0.13] hover:border-[#F2B233]/45 hover:shadow-[0_2px_14px_rgba(242,178,51,0.13)]"
+                          ? "bg-[#D4A843] text-black border-transparent shadow-[0_4px_20px_rgba(212,168,67,0.45)]"
+                          : "bg-[#D4A843]/[0.07] text-[#D4A843] border-[#D4A843]/28 hover:bg-[#D4A843]/[0.13] hover:border-[#D4A843]/45 hover:shadow-[0_2px_14px_rgba(212,168,67,0.13)]"
                       }`}>
                       <Calculator size={11} />
                       <span>{link.name}</span>
@@ -231,26 +226,29 @@ const Navbar = () => {
                 if (link.isServicesDropdown) {
                   const isServicesActive = servicesList.some(s => pathname === s.href);
                   return (
-                    <div key={link.name} className="relative" ref={servicesDropdownRef}>
+                    <div
+                      key={link.name}
+                      className="relative"
+                      ref={servicesDropdownRef}
+                      onMouseEnter={() => setIsServicesOpen(true)}
+                      onMouseLeave={() => setIsServicesOpen(false)}
+                    >
                       <button
                         onClick={() => setIsServicesOpen(v => !v)}
-                        className={`relative flex items-center gap-1 text-[19px] py-2.5 transition-colors duration-200 whitespace-nowrap font-semibold tracking-[0.018em] nav-link-responsive ${
+                        className={`relative flex items-center gap-1 text-[19px] py-2.5 transition-colors duration-200 whitespace-nowrap font-semibold tracking-[0.018em] nav-link-responsive ${lang === 'ar' ? 'nav-link-ar' : ''} ${
                           isServicesActive
-                            ? "text-[#F2B233]"
-                            : isLightMode
-                              ? "text-slate-500 hover:text-[#F2B233]"
-                              : "text-white hover:text-[#F2B233]"
+                            ? "text-[#D4A843]"
+                            : "text-white hover:text-[#D4A843]"
                         }`}
                       >
                         {link.name}
                         <ChevronDown size={13} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180" : ""}`} />
                       </button>
-                      <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'right-0' : 'left-0'} w-[240px] rounded-2xl overflow-hidden z-50 transition-all duration-250 ${
+                      <div className={`absolute top-full pt-2.5 ${isRTL ? 'right-0' : 'left-0'} w-[240px] z-50 transition-all duration-200 ${
                         isServicesOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
-                      }`}
-                        style={{ background: isLightMode ? '#ffffff' : '#5F6368', border: `1px solid ${isLightMode ? 'rgba(15,23,42,0.08)' : 'rgba(255,255,255,0.14)'}`, boxShadow: '0 20px 60px rgba(0,0,0,0.35)' }}
-                      >
-                        {servicesList.map(svc => {
+                      }`}>
+                        <div className="rounded-2xl overflow-hidden" style={{ background: '#44474F', border: '1px solid rgba(212,168,67,0.18)', boxShadow: '0 20px 60px rgba(0,0,0,0.45)' }}>
+                          {servicesList.map(svc => {
                           const isSvcActive = pathname === svc.href;
                           return (
                             <Link
@@ -259,10 +257,8 @@ const Navbar = () => {
                               onClick={() => setIsServicesOpen(false)}
                               className={`flex items-center gap-2.5 px-4 py-3 text-[13px] font-semibold transition-colors ${
                                 isSvcActive
-                                  ? "text-[#F2B233]"
-                                  : isLightMode
-                                    ? "text-slate-600 hover:bg-slate-50 hover:text-[#F2B233]"
-                                    : "text-white hover:bg-white/[0.08] hover:text-[#F2B233]"
+                                  ? "text-[#D4A843]"
+                                  : "text-white hover:bg-white/[0.08] hover:text-[#D4A843]"
                               }`}
                             >
                               <svc.icon size={14} className="shrink-0" />
@@ -270,6 +266,7 @@ const Navbar = () => {
                             </Link>
                           );
                         })}
+                        </div>
                       </div>
                     </div>
                   );
@@ -277,44 +274,42 @@ const Navbar = () => {
 
                 return (
                   <Link key={link.name} href={link.href}
-                    className={`relative text-[19px] py-2.5 transition-colors duration-200 whitespace-nowrap group font-semibold tracking-[0.018em] nav-link-responsive ${
+                    className={`relative text-[19px] py-2.5 transition-colors duration-200 whitespace-nowrap group font-semibold tracking-[0.018em] nav-link-responsive ${lang === 'ar' ? 'nav-link-ar' : ''} ${
                       isActive
-                        ? "text-[#F2B233]"
-                        : isLightMode
-                          ? "text-slate-500 hover:text-[#F2B233]"
-                          : "text-white hover:text-[#F2B233]"
+                        ? "text-[#D4A843]"
+                        : "text-white hover:text-[#D4A843]"
                     } ${link.isSecondary ? "hidden min-[1650px]:inline-flex" : ""}`}>
                     {link.name}
                     {/* Underline indicator */}
                     <span className={`absolute bottom-[5px] left-1/2 -translate-x-1/2 h-[2px] rounded-full transition-all duration-300 ${
                       isActive
-                        ? 'w-5 opacity-100 bg-gradient-to-r from-transparent via-[#F2B233] to-transparent'
-                        : 'w-0 opacity-0 group-hover:w-3 group-hover:opacity-30 bg-[#F2B233]'
+                        ? 'w-5 opacity-100 bg-gradient-to-r from-transparent via-[#D4A843] to-transparent'
+                        : 'w-0 opacity-0 group-hover:w-3 group-hover:opacity-30 bg-[#D4A843]'
                     }`} />
                   </Link>
                 );
               })}
             </nav>
 
-            {/* ── "More" dropdown — holds the secondary links below the 1650px
-                 breakpoint where they'd otherwise vanish with no way to reach
-                 them (e.g. Careers, Blog, the 4 engineering sub-pages). ── */}
-            <div className="relative min-[1650px]:hidden" ref={moreDropdownRef}>
+            {/* ── "More" dropdown ── holds secondary links ── */}
+            <div
+              className="relative min-[1650px]:hidden flex-shrink-0 me-1"
+              ref={moreDropdownRef}
+              onMouseEnter={() => setIsMoreOpen(true)}
+              onMouseLeave={() => setIsMoreOpen(false)}
+            >
               <button
                 onClick={() => setIsMoreOpen(v => !v)}
-                className={`relative flex items-center gap-1 text-[19px] py-2.5 transition-colors duration-200 whitespace-nowrap font-semibold tracking-[0.018em] nav-link-responsive ${
-                  isLightMode ? "text-slate-500 hover:text-[#F2B233]" : "text-white hover:text-[#F2B233]"
-                }`}
+                className={`relative flex items-center gap-1.5 text-[19px] py-2.5 transition-colors duration-200 whitespace-nowrap font-semibold tracking-[0.018em] nav-link-responsive ${lang === 'ar' ? 'nav-link-ar' : ''} text-white hover:text-[#D4A843]`}
               >
                 {t('nav.more')}
                 <ChevronDown size={13} className={`transition-transform duration-300 ${isMoreOpen ? "rotate-180" : ""}`} />
               </button>
-              <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[220px] rounded-2xl overflow-hidden z-50 transition-all duration-250 ${
+              <div className={`absolute top-full pt-2.5 ${isRTL ? 'left-0' : 'right-0'} w-[220px] z-50 transition-all duration-200 ${
                 isMoreOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
-              }`}
-                style={{ background: isLightMode ? '#ffffff' : '#5F6368', border: `1px solid ${isLightMode ? 'rgba(15,23,42,0.08)' : 'rgba(255,255,255,0.14)'}`, boxShadow: '0 20px 60px rgba(0,0,0,0.35)' }}
-              >
-                {navLinks.filter(l => l.isSecondary).map(link => {
+              }`}>
+                <div className="rounded-2xl overflow-hidden" style={{ background: '#44474F', border: '1px solid rgba(212,168,67,0.18)', boxShadow: '0 20px 60px rgba(0,0,0,0.45)' }}>
+                  {navLinks.filter(l => l.isSecondary).map(link => {
                   const isActive = pathname === link.href;
                   return (
                     <Link
@@ -323,10 +318,8 @@ const Navbar = () => {
                       onClick={() => setIsMoreOpen(false)}
                       className={`flex items-center gap-2.5 px-4 py-3 text-[13px] font-semibold transition-colors ${
                         isActive
-                          ? "text-[#F2B233]"
-                          : isLightMode
-                            ? "text-slate-600 hover:bg-slate-50 hover:text-[#F2B233]"
-                            : "text-white hover:bg-white/[0.08] hover:text-[#F2B233]"
+                          ? "text-[#D4A843]"
+                          : "text-white hover:bg-white/[0.08] hover:text-[#D4A843]"
                       }`}
                     >
                       <link.icon size={14} className="shrink-0" />
@@ -334,31 +327,32 @@ const Navbar = () => {
                     </Link>
                   );
                 })}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* ── Zone 3 — Admin Controls ── */}
+          {/* ── Zone 3 ── Admin Controls ── */}
           <div className="hidden lg:flex items-center lg:justify-center lg:ps-4 nav-actions-responsive gap-2 flex-shrink-0">
 
-            {/* ── ADMIN MODE ── */}
+            {/* â”€â”€ ADMIN MODE â”€â”€ */}
             {isAdmin ? (
               <>
-                {/* Language Selector — stays visible */}
+                {/* Language Selector â€” stays visible */}
                 <div className="relative" ref={langDropdownRef}>
                   <button
                     onClick={() => setIsLangOpen(!isLangOpen)}
-                    className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-2 xl:py-2 rounded-lg border border-[#F2B233]/22 hover:border-[#F2B233]/42 hover:bg-[#F2B233]/7 transition-all duration-300 nav-action-btn-responsive ${isLightMode ? 'text-slate-600' : 'text-white/65 hover:text-white'}`}
+                    className="flex items-center gap-1.5 px-2.5 xl:px-3 py-2 xl:py-2 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-300 nav-action-btn-responsive text-white/65 hover:text-white"
                   >
                     <span className="text-base leading-none">{currentLang.flag}</span>
                     <span className="text-[11px] font-bold tracking-widest uppercase">{currentLang.code.toUpperCase()}</span>
-                    <Globe size={12} className="text-[#F2B233]/45" />
+                    <Globe size={12} className="text-[#D4A843]/45" />
                   </button>
-                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[262px] bg-white border border-[#F2B233]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[262px] bg-[#44474F] border border-[#D4A843]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                     isLangOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-3 pointer-events-none"
                   }`}>
                     <div className="p-3">
-                      <p className="text-[9px] text-slate-400 font-medium tracking-[2.5px] uppercase mb-2.5 px-1">
+                      <p className="text-[9px] text-white/40 font-medium tracking-[2.5px] uppercase mb-2.5 px-1">
                         {lang === 'ar' || lang === 'ur' ? 'اختر اللغة' : 'Select Language'}
                       </p>
                       <div className="grid grid-cols-2 gap-1.5">
@@ -368,8 +362,8 @@ const Navbar = () => {
                             onClick={() => { setLang(language.code); setIsLangOpen(false); }}
                             className={`flex items-center gap-2.5 px-3 py-2.5 rounded-[10px] transition-all duration-200 text-start ${
                               lang === language.code
-                                ? "bg-[#F2B233]/10 border border-[#F2B233]/22 text-[#F2B233]"
-                                : "hover:bg-slate-50 border border-transparent text-slate-500 hover:text-[#1F2937]"
+                                ? "bg-[#D4A843]/10 border border-[#D4A843]/22 text-[#D4A843]"
+                                : "hover:bg-white/8 border border-transparent text-white/55 hover:text-white"
                             }`}
                           >
                             <span className="text-xl leading-none">{language.flag}</span>
@@ -378,7 +372,7 @@ const Navbar = () => {
                               <p className="text-[9px] opacity-40 uppercase tracking-wide">{language.dir.toUpperCase()}</p>
                             </div>
                             {lang === language.code && (
-                              <span className="ms-auto w-1.5 h-1.5 rounded-full bg-[#F2B233] flex-shrink-0" />
+                              <span className="ms-auto w-1.5 h-1.5 rounded-full bg-[#D4A843] flex-shrink-0" />
                             )}
                           </button>
                         ))}
@@ -387,7 +381,7 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                {/* Bell Notifications — admin pages only */}
+                {/* Bell Notifications â€” admin pages only */}
                 {isAdminPage && notif && (
                   <div className="relative" ref={bellDropdownRef}>
                     <button
@@ -396,7 +390,7 @@ const Navbar = () => {
                         setIsBellOpen(opening);
                         if (opening && markBellOpened) markBellOpened();
                       }}
-                      className="relative flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#F2B233]/22 text-[#F2B233]/70 hover:text-[#F2B233] hover:bg-[#F2B233]/10 hover:border-[#F2B233]/40 transition-all duration-300 active:scale-95 nav-action-icon-btn-responsive"
+                      className="relative flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 nav-action-icon-btn-responsive"
                     >
                       <Bell size={15} />
                       {unreadCount > 0 && (
@@ -411,7 +405,7 @@ const Navbar = () => {
                       className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[300px] rounded-2xl overflow-hidden z-50 transition-all duration-250 ${
                         isBellOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
                       }`}
-                      style={{ background: '#5F6368', border: '1px solid rgba(255,255,255,0.14)', boxShadow: '0 20px 60px rgba(0,0,0,0.45)' }}
+                      style={{ background: '#44474F', border: '1px solid rgba(212,168,67,0.18)', boxShadow: '0 20px 60px rgba(0,0,0,0.45)' }}
                     >
                       <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.08]">
                         <p className="text-white text-xs font-bold">{t('admin.notifications')}</p>
@@ -434,25 +428,25 @@ const Navbar = () => {
                             onClick={() => setIsBellOpen(false)}
                             className="flex items-start gap-3 px-4 py-3 hover:bg-white/[0.05] transition-colors"
                           >
-                            <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-[#F2B233]/12 border border-[#F2B233]/25">
-                              <Briefcase size={12} className="text-[#F2B233]" />
+                            <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-[#D4A843]/12 border border-[#D4A843]/25">
+                              <Briefcase size={12} className="text-[#D4A843]" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-white text-xs font-semibold truncate">
                                 {n.fullName}
                               </p>
                               <p className="text-white/40 text-[11px] mt-0.5 truncate">
-                                {t('admin.jobReqLabel')} · {n.position || ''}
+                                {t('admin.jobReqLabel')} Â· {n.position || ''}
                               </p>
                             </div>
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#F2B233]/60 shrink-0 mt-1.5" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A843]/60 shrink-0 mt-1.5" />
                           </Link>
                         ))}
                       </div>
                       {allNotifications.length > 0 && (
                         <div className="border-t border-slate-100 px-4 py-2.5">
                           <Link href="/admin/jobs" onClick={() => setIsBellOpen(false)}
-                            className="block text-center text-[11px] text-[#F2B233]/70 hover:text-[#F2B233] transition-colors font-semibold">
+                            className="block text-center text-[11px] text-[#D4A843]/70 hover:text-[#D4A843] transition-colors font-semibold">
                             {t('admin.jobsMenu')}
                           </Link>
                         </div>
@@ -461,30 +455,30 @@ const Navbar = () => {
                   </div>
                 )}
 
-                {/* Portfolio icon — only when browsing site pages (not /admin/*) */}
+                {/* Portfolio icon â€” only when browsing site pages (not /admin/*) */}
                 {!isAdminPage && (
                   <div className="relative">
                     <button onClick={() => setIsProfileOpen(!isProfileOpen)}
                       className="flex items-center gap-1.5 group">
-                      <span className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 border border-[#F2B233]/22 text-[#F2B233] rounded-lg transition-all duration-300 group-hover:bg-[#F2B233]/10 group-hover:border-[#F2B233]/40 active:scale-95 nav-action-icon-btn-responsive">
+                      <span className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 border border-[#D4A843]/22 text-[#D4A843] rounded-lg transition-all duration-300 group-hover:bg-[#D4A843]/10 group-hover:border-[#D4A843]/40 active:scale-95 nav-action-icon-btn-responsive">
                         <HiDocumentText size={17} />
                       </span>
-                      <span className="bg-[#F2B233] text-black px-3 xl:px-4 py-[7px] xl:py-2 rounded-lg font-bold text-[12.5px] xl:text-[13.5px] shadow-[0_2px_12px_rgba(242,178,51,0.25)] transition-all duration-300 hover:bg-[#F6C55C] hover:shadow-[0_4px_20px_rgba(242,178,51,0.35)] active:scale-95 flex items-center gap-1.5 whitespace-nowrap nav-action-btn-responsive">
+                      <span className="bg-[#D4A843] text-black px-3 xl:px-4 py-[7px] xl:py-2 rounded-lg font-bold text-[12.5px] xl:text-[13.5px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-300 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center gap-1.5 whitespace-nowrap nav-action-btn-responsive">
                         {t('nav.profile')}
                         <ChevronDown size={11} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                       </span>
                     </button>
-                    <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[178px] bg-white border border-[#F2B233]/14 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                    <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[178px] bg-[#44474F] border border-[#D4A843]/14 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                       isProfileOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
                     }`}>
                       <a href="/Portfolio%20MAN/ARABIC%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
-                        className="block w-full text-center px-4 py-3 text-[12px] font-bold text-[#F2B233] hover:bg-[#F2B233]/8 transition-colors"
+                        className="block w-full text-center px-4 py-3 text-[12px] font-bold text-[#D4A843] hover:bg-[#D4A843]/8 transition-colors"
                         onClick={() => setIsProfileOpen(false)}>
                         {tPortfolio.ar}
                       </a>
-                      <div className="h-px bg-slate-100 mx-3" />
+                      <div className="h-px bg-[#44474F] mx-3" />
                       <a href="/Portfolio%20MAN/ENGLISH%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
-                        className="block w-full text-center px-4 py-3 text-[12px] font-bold text-[#F2B233] hover:bg-[#F2B233]/8 transition-colors"
+                        className="block w-full text-center px-4 py-3 text-[12px] font-bold text-[#D4A843] hover:bg-[#D4A843]/8 transition-colors"
                         onClick={() => setIsProfileOpen(false)}>
                         {tPortfolio.en}
                       </a>
@@ -497,11 +491,11 @@ const Navbar = () => {
                   <button
                     id="staff-portal-btn-admin"
                     onClick={handlePortalClick}
-                    className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#F2B233]/22 text-[#F2B233]/70 hover:text-[#F2B233] hover:bg-[#F2B233]/10 hover:border-[#F2B233]/40 transition-all duration-300 active:scale-95 nav-action-icon-btn-responsive"
+                    className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 nav-action-icon-btn-responsive"
                   >
                     <Briefcase size={15} />
                   </button>
-                  <div className={`absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-white/95 border border-[#F2B233]/30 text-[#F2B233] text-[10.5px] font-black py-1.5 px-3 rounded-lg shadow-lg`}>
+                  <div className={`absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-white/95 border border-[#D4A843]/30 text-[#D4A843] text-[10.5px] font-black py-1.5 px-3 rounded-lg shadow-lg`}>
                     {portalTooltipText}
                   </div>
                 </div>
@@ -510,27 +504,27 @@ const Navbar = () => {
                 <div className="relative" ref={adminDropdownRef}>
                   <button
                     onClick={() => setIsAdminOpen(!isAdminOpen)}
-                    className="flex items-center gap-1.5 px-2.5 xl:px-3 py-2 xl:py-2 rounded-lg border border-[#F2B233]/30 hover:border-[#F2B233]/50 hover:bg-[#F2B233]/8 transition-all duration-300 active:scale-95 nav-action-btn-responsive"
+                    className="flex items-center gap-1.5 px-2.5 xl:px-3 py-2 xl:py-2 rounded-lg border border-[#D4A843]/30 hover:border-[#D4A843]/50 hover:bg-[#D4A843]/8 transition-all duration-300 active:scale-95 nav-action-btn-responsive"
                   >
-                    <UserCog size={14} className="text-[#F2B233] flex-shrink-0" />
-                    <span className="text-[12.5px] xl:text-[13px] font-bold text-[#F2B233] whitespace-nowrap">
+                    <UserCog size={14} className="text-[#D4A843] flex-shrink-0" />
+                    <span className="text-[12.5px] xl:text-[13px] font-bold text-[#D4A843] whitespace-nowrap">
                       {adminDisplayName}
                     </span>
-                    <ChevronDown size={10} className={`text-[#F2B233]/50 transition-transform duration-300 ${isAdminOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown size={10} className={`text-[#D4A843]/50 transition-transform duration-300 ${isAdminOpen ? 'rotate-180' : ''}`} />
                   </button>
 
-                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[185px] bg-white border border-[#F2B233]/15 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[185px] bg-[#44474F] border border-[#D4A843]/15 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                     isAdminOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
                   }`}>
                     <Link
                       href="/admin/dashboard"
                       onClick={() => setIsAdminOpen(false)}
-                      className="flex items-center gap-2.5 w-full px-4 py-3 text-[12px] font-bold text-slate-600 hover:text-[#1F2937] hover:bg-slate-50 transition-colors"
+                      className="flex items-center gap-2.5 w-full px-4 py-3 text-[12px] font-bold text-white/65 hover:text-white hover:bg-white/8 transition-colors"
                     >
-                      <LayoutDashboard size={13} className="text-[#F2B233] flex-shrink-0" />
+                      <LayoutDashboard size={13} className="text-[#D4A843] flex-shrink-0" />
                       {t('admin.dashboard')}
                     </Link>
-                    <div className="h-px bg-slate-100 mx-3" />
+                    <div className="h-px bg-[#44474F] mx-3" />
                     <button
                       onClick={handleAdminLogout}
                       className="flex items-center gap-2.5 w-full px-4 py-3 text-[12px] font-bold text-red-400/60 hover:text-red-400 hover:bg-red-500/5 transition-colors"
@@ -543,32 +537,32 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                {/* ── NORMAL MODE ── */}
+                {/* â”€â”€ NORMAL MODE â”€â”€ */}
 
                 {/* Profile / Portfolio Dropdown */}
                 <div className="relative">
                   <button onClick={() => setIsProfileOpen(!isProfileOpen)}
                     className="flex items-center gap-1.5 group">
-                    <span className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 border border-[#F2B233]/22 text-[#F2B233] rounded-lg transition-all duration-300 group-hover:bg-[#F2B233]/10 group-hover:border-[#F2B233]/40 active:scale-95 nav-action-icon-btn-responsive">
+                    <span className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 border border-[#D4A843]/22 text-[#D4A843] rounded-lg transition-all duration-300 group-hover:bg-[#D4A843]/10 group-hover:border-[#D4A843]/40 active:scale-95 nav-action-icon-btn-responsive">
                       <HiDocumentText size={16} />
                     </span>
-                    <span className="bg-[#F2B233] text-black px-3 xl:px-3.5 py-2 xl:py-2 rounded-lg font-bold text-[12.5px] xl:text-[13.5px] shadow-[0_2px_12px_rgba(242,178,51,0.25)] transition-all duration-300 hover:bg-[#F6C55C] hover:shadow-[0_4px_20px_rgba(242,178,51,0.35)] active:scale-95 flex items-center gap-1.5 whitespace-nowrap nav-action-btn-responsive">
+                    <span className="bg-[#D4A843] text-black px-3 xl:px-3.5 py-2 xl:py-2 rounded-lg font-bold text-[12.5px] xl:text-[13.5px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-300 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center gap-1.5 whitespace-nowrap nav-action-btn-responsive">
                       {t('nav.profile')}
                       <ChevronDown size={11} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                     </span>
                   </button>
 
-                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[178px] bg-white border border-[#F2B233]/14 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[178px] bg-[#44474F] border border-[#D4A843]/14 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                     isProfileOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
                   }`}>
                     <a href="/Portfolio%20MAN/ARABIC%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
-                      className="block w-full text-center px-4 py-3 text-[12px] font-bold text-[#F2B233] hover:bg-[#F2B233]/8 transition-colors"
+                      className="block w-full text-center px-4 py-3 text-[12px] font-bold text-[#D4A843] hover:bg-[#D4A843]/8 transition-colors"
                       onClick={() => setIsProfileOpen(false)}>
                       {tPortfolio.ar}
                     </a>
-                    <div className="h-px bg-slate-100 mx-3" />
+                    <div className="h-px bg-[#44474F] mx-3" />
                     <a href="/Portfolio%20MAN/ENGLISH%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
-                      className="block w-full text-center px-4 py-3 text-[12px] font-bold text-[#F2B233] hover:bg-[#F2B233]/8 transition-colors"
+                      className="block w-full text-center px-4 py-3 text-[12px] font-bold text-[#D4A843] hover:bg-[#D4A843]/8 transition-colors"
                       onClick={() => setIsProfileOpen(false)}>
                       {tPortfolio.en}
                     </a>
@@ -580,38 +574,31 @@ const Navbar = () => {
                   <button
                     id="staff-portal-btn"
                     onClick={handlePortalClick}
-                    className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#F2B233]/22 text-[#F2B233]/70 hover:text-[#F2B233] hover:bg-[#F2B233]/10 hover:border-[#F2B233]/40 transition-all duration-300 active:scale-95 nav-action-icon-btn-responsive"
+                    className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 nav-action-icon-btn-responsive"
                   >
                     <Briefcase size={15} />
                   </button>
-                  <div className={`absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-white/95 border border-[#F2B233]/30 text-[#F2B233] text-[10.5px] font-black py-1.5 px-3 rounded-lg shadow-lg`}>
+                  <div className={`absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-white/95 border border-[#D4A843]/30 text-[#D4A843] text-[10.5px] font-black py-1.5 px-3 rounded-lg shadow-lg`}>
                     {portalTooltipText}
                   </div>
                 </div>
-
-                {/* Theme Toggle */}
-                <button onClick={toggleTheme}
-                  className="relative flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#F2B233]/22 text-[#F2B233] hover:bg-[#F2B233]/10 hover:border-[#F2B233]/40 transition-all duration-300 overflow-hidden active:scale-95 nav-action-icon-btn-responsive">
-                  <span className={`absolute transition-all duration-500 ${theme !== 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`}><Sun size={15} /></span>
-                  <span className={`absolute transition-all duration-500 ${theme !== 'dark' ? 'opacity-0 -rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`}><Moon size={15} /></span>
-                </button>
 
                 {/* Language Selector */}
                 <div className="relative" ref={langDropdownRef}>
                   <button
                     onClick={() => setIsLangOpen(!isLangOpen)}
-                    className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-2 xl:py-2 rounded-lg border border-[#F2B233]/22 hover:border-[#F2B233]/42 hover:bg-[#F2B233]/7 transition-all duration-300 nav-action-btn-responsive ${isLightMode ? 'text-slate-600' : 'text-white/65 hover:text-white'}`}
+                    className="flex items-center gap-1.5 px-2.5 xl:px-3 py-2 xl:py-2 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-300 nav-action-btn-responsive text-white/65 hover:text-white"
                   >
                     <span className="text-base leading-none">{currentLang.flag}</span>
                     <span className="text-[11px] font-bold tracking-widest uppercase">{currentLang.code.toUpperCase()}</span>
-                    <Globe size={12} className="text-[#F2B233]/45" />
+                    <Globe size={12} className="text-[#D4A843]/45" />
                   </button>
 
-                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[262px] bg-white border border-[#F2B233]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[262px] bg-[#44474F] border border-[#D4A843]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                     isLangOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-3 pointer-events-none"
                   }`}>
                     <div className="p-3">
-                      <p className="text-[9px] text-slate-400 font-medium tracking-[2.5px] uppercase mb-2.5 px-1">
+                      <p className="text-[9px] text-white/40 font-medium tracking-[2.5px] uppercase mb-2.5 px-1">
                         {lang === 'ar' || lang === 'ur' ? 'اختر اللغة' : 'Select Language'}
                       </p>
                       <div className="grid grid-cols-2 gap-1.5">
@@ -621,8 +608,8 @@ const Navbar = () => {
                             onClick={() => { setLang(language.code); setIsLangOpen(false); }}
                             className={`flex items-center gap-2.5 px-3 py-2.5 rounded-[10px] transition-all duration-200 text-start ${
                               lang === language.code
-                                ? "bg-[#F2B233]/10 border border-[#F2B233]/22 text-[#F2B233]"
-                                : "hover:bg-slate-50 border border-transparent text-slate-500 hover:text-[#1F2937]"
+                                ? "bg-[#D4A843]/10 border border-[#D4A843]/22 text-[#D4A843]"
+                                : "hover:bg-white/8 border border-transparent text-white/55 hover:text-white"
                             }`}
                           >
                             <span className="text-xl leading-none">{language.flag}</span>
@@ -631,7 +618,7 @@ const Navbar = () => {
                               <p className="text-[9px] opacity-40 uppercase tracking-wide">{language.dir.toUpperCase()}</p>
                             </div>
                             {lang === language.code && (
-                              <span className="ms-auto w-1.5 h-1.5 rounded-full bg-[#F2B233] flex-shrink-0" />
+                              <span className="ms-auto w-1.5 h-1.5 rounded-full bg-[#D4A843] flex-shrink-0" />
                             )}
                           </button>
                         ))}
@@ -643,17 +630,10 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* ── Mobile Header Actions ── */}
+          {/* â”€â”€ Mobile Header Actions â”€â”€ */}
           <div className="flex items-center gap-2 lg:hidden ms-auto">
-            {isAdmin ? null : (
-              <button onClick={toggleTheme}
-                className="relative flex items-center justify-center w-8 h-8 rounded-lg border border-[#F2B233]/22 text-[#F2B233] hover:bg-[#F2B233]/10 transition-all duration-300 overflow-hidden">
-                <span className={`absolute transition-all duration-500 ${theme !== 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`}><Sun size={15} /></span>
-                <span className={`absolute transition-all duration-500 ${theme !== 'dark' ? 'opacity-0 -rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`}><Moon size={15} /></span>
-              </button>
-            )}
             <button
-              className={`p-2 rounded-lg border border-[#F2B233]/22 hover:bg-[#F2B233]/10 transition-colors ${isLightMode ? 'text-slate-700' : 'text-white/80'}`}
+              className="p-2 rounded-lg border border-[#D4A843]/22 hover:bg-[#D4A843]/10 transition-colors text-white/80"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -663,81 +643,139 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* ═══ MOBILE OVERLAY ═══ */}
+      {/* â•â•â• MOBILE OVERLAY â•â•â• */}
       <div
         className={`lg:hidden fixed inset-0 z-[110] transition-opacity duration-500 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         style={{ backgroundColor: 'rgba(0,0,0,0.72)' }}
         onClick={() => setIsOpen(false)}
       />
 
-      {/* ═══ MOBILE PANEL ═══ */}
+      {/* â•â•â• MOBILE PANEL â•â•â• */}
       <div
         className={`lg:hidden fixed top-0 bottom-0 w-full z-[120] transition-transform duration-500 ease-out ${isRTL ? 'right-0' : 'left-0'}`}
         style={{
-          backgroundColor: isLightMode ? '#ffffff' : '#0a0a0a',
-          boxShadow: isLightMode
-            ? (isRTL ? '-4px 0 24px rgba(0,0,0,0.08)' : '4px 0 24px rgba(0,0,0,0.08)')
-            : (isRTL ? '-6px 0 50px rgba(0,0,0,1)' : '6px 0 50px rgba(0,0,0,1)'),
+          backgroundColor: '#2E3038',
+          boxShadow: isRTL ? '-6px 0 50px rgba(0,0,0,1)' : '6px 0 50px rgba(0,0,0,1)',
           transform: isOpen ? 'translateX(0)' : isRTL ? 'translateX(100%)' : 'translateX(-100%)',
         }}
       >
-        <div className="flex flex-col h-full overflow-y-auto" style={{ backgroundColor: isLightMode ? '#ffffff' : '#0a0a0a' }}>
+        <div className="flex flex-col h-full overflow-y-auto" style={{ backgroundColor: '#2E3038' }}>
 
           {/* Panel Header */}
-          <div className="flex items-center justify-between px-5 pt-8 pb-4 flex-shrink-0" style={{ backgroundColor: isLightMode ? '#ffffff' : '#0a0a0a', borderBottom: `1px solid ${isLightMode ? '#e2e8f0' : 'rgba(255,255,255,0.05)'}` }}>
+          <div className="flex items-center justify-between px-5 pt-8 pb-4 flex-shrink-0" style={{ backgroundColor: '#2E3038', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
             <Link href="/" onClick={() => setIsOpen(false)}>
               <Image src="/brand/logo-navbar-real.png" alt="MAN Engineering Consultancy" width={1029} height={461} unoptimized className="h-9 w-auto object-contain" priority />
             </Link>
             <button onClick={() => setIsOpen(false)}
-              className="w-8 h-8 rounded-[10px] border border-[#F2B233]/22 bg-[#F2B233]/5 flex items-center justify-center text-[#F2B233] hover:bg-[#F2B233]/12 transition-all active:scale-95">
+              className="w-8 h-8 rounded-[10px] border border-[#D4A843]/22 bg-[#D4A843]/5 flex items-center justify-center text-[#D4A843] hover:bg-[#D4A843]/12 transition-all active:scale-95">
               <X size={16} />
             </button>
           </div>
 
           {/* Nav Links */}
-          <div className="px-3.5 pt-4 flex-shrink-0" style={{ backgroundColor: isLightMode ? '#ffffff' : '#0a0a0a' }}>
-            <p className={`text-[9px] font-medium tracking-[2.5px] uppercase px-1.5 mb-2 ${isLightMode ? 'text-slate-400' : 'text-white/20'}`}>
+          <div className="px-3.5 pt-4 flex-shrink-0" style={{ backgroundColor: '#2E3038' }}>
+            <p className="text-[9px] font-medium tracking-[2.5px] uppercase px-1.5 mb-2 text-white/20">
               {lang === 'ar' || lang === 'ur' ? 'القائمة' : 'Navigation'}
             </p>
             <div className="flex flex-col gap-0.5">
-              {navLinks.map((link) => {
+              {navLinks.filter(l => !l.isSecondary).map((link) => {
                 const isActive = pathname === link.href;
                 const LinkIcon = link.icon;
                 if (link.isSpecial) {
                   return (
                     <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-3 py-[11px] px-3 rounded-[12px] border border-[#F2B233]/22 bg-gradient-to-r from-[#F2B233]/12 to-[#F2B233]/6 transition-all duration-200 active:scale-[0.98]">
-                      <span className="w-[34px] h-[34px] rounded-[10px] bg-[#F2B233]/18 flex items-center justify-center text-[#F2B233] flex-shrink-0"><LinkIcon size={15} /></span>
-                      <span className="text-[13px] font-bold text-[#F2B233] flex-1">{link.name}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#F2B233] flex-shrink-0" />
+                      className="flex items-center gap-3 py-[11px] px-3 rounded-[12px] border border-[#D4A843]/22 bg-gradient-to-r from-[#D4A843]/12 to-[#D4A843]/6 transition-all duration-200 active:scale-[0.98]">
+                      <span className="w-[34px] h-[34px] rounded-[10px] bg-[#D4A843]/18 flex items-center justify-center text-[#D4A843] flex-shrink-0"><LinkIcon size={15} /></span>
+                      <span className="text-[13px] font-bold text-[#D4A843] flex-1">{link.name}</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#D4A843] flex-shrink-0" />
                     </Link>
+                  );
+                }
+                if (link.isServicesDropdown) {
+                  return (
+                    <div key={link.name} className="flex flex-col">
+                      <button
+                        onClick={() => setIsMobileServicesOpen(v => !v)}
+                        className="flex items-center gap-3 py-[11px] px-3 rounded-[12px] border border-transparent hover:bg-white/8 transition-all duration-200 active:scale-[0.98] text-white w-full text-start"
+                      >
+                        <span className="w-[34px] h-[34px] rounded-[10px] bg-[#D4A843]/14 text-[#D4A843] flex items-center justify-center flex-shrink-0">
+                          <LinkIcon size={15} />
+                        </span>
+                        <span className="text-[13px] font-semibold flex-1 text-white">{link.name}</span>
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180" : ""}`} />
+                      </button>
+
+                      {isMobileServicesOpen && (
+                        <div className="ms-6 my-1 flex flex-col gap-1 border-s-2 border-[#D4A843]/20 ps-3">
+                          {servicesList.map((svc) => (
+                            <Link
+                              key={svc.href}
+                              href={svc.href}
+                              onClick={() => setIsOpen(false)}
+                              className="flex items-center gap-2.5 py-2 px-2.5 rounded-lg text-[12.5px] font-medium text-white/80 hover:text-[#D4A843] hover:bg-white/5 transition-colors"
+                            >
+                              <svc.icon size={13} className="text-[#D4A843]" />
+                              {svc.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   );
                 }
                 return (
                   <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)}
                     className={`flex items-center gap-3 py-[11px] px-3 rounded-[12px] border transition-all duration-200 active:scale-[0.98] ${
-                      isActive
-                        ? "bg-[#F2B233]/10 border-[#F2B233]/20"
-                        : isLightMode ? "border-transparent hover:bg-slate-100" : "border-transparent hover:bg-slate-50"
+                      isActive ? "bg-[#D4A843]/10 border-[#D4A843]/20" : "border-transparent hover:bg-white/8"
                     }`}>
                     <span className={`w-[34px] h-[34px] rounded-[10px] flex items-center justify-center flex-shrink-0 ${
-                      isActive ? "bg-[#F2B233]/14 text-[#F2B233]" : isLightMode ? "bg-slate-100 text-slate-400" : "bg-white/5 text-white/30"
+                      isActive ? "bg-[#D4A843]/14 text-[#D4A843]" : "bg-white/5 text-white/30"
                     }`}><LinkIcon size={15} /></span>
-                    <span className={`text-[13px] font-semibold flex-1 ${isActive ? "text-[#F2B233]" : isLightMode ? "text-[#1e293b]" : "text-white"}`}>{link.name}</span>
-                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#F2B233] flex-shrink-0" />}
+                    <span className={`text-[13px] font-semibold flex-1 ${isActive ? "text-[#D4A843]" : "text-white"}`}>{link.name}</span>
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#D4A843] flex-shrink-0" />}
                   </Link>
                 );
               })}
+
+              {/* Mobile "More" Accordion for secondary links */}
+              <div className="flex flex-col">
+                <button
+                  onClick={() => setIsMobileMoreOpen(v => !v)}
+                  className="flex items-center gap-3 py-[11px] px-3 rounded-[12px] border border-transparent hover:bg-white/8 transition-all duration-200 active:scale-[0.98] text-[#D4A843] w-full text-start"
+                >
+                  <span className="w-[34px] h-[34px] rounded-[10px] bg-[#D4A843]/14 text-[#D4A843] flex items-center justify-center flex-shrink-0">
+                    <Compass size={15} />
+                  </span>
+                  <span className="text-[13px] font-semibold flex-1 text-[#D4A843]">{t('nav.more')}</span>
+                  <ChevronDown size={14} className={`transition-transform duration-300 ${isMobileMoreOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {isMobileMoreOpen && (
+                  <div className="ms-6 my-1 flex flex-col gap-1 border-s-2 border-[#D4A843]/20 ps-3">
+                    {navLinks.filter(l => l.isSecondary).map((secLink) => (
+                      <Link
+                        key={secLink.href}
+                        href={secLink.href}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center gap-2.5 py-2 px-2.5 rounded-lg text-[12.5px] font-medium text-white/80 hover:text-[#D4A843] hover:bg-white/5 transition-colors"
+                      >
+                        <secLink.icon size={13} className="text-[#D4A843]" />
+                        {secLink.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
               {/* Staff Portal Link - Mobile */}
               <button
                 id="staff-portal-btn-mobile"
                 onClick={() => { setIsOpen(false); handlePortalClick(); }}
-                className="flex items-center gap-3 py-[11px] px-3 rounded-[12px] border border-transparent hover:bg-slate-50 transition-all duration-200 active:scale-[0.98] w-full text-start"
+                className="flex items-center gap-3 py-[11px] px-3 rounded-[12px] border border-transparent hover:bg-white/8 transition-all duration-200 active:scale-[0.98] w-full text-start"
               >
-                <span className={`w-[34px] h-[34px] rounded-[10px] bg-[#F2B233]/14 text-[#F2B233] flex items-center justify-center flex-shrink-0`}>
+                <span className={`w-[34px] h-[34px] rounded-[10px] bg-[#D4A843]/14 text-[#D4A843] flex items-center justify-center flex-shrink-0`}>
                   <Briefcase size={15} />
                 </span>
-                <span className={`text-[13px] font-semibold flex-1 ${isLightMode ? "text-[#1e293b]" : "text-white"}`}>
+                <span className="text-[13px] font-semibold flex-1 text-white">
                   {portalTooltipText}
                 </span>
               </button>
@@ -745,24 +783,24 @@ const Navbar = () => {
           </div>
 
           {/* Language Selector - Mobile */}
-          <div className="px-3.5 pt-5 flex-shrink-0" style={{ backgroundColor: isLightMode ? '#ffffff' : '#0a0a0a' }}>
+          <div className="px-3.5 pt-5 flex-shrink-0" style={{ backgroundColor: '#2E3038' }}>
             <button
               onClick={() => setIsMobileLangOpen(!isMobileLangOpen)}
-              className={`w-full flex items-center gap-3 px-3 py-[10px] rounded-[12px] border transition-all active:scale-[0.98] ${isLightMode ? 'bg-slate-50 border-[#e2e8f0] hover:bg-slate-100' : 'bg-white/[0.03] border-white/8 hover:bg-white/6'}`}
+              className="w-full flex items-center gap-3 px-3 py-[10px] rounded-[12px] border transition-all active:scale-[0.98] bg-white/[0.03] border-white/8 hover:bg-white/6"
             >
-              <span className="w-[34px] h-[34px] rounded-[10px] bg-[#F2B233]/10 flex items-center justify-center flex-shrink-0">
-                <Globe size={16} className="text-[#F2B233]" />
+              <span className="w-[34px] h-[34px] rounded-[10px] bg-[#D4A843]/10 flex items-center justify-center flex-shrink-0">
+                <Globe size={16} className="text-[#D4A843]" />
               </span>
               <div className="flex-1 text-start flex items-center gap-2">
                 <span className="text-xl">{currentLang.flag}</span>
                 <div>
-                  <p className={`text-[12px] font-bold leading-none ${isLightMode ? 'text-[#1e293b]' : 'text-white'}`}>{currentLang.nativeName}</p>
-                  <p className={`text-[10px] mt-0.5 ${isLightMode ? 'text-slate-400' : 'text-white/28'}`}>
+                  <p className="text-[12px] font-bold leading-none text-white">{currentLang.nativeName}</p>
+                  <p className="text-[10px] mt-0.5 text-white/28">
                     {lang === 'ar' || lang === 'ur' ? 'اختر اللغة' : 'Select Language'}
                   </p>
                 </div>
               </div>
-              <ChevronDown size={14} className={`transition-transform duration-300 ${isMobileLangOpen ? 'rotate-180' : ''} ${isLightMode ? 'text-slate-400' : 'text-white/28'}`} />
+              <ChevronDown size={14} className={`transition-transform duration-300 ${isMobileLangOpen ? 'rotate-180' : ''} text-white/28`} />
             </button>
 
             <div className={`overflow-hidden transition-all duration-300 ${isMobileLangOpen ? 'max-h-[420px] mt-2 opacity-100' : 'max-h-0 opacity-0'}`}>
@@ -773,10 +811,8 @@ const Navbar = () => {
                     onClick={() => { setLang(language.code); setIsMobileLangOpen(false); setIsOpen(false); }}
                     className={`flex items-center gap-2.5 px-3 py-3 rounded-[12px] border transition-all duration-200 active:scale-[0.97] ${
                       lang === language.code
-                        ? "bg-[#F2B233]/10 border-[#F2B233]/22 text-[#F2B233]"
-                        : isLightMode
-                          ? "border-[#e2e8f0] bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-[#1e293b]"
-                          : "border-white/6 bg-white/[0.03] text-white/55 hover:bg-white/6 hover:text-white"
+                        ? "bg-[#D4A843]/10 border-[#D4A843]/22 text-[#D4A843]"
+                        : "border-white/6 bg-white/[0.03] text-white/55 hover:bg-white/6 hover:text-white"
                     }`}
                   >
                     <span className="text-2xl leading-none">{language.flag}</span>
@@ -785,7 +821,7 @@ const Navbar = () => {
                       <p className="text-[9px] opacity-38 uppercase tracking-wide">{language.code}</p>
                     </div>
                     {lang === language.code && (
-                      <span className="ms-auto w-1.5 h-1.5 rounded-full bg-[#F2B233] flex-shrink-0" />
+                      <span className="ms-auto w-1.5 h-1.5 rounded-full bg-[#D4A843] flex-shrink-0" />
                     )}
                   </button>
                 ))}
@@ -794,35 +830,35 @@ const Navbar = () => {
           </div>
 
           {/* Spacer */}
-          <div className="flex-1" style={{ backgroundColor: isLightMode ? '#ffffff' : '#0a0a0a' }} />
+          <div className="flex-1" style={{ backgroundColor: '#2E3038' }} />
 
           {/* Panel Footer */}
-          <div className="px-3.5 pb-7 pt-4 flex-shrink-0 space-y-2.5" style={{ backgroundColor: isLightMode ? '#ffffff' : '#0a0a0a', borderTop: `1px solid ${isLightMode ? '#e2e8f0' : 'rgba(255,255,255,0.05)'}` }}>
+          <div className="px-3.5 pb-7 pt-4 flex-shrink-0 space-y-2.5" style={{ backgroundColor: '#2E3038', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
 
             {isAdmin ? (
-              /* ── Admin footer: Portfolio (site pages only) + Dashboard + Logout ── */
+              /* â”€â”€ Admin footer: Portfolio (site pages only) + Dashboard + Logout â”€â”€ */
               <>
                 {!isAdminPage && (
                   <div>
                     <button onClick={() => setIsProfileOpen(!isProfileOpen)}
-                      className="w-full flex items-center gap-3 px-3 py-[10px] rounded-[12px] bg-[#F2B233]/6 border border-[#F2B233]/18 hover:bg-[#F2B233]/10 transition-all active:scale-[0.98]">
-                      <span className="w-[34px] h-[34px] rounded-[10px] bg-[#F2B233]/14 flex items-center justify-center text-[#F2B233] flex-shrink-0"><HiDocumentText size={18} /></span>
+                      className="w-full flex items-center gap-3 px-3 py-[10px] rounded-[12px] bg-[#D4A843]/6 border border-[#D4A843]/18 hover:bg-[#D4A843]/10 transition-all active:scale-[0.98]">
+                      <span className="w-[34px] h-[34px] rounded-[10px] bg-[#D4A843]/14 flex items-center justify-center text-[#D4A843] flex-shrink-0"><HiDocumentText size={18} /></span>
                       <div className="flex-1 text-start">
-                        <p className="text-[12px] font-bold text-[#F2B233] leading-none">{t('nav.profile')}</p>
+                        <p className="text-[12px] font-bold text-[#D4A843] leading-none">{t('nav.profile')}</p>
                         <p className="text-[10px] mt-0.5 text-white/28">PDF</p>
                       </div>
-                      <ChevronDown size={13} className={`text-[#F2B233]/45 transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown size={13} className={`text-[#D4A843]/45 transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                     </button>
                     <div className={`overflow-hidden transition-all duration-300 ${isProfileOpen ? "max-h-28 mt-2 opacity-100" : "max-h-0 opacity-0"}`}>
                       <div className="grid grid-cols-2 gap-2">
                         <a href="/Portfolio%20MAN/ARABIC%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
                           onClick={() => setIsOpen(false)}
-                          className="text-[11px] font-bold text-[#F2B233] border border-[#F2B233]/18 py-2.5 rounded-[10px] hover:bg-[#F2B233]/10 transition-colors text-center bg-white/[0.03]">
+                          className="text-[11px] font-bold text-[#D4A843] border border-[#D4A843]/18 py-2.5 rounded-[10px] hover:bg-[#D4A843]/10 transition-colors text-center bg-white/[0.03]">
                           {tPortfolio.ar}
                         </a>
                         <a href="/Portfolio%20MAN/ENGLISH%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
                           onClick={() => setIsOpen(false)}
-                          className="text-[11px] font-bold text-[#F2B233] border border-[#F2B233]/18 py-2.5 rounded-[10px] hover:bg-[#F2B233]/10 transition-colors text-center bg-white/[0.03]">
+                          className="text-[11px] font-bold text-[#D4A843] border border-[#D4A843]/18 py-2.5 rounded-[10px] hover:bg-[#D4A843]/10 transition-colors text-center bg-white/[0.03]">
                           {tPortfolio.en}
                         </a>
                       </div>
@@ -832,16 +868,16 @@ const Navbar = () => {
                 <Link
                   href="/admin/dashboard"
                   onClick={() => setIsOpen(false)}
-                  className="w-full flex items-center gap-3 px-3 py-[10px] rounded-[12px] bg-[#F2B233]/8 border border-[#F2B233]/20 hover:bg-[#F2B233]/14 transition-all active:scale-[0.98]"
+                  className="w-full flex items-center gap-3 px-3 py-[10px] rounded-[12px] bg-[#D4A843]/8 border border-[#D4A843]/20 hover:bg-[#D4A843]/14 transition-all active:scale-[0.98]"
                 >
-                  <span className="w-[34px] h-[34px] rounded-[10px] bg-[#F2B233]/15 flex items-center justify-center text-[#F2B233] flex-shrink-0">
+                  <span className="w-[34px] h-[34px] rounded-[10px] bg-[#D4A843]/15 flex items-center justify-center text-[#D4A843] flex-shrink-0">
                     <LayoutDashboard size={17} />
                   </span>
                   <div className="flex-1 text-start">
-                    <p className="text-[12px] font-bold text-[#F2B233] leading-none">{t('admin.dashboard')}</p>
+                    <p className="text-[12px] font-bold text-[#D4A843] leading-none">{t('admin.dashboard')}</p>
                     <p className="text-[10px] mt-0.5 text-white/28">{adminJobTitle}</p>
                   </div>
-                  <UserCircle size={14} className="text-[#F2B233]/40 flex-shrink-0" />
+                  <UserCircle size={14} className="text-[#D4A843]/40 flex-shrink-0" />
                 </Link>
 
                 <button
@@ -855,52 +891,39 @@ const Navbar = () => {
                 </button>
               </>
             ) : (
-              /* ── Normal footer: Portfolio + Theme ── */
+              /* â”€â”€ Normal footer: Portfolio â”€â”€ */
               <>
                 {/* Portfolio */}
                 <div>
                   <button onClick={() => setIsProfileOpen(!isProfileOpen)}
-                    className="w-full flex items-center gap-3 px-3 py-[10px] rounded-[12px] bg-[#F2B233]/6 border border-[#F2B233]/18 hover:bg-[#F2B233]/10 transition-all active:scale-[0.98]">
-                    <span className="w-[34px] h-[34px] rounded-[10px] bg-[#F2B233]/14 flex items-center justify-center text-[#F2B233] flex-shrink-0"><HiDocumentText size={18} /></span>
+                    className="w-full flex items-center gap-3 px-3 py-[10px] rounded-[12px] bg-[#D4A843]/6 border border-[#D4A843]/18 hover:bg-[#D4A843]/10 transition-all active:scale-[0.98]">
+                    <span className="w-[34px] h-[34px] rounded-[10px] bg-[#D4A843]/14 flex items-center justify-center text-[#D4A843] flex-shrink-0"><HiDocumentText size={18} /></span>
                     <div className="flex-1 text-start">
-                      <p className="text-[12px] font-bold text-[#F2B233] leading-none">{t('nav.profile')}</p>
-                      <p className={`text-[10px] mt-0.5 ${isLightMode ? 'text-slate-400' : 'text-white/28'}`}>PDF</p>
+                      <p className="text-[12px] font-bold text-[#D4A843] leading-none">{t('nav.profile')}</p>
+                      <p className="text-[10px] mt-0.5 text-white/28">PDF</p>
                     </div>
-                    <ChevronDown size={13} className={`text-[#F2B233]/45 transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
+                    <ChevronDown size={13} className={`text-[#D4A843]/45 transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                   </button>
                   <div className={`overflow-hidden transition-all duration-300 ${isProfileOpen ? "max-h-28 mt-2 opacity-100" : "max-h-0 opacity-0"}`}>
                     <div className="grid grid-cols-2 gap-2">
                       <a href="/Portfolio%20MAN/ARABIC%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
                         onClick={() => setIsOpen(false)}
-                        className="text-[11px] font-bold text-[#F2B233] border border-[#F2B233]/18 py-2.5 rounded-[10px] hover:bg-[#F2B233]/10 transition-colors text-center bg-white/[0.03]">
+                        className="text-[11px] font-bold text-[#D4A843] border border-[#D4A843]/18 py-2.5 rounded-[10px] hover:bg-[#D4A843]/10 transition-colors text-center bg-white/[0.03]">
                         {tPortfolio.ar}
                       </a>
                       <a href="/Portfolio%20MAN/ENGLISH%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
                         onClick={() => setIsOpen(false)}
-                        className="text-[11px] font-bold text-[#F2B233] border border-[#F2B233]/18 py-2.5 rounded-[10px] hover:bg-[#F2B233]/10 transition-colors text-center bg-white/[0.03]">
+                        className="text-[11px] font-bold text-[#D4A843] border border-[#D4A843]/18 py-2.5 rounded-[10px] hover:bg-[#D4A843]/10 transition-colors text-center bg-white/[0.03]">
                         {tPortfolio.en}
                       </a>
                     </div>
                   </div>
                 </div>
-
-                {/* Theme */}
-                <button onClick={toggleTheme}
-                  className={`w-full flex items-center gap-3 px-3 py-[10px] rounded-[12px] border transition-colors ${isLightMode ? 'bg-slate-50 border-[#e2e8f0] hover:bg-slate-100' : 'bg-white/[0.03] border-white/8 hover:bg-white/6'}`}>
-                  <span className={`w-[34px] h-[34px] rounded-[10px] flex items-center justify-center text-[#F2B233] flex-shrink-0 ${isLightMode ? 'bg-slate-100' : 'bg-white/5'}`}>
-                    {isLightMode ? <Sun size={16} /> : <Moon size={16} />}
-                  </span>
-                  <span className={`text-[12px] font-semibold ${isLightMode ? 'text-[#1e293b]/70' : 'text-white/55'}`}>
-                    {isLightMode
-                      ? (lang === 'ar' || lang === 'ur' ? 'وضع النهار' : 'Light Mode')
-                      : (lang === 'ar' || lang === 'ur' ? 'وضع الليل' : 'Dark Mode')}
-                  </span>
-                </button>
               </>
             )}
 
-            <p className={`text-center text-[9px] font-medium uppercase tracking-[0.18em] pt-1 ${isLightMode ? 'text-slate-400/70' : 'text-white/14'}`}>
-              © {new Date().getFullYear()} MAN Engineering Consultancy
+            <p className="text-center text-[9px] font-medium uppercase tracking-[0.18em] pt-1 text-white/20">
+              Â© {new Date().getFullYear()} MAN Engineering Consultancy
             </p>
           </div>
         </div>
@@ -910,3 +933,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

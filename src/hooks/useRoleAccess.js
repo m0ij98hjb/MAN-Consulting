@@ -38,6 +38,9 @@ export function useRoleAccess() {
         setProfile(null);
         setRole(null);
       }
+    }, (err) => {
+      setProfile(null);
+      setRole(null);
     });
 
     return unsub;

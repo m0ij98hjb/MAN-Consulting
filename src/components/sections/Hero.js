@@ -21,9 +21,9 @@ const Hero = () => {
   const { t, lang } = useLanguage();
   const isRTL = lang === 'ar' || lang === 'ur';
   const { data: homeCms } = useSiteContent('home');
-  const statProjects    = homeCms?.stat_projects    ?? siteStats.projects.value;
+  const statProjects = homeCms?.stat_projects ?? siteStats.projects.value;
   const statSatisfaction = homeCms?.stat_satisfaction ?? siteStats.satisfaction.value;
-  const statDesigns     = homeCms?.stat_designs     ?? siteStats.designs.value;
+  const statDesigns = homeCms?.stat_designs ?? siteStats.designs.value;
 
   const heroImages = [
     "/hero.png",
@@ -107,7 +107,7 @@ const Hero = () => {
             <TypewriterText
               texts={[t('hero.taglineLine1'), t('hero.taglineLine2')]}
               typingSpeed={120} deletingSpeed={60} pauseDuration={2000} loop
-              className="text-white" textClassNames={["", "text-secondary"]}
+              className="text-white" textClassNames={["", "text-[#D4A843]"]}
             />
           </h1>
 
@@ -142,9 +142,9 @@ const Hero = () => {
             </Button>
           </div>
 
-          <div 
-            className="grid grid-cols-3 gap-2 py-4 mb-6 border-y border-white/10" 
-            data-aos="fade-up" 
+          <div
+            className="grid grid-cols-3 gap-2 py-4 mb-6 border-y border-white/10"
+            data-aos="fade-up"
             data-aos-delay="520"
           >
             <div className="flex flex-col items-center text-center">
@@ -197,93 +197,95 @@ const Hero = () => {
         </div>
 
         <div className="container mx-auto px-6 relative z-30">
-            {/* Engineering Excellence - Desktop only */}
-            
-            
+          {/* Engineering Excellence - Desktop only */}
 
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-morphism border border-secondary/30 mb-8" data-aos="fade-down" data-aos-delay="200">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary" />
-              </span>
-              <span className="text-secondary text-sm font-bold tracking-widest uppercase">{t('hero.badge')}</span>
-            </div>
 
-            <h1
-              className="text-4xl md:text-6xl lg:text-5xl font-bold text-white mb-6 leading-tight"
-              data-aos="fade-up" data-aos-delay="400"
-              style={{ textShadow: "0 4px 16px rgba(0,0,0,0.7)" }}
-            >
-              <TypewriterText
-                texts={
-                  { ar: ["حلول هندسية", "مبنية على الخبرة"], en: ["Engineering Solutions", "Built on Experience"],
-                    zh: ["工程解决方案", "基于丰富经验"], es: ["Soluciones de Ingeniería", "Construidas sobre la Experiencia"],
-                    fr: ["Solutions d'Ingénierie", "Fondées sur l'Expérience"], de: ["Ingenieurlösungen", "Gebaut auf Erfahrung"],
-                    tr: ["Mühendislik Çözümleri", "Deneyim Üzerine İnşa Edildi"], ur: ["انجینئرنگ حل", "تجربے کی بنیاد پر"],
-                    hi: ["इंजीनियरिंग समाधान", "अनुभव पर निर्मित"], ru: ["Инженерные решения", "Построенные на опыте"]
-                  }[lang] || ["Engineering Solutions", "Built on Experience"]
-                }
-                typingSpeed={120} deletingSpeed={60} pauseDuration={2000} loop
-                className="text-white" textClassNames={["", "text-secondary"]}
-              />
-            </h1>
 
-            <p
-              className="text-base md:text-xl text-slate-100 font-semibold mb-10 max-w-2xl leading-relaxed"
-              data-aos="fade-up" data-aos-delay="600"
-              style={{ textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}
-            >
-              {descText}
-            </p>
-
-            <div className="flex flex-row gap-4 mb-10" data-aos="fade-up" data-aos-delay="800">
-              <Button
-                as={Link}
-                href="/contact"
-                size="lg"
-                className="flex items-center justify-center text-base font-bold rounded-[4px] bg-white text-slate-950 border border-white hover:bg-white/95 active:scale-95 transition-all duration-300 px-8 py-3.5"
-              >
-                {requestConsultText}
-              </Button>
-              <Button
-                as={Link}
-                href="/projects"
-                variant="outline"
-                size="lg"
-                className="flex items-center justify-center text-base font-bold rounded-[4px] border border-white text-white hover:bg-white hover:text-slate-950 active:scale-95 transition-all duration-300 px-8 py-3.5"
-              >
-                {viewWorksText}
-              </Button>
-            </div>
-
-            <div 
-              className="flex flex-row items-center gap-8 lg:gap-14 mb-10 max-w-xl border-y border-white/10 py-6" 
-              data-aos="fade-up" 
-              data-aos-delay="900"
-            >
-              <CounterStat
-                value={statProjects}
-                label={getStatLabel('projects', lang)}
-                suffix="+"
-                aosDeley="900"
-              />
-              <div className="w-px h-10 bg-white/20" />
-              <CounterStat
-                value={statSatisfaction}
-                label={getStatLabel('satisfaction', lang)}
-                suffix="%"
-                aosDeley="950"
-              />
-              <div className="w-px h-10 bg-white/20" />
-              <CounterStat
-                value={statDesigns}
-                label={getStatLabel('designs', lang)}
-                suffix="+"
-                aosDeley="1000"
-              />
-            </div>
-
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-morphism border border-secondary/30 mb-8" data-aos="fade-down" data-aos-delay="200">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary" />
+            </span>
+            <span className="text-secondary text-sm font-bold tracking-widest uppercase">{t('hero.badge')}</span>
           </div>
+
+          <h1
+            className="text-4xl md:text-6xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+            data-aos="fade-up" data-aos-delay="400"
+            style={{ textShadow: "0 4px 16px rgba(0,0,0,0.7)" }}
+          >
+            <TypewriterText
+              texts={
+                {
+                  ar: ["حلول هندسية", "مبنية على الخبرة"], en: ["Engineering Solutions", "Built on Experience"],
+                  zh: ["工程解决方案", "基于丰富经验"], es: ["Soluciones de Ingeniería", "Construidas sobre la Experiencia"],
+                  fr: ["Solutions d'Ingénierie", "Fondées sur l'Expérience"], de: ["Ingenieurlösungen", "Gebaut auf Erfahrung"],
+                  tr: ["Mühendislik Çözümleri", "Deneyim Üzerine İnşa Edildi"], ur: ["انجینئرنگ حل", "تجربے کی بنیاد پر"],
+                  hi: ["इंजीनियरिंग समाधान", "अनुभव पर निर्मित"], ru: ["Инженерные решения", "Построенные на опыте"]
+                }[lang] || ["Engineering Solutions", "Built on Experience"]
+              }
+              typingSpeed={120} deletingSpeed={60} pauseDuration={2000} loop
+              className="text-white" textClassNames={["", "text-[#D4A843]"]}
+            />
+          </h1>
+
+          <p
+            className="text-base md:text-xl text-slate-100 font-semibold mb-10 max-w-2xl leading-relaxed"
+            data-aos="fade-up" data-aos-delay="600"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}
+          >
+            {descText}
+          </p>
+
+          <div className="flex flex-row gap-4 mb-10" data-aos="fade-up" data-aos-delay="800">
+            <Button
+              as={Link}
+              href="/contact"
+              size="lg"
+              className="flex items-center justify-center text-base font-bold rounded-[4px] border border-white hover:bg-[#f2f2f2] active:scale-95 transition-all duration-300 px-8 py-3.5"
+              style={{ backgroundColor: '#ffffff', color: '#000000' }}
+            >
+              {requestConsultText}
+            </Button>
+            <Button
+              as={Link}
+              href="/projects"
+              variant="outline"
+              size="lg"
+              className="flex items-center justify-center text-base font-bold rounded-[4px] border border-white text-white hover:bg-white hover:text-slate-950 active:scale-95 transition-all duration-300 px-8 py-3.5"
+            >
+              {viewWorksText}
+            </Button>
+          </div>
+
+          <div
+            className="flex flex-row items-center gap-8 lg:gap-14 mb-10 max-w-xl border-y border-white/10 py-6"
+            data-aos="fade-up"
+            data-aos-delay="900"
+          >
+            <CounterStat
+              value={statProjects}
+              label={getStatLabel('projects', lang)}
+              suffix="+"
+              aosDeley="900"
+            />
+            <div className="w-px h-10 bg-white/20" />
+            <CounterStat
+              value={statSatisfaction}
+              label={getStatLabel('satisfaction', lang)}
+              suffix="%"
+              aosDeley="950"
+            />
+            <div className="w-px h-10 bg-white/20" />
+            <CounterStat
+              value={statDesigns}
+              label={getStatLabel('designs', lang)}
+              suffix="+"
+              aosDeley="1000"
+            />
+          </div>
+
+        </div>
       </section>
     </>
   );

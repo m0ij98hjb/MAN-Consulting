@@ -73,10 +73,6 @@ export default function DashboardPage() {
   return (
     <AdminPageLayout>
       <div className="p-6 lg:p-8 max-w-7xl mx-auto" dir={isRTL ? 'rtl' : 'ltr'}>
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-white">{t('admin.dashboard')}</h1>
-        </div>
-
         {/* ── Jobs Stats ── */}
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-3">

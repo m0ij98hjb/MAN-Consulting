@@ -16,8 +16,6 @@ import "swiper/css/effect-coverflow";
 
 export default function GalleryClient({ galleries }) {
   const { lang, t, isRTL } = useLanguage();
-  const { theme } = useTheme();
-  const isLightMode = theme === 'dark';
   const [lightbox, setLightbox] = useState({
     isOpen: false,
     images: [],

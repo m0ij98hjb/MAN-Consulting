@@ -32,12 +32,12 @@ export default function BlogPostClient({ post }) {
         <div className="relative z-10 container mx-auto px-6 max-w-3xl pt-32 pb-14">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-white/70 hover:text-[#F2B233] text-sm font-semibold mb-6 transition-colors"
+            className="inline-flex items-center gap-2 text-white/70 hover:text-[#D4A843] text-sm font-semibold mb-6 transition-colors"
           >
             <BackArrow size={15} />
             {lang === "ar" ? "الرجوع إلى المدونة" : "Back to Blog"}
           </Link>
-          <span className="inline-block bg-[#F2B233] text-[#1F2937] text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-4">
+          <span className="inline-block bg-[#D4A843] text-[#1F2937] text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-4">
             {post.category[lang] || post.category.en}
           </span>
           <h1 className="text-3xl md:text-5xl font-black leading-[1.15] text-white mb-4">
@@ -62,13 +62,13 @@ export default function BlogPostClient({ post }) {
           </div>
 
           {/* CTA */}
-          <div className="mt-10 bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.08)] p-8 flex flex-col sm:flex-row items-center justify-between gap-5 border-t-4 border-[#F2B233]">
+          <div className="mt-10 bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.08)] p-8 flex flex-col sm:flex-row items-center justify-between gap-5 border-t-4 border-[#D4A843]">
             <p className="text-[#1F2937] font-bold text-lg text-center sm:text-start">
               {lang === "ar" ? "هل لديك مشروع تريد مناقشته معنا؟" : "Have a project you'd like to discuss?"}
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-[#F2B233] hover:bg-[#F6C55C] text-[#1F2937] font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap"
+              className="inline-flex items-center gap-2 bg-[#D4A843] hover:bg-[#E8C46A] text-[#1F2937] font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap"
             >
               <PhoneCall size={15} />
               {lang === "ar" ? "تواصل معنا" : "Contact Us"}
@@ -100,7 +100,7 @@ export default function BlogPostClient({ post }) {
                     />
                   </div>
                   <div className="p-5">
-                    <h3 className="text-sm font-bold text-[#1F2937] leading-snug group-hover:text-[#F2B233] transition-colors">
+                    <h3 className="text-sm font-bold text-[#1F2937] leading-snug group-hover:text-[#D4A843] transition-colors">
                       {p.title[lang] || p.title.en}
                     </h3>
                   </div>

@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { MusicProvider } from "@/context/MusicContext";
 import { AuthProvider } from "@/context/AuthContext";
 import AdminShortcut from "@/components/AdminShortcut";
+import ParallaxHeroEffect from "@/components/ui/ParallaxHeroEffect";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -45,6 +46,9 @@ export const metadata = {
       { url: "/favicon-180.png", type: "image/png", sizes: "180x180" },
     ],
     shortcut: "/favicon-32.png",
+  },
+  verification: {
+    google: "oRByk27Jmq_LGh2XrlllFBuHk74WvWDlOdiXAZGwBeE",
   },
 };
 
@@ -84,6 +88,7 @@ export default function RootLayout({ children }) {
           <LanguageProvider>
             <MusicProvider>
               <AOSInit />
+              <ParallaxHeroEffect />
               <AdminShortcut />
               <VoicePresentation />
               {children}

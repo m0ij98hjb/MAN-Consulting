@@ -1,24 +1,18 @@
 @import "tailwindcss";
 
-/* ── MAN Engineering Consultancy — premium dark corporate theme ──
-   Official brand background is #5F6368, applied uniformly to the page
-   AND to cards — no white surfaces anywhere. Gold accent (#F2B233),
-   white typography. This is the default, applied when no ".dark" class
-   is present. A light theme remains available as an OPTIONAL user
-   preference via the navbar toggle, which adds the ".dark" class — the
-   historical (if confusingly named) convention this codebase uses:
-   every component's `isLightMode = theme === 'dark'` flag keys off that
-   same class, so keeping the class name means none of those existing
-   branches need to be rewritten. Because the default state is dark
-   (white text, dark "cards") and the optional state is light (dark
-   text, white cards) — opposite polarities — the normalization rules
-   below are split into an `html:not(.dark)` set and an `html.dark` set. */
+/* ── MAN Engineering Consultancy — Premium Dark + Gold Corporate Theme ──
+   Single permanent dark theme. No toggle. No .dark class.
+   Background: #3B3E46 (lighter charcoal, feels more airy).
+   Cards: #44474F (subtle lift from page bg).
+   Gold accent: #D4A843 (warm, refined gold).
+   White typography with muted body text for visual hierarchy. */
+
 @theme inline {
-  --color-primary: #F2B233;
-  --color-secondary: #4B5563;
-  --color-accent: #4B5563;
-  --color-gold: #F6C55C;
-  --color-muted: #9CA3AF;
+  --color-primary: #D4A843;
+  --color-secondary: #D4A843;
+  --color-accent: #D4A843;
+  --color-gold: #E8C46A;
+  --color-muted: rgba(255,255,255,0.50);
 
   --font-heading: var(--font-cairo), sans-serif;
   --font-body: var(--font-cairo), sans-serif;
@@ -26,28 +20,23 @@
   --breakpoint-xs: 400px;
 }
 
-/* Official default theme: dark slate brand background, no white surfaces */
+/* ── Design tokens ── */
 :root {
-  --background: #5F6368;
+  --background: #3B3E46;
+  --background-alt: #2E3038;
   --foreground: #ffffff;
-  --primary: #F2B233;
-  --secondary: #F2B233;
-  --gold: #F6C55C;
-  --card-bg: #6B7075;
-  --card-border: rgba(255,255,255,0.12);
-  --nav-bg: rgba(95,99,104,0.92);
-}
-
-/* Optional light theme (user preference, toggled on) */
-.dark {
-  --background: #F5F5F5;
-  --foreground: #1F2937;
-  --primary: #F2B233;
-  --secondary: #F2B233;
-  --gold: #F6C55C;
-  --card-bg: #ffffff;
-  --card-border: #D1D5DB;
-  --nav-bg: rgba(255,255,255,0.97);
+  --primary: #D4A843;
+  --secondary: #D4A843;
+  --gold: #E8C46A;
+  --card-bg: #44474F;
+  --card-bg-hover: #4A4D56;
+  --card-border: rgba(212,168,67,0.18);
+  --nav-bg: rgba(59,62,70,0.96);
+  --nav-bg-top: rgba(46,48,56,0.72);
+  --text-muted: rgba(255,255,255,0.60);
+  --text-faint: rgba(255,255,255,0.40);
+  --divider: rgba(212,168,67,0.14);
+  --footer-bg: #2A2C33;
 }
 
 /* Section background default — without !important so utility classes can override */
@@ -56,340 +45,282 @@ main {
   background-color: var(--background);
 }
 
-/* Mobile nav panel: always a solid brand-dark chrome color */
+/* Mobile nav panel: solid dark chrome */
 .mobile-nav-panel,
 .mobile-nav-panel * {
   --tw-bg-opacity: 1 !important;
 }
 .mobile-nav-panel {
-  background-color: #5F6368 !important;
-  background: #5F6368 !important;
+  background-color: #2E3038 !important;
+  background: #2E3038 !important;
 }
 
-/* ── DEFAULT (dark, no white surfaces) NORMALIZATION ────────────────────── */
+/* ── DARK-SURFACE NORMALIZATION ─────────────────────────────────────────── */
 
-/* "White card" style surfaces → the dark brand card color */
-html:not(.dark) .bg-white,
-html:not(.dark) [class*="bg-white\/"],
-html:not(.dark) .bg-\[\#eaeaea\],
-html:not(.dark) .bg-slate-50,
-html:not(.dark) .bg-slate-100 {
+/* Any leftover "bg-white" in component markup → dark card surface */
+.bg-white,
+[class*="bg-white\/"],
+.bg-\[\#eaeaea\],
+.bg-slate-50,
+.bg-slate-100 {
   background-color: var(--card-bg) !important;
   border-color: var(--card-border) !important;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.20) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25) !important;
 }
 
-/* Dark "card text" classes (authored assuming a white card) → white, per
-   global readability rule: no dark text colors on dark surfaces. */
-html:not(.dark) .text-slate-500,
-html:not(.dark) .text-slate-600,
-html:not(.dark) .text-slate-700,
-html:not(.dark) .text-slate-800,
-html:not(.dark) .text-slate-900,
-html:not(.dark) .text-gray-500,
-html:not(.dark) .text-gray-600,
-html:not(.dark) .text-gray-700,
-html:not(.dark) .text-gray-800,
-html:not(.dark) .text-gray-900,
-html:not(.dark) .text-primary,
-html:not(.dark) .text-\[\#1F2937\],
-html:not(.dark) .text-\[\#374151\],
-html:not(.dark) .text-\[\#4B5563\],
-html:not(.dark) .text-\[\#111827\],
-html:not(.dark) .text-\[\#1e293b\] {
+/* Dark-text utility classes on dark bg → white for readability */
+.text-slate-500,
+.text-slate-600,
+.text-slate-700,
+.text-slate-800,
+.text-slate-900,
+.text-gray-500,
+.text-gray-600,
+.text-gray-700,
+.text-gray-800,
+.text-gray-900,
+.text-\[\#1F2937\],
+.text-\[\#374151\],
+.text-\[\#4B5563\],
+.text-\[\#111827\],
+.text-\[\#1e293b\] {
   color: #ffffff !important;
 }
 
-html:not(.dark) .border-slate-200,
-html:not(.dark) .border-slate-300,
-html:not(.dark) .border-slate-100 {
-  border-color: rgba(255,255,255,0.16) !important;
+/* Light-theme border classes → subtle gold-tinted */
+.border-slate-200,
+.border-slate-300,
+.border-slate-100 {
+  border-color: var(--divider) !important;
 }
 
 /* Inputs: dark surface, light text */
-html:not(.dark) input,
-html:not(.dark) textarea,
-html:not(.dark) select {
-  background-color: rgba(255,255,255,0.07) !important;
-  border-color: rgba(255,255,255,0.2) !important;
+input,
+textarea,
+select {
+  background-color: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.14) !important;
   color: #ffffff !important;
 }
-html:not(.dark) input::placeholder,
-html:not(.dark) textarea::placeholder {
-  color: rgba(255,255,255,0.7) !important;
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255,255,255,0.45) !important;
 }
-html:not(.dark) option {
-  background-color: #5F6368;
+option {
+  background-color: var(--card-bg);
   color: #ffffff;
 }
 
-/* Headings always use the brand gold accent */
+/* ── HEADINGS — white by default; gold is applied selectively via <span> ── */
 h1, h2, h3, h4, h5, h6 {
-  color: #F2B233 !important;
+  color: #ffffff !important;
+  font-family: var(--font-heading);
 }
 
-/* Body text, paragraphs, descriptions, form labels: white by default.
-   Only affects elements without their own explicit text-color utility —
-   class selectors elsewhere still win via specificity. */
-html:not(.dark) p,
-html:not(.dark) label {
+/* Body text & labels: muted white for visual hierarchy */
+p, label {
+  color: var(--text-muted);
+}
+
+/* Links: white by default, gold on hover */
+a {
   color: #ffffff;
 }
-
-/* Links: white by default, gold on hover — only affects anchors that don't
-   already carry an explicit text-color utility (class selectors below
-   still win via specificity, so deliberately-colored links are unaffected) */
-html:not(.dark) a {
-  color: #ffffff;
-}
-html:not(.dark) a:hover {
-  color: #F2B233;
+a:hover {
+  color: var(--primary);
 }
 
-/* ── OPTIONAL LIGHT THEME (html.dark) NORMALIZATION ─────────────────────── */
+/* ── GLOBAL STYLES ──────────────────────────────────────────────────────── */
 
-/* Non-hero sections: white text → dark */
-html.dark section:not(.image-hero) [class*="text-white"] {
-  color: #1e293b !important;
+* {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--background);
 }
 
-/* Non-hero sections: semi-transparent white backgrounds → solid white card */
-html.dark section:not(.image-hero) [class*="bg-white\/"] {
-  background-color: #ffffff !important;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-/* Non-hero sections: semi-transparent black backgrounds → light */
-html.dark section:not(.image-hero) [class*="bg-black\/"] {
-  background-color: rgba(248, 250, 252, 0.95) !important;
+::-webkit-scrollbar-track {
+  background: var(--background);
 }
 
-/* Non-hero sections: explicit bg-black elements → light */
-html.dark section:not(.image-hero) .bg-black {
-  background-color: #1e293b !important;
+::-webkit-scrollbar-thumb {
+  background: rgba(212,168,67,0.35);
+  border-radius: 5px;
 }
 
-/* Reset map/embed iframe filters in light mode */
-html.dark section iframe {
-  filter: none !important;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
 }
 
-/* Non-hero sections: explicit bg-black → use theme background */
-html.dark section:not(.image-hero).bg-black,
-html.dark main section:not(.image-hero).bg-black {
-  background-color: var(--background) !important;
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  color: var(--foreground) !important;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
 }
 
-/* Non-hero sections: white/transparent borders → subtle dark */
-html.dark section:not(.image-hero) [class*="border-white\/"] {
-  border-color: rgba(15, 23, 42, 0.1) !important;
-}
-html.dark section:not(.image-hero) .border-white {
-  border-color: rgba(15, 23, 42, 0.18) !important;
-}
-
-/* Input / form field backgrounds in light mode */
-html.dark input,
-html.dark textarea,
-html.dark select {
-  background-color: #ffffff !important;
-  border-color: rgba(15, 23, 42, 0.15) !important;
-  color: #1e293b !important;
-}
-html.dark input::placeholder,
-html.dark textarea::placeholder {
-  color: rgba(15, 23, 42, 0.4) !important;
-}
-html.dark option {
-  background-color: #ffffff;
-  color: #1e293b;
+/* Ambient diagonal gold-line pattern — more visible on the lighter bg */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #D4A843 0px,
+    #D4A843 1px,
+    transparent 1px,
+    transparent 80px
+  );
 }
 
-html.dark .bg-white { background-color: var(--card-bg) !important; box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important; }
-html.dark .bg-\[\#eaeaea\] { background-color: #f1f5f9 !important; }
-html.dark .bg-slate-50, html.dark .bg-slate-100 { background-color: #f8fafc !important; }
-
-html.dark .text-slate-700, html.dark .text-slate-600, html.dark .text-slate-800, html.dark .text-primary {
-  color: #1e293b !important;
+/* Responsive base improvements */
+* {
+  box-sizing: border-box;
 }
 
-html.dark .text-slate-500 { color: var(--foreground) !important; }
-
-html.dark .border-slate-200, html.dark .border-slate-300, html.dark .border-slate-100 {
-  border-color: rgba(213,178,93,0.15) !important;
+img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
-/* Footer handled via inline conditional in Footer.js */
+.logo-footer {
+  height: 150px !important;
+  width: auto !important;
+  max-width: 100%;
+}
 
-  * {
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: var(--secondary) var(--background);
+/* Prevent text overflow on mobile */
+.text-overflow-break {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    min-height: 44px;
+  }
+}
+
+/* Smooth Universal Section Parallax Styles */
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+section > .absolute.inset-0,
+section .parallax-bg,
+.hero-parallax-bg {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Custom Utilities */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #D4A843 0%, #E8C46A 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes slow-zoom {
+  0% {
+    transform: scale(1);
   }
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
+  100% {
+    transform: scale(1.15) translate(10px, 10px);
   }
+}
 
-  ::-webkit-scrollbar-track {
-    background: var(--background);
-  }
+.animate-slow-zoom {
+  animation: slow-zoom 25s ease-in-out infinite alternate;
+}
 
-  ::-webkit-scrollbar-thumb {
-    background: var(--secondary);
-    border-radius: 5px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--gold);
-  }
-
-  html,
-  body {
-    background: var(--background);
-    color: var(--foreground);
-    /* ensure plain text defaults to foreground (white) */
-    color: var(--foreground) !important;
-    font-family: var(--font-body);
-    overflow-x: hidden;
-    max-width: 100%;
-    position: relative;
-  }
-
-  /* Responsive base improvements */
-  * {
-    box-sizing: border-box;
-  }
-    
-  img {
-    max-width: 100%;
-    display: block;
-    object-fit: cover;
-  }
-
-
-
-  .logo-footer {
-    height: 150px !important;
-    width: auto !important;
-    max-width: 100%;
-  }
-
-
-  /* Prevent text overflow on mobile */
-  .text-overflow-break {
-    overflow-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
-  }
-
-  /* Better touch targets for mobile */
-  @media (max-width: 768px) {
-
-    button,
-    a,
-    input,
-    textarea,
-    select {
-      min-height: 44px;
-    }
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-heading);
-  }
-
-  /* Custom Utilities */
-  .glass-morphism {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .text-gradient {
-    background: linear-gradient(135deg, #F2B233 0%, #F6C55C 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  @keyframes slow-zoom {
-    0% {
-      transform: scale(1);
-    }
-
-    100% {
-      transform: scale(1.15) translate(10px, 10px);
-    }
-  }
-
+/* Mobile: disable hero zoom animation and reset any initial scale */
+@media (max-width: 767px) {
   .animate-slow-zoom {
-    animation: slow-zoom 25s ease-in-out infinite alternate;
+    animation: none !important;
+    transform: none !important;
   }
 
-  /* Mobile: disable hero zoom animation and reset any initial scale */
-  @media (max-width: 767px) {
-    .animate-slow-zoom {
-      animation: none !important;
-      transform: none !important;
-    }
-
-    /* Mobile: hero sections are at least the visible viewport tall.
-       height: auto lets content-heavy heroes (app, contact) grow beyond the
-       viewport instead of clipping with overflow-hidden. */
-    section.image-hero {
-      height: auto !important;
-      min-height: 100svh !important;
-    }
-
-    /* CTA/secondary sections that use image-hero only for light-mode exemption
-       but should NOT be forced to full viewport height on mobile */
-    section.image-hero.no-mobile-vh {
-      min-height: 0 !important;
-      height: auto !important;
-    }
-
-    /* Mobile: always center hero background images */
-    section.image-hero img {
-      object-position: center center !important;
-    }
+  /* Mobile: hero sections are at least the visible viewport tall.
+     height: auto lets content-heavy heroes (app, contact) grow beyond the
+     viewport instead of clipping with overflow-hidden. */
+  section.image-hero {
+    height: auto !important;
+    min-height: 100svh !important;
   }
 
-  @keyframes cursor-blink {
-
-    0%,
-    100% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0;
-    }
+  /* CTA/secondary sections that use image-hero only for exemption
+     but should NOT be forced to full viewport height on mobile */
+  section.image-hero.no-mobile-vh {
+    min-height: 0 !important;
+    height: auto !important;
   }
 
-  .animate-cursor-blink {
-    animation: cursor-blink 1s step-end infinite;
+  /* Mobile: always center hero background images */
+  section.image-hero img {
+    object-position: center center !important;
+  }
+}
+
+@keyframes cursor-blink {
+
+  0%,
+  100% {
+    opacity: 1;
   }
 
-  /* AOS Tweaks */
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* AOS Tweaks */
+[data-aos] {
+  pointer-events: none;
+}
+
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+/* Accessibility: disable all AOS animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
   [data-aos] {
-    pointer-events: none;
-  }
-
-  [data-aos].aos-animate {
-    pointer-events: auto;
-  }
-
-  /* Accessibility: disable all AOS animations for users who prefer reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    [data-aos] {
-      transition: none !important;
-      animation: none !important;
-      opacity: 1 !important;
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
   }
 }
 
@@ -412,10 +343,15 @@ html.dark .border-slate-200, html.dark .border-slate-300, html.dark .border-slat
   /* 3. Nav links — 16px / 600 weight; spacing comes from the flex gap on
      the parent zone rather than per-link padding. */
   .nav-link-responsive {
-    font-size: 14px !important;
+    font-size: 12.5px !important;
     font-weight: 600 !important;
-    padding-left: 4px !important;
-    padding-right: 4px !important;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+  }
+  /* Arabic-only: slightly larger text, since Arabic's shorter labels leave
+     plenty of spare width the other languages don't have. */
+  .nav-link-ar {
+    font-size: 15px !important;
   }
 
   /* 4. Responsive Special (Cost Calculator) Link */

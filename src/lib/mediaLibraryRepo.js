@@ -35,6 +35,8 @@ export async function listMedia(filters = {}) {
 export function subscribeMedia(callback, filters = {}) {
   return onSnapshot(collection(db, COL), (snap) => {
     callback(applyFilters(snap.docs.map((d) => ({ id: d.id, ...d.data() })), filters));
+  }, (err) => {
+    console.error('subscribeMedia failed:', err);
   });
 }
 

@@ -42,8 +42,8 @@ const WhyChooseUs = () => {
 
       {/* Background ambiance */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2B233]/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2B233]/10 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A843]/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A843]/10 to-transparent" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -51,8 +51,8 @@ const WhyChooseUs = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
           <div className="inline-flex items-center gap-3 mb-5">
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#F2B233]" />
-            <span className="text-[#F2B233] font-bold tracking-[0.2em] uppercase text-[11px]">
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#D4A843]" />
+            <span className="text-[#D4A843] font-bold tracking-[0.2em] uppercase text-[11px]">
               {{
                 ar: "مميزاتنا", en: "Our Strengths", zh: "我们的优势",
                 es: "Nuestras fortalezas", fr: "Nos atouts", de: "Unsere Stärken",
@@ -60,25 +60,25 @@ const WhyChooseUs = () => {
                 hi: "हमारी ताकत", ru: "Наши преимущества",
               }[lang] || "Our Strengths"}
             </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#F2B233]" />
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#D4A843]" />
           </div>
 
           <h2 className="text-4xl md:text-5xl font-black text-white mb-5 leading-tight">
             {{
-              ar: <>لماذا تختار <span className="text-[#F2B233]">MAN</span>؟</>,
-              en: <>Why Choose <span className="text-[#F2B233]">MAN</span>?</>,
-              zh: <>为什么选择 <span className="text-[#F2B233]">MAN</span>？</>,
-              es: <>¿Por qué elegir <span className="text-[#F2B233]">MAN</span>?</>,
-              fr: <>Pourquoi choisir <span className="text-[#F2B233]">MAN</span> ?</>,
-              de: <>Warum <span className="text-[#F2B233]">MAN</span> wählen?</>,
-              tr: <>Neden <span className="text-[#F2B233]">MAN</span>?</>,
-              ur: <>کیوں منتخب کریں <span className="text-[#F2B233]">MAN</span>؟</>,
-              hi: <>क्यों चुनें <span className="text-[#F2B233]">MAN</span>?</>,
-              ru: <>Почему выбирают <span className="text-[#F2B233]">MAN</span>?</>,
-            }[lang] || <>Why Choose <span className="text-[#F2B233]">MAN</span>?</>}
+              ar: <>لماذا تختار <span className="text-[#D4A843]">MAN</span>؟</>,
+              en: <>Why Choose <span className="text-[#D4A843]">MAN</span>?</>,
+              zh: <>为什么选择 <span className="text-[#D4A843]">MAN</span>？</>,
+              es: <>¿Por qué elegir <span className="text-[#D4A843]">MAN</span>?</>,
+              fr: <>Pourquoi choisir <span className="text-[#D4A843]">MAN</span> ?</>,
+              de: <>Warum <span className="text-[#D4A843]">MAN</span> wählen?</>,
+              tr: <>Neden <span className="text-[#D4A843]">MAN</span>?</>,
+              ur: <>کیوں منتخب کریں <span className="text-[#D4A843]">MAN</span>؟</>,
+              hi: <>क्यों चुनें <span className="text-[#D4A843]">MAN</span>?</>,
+              ru: <>Почему выбирают <span className="text-[#D4A843]">MAN</span>?</>,
+            }[lang] || <>Why Choose <span className="text-[#D4A843]">MAN</span>?</>}
           </h2>
 
-          <p className="text-white/45 text-base leading-relaxed">
+          <p className="text-white/50 text-base leading-relaxed">
             {t('features.subtitle')}
           </p>
         </div>
@@ -90,50 +90,41 @@ const WhyChooseUs = () => {
             return (
               <div
                 key={index}
-                className="group relative rounded-2xl p-6 flex flex-col gap-5 overflow-hidden transition-all duration-500 cursor-default"
+                className="group relative rounded-2xl p-6 flex flex-col gap-5 overflow-hidden transition-all duration-500 cursor-default border-b-2 border-b-[#D4A843]"
                 style={{
-                  background: "var(--card-bg)",
-                  border: "1px solid rgba(242,178,51,0.14)",
-                  boxShadow: "0 12px 30px rgba(0,0,0,0.20)",
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.border = "1px solid rgba(242,178,51,0.35)";
-                  e.currentTarget.style.boxShadow = "0 16px 36px rgba(0,0,0,0.26), 0 0 40px rgba(242,178,51,0.10)";
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.border = "1px solid rgba(242,178,51,0.14)";
-                  e.currentTarget.style.boxShadow = "0 12px 30px rgba(0,0,0,0.20)";
+                  background: "#44474F",
+                  borderTop: "1px solid rgba(212,168,67,0.16)",
+                  borderLeft: "1px solid rgba(212,168,67,0.16)",
+                  borderRight: "1px solid rgba(212,168,67,0.16)",
+                  boxShadow: "0 12px 30px rgba(0,0,0,0.30)",
                 }}
                 data-aos="fade-up"
                 data-aos-delay={feature.delay}
               >
                 {/* Top accent line */}
-                <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#F2B233]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D4A843]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Number watermark */}
-                <span className={`absolute top-4 ${isRTL ? 'left-5' : 'right-5'} text-5xl font-black text-white/[0.04] group-hover:text-[#F2B233]/[0.07] transition-colors duration-500 select-none leading-none`}>
+                <span className={`absolute top-4 ${isRTL ? 'left-5' : 'right-5'} text-5xl font-black text-white/[0.04] group-hover:text-[#D4A843]/[0.07] transition-colors duration-500 select-none leading-none`}>
                   {feature.num}
                 </span>
 
-                {/* Icon */}
+                {/* Icon badge */}
                 <div className="relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 shrink-0"
-                  style={{ background: "rgba(242,178,51,0.1)", border: "1px solid rgba(242,178,51,0.2)" }}
+                  style={{ background: "rgba(212,168,67,0.15)", border: "1px solid rgba(212,168,67,0.35)" }}
                 >
-                  <Icon size={22} className="text-[#F2B233] transition-transform duration-500 group-hover:scale-110" />
+                  <Icon size={22} className="text-[#D4A843] transition-transform duration-500 group-hover:scale-110" />
                 </div>
 
                 {/* Text */}
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white font-bold text-base leading-snug group-hover:text-[#F2B233] transition-colors duration-300">
+                  <h3 className="text-white font-bold text-base leading-snug group-hover:text-[#D4A843] transition-colors duration-300">
                     {feature.title}
                   </h3>
-                  <p className="text-white/40 text-sm leading-relaxed group-hover:text-white/55 transition-colors duration-300">
+                  <p className="text-white/55 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
                     {feature.desc}
                   </p>
                 </div>
-
-                {/* Bottom accent */}
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2B233]/0 to-transparent group-hover:via-[#F2B233]/20 transition-all duration-500" />
               </div>
             );
           })}

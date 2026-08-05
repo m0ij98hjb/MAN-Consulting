@@ -35,25 +35,23 @@ const Projects = () => {
   const filteredProjects = filter === "all" ? projects : projects.filter(p => p.category === filter);
 
   return (
-    <section id="projects" className="py-16 md:py-20 bg-white dark:bg-primary">
+    <section id="projects" className="py-16 md:py-20 bg-[var(--background)]">
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Header */}
         <div className={`flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-8`}>
           <div className={`${lang === 'ar' || lang === 'ur' ? 'text-right' : 'text-left'} w-full md:w-auto`} data-aos="fade-up">
-            <span className="text-secondary font-bold tracking-widest uppercase text-sm block mb-4">
+            <span className="text-[#D4A843] font-bold tracking-widest uppercase text-sm block mb-4">
               {t("projectsSection.badge")}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              {t("projectsSection.titlePart1")}<span className="text-secondary">{t("projectsSection.titlePart2")}</span>{t("projectsSection.titlePart3")}
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              {t("projectsSection.titlePart1")}<span className="text-[#D4A843]">{t("projectsSection.titlePart2")}</span>{t("projectsSection.titlePart3")}
             </h2>
-            <p className="text-muted mt-2 text-sm font-medium">
+            <p className="text-white/50 mt-2 text-sm font-medium">
               {t("projectsSection.description")}
             </p>
           </div>
 
-          {/* Filter Buttons — exactly 2 rows of 3, right-aligned (RTL). Rows
-              are explicit slices (not natural flex-wrap) so the 3+3 grouping
-              holds regardless of viewport width. */}
+          {/* Filter Buttons */}
           <div className="flex flex-col gap-2 w-full md:w-auto" data-aos="fade-up">
             {[categories.slice(0, 3), categories.slice(3, 6)].map((row, rowIdx) => (
               <div
@@ -69,12 +67,12 @@ const Projects = () => {
                       onClick={() => setFilter(cat.key)}
                       className={`rounded-full whitespace-nowrap py-2 transition-all duration-300 ${
                         isActive
-                          ? "px-5 font-medium text-[#2c1f0a] border-0"
-                          : "px-[18px] font-normal bg-transparent border border-secondary text-white"
+                          ? "px-5 font-bold text-black border-0 shadow-[0_4px_16px_rgba(212,168,67,0.35)]"
+                          : "px-[18px] font-normal bg-transparent border border-[#D4A843]/40 text-white/80 hover:text-white hover:border-[#D4A843]"
                       }`}
                       style={{
                         fontSize: "clamp(12px, 3.5vw, 13px)",
-                        ...(isActive ? { background: "linear-gradient(180deg, #d4af6a, #b8944f)" } : undefined),
+                        ...(isActive ? { background: "linear-gradient(180deg, #D4A843, #B88E30)" } : undefined),
                       }}
                     >
                       {cat.label}
@@ -91,7 +89,7 @@ const Projects = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className="group relative aspect-[4/3] w-full rounded-xl overflow-hidden shadow-md border border-slate-100 cursor-pointer"
+              className="group relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-lg border border-[rgba(212,168,67,0.16)] hover:border-[rgba(212,168,67,0.45)] cursor-pointer transition-all duration-500 hover:-translate-y-1"
               data-aos="zoom-in"
               data-aos-delay={Math.min(index * 30, 300)}
               onClick={() => setSelectedImage(project)}
@@ -105,14 +103,14 @@ const Projects = () => {
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-4 z-10">
-                <span className="text-secondary text-xs font-bold uppercase tracking-wider block mb-1">{project.location}</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-4 z-10">
+                <span className="text-[#D4A843] text-xs font-bold uppercase tracking-wider block mb-1">{project.location}</span>
                 <h3 className="text-white text-sm font-bold">{project.title}</h3>
               </div>
 
               {/* Tag */}
               <div className="absolute top-3 left-3 z-10">
-                <div className="glass-morphism px-3 py-1 rounded-full text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                <div className="glass-morphism px-3 py-1 rounded-full text-[#D4A843] text-[10px] font-bold tracking-widest uppercase border border-[#D4A843]/30">
                   MAN
                 </div>
               </div>

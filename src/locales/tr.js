@@ -252,7 +252,7 @@ export const tr = {
     stop: "Sunumu durdur",
     play: "Sunumu oynat",
     intro: "Şirket Tanıtımı",
-    text: "MAN Genel Müteahhitlik, Suudi Arabistan'ın Cidde şehrinde kurulmuş, inşaat sektöründe öncü bir mühendislik markasıdır ve 38 yılı aşkın süredir markamızı bu alanda inşa ediyoruz. Mimari tasarım, proje yönetimi ve inşaat hizmetlerini en yüksek kalite ve profesyonellik standartlarıyla sunuyoruz. Profesyonel bir danışma için bugün bizimle iletişime geçin."
+    text: "MAN Engineering Consultancy'e hoş geldiniz.\n\nMAN Engineering Consultancy, mühendislik danışmanlığı ve tasarımı alanında öne çıkan bir mühendislik markasıdır ve Suudi Arabistan'ın Cidde şehrinde kurulmuştur. Kısa bir süre içinde, birçok projeyi başarıyla tamamlayarak mühendislik pazarında güçlü bir varlık oluşturmuştur.\n\nBu seçkin şirkete, geniş mühendislik deneyimine sahip Yönetim Kurulu Başkanı Mühendis Marwan Ahmed Nazer liderlik etmektedir. Onun doğrudan gözetimi altında şirket, üstlendiği her projede en yüksek kalite standartlarını sağlamaya çalışmaktadır.\n\nMAN Engineering Consultancy; yenilikçi fikirler ve modern çözümlerle mimari tasarımı, tüm uygulama aşamalarında bütünleşik denetimle proje yönetimini, ayrıca en yüksek kalite ve zarafet seviyesinde iç mekân tasarımı, dekorasyon ve tamamlama hizmetlerini kapsayan kapsamlı bir profesyonel mühendislik hizmetleri paketi sunmaktadır.\n\nZiyaretiniz için teşekkür ederiz. MAN Engineering Consultancy — vizyonunuzun olağanüstü bir mühendislik gerçekliğine dönüştüğü yer."
   },
   careers: {
     heroBadge: "Kariyer Fırsatları",

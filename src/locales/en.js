@@ -252,7 +252,7 @@ export const en = {
     stop: "Stop Presentation",
     play: "Play Presentation",
     intro: "Company Presentation",
-    text: "MAN Engineering Consultancy is a leading engineering brand in construction, founded in Jeddah, Saudi Arabia, building our mark in the industry for over 38 years. We provide architectural design, project management, and construction services with the highest standards of quality and professionalism. Contact us today for a professional consultation."
+    text: "Welcome to MAN Engineering Consultancy.\n\nMAN Engineering Consultancy is a distinguished engineering brand in engineering consulting and design, established in Jeddah, Saudi Arabia. Within a short period, it has built a strong presence in the engineering market by successfully delivering numerous projects, thanks to God.\n\nThis distinguished company is led by Chairman Eng. Marwan Ahmed Nazer, who brings extensive engineering expertise. Under his direct supervision, the company works to achieve the highest quality standards in every project it undertakes.\n\nMAN Engineering Consultancy offers a comprehensive package of professional engineering services, including architectural design with innovative ideas and modern solutions, project management with integrated supervision across all execution phases, as well as interior design, decor, and finishing at the highest level of quality and elegance.\n\nThank you for visiting us. MAN Engineering Consultancy — where your vision becomes an outstanding engineering reality."
   },
   careers: {
     heroBadge: "Career Opportunities",

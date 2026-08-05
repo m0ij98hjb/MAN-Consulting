@@ -29,6 +29,9 @@ export function NotificationsProvider({ children }) {
           .filter(d => d.status === 'pending')
           .sort((a, b) => (b.createdAt?.seconds ?? 0) - (a.createdAt?.seconds ?? 0))
       );
+    }, (err) => {
+      // Handle missing permissions gracefully for unauthenticated public users
+      setJobs([]);
     });
     return unsub;
   }, []);
@@ -41,6 +44,9 @@ export function NotificationsProvider({ children }) {
           .filter(d => (d.status || 'new') === 'new')
           .sort((a, b) => (b.createdAt?.seconds ?? 0) - (a.createdAt?.seconds ?? 0))
       );
+    }, (err) => {
+      // Handle missing permissions gracefully for unauthenticated public users
+      setContacts([]);
     });
     return unsub;
   }, []);

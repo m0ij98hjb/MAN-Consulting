@@ -108,16 +108,16 @@ export default function VideoShowcase() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-[#04090F] relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-[var(--background)] relative overflow-hidden">
 
       {/* ── Background ── */}
       <div className="absolute inset-0 opacity-[0.02]"
-        style={{ backgroundImage: "repeating-linear-gradient(45deg,#F2B233 0,#F2B233 1px,transparent 1px,transparent 80px)" }}
+        style={{ backgroundImage: "repeating-linear-gradient(45deg,#D4A843 0,#D4A843 1px,transparent 1px,transparent 80px)" }}
       />
-      <div className="absolute top-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#F2B233] to-transparent" />
-      <div className="absolute bottom-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#F2B233] to-transparent" />
+      <div className="absolute top-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
+      <div className="absolute bottom-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-        <div className="w-[800px] h-[500px] bg-[#F2B233]/6 rounded-full " />
+        
       </div>
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
@@ -130,15 +130,15 @@ export default function VideoShowcase() {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="h-px w-10 bg-[#F2B233]" />
-            <span className="text-[#F2B233] text-[11px] font-black uppercase tracking-[0.25em]">
+            <span className="h-px w-10 bg-[#D4A843]" />
+            <span className="text-[#D4A843] text-[11px] font-black uppercase tracking-[0.25em]">
               {tx(TX.eyebrow)}
             </span>
-            <span className="h-px w-10 bg-[#F2B233]" />
+            <span className="h-px w-10 bg-[#D4A843]" />
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-heading leading-tight mb-4">
             <span className="text-white">{tx(TX.title1)} </span>
-            <span className="text-[#F2B233]">{tx(TX.title2)}</span>
+            <span className="text-[#D4A843]">{tx(TX.title2)}</span>
           </h2>
           <p className="text-white/40 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
             {tx(TX.subtitle)}
@@ -153,7 +153,7 @@ export default function VideoShowcase() {
           className="relative"
         >
           {/* Outer glow ring */}
-          <div className="absolute -inset-[1px] rounded-[28px] bg-gradient-to-br from-[#F2B233]/40 via-transparent to-[#F2B233]/20 z-0" />
+          <div className="absolute -inset-[1px] rounded-[28px] bg-gradient-to-br from-[#D4A843]/40 via-transparent to-[#D4A843]/20 z-0" />
 
           {/* Card */}
           <div
@@ -184,10 +184,10 @@ export default function VideoShowcase() {
                   className="relative"
                 >
                   {/* Pulse rings */}
-                  <div className="absolute inset-0 rounded-full bg-[#F2B233]/20 animate-ping" />
-                  <div className="absolute -inset-3 rounded-full bg-[#F2B233]/10 animate-pulse" />
+                  <div className="absolute inset-0 rounded-full bg-[#D4A843]/20 animate-ping" />
+                  <div className="absolute -inset-3 rounded-full bg-[#D4A843]/10 animate-pulse" />
                   {/* Button */}
-                  <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#F2B233] to-[#E8C96A] flex items-center justify-center shadow-[0_0_50px_rgba(242,178,51,0.5)] hover:scale-110 transition-transform duration-300">
+                  <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#D4A843] to-[#E8C96A] flex items-center justify-center shadow-[0_0_50px_rgba(212,168,67,0.5)] hover:scale-110 transition-transform duration-300">
                     <Play className="text-black fill-black" size={32} style={{ marginLeft: 4 }} />
                   </div>
                 </motion.div>
@@ -196,8 +196,8 @@ export default function VideoShowcase() {
 
             {/* ── Top badge (company name) ── */}
             {!started && (
-              <div className={`absolute top-5 ${isRTL ? "right-5" : "left-5"} flex items-center gap-2.5 bg-black/60 border border-[#F2B233]/25 rounded-full px-4 py-2`}>
-                <div className="w-1.5 h-1.5 rounded-full bg-[#F2B233] animate-pulse" />
+              <div className={`absolute top-5 ${isRTL ? "right-5" : "left-5"} flex items-center gap-2.5 bg-black/60 border border-[#D4A843]/25 rounded-full px-4 py-2`}>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#D4A843] animate-pulse" />
                 <span className="text-white text-xs font-bold">
                   {tx(TX.badge)}
                 </span>
@@ -213,7 +213,7 @@ export default function VideoShowcase() {
                 onClick={handleSeek}
               >
                 <div
-                  className="h-full bg-gradient-to-r from-[#F2B233] to-[#E8C96A] rounded-full transition-all duration-100"
+                  className="h-full bg-gradient-to-r from-[#D4A843] to-[#E8C96A] rounded-full transition-all duration-100"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -224,7 +224,7 @@ export default function VideoShowcase() {
                   {/* Play/Pause */}
                   <button
                     onClick={togglePlay}
-                    className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#F2B233]/30 border border-white/15 flex items-center justify-center transition-all duration-200"
+                    className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#D4A843]/30 border border-white/15 flex items-center justify-center transition-all duration-200"
                   >
                     {playing
                       ? <Pause  size={14} className="text-white" />
@@ -235,7 +235,7 @@ export default function VideoShowcase() {
                   {/* Mute */}
                   <button
                     onClick={toggleMute}
-                    className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#F2B233]/30 border border-white/15 flex items-center justify-center transition-all duration-200"
+                    className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#D4A843]/30 border border-white/15 flex items-center justify-center transition-all duration-200"
                   >
                     {muted
                       ? <VolumeX size={14} className="text-white/60" />
@@ -247,7 +247,7 @@ export default function VideoShowcase() {
                 {/* Fullscreen */}
                 <button
                   onClick={handleFullscreen}
-                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#F2B233]/30 border border-white/15 flex items-center justify-center transition-all duration-200"
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#D4A843]/30 border border-white/15 flex items-center justify-center transition-all duration-200"
                 >
                   <Maximize size={14} className="text-white" />
                 </button>

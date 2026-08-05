@@ -6,17 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useRoleAccess } from '@/hooks/useRoleAccess';
 import { Eye, EyeOff, Lock, Mail, Loader2, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
-
-/* Deterministic star grid — same on server + client (no hydration mismatch) */
-const STARS = Array.from({ length: 80 }, (_, i) => ({
-  id:      i,
-  x:       ((i * 41 + 17) % 97) + 1.5,
-  y:       ((i * 59 + 11) % 93) + 2,
-  size:    (i % 4) * 0.5 + 0.6,
-  opacity: ((i % 6) * 0.015 + 0.03),
-  dur:     ((i % 5) * 0.8 + 2.2).toFixed(1),
-  delay:   ((i % 9) * 0.3).toFixed(1),
-}));
+import ParticleBackground from '@/components/ui/ParticleBackground';
 
 export default function AdminLoginPage() {
   const { user, login, error, setError } = useAuth();
@@ -49,14 +39,10 @@ export default function AdminLoginPage() {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
-      style={{ background: '#5F6368' }}
+      style={{ background: 'var(--background)' }}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <style>{`
-        @keyframes twinkle {
-          0%,100% { opacity: var(--op); }
-          50%      { opacity: calc(var(--op) * 5); }
-        }
         @keyframes logo-float {
           0%,100% { transform: translateY(0); }
           50%      { transform: translateY(-6px); }
@@ -65,34 +51,7 @@ export default function AdminLoginPage() {
         .login-input:focus { border-color: rgba(242,178,51,0.38) !important; background: rgba(242,178,51,0.03) !important; outline: none; }
       `}</style>
 
-      {/* ── Stars ── */}
-      <div className="absolute inset-0 pointer-events-none">
-        {STARS.map(s => (
-          <div
-            key={s.id}
-            className="absolute rounded-full"
-            style={{
-              left: `${s.x}%`,
-              top:  `${s.y}%`,
-              width:  `${s.size}px`,
-              height: `${s.size}px`,
-              background: '#F2B233',
-              '--op': s.opacity,
-              animation: `twinkle ${s.dur}s ease-in-out ${s.delay}s infinite`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* ── Subtle grid lines ── */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(242,178,51,1) 1px,transparent 1px),linear-gradient(90deg,rgba(242,178,51,1) 1px,transparent 1px)',
-          backgroundSize: '80px 80px',
-        }}
-      />
+      <ParticleBackground />
 
       {/* ── Top gold accent line ── */}
       <div

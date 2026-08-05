@@ -252,7 +252,7 @@ export const es = {
     stop: "Detener presentación",
     play: "Reproducir presentación",
     intro: "Presentación de la empresa",
-    text: "MAN Contratación General es una marca de ingeniería líder en el sector de la construcción, fundada en Yeda, Arabia Saudita, construyendo nuestra marca en la industria durante más de 38 años. Ofrecemos diseño arquitectónico, gestión de proyectos y servicios de construcción con los más altos estándares de calidad y profesionalismo. Contáctenos hoy para una consulta profesional."
+    text: "Bienvenidos a MAN Engineering Consultancy.\n\nMAN Engineering Consultancy es una destacada marca de ingeniería en el ámbito de la consultoría y el diseño de ingeniería, fundada en Yeda, Arabia Saudita. En poco tiempo, ha logrado una fuerte presencia en el mercado de la ingeniería mediante la ejecución exitosa de numerosos proyectos.\n\nEsta destacada empresa está dirigida por el presidente del consejo de administración, el ingeniero Marwan Ahmed Nazer, quien posee una amplia experiencia en ingeniería. Bajo su supervisión directa, la empresa trabaja para alcanzar los más altos estándares de calidad en cada proyecto que emprende.\n\nMAN Engineering Consultancy ofrece un paquete integral de servicios de ingeniería profesionales, que incluye diseño arquitectónico con ideas innovadoras y soluciones modernas, gestión de proyectos con supervisión integral en todas las fases de ejecución, además de diseño de interiores, decoración y acabados con el más alto nivel de calidad y elegancia.\n\nGracias por visitarnos. MAN Engineering Consultancy, donde su visión se convierte en una extraordinaria realidad de ingeniería."
   },
   careers: {
     heroBadge: "Oportunidades de Empleo",

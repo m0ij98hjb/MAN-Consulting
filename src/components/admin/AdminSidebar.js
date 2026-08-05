@@ -77,27 +77,12 @@ export default function AdminSidebar() {
   return (
     <>
       <aside
-        className="hidden lg:flex flex-col w-56 shrink-0 sticky top-[92px] h-[calc(100vh-92px)] overflow-y-auto print:hidden"
+        className="hidden lg:flex flex-col w-56 shrink-0 sticky top-[72px] h-[calc(100vh-72px)] overflow-y-auto print:hidden"
         style={{
           background: 'rgba(255,255,255,0.02)',
           borderInlineEnd: '1px solid rgba(255,255,255,0.07)',
         }}
       >
-        {/* Logo */}
-        <div className="flex items-center justify-center px-4 pt-5 pb-4 border-b border-white/[0.06]">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/brand/logo-navbar-real.png"
-              alt="MAN Engineering Consultancy"
-              width={1029}
-              height={461}
-              unoptimized
-              className="h-10 w-auto object-contain"
-              priority
-            />
-          </Link>
-        </div>
-
         {/* Director profile */}
         <div className="flex flex-col items-center px-4 pt-5 pb-4 border-b border-white/[0.06]">
           {/* Photo — click to open modal (director only) */}
@@ -105,7 +90,7 @@ export default function AdminSidebar() {
             <div
               className="relative w-[72px] h-[72px] rounded-full overflow-hidden mb-3"
               style={{ 
-                boxShadow: '0 0 0 2px rgba(200,169,110,0.35), 0 4px 20px rgba(0,0,0,0.5)',
+                boxShadow: '0 0 0 2px rgba(200,169,110,0.35)',
                 backgroundColor: 'transparent'
               }}
             >
@@ -125,7 +110,7 @@ export default function AdminSidebar() {
             <button
               onClick={() => setIsModalOpen(true)}
               className="relative w-[72px] h-[72px] rounded-full overflow-hidden mb-3 group focus:outline-none"
-              style={{ boxShadow: '0 0 0 2px rgba(200,169,110,0.35), 0 4px 20px rgba(0,0,0,0.5)' }}
+              style={{ boxShadow: '0 0 0 2px rgba(200,169,110,0.35)' }}
               title={t('admin.changePhoto')}
             >
               <div
@@ -149,7 +134,7 @@ export default function AdminSidebar() {
             <div
               className="relative w-[72px] h-[72px] rounded-full overflow-hidden mb-3"
               style={{ 
-                boxShadow: '0 0 0 2px rgba(200,169,110,0.35), 0 4px 20px rgba(0,0,0,0.5)',
+                boxShadow: '0 0 0 2px rgba(200,169,110,0.35)',
                 backgroundColor: 'transparent'
               }}
             >

@@ -233,7 +233,7 @@ export default function ProjectDirectory({ projects, categories }) {
                   onClick={() => setActiveCategory(cat.id)}
                   className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 ${
                     isActive
-                      ? "bg-gradient-to-r from-secondary to-[#F6C55C] text-black shadow-lg shadow-secondary/20"
+                      ? "bg-gradient-to-r from-secondary to-[#E8C46A] text-black shadow-lg shadow-secondary/20"
                       : "bg-white/5 text-white/80 hover:bg-white/10"
                   }`}
                 >
@@ -251,7 +251,7 @@ export default function ProjectDirectory({ projects, categories }) {
           
           {/* City Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-[#F2B233] tracking-wider block">
+            <label className="text-xs font-bold text-[#D4A843] tracking-wider block">
               {t("projectsSection.directory.cityLabel")}
             </label>
             <div className="relative">
@@ -275,7 +275,7 @@ export default function ProjectDirectory({ projects, categories }) {
 
           {/* Year Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-[#F2B233] tracking-wider block">
+            <label className="text-xs font-bold text-[#D4A843] tracking-wider block">
               {t("projectsSection.directory.yearLabel")}
             </label>
             <div className="relative">
@@ -299,7 +299,7 @@ export default function ProjectDirectory({ projects, categories }) {
 
           {/* Status Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-[#F2B233] tracking-wider block">
+            <label className="text-xs font-bold text-[#D4A843] tracking-wider block">
               {t("projectsSection.directory.statusLabel")}
             </label>
             <div className="relative">
@@ -450,7 +450,7 @@ export default function ProjectDirectory({ projects, categories }) {
               {/* Close Button */}
               <button
                 onClick={closeLightbox}
-                className="p-2.5 rounded-xl bg-secondary hover:bg-[#F6C55C] border border-secondary/20 text-black font-black transition-all"
+                className="p-2.5 rounded-xl bg-secondary hover:bg-[#E8C46A] border border-secondary/20 text-black font-black transition-all"
                 title={t("aboutUsPage.closeLabel")}
               >
                 <X size={18} />

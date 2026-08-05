@@ -47,7 +47,11 @@ const getSavedLang = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [lang, setLangState] = useState(getSavedLang);
+  // Always seed with the SSR default ('ar') so the client's first render
+  // matches the server-rendered HTML. Reading localStorage/cookies here
+  // (even in useState's lazy initializer) runs during the client's first
+  // render, before hydration reconciles — causing a hydration mismatch.
+  const [lang, setLangState] = useState('ar');
 
   useEffect(() => {
     const saved = getSavedLang();

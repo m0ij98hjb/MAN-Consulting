@@ -290,7 +290,7 @@ function VideoPlayer({ lang }) {
   return (
     <div className="relative w-full h-full">
       {/* Outer glow ring */}
-      <div className="absolute -inset-[1px] rounded-[22px] bg-gradient-to-br from-[#F2B233]/40 via-transparent to-[#F2B233]/20 z-0" />
+      <div className="absolute -inset-[1px] rounded-[22px] bg-gradient-to-br from-[#D4A843]/40 via-transparent to-[#D4A843]/20 z-0" />
 
       {/* Card */}
       <div
@@ -315,9 +315,9 @@ function VideoPlayer({ lang }) {
           {!playing && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-[#F2B233]/20 animate-ping" />
-                <div className="absolute -inset-3 rounded-full bg-[#F2B233]/10 animate-pulse" />
-                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-[#F2B233] to-[#E8C96A] flex items-center justify-center shadow-[0_0_40px_rgba(242,178,51,0.55)] hover:scale-110 transition-transform duration-300">
+                <div className="absolute inset-0 rounded-full bg-[#D4A843]/20 animate-ping" />
+                <div className="absolute -inset-3 rounded-full bg-[#D4A843]/10 animate-pulse" />
+                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-[#D4A843] to-[#E8C96A] flex items-center justify-center shadow-[0_0_40px_rgba(212,168,67,0.55)] hover:scale-110 transition-transform duration-300">
                   <Play className="text-black fill-black" size={26} style={{ marginLeft: 3 }} />
                 </div>
               </div>
@@ -335,8 +335,8 @@ function VideoPlayer({ lang }) {
 
           {/* Company badge */}
           {!started && (
-            <div className="absolute top-3 left-3 flex items-center gap-2 bg-black/60 border border-[#F2B233]/25 rounded-full px-3 py-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#F2B233] animate-pulse" />
+            <div className="absolute top-3 left-3 flex items-center gap-2 bg-black/60 border border-[#D4A843]/25 rounded-full px-3 py-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#D4A843] animate-pulse" />
               <span className="text-white text-[10px] font-bold">{TX.companyBadge[lang] || TX.companyBadge.en}</span>
             </div>
           )}
@@ -346,16 +346,16 @@ function VideoPlayer({ lang }) {
         <div className={`absolute bottom-0 left-0 right-0 px-4 pb-3 pt-8 bg-gradient-to-t from-black/90 to-transparent transition-opacity duration-300 ${playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
           {/* Progress */}
           <div className="w-full h-1 bg-white/20 rounded-full mb-2.5 cursor-pointer overflow-hidden" onClick={handleSeek}>
-            <div className="h-full bg-gradient-to-r from-[#F2B233] to-[#E8C96A] rounded-full transition-all duration-100" style={{ width: `${progress}%` }} />
+            <div className="h-full bg-gradient-to-r from-[#D4A843] to-[#E8C96A] rounded-full transition-all duration-100" style={{ width: `${progress}%` }} />
           </div>
           {/* Buttons */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <button onClick={togglePlay} className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#F2B233]/30 border border-white/15 flex items-center justify-center transition-all">
+              <button onClick={togglePlay} className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#D4A843]/30 border border-white/15 flex items-center justify-center transition-all">
                 {playing ? <Pause size={12} className="text-white" /> : <Play size={12} className="text-white fill-white" style={{ marginLeft: 1 }} />}
               </button>
             </div>
-            <button onClick={handleFullscreen} className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#F2B233]/30 border border-white/15 flex items-center justify-center transition-all">
+            <button onClick={handleFullscreen} className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#D4A843]/30 border border-white/15 flex items-center justify-center transition-all">
               <Maximize size={11} className="text-white" />
             </button>
           </div>
@@ -363,10 +363,10 @@ function VideoPlayer({ lang }) {
       </div>
 
       {/* Corner accents */}
-      <div className="absolute top-3 left-3  w-5 h-5 border-t-2 border-l-2 border-[#F2B233]/60 rounded-tl-lg z-20 pointer-events-none" />
-      <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#F2B233]/60 rounded-tr-lg z-20 pointer-events-none" />
-      <div className="absolute bottom-3 left-3  w-5 h-5 border-b-2 border-l-2 border-[#F2B233]/60 rounded-bl-lg z-20 pointer-events-none" />
-      <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#F2B233]/60 rounded-br-lg z-20 pointer-events-none" />
+      <div className="absolute top-3 left-3  w-5 h-5 border-t-2 border-l-2 border-[#D4A843]/60 rounded-tl-lg z-20 pointer-events-none" />
+      <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4A843]/60 rounded-tr-lg z-20 pointer-events-none" />
+      <div className="absolute bottom-3 left-3  w-5 h-5 border-b-2 border-l-2 border-[#D4A843]/60 rounded-bl-lg z-20 pointer-events-none" />
+      <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#D4A843]/60 rounded-br-lg z-20 pointer-events-none" />
     </div>
   );
 }
@@ -415,12 +415,12 @@ export default function BuildingJourney() {
     <section ref={sectionRef} className="py-24 md:py-32 bg-[#04090F] relative overflow-hidden">
       {/* bg texture */}
       <div className="absolute inset-0 opacity-[0.022]"
-        style={{ backgroundImage: "repeating-linear-gradient(45deg,#F2B233 0px,#F2B233 1px,transparent 1px,transparent 80px)" }}
+        style={{ backgroundImage: "repeating-linear-gradient(45deg,#D4A843 0px,#D4A843 1px,transparent 1px,transparent 80px)" }}
       />
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#F2B233] to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#F2B233] to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[700px] h-[600px] bg-[#F2B233]/5 rounded-full " />
+        
       </div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
@@ -433,17 +433,17 @@ export default function BuildingJourney() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-5">
-            <span className="h-px w-10 bg-[#F2B233]" />
-            <span className="text-[#F2B233] text-xs font-black uppercase tracking-[0.25em]">
+            <span className="h-px w-10 bg-[#D4A843]" />
+            <span className="text-[#D4A843] text-xs font-black uppercase tracking-[0.25em]">
               {tx(TX.eyebrow)}
             </span>
-            <span className="h-px w-10 bg-[#F2B233]" />
+            <span className="h-px w-10 bg-[#D4A843]" />
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-heading mb-5 leading-tight">
             {tx(TX.h2a)}{" "}
-            <span className="text-[#F2B233]">{tx(TX.h2b)}</span>{" "}
+            <span className="text-[#D4A843]">{tx(TX.h2b)}</span>{" "}
             {tx(TX.h2c)}{" "}
-            <span className="text-[#F2B233]">{tx(TX.h2d)}</span>
+            <span className="text-[#D4A843]">{tx(TX.h2d)}</span>
           </h2>
           <p className="text-white/45 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
             {tx(TX.subtitle)}
@@ -478,27 +478,27 @@ export default function BuildingJourney() {
                   transition={{ duration: 0.55, delay: i * 0.1 + 0.4 }}
                   className={`relative flex gap-4 items-start p-4 md:p-5 rounded-2xl border transition-all duration-500 ${
                     isActive
-                      ? "bg-gradient-to-br from-[#F2B233]/12 to-[#F2B233]/4 border-[#F2B233]/40 shadow-[0_0_40px_rgba(242,178,51,0.1)]"
+                      ? "bg-gradient-to-br from-[#D4A843]/12 to-[#D4A843]/4 border-[#D4A843]/40 shadow-[0_0_40px_rgba(212,168,67,0.1)]"
                       : isDoneStep
-                      ? "bg-white/[0.03] border-[#F2B233]/15"
+                      ? "bg-white/[0.03] border-[#D4A843]/15"
                       : "bg-white/[0.015] border-white/5"
                   }`}
                 >
                   {/* Side bar */}
                   {isActive && (
-                    <div className={`absolute top-0 ${isRTL ? "right-0" : "left-0"} w-1 h-full bg-gradient-to-b from-[#F2B233] to-[#E8C96A] rounded-full`} />
+                    <div className={`absolute top-0 ${isRTL ? "right-0" : "left-0"} w-1 h-full bg-gradient-to-b from-[#D4A843] to-[#E8C96A] rounded-full`} />
                   )}
 
                   {/* Icon */}
                   <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-500 ${
                     isActive
-                      ? "bg-[#F2B233] shadow-[0_0_22px_rgba(242,178,51,0.45)]"
+                      ? "bg-[#D4A843] shadow-[0_0_22px_rgba(212,168,67,0.45)]"
                       : isDoneStep
-                      ? "bg-[#F2B233]/20 border border-[#F2B233]/30"
+                      ? "bg-[#D4A843]/20 border border-[#D4A843]/30"
                       : "bg-white/[0.04] border border-white/8"
                   }`}>
                     {isDoneStep && !isActive
-                      ? <CheckCircle size={18} className="text-[#F2B233]" />
+                      ? <CheckCircle size={18} className="text-[#D4A843]" />
                       : <Icon size={18} className={isActive ? "text-black" : "text-white/25"} />
                     }
                   </div>
@@ -506,14 +506,14 @@ export default function BuildingJourney() {
                   {/* Text */}
                   <div className="flex-1 min-w-0">
                     <div className={`flex items-center gap-2 mb-0.5 flex-wrap ${isRTL ? "flex-row-reverse justify-end" : ""}`}>
-                      <span className={`text-[10px] font-black tracking-[0.2em] ${isActive || isDoneStep ? "text-[#F2B233]" : "text-white/20"}`}>
+                      <span className={`text-[10px] font-black tracking-[0.2em] ${isActive || isDoneStep ? "text-[#D4A843]" : "text-white/20"}`}>
                         0{stage.id}
                       </span>
                       {isDoneStep && !isActive && (
-                        <span className="text-[9px] bg-[#F2B233]/12 text-[#F2B233] px-2 py-0.5 rounded-full font-black">✓ {tx(TX.done)}</span>
+                        <span className="text-[9px] bg-[#D4A843]/12 text-[#D4A843] px-2 py-0.5 rounded-full font-black">✓ {tx(TX.done)}</span>
                       )}
                       {isActive && (
-                        <span className="text-[9px] bg-[#F2B233] text-black px-2 py-0.5 rounded-full font-black animate-pulse">
+                        <span className="text-[9px] bg-[#D4A843] text-black px-2 py-0.5 rounded-full font-black animate-pulse">
                           {tx(TX.inProgress)}
                         </span>
                       )}
@@ -542,7 +542,7 @@ export default function BuildingJourney() {
                               initial={{ opacity: 0, scale: 0.85 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: j * 0.08 }}
-                              className="text-[9px] bg-[#F2B233]/10 border border-[#F2B233]/25 text-[#F2B233] px-2.5 py-1 rounded-full font-bold"
+                              className="text-[9px] bg-[#D4A843]/10 border border-[#D4A843]/25 text-[#D4A843] px-2.5 py-1 rounded-full font-bold"
                             >
                               {tag}
                             </motion.span>
@@ -559,11 +559,11 @@ export default function BuildingJourney() {
             <div className="mt-1 px-1">
               <div className="flex justify-between text-[9px] font-bold text-white/25 mb-1">
                 <span>{tx(TX.progress)}</span>
-                <span className="text-[#F2B233]">{Math.round((builtFloors / TOTAL_FLOORS) * 100)}%</span>
+                <span className="text-[#D4A843]">{Math.round((builtFloors / TOTAL_FLOORS) * 100)}%</span>
               </div>
               <div className="h-1.5 bg-white/8 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-[#F2B233] to-[#E8C96A] rounded-full"
+                  className="h-full bg-gradient-to-r from-[#D4A843] to-[#E8C96A] rounded-full"
                   animate={{ width: `${(builtFloors / TOTAL_FLOORS) * 100}%` }}
                   transition={{ duration: 0.28 }}
                 />
@@ -580,12 +580,12 @@ export default function BuildingJourney() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-16 text-center"
           >
-            <div className="inline-flex items-center gap-4 bg-gradient-to-r from-[#F2B233]/15 via-[#F2B233]/8 to-[#F2B233]/15 border border-[#F2B233]/30 rounded-2xl px-8 py-5 shadow-[0_0_60px_rgba(242,178,51,0.12)]">
-              <Sparkles className="text-[#F2B233]" size={20} />
+            <div className="inline-flex items-center gap-4 bg-gradient-to-r from-[#D4A843]/15 via-[#D4A843]/8 to-[#D4A843]/15 border border-[#D4A843]/30 rounded-2xl px-8 py-5 shadow-[0_0_60px_rgba(212,168,67,0.12)]">
+              <Sparkles className="text-[#D4A843]" size={20} />
               <p className="text-white font-black text-sm md:text-base">
                 {tx(TX.complete)}
               </p>
-              <Sparkles className="text-[#F2B233]" size={20} />
+              <Sparkles className="text-[#D4A843]" size={20} />
             </div>
           </motion.div>
         )}

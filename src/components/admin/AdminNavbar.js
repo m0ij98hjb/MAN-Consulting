@@ -90,8 +90,7 @@ export default function AdminNavbar() {
       className="fixed inset-x-0 top-0 z-[100] print:hidden"
       style={{
         height: '72px',
-        background: '#5F6368',
-        boxShadow: '0 2px 24px rgba(0,0,0,0.7)',
+        background: 'var(--background)',
       }}
       dir="rtl"
     >

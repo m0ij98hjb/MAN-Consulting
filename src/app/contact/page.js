@@ -52,10 +52,10 @@ function MapToggle({ mode, onChange }) {
               cursor: "pointer",
               transition: "background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.15s ease",
               background: isActive
-                ? "linear-gradient(135deg, #F2B233 0%, #F6C55C 100%)"
+                ? "linear-gradient(135deg, #D4A843 0%, #E8C46A 100%)"
                 : "transparent",
               color: isActive ? "#000" : "rgba(255,255,255,0.75)",
-              boxShadow: isActive ? "0 2px 12px rgba(242,178,51,0.45)" : "none",
+              boxShadow: isActive ? "0 2px 12px rgba(212,168,67,0.45)" : "none",
               transform: isActive ? "scale(1.04)" : "scale(1)",
               whiteSpace: "nowrap",
             }}
@@ -127,12 +127,12 @@ function MapCard({
             alignItems: "center",
             gap: "6px",
             background: "rgba(0,0,0,0.55)",
-            border: "1px solid rgba(242,178,51,0.3)",
+            border: "1px solid rgba(212,168,67,0.3)",
             borderRadius: "999px",
             padding: "6px 13px",
             fontSize: "11px",
             fontWeight: 700,
-            color: "#F2B233",
+            color: "#D4A843",
             boxShadow: "0 4px 24px rgba(0,0,0,0.35)",
           }}
         >
@@ -172,7 +172,7 @@ function MapCard({
           href={mapsHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-secondary text-black font-bold text-xs px-4 py-2 rounded-lg hover:bg-[#F6C55C] transition-colors"
+          className="inline-block bg-secondary text-black font-bold text-xs px-4 py-2 rounded-lg hover:bg-[#E8C46A] transition-colors"
         >
           {openMapsLabel}
         </a>
@@ -328,7 +328,7 @@ export default function ContactPage() {
         {/* Diagonal pattern */}
         <div
           className="absolute inset-0 opacity-[0.04] z-0"
-          style={{ backgroundImage: "repeating-linear-gradient(45deg, #F2B233 0px, #F2B233 1px, transparent 1px, transparent 80px)" }}
+          style={{ backgroundImage: "repeating-linear-gradient(45deg, #D4A843 0px, #D4A843 1px, transparent 1px, transparent 80px)" }}
         />
 
         <div className="container relative z-10 mx-auto px-4 sm:px-6 max-w-4xl py-6 sm:py-16">
@@ -354,7 +354,7 @@ export default function ContactPage() {
 
             <a
               href="#contact"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-secondary to-[#F6C55C] text-black font-black px-8 py-4 rounded-full text-base transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(242,178,51,0.35)] hover:shadow-[0_0_45px_rgba(242,178,51,0.5)] cursor-pointer"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-secondary to-[#E8C46A] text-black font-black px-8 py-4 rounded-full text-base transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(212,168,67,0.35)] hover:shadow-[0_0_45px_rgba(212,168,67,0.5)] cursor-pointer"
             >
               {t("contactPage.startProjectCta")}
               {isRTL ? <ArrowLeft size={20} /> : <ArrowLeft size={20} className="rotate-180" />}
@@ -385,55 +385,55 @@ export default function ContactPage() {
               </div>
 
               <div className="grid grid-cols-1 gap-4">
-                <a href={`tel:${phone1}`} className="flex items-center gap-4 bg-[#F2B233]/10 border border-[#F2B233]/40 hover:bg-[#F2B233]/18 hover:border-[#F2B233]/70 rounded-2xl p-5 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F2B233]/15 border border-[#F2B233]/30 shrink-0 group-hover:bg-[#F2B233]/25 transition-colors">
-                    <Phone className="text-[#F2B233]" size={22} />
+                <a href={`tel:${phone1}`} className="flex items-center gap-4 bg-[#D4A843]/10 border border-[#D4A843]/40 hover:bg-[#D4A843]/18 hover:border-[#D4A843]/70 rounded-2xl p-5 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#D4A843]/15 border border-[#D4A843]/30 shrink-0 group-hover:bg-[#D4A843]/25 transition-colors">
+                    <Phone className="text-[#D4A843]" size={22} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[#F2B233] font-black text-base leading-tight">{t("contact.phone")}</p>
+                    <p className="text-[#D4A843] font-black text-base leading-tight">{t("contact.phone")}</p>
                     <p className="text-white text-sm mt-0.5 transition-colors">{phone1}{phone2 && ` – ${phone2}`}</p>
                   </div>
                 </a>
 
-                <a href={`mailto:${email}`} className="flex items-center gap-4 bg-[#F2B233]/10 border border-[#F2B233]/40 hover:bg-[#F2B233]/18 hover:border-[#F2B233]/70 rounded-2xl p-5 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="250">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F2B233]/15 border border-[#F2B233]/30 shrink-0 group-hover:bg-[#F2B233]/25 transition-colors">
-                    <Mail className="text-[#F2B233]" size={22} />
+                <a href={`mailto:${email}`} className="flex items-center gap-4 bg-[#D4A843]/10 border border-[#D4A843]/40 hover:bg-[#D4A843]/18 hover:border-[#D4A843]/70 rounded-2xl p-5 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="250">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#D4A843]/15 border border-[#D4A843]/30 shrink-0 group-hover:bg-[#D4A843]/25 transition-colors">
+                    <Mail className="text-[#D4A843]" size={22} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[#F2B233] font-black text-base leading-tight">{t("contact.email")}</p>
+                    <p className="text-[#D4A843] font-black text-base leading-tight">{t("contact.email")}</p>
                     <p className="text-white text-sm mt-0.5 transition-colors">{email}</p>
                   </div>
                 </a>
 
                 {/* Jeddah address */}
-                <div className="flex items-center gap-4 bg-[#F2B233]/10 border border-[#F2B233]/40 hover:bg-[#F2B233]/18 hover:border-[#F2B233]/70 rounded-2xl p-5 transition-all duration-300 group cursor-default" data-aos="fade-up" data-aos-delay="300">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F2B233]/15 border border-[#F2B233]/30 shrink-0 group-hover:bg-[#F2B233]/25 transition-colors">
-                    <MapPin className="text-[#F2B233]" size={22} />
+                <div className="flex items-center gap-4 bg-[#D4A843]/10 border border-[#D4A843]/40 hover:bg-[#D4A843]/18 hover:border-[#D4A843]/70 rounded-2xl p-5 transition-all duration-300 group cursor-default" data-aos="fade-up" data-aos-delay="300">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#D4A843]/15 border border-[#D4A843]/30 shrink-0 group-hover:bg-[#D4A843]/25 transition-colors">
+                    <MapPin className="text-[#D4A843]" size={22} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[#F2B233] font-black text-base leading-tight">{t("contact.location")}</p>
+                    <p className="text-[#D4A843] font-black text-base leading-tight">{t("contact.location")}</p>
                     <p className="text-white text-sm mt-0.5 leading-relaxed font-sans transition-colors">{address}</p>
                   </div>
                 </div>
 
                 {/* Riyadh address */}
-                <div className="flex items-center gap-4 bg-[#F2B233]/10 border border-[#F2B233]/40 hover:bg-[#F2B233]/18 hover:border-[#F2B233]/70 rounded-2xl p-5 transition-all duration-300 group cursor-default" data-aos="fade-up" data-aos-delay="350">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F2B233]/15 border border-[#F2B233]/30 shrink-0 group-hover:bg-[#F2B233]/25 transition-colors">
-                    <MapPin className="text-[#F2B233]" size={22} />
+                <div className="flex items-center gap-4 bg-[#D4A843]/10 border border-[#D4A843]/40 hover:bg-[#D4A843]/18 hover:border-[#D4A843]/70 rounded-2xl p-5 transition-all duration-300 group cursor-default" data-aos="fade-up" data-aos-delay="350">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#D4A843]/15 border border-[#D4A843]/30 shrink-0 group-hover:bg-[#D4A843]/25 transition-colors">
+                    <MapPin className="text-[#D4A843]" size={22} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[#F2B233] font-black text-base leading-tight">{t("contact.location")}</p>
+                    <p className="text-[#D4A843] font-black text-base leading-tight">{t("contact.location")}</p>
                     <p className="text-white text-sm mt-0.5 leading-relaxed font-sans transition-colors">{t("contactPage.riyadhAddress")}</p>
                   </div>
                 </div>
 
                 {/* Hours */}
-                <div className="flex items-center gap-4 bg-[#F2B233]/10 border border-[#F2B233]/40 hover:bg-[#F2B233]/18 hover:border-[#F2B233]/70 rounded-2xl p-5 transition-all duration-300 group cursor-default" data-aos="fade-up" data-aos-delay="400">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F2B233]/15 border border-[#F2B233]/30 shrink-0 group-hover:bg-[#F2B233]/25 transition-colors">
-                    <Clock className="text-[#F2B233]" size={22} />
+                <div className="flex items-center gap-4 bg-[#D4A843]/10 border border-[#D4A843]/40 hover:bg-[#D4A843]/18 hover:border-[#D4A843]/70 rounded-2xl p-5 transition-all duration-300 group cursor-default" data-aos="fade-up" data-aos-delay="400">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#D4A843]/15 border border-[#D4A843]/30 shrink-0 group-hover:bg-[#D4A843]/25 transition-colors">
+                    <Clock className="text-[#D4A843]" size={22} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[#F2B233] font-black text-base leading-tight">{t("contact.hours")}</p>
+                    <p className="text-[#D4A843] font-black text-base leading-tight">{t("contact.hours")}</p>
                     <p className="text-white text-sm mt-0.5 transition-colors">{days} · {hours}</p>
                   </div>
                 </div>
@@ -459,7 +459,7 @@ export default function ContactPage() {
                     </div>
                     <button
                       onClick={handleContactReset}
-                      className="px-8 py-3 rounded-xl bg-[var(--secondary)] text-black font-black text-sm hover:bg-[#F6C55C] transition-all duration-300"
+                      className="px-8 py-3 rounded-xl bg-[var(--secondary)] text-black font-black text-sm hover:bg-[#E8C46A] transition-all duration-300"
                     >
                       {t("contactPage.sendAnother")}
                     </button>
@@ -468,7 +468,7 @@ export default function ContactPage() {
                   <form onSubmit={handleContactSubmit} className="space-y-6 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-[#F2B233] px-1 uppercase tracking-wider">{t("contact.form.name")}</label>
+                        <label className="text-xs font-bold text-[#D4A843] px-1 uppercase tracking-wider">{t("contact.form.name")}</label>
                         <input
                           type="text"
                           required
@@ -479,7 +479,7 @@ export default function ContactPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-[#F2B233] px-1 uppercase tracking-wider">{t("contact.form.phone")}</label>
+                        <label className="text-xs font-bold text-[#D4A843] px-1 uppercase tracking-wider">{t("contact.form.phone")}</label>
                         <input
                           type="tel"
                           required
@@ -490,7 +490,7 @@ export default function ContactPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-[#F2B233] px-1 uppercase tracking-wider">{t("contactPage.formEmailLabel")}</label>
+                        <label className="text-xs font-bold text-[#D4A843] px-1 uppercase tracking-wider">{t("contactPage.formEmailLabel")}</label>
                         <input
                           type="email"
                           value={formEmail}
@@ -500,7 +500,7 @@ export default function ContactPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-[#F2B233] px-1 uppercase tracking-wider">{t("contactPage.formCompanyLabel")}</label>
+                        <label className="text-xs font-bold text-[#D4A843] px-1 uppercase tracking-wider">{t("contactPage.formCompanyLabel")}</label>
                         <input
                           type="text"
                           value={formCompany}
@@ -511,7 +511,7 @@ export default function ContactPage() {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-[#F2B233] px-1 uppercase tracking-wider">{t("contact.form.service")}</label>
+                      <label className="text-xs font-bold text-[#D4A843] px-1 uppercase tracking-wider">{t("contact.form.service")}</label>
                       <div className="relative">
                         <select
                           value={formService}
@@ -528,7 +528,7 @@ export default function ContactPage() {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-[#F2B233] px-1 uppercase tracking-wider">{t("contact.form.message")}</label>
+                      <label className="text-xs font-bold text-[#D4A843] px-1 uppercase tracking-wider">{t("contact.form.message")}</label>
                       <textarea
                         rows="4"
                         required
@@ -542,7 +542,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={formSubmitting}
-                      className="w-full mt-4 bg-[var(--secondary)] hover:bg-[#F6C55C] disabled:opacity-60 disabled:cursor-not-allowed text-black font-black py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 text-sm shadow-xl shadow-secondary/20 transform hover:-translate-y-1 active:scale-95 cursor-pointer"
+                      className="w-full mt-4 bg-[var(--secondary)] hover:bg-[#E8C46A] disabled:opacity-60 disabled:cursor-not-allowed text-black font-black py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 text-sm shadow-xl shadow-secondary/20 transform hover:-translate-y-1 active:scale-95 cursor-pointer"
                     >
                       {formSubmitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                       {formSubmitting ? t("contactPage.sending") : t("contact.form.submit")}
@@ -571,7 +571,7 @@ export default function ContactPage() {
             <h2 className="text-3xl md:text-4xl font-black text-white font-heading">
               {t("contactPage.visitTitle")}
             </h2>
-            <div className="w-20 h-1.5 bg-gradient-to-r from-[#F2B233] to-[#F6C55C] mx-auto mt-6 rounded-full" />
+            <div className="w-20 h-1.5 bg-gradient-to-r from-[#D4A843] to-[#E8C46A] mx-auto mt-6 rounded-full" />
           </div>
 
           {/* ── Map labels ── */}

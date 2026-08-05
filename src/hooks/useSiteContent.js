@@ -10,6 +10,9 @@ export function useSiteContent(section) {
     const unsub = onSnapshot(doc(db, 'siteContent', section), snap => {
       setData(snap.exists() ? snap.data() : {});
       setLoading(false);
+    }, (err) => {
+      setData({});
+      setLoading(false);
     });
     return unsub;
   }, [section]);

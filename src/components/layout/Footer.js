@@ -93,22 +93,20 @@ const SocialIcon = ({ name }) => {
 
 const Footer = () => {
   const { lang, t, isRTL } = useLanguage();
-  const { theme } = useTheme();
   const pathname = usePathname();
-  const isLightMode = theme === 'dark';
 
   if (pathname.startsWith('/admin')) return null;
 
   const socialBtnStyle = {
     width: "45px",
     height: "45px",
-    background: isLightMode ? "rgba(15,23,42,0.06)" : "rgba(255,255,255,0.05)",
+    background: "rgba(255,255,255,0.05)",
     borderRadius: "12px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    border: isLightMode ? "1px solid rgba(15,23,42,0.12)" : "1px solid rgba(255,255,255,0.1)",
-    color: "#F2B233",
+    border: "1px solid rgba(212,168,67,0.2)",
+    color: "#D4A843",
     textDecoration: "none",
   };
 
@@ -129,11 +127,11 @@ const Footer = () => {
 
   return (
     <footer
-      className={`text-[var(--foreground)] ${isLightMode ? 'bg-slate-100' : 'bg-[var(--background)]'}`}
+      className="bg-[#2A2C33] text-white"
       dir={isRTL ? "rtl" : "ltr"}
     >
       {/* ── TOP DIVIDER ─────────────────────────────── */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-[#F2B233] to-transparent" />
+      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
 
       {/* ── MAIN CONTENT ────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 py-14">
@@ -151,7 +149,7 @@ const Footer = () => {
                 priority
               />
             </div>
-            <p className="text-[var(--foreground)] text-sm leading-relaxed max-w-sm">
+            <p className="text-white/60 text-sm leading-relaxed max-w-sm">
               {t("footer.brandDesc")}
             </p>
             {/* Social */}
@@ -184,10 +182,10 @@ const Footer = () => {
 
           {/* Company links */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-[var(--secondary)] font-bold text-sm tracking-widest uppercase">
+            <h4 className="text-[#D4A843] font-bold text-sm tracking-widest uppercase">
               {t("footer.quickLinks")}
             </h4>
-            <div className="w-8 h-[2px] bg-gradient-to-r from-[#F2B233] to-transparent" />
+            <div className="w-8 h-[2px] bg-gradient-to-r from-[#D4A843] to-transparent" />
             <ul className="flex flex-col gap-3">
               {links.company.map((l) => (
                 <li key={l.label}>
@@ -195,14 +193,14 @@ const Footer = () => {
                     href={l.href}
                     className={`text-sm transition-colors duration-200 flex items-center gap-2 group
                       ${l.gold
-                        ? 'text-[#F2B233] hover:text-[#F6C55C] font-semibold'
-                        : 'text-[var(--foreground)] hover:text-[var(--secondary)]'
+                        ? 'text-[#D4A843] hover:text-[#E8C46A] font-semibold'
+                        : 'text-white/80 hover:text-[#D4A843]'
                       }`}
                   >
                     <span className={`w-1 h-1 rounded-full transition-colors shrink-0
                       ${l.gold
-                        ? 'bg-[#F2B233] group-hover:bg-[#F6C55C]'
-                        : 'bg-[var(--secondary)]/40 group-hover:bg-[var(--secondary)]'
+                        ? 'bg-[#D4A843] group-hover:bg-[#E8C46A]'
+                        : 'bg-[#D4A843]/40 group-hover:bg-[#D4A843]'
                       }`}
                     />
                     {l.label}
@@ -214,18 +212,18 @@ const Footer = () => {
 
           {/* Services */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-[var(--secondary)] font-bold text-sm tracking-widest uppercase">
+            <h4 className="text-[#D4A843] font-bold text-sm tracking-widest uppercase">
               {t("footer.services")}
             </h4>
-            <div className="w-8 h-[2px] bg-gradient-to-r from-[#F2B233] to-transparent" />
+            <div className="w-8 h-[2px] bg-gradient-to-r from-[#D4A843] to-transparent" />
             <ul className="flex flex-col gap-3">
               {links.services.map((s) => (
                 <li key={s.label}>
                   <Link
                     href={s.href}
-                    className="text-[var(--foreground)] hover:text-[var(--secondary)] text-sm flex items-center gap-2 group transition-colors duration-200"
+                    className="text-white/80 hover:text-[#D4A843] text-sm flex items-center gap-2 group transition-colors duration-200"
                   >
-                    <span className="w-1 h-1 rounded-full bg-[var(--secondary)]/40 group-hover:bg-[var(--secondary)] transition-colors shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-[#D4A843]/40 group-hover:bg-[#D4A843] transition-colors shrink-0" />
                     {s.label}
                   </Link>
                 </li>
@@ -236,19 +234,19 @@ const Footer = () => {
       </div>
 
       {/* ── BOTTOM BAR ──────────────────────────────── */}
-      <div className={`border-t ${isLightMode ? 'border-slate-200' : 'border-[rgba(255,255,255,0.05)]'}`}>
+      <div className="border-t border-[rgba(212,168,67,0.12)]">
         <div
           className="max-w-7xl mx-auto px-6 py-5
           flex flex-col sm:flex-row items-center justify-between gap-3"
         >
-          <p className="text-[var(--foreground)] text-xs">
+          <p className="text-white/50 text-xs">
             &copy; {new Date().getFullYear()}&nbsp;
             {t("footer.rightsReserved")}
           </p>
           <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#F2B233] animate-pulse" />
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--secondary)] animate-pulse" />
-            <span className="text-[var(--foreground)] text-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A843] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A843] animate-pulse" />
+            <span className="text-white/50 text-xs">
               {t("footer.location")}
             </span>
           </div>

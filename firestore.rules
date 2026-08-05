@@ -205,6 +205,41 @@ service cloud.firestore {
       allow read, write: if cmsIsSuperAdmin();
     }
 
+    // Public-facing site copy (About/Home/Services/etc. tabs in the CMS) —
+    // read by every visitor's page render, written only from /admin/content
+    // (already gated to the super admin in the UI).
+    match /siteContent/{section} {
+      allow read: if true;
+      allow write: if cmsIsSuperAdmin();
+    }
+
+    // `settings/director` — director photo shown site-wide (useDirectorPhoto),
+    // updated only from the admin sidebar's super-admin-only uploader.
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if cmsIsSuperAdmin();
+    }
+
+    // Any signed-in user with an adminUsers profile (any role) can read
+    // these — /admin/dashboard aggregates counts from both collections for
+    // every role, and /admin/jobs, /admin/messages, /admin/reports read/
+    // mutate them directly. Public visitors may only create (career
+    // applications / contact form submissions), never read others' entries.
+    function isAdminUser() {
+      return cmsIsSuperAdmin()
+        || (request.auth != null && exists(/databases/$(database)/documents/adminUsers/$(request.auth.uid)));
+    }
+
+    match /jobApplications/{id} {
+      allow create: if true;
+      allow read, update, delete: if isAdminUser();
+    }
+
+    match /contacts/{id} {
+      allow create: if true;
+      allow read, update, delete: if isAdminUser();
+    }
+
     // ══════════════════════════════════════════════════════════════
     // Cost Calculator — internal tool reports log (additive). Access is
     // governed by the general `adminUsers/{uid}.role` field — the same

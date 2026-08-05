@@ -84,8 +84,8 @@ const Vision = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(242,178,51,0.035) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(242,178,51,0.035) 1px, transparent 1px)
+            linear-gradient(rgba(212,168,67,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(212,168,67,0.035) 1px, transparent 1px)
           `,
           backgroundSize: "64px 64px",
         }}
@@ -93,8 +93,8 @@ const Vision = () => {
 
       {/* ── Ambient glows ───────────────────────────────────────────────── */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2B233]/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2B233]/10 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A843]/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A843]/10 to-transparent" />
       </div>
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
@@ -104,14 +104,14 @@ const Vision = () => {
 
           {/* Eyebrow */}
           <div className={`inline-flex items-center gap-3 mb-5 ${isRTL ? 'flex-row' : 'flex-row-reverse'}`}>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#F2B233]" />
-            <span className="text-[#F2B233] font-bold tracking-[0.2em] uppercase text-[11px]">
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#D4A843]" />
+            <span className="text-[#D4A843] font-bold tracking-[0.2em] uppercase text-[11px]">
               {{ ar: "رؤية وخبرة", en: "Vision & Expertise", zh: "愿景与专长",
                  es: "Visión y experiencia", fr: "Vision et expertise",
                  de: "Vision & Expertise", tr: "Vizyon & Uzmanlık", ur: "وژن اور مہارت",
                  hi: "दृष्टि और विशेषज्ञता", ru: "Видение и опыт" }[lang] || "Vision & Expertise"}
             </span>
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#F2B233]" />
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#D4A843]" />
           </div>
 
           {/* Title */}
@@ -135,7 +135,7 @@ const Vision = () => {
           </h2>
 
           {/* Gold underline */}
-          <div className={`h-1 w-16 rounded-full bg-gradient-to-r from-[#F2B233] to-[#F6C55C] ${isRTL ? 'mr-0' : 'ml-0'}`} data-aos="fade-up" data-aos-delay="150" />
+          <div className={`h-1 w-16 rounded-full bg-gradient-to-r from-[#D4A843] to-[#E8C46A] ${isRTL ? 'mr-0' : 'ml-0'}`} data-aos="fade-up" data-aos-delay="150" />
 
           {/* Description */}
           <p className="mt-6 text-white/50 text-base md:text-lg leading-relaxed max-w-2xl" data-aos="fade-up" data-aos-delay="200">
@@ -172,7 +172,7 @@ const Vision = () => {
               delay: "100",
             },
             {
-              label: { ar: "رسالتنا",   en: "Our Mission",  zh: "我们的使命", fr: "Notre Mission",  es: "Nuestra Misión",  de: "Unsere Mission", tr: "Misyonumuz", ur: "ہمارا مشن", hi: "हमारा मिशन", ru: "Наша миссия" },
+              label: { ar: "رسالتنا",   en: "Our Mission",  zh: "我们的使命", fr: "Notre Mission",  es: "Nuestra Misión",  de: "Unsere Mission", tr: "Misyonumuz", ur: "ہمارا مشن", hi: "همारा मिशन", ru: "Наша миссия" },
               text:  { ar: "تحقيق طموحات عملائنا من خلال تنفيذ مشاريع بأعلى معايير الجودة والسلامة، وبناء شراكات مبنية على الثقة والشفافية.",
                        en: "Realising our clients' ambitions through projects built to the highest standards of quality and safety, founded on trust and transparency.",
                        hi: "विश्वास और पारदर्शिता पर आधारित गुणवत्ता और सुरक्षा के उच्चतम मानकों के साथ परियोजनाओं के माध्यम से अपने ग्राहकों की आकांक्षाओं को पूरा करना।",
@@ -189,58 +189,37 @@ const Vision = () => {
           ].map((card) => (
             <div
               key={card.num}
-              className="group relative rounded-2xl p-7 overflow-hidden transition-all duration-500 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F2B233]/60"
+              className="group relative rounded-2xl p-7 overflow-hidden transition-all duration-500 cursor-default border-b-2 border-b-[#D4A843]"
               tabIndex={0}
               style={{
-                background: "rgba(255,255,255,0.025)",
-                border: "1px solid rgba(242,178,51,0.1)",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = "rgba(242,178,51,0.05)";
-                e.currentTarget.style.border = "1px solid rgba(242,178,51,0.25)";
-                e.currentTarget.style.boxShadow = "0 0 40px rgba(242,178,51,0.08), 0 20px 60px rgba(0,0,0,0.4)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.025)";
-                e.currentTarget.style.border = "1px solid rgba(242,178,51,0.1)";
-                e.currentTarget.style.boxShadow = "none";
+                background: "#44474F",
+                borderTop: "1px solid rgba(212,168,67,0.16)",
+                borderLeft: "1px solid rgba(212,168,67,0.16)",
+                borderRight: "1px solid rgba(212,168,67,0.16)",
               }}
               data-aos="fade-up"
               data-aos-delay={card.delay}
             >
               {/* Top accent line */}
-              <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#F2B233]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              {/* Corner brackets */}
-              <span aria-hidden="true"
-                className={`absolute top-3 w-4 h-4 transition-colors duration-500 ${isRTL ? 'right-3' : 'left-3'}`}
-                style={{ borderTop: '1px solid rgba(242,178,51,0.3)', [isRTL ? 'borderRight' : 'borderLeft']: '1px solid rgba(242,178,51,0.3)' }}
-              />
-              <span aria-hidden="true"
-                className={`absolute bottom-3 w-4 h-4 transition-colors duration-500 ${isRTL ? 'left-3' : 'right-3'}`}
-                style={{ borderBottom: '1px solid rgba(242,178,51,0.3)', [isRTL ? 'borderLeft' : 'borderRight']: '1px solid rgba(242,178,51,0.3)' }}
-              />
+              <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D4A843]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Number watermark */}
-              <span className={`absolute top-4 ${isRTL ? 'left-5' : 'right-5'} text-6xl font-black text-white/[0.03] group-hover:text-[#F2B233]/[0.07] transition-colors duration-500 select-none leading-none`}>
+              <span className={`absolute top-4 ${isRTL ? 'left-5' : 'right-5'} text-6xl font-black text-white/[0.03] group-hover:text-[#D4A843]/[0.07] transition-colors duration-500 select-none leading-none`}>
                 {card.num}
               </span>
 
               {/* Gold pill label */}
               <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full"
-                style={{ background: "rgba(242,178,51,0.1)", border: "1px solid rgba(242,178,51,0.2)" }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F2B233]" />
-                <span className="text-[#F2B233] text-[11px] font-bold tracking-widest uppercase">
+                style={{ background: "rgba(212,168,67,0.15)", border: "1px solid rgba(212,168,67,0.3)" }}>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D4A843]" />
+                <span className="text-[#D4A843] text-[11px] font-bold tracking-widest uppercase">
                   {tx(card.label)}
                 </span>
               </div>
 
-              <p className="text-white/55 text-sm md:text-base leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+              <p className="text-white/60 text-sm md:text-base leading-relaxed group-hover:text-white/80 transition-colors duration-300">
                 {tx(card.text)}
               </p>
-
-              {/* Bottom accent */}
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2B233]/0 to-transparent group-hover:via-[#F2B233]/20 transition-all duration-500" />
             </div>
           ))}
         </div>
@@ -250,32 +229,24 @@ const Vision = () => {
           {VALUES.map((val, i) => (
             <div
               key={i}
-              className="group flex items-start gap-4 rounded-xl p-5 transition-all duration-400 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F2B233]/60"
+              className="group flex items-start gap-4 rounded-xl p-5 transition-all duration-400 cursor-default"
               tabIndex={0}
               style={{
-                background: "rgba(255,255,255,0.015)",
-                border: "1px solid rgba(242,178,51,0.07)",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = "rgba(242,178,51,0.04)";
-                e.currentTarget.style.border = "1px solid rgba(242,178,51,0.18)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.015)";
-                e.currentTarget.style.border = "1px solid rgba(242,178,51,0.07)";
+                background: "#44474F",
+                border: "1px solid rgba(212,168,67,0.12)",
               }}
               data-aos="fade-up"
               data-aos-delay={val.delay}
             >
               {/* Icon */}
               <div className="shrink-0 mt-0.5 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-                style={{ background: "rgba(242,178,51,0.1)", border: "1px solid rgba(242,178,51,0.2)" }}>
-                <CheckCircle2 size={16} className="text-[#F2B233]" />
+                style={{ background: "rgba(212,168,67,0.15)", border: "1px solid rgba(212,168,67,0.3)" }}>
+                <CheckCircle2 size={16} className="text-[#D4A843]" />
               </div>
 
               {/* Text */}
               <div className="flex flex-col gap-1 min-w-0">
-                <h4 className="text-white font-bold text-sm md:text-base leading-snug group-hover:text-[#F2B233] transition-colors duration-300">
+                <h4 className="text-white font-bold text-sm md:text-base leading-snug group-hover:text-[#D4A843] transition-colors duration-300">
                   {tx(val.title)}
                 </h4>
                 <p className="text-white/40 text-xs md:text-sm leading-relaxed group-hover:text-white/55 transition-colors duration-300">

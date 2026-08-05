@@ -10,6 +10,8 @@ export function useDirectorPhoto() {
   useEffect(() => {
     const unsub = onSnapshot(doc(db, 'settings', 'director'), (snap) => {
       setPhotoURL(snap.exists() && snap.data()?.photoURL ? snap.data().photoURL : FALLBACK);
+    }, (err) => {
+      setPhotoURL(FALLBACK);
     });
     return unsub;
   }, []);
