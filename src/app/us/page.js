@@ -70,10 +70,10 @@ export default function AboutUsPage() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/heroes/hero-us.jpg"
+            src="/asstes/office-projects/BARJIS - PARKING ENTRANCE (07.07.2025).jpg"
             alt="About MAN Engineering Consultancy"
             fill
-            className="object-cover object-center animate-slow-zoom"
+            className="object-cover object-center"
             priority
             unoptimized
           />
@@ -220,7 +220,7 @@ export default function AboutUsPage() {
 
               {/* Tall Image (Hero) */}
               <div className={`relative h-[350px] sm:h-[450px] md:h-full min-h-[350px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer ${isRTL ? 'order-first md:order-1' : 'order-last md:order-2'}`}>
-                <Image src="/hero.png" alt="MAN Engineering" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                <Image src="/asstes/office-projects/BARJIS - PARKING ENTRANCE (07.07.2025).jpg" alt="MAN Engineering" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent transition-opacity duration-500" />
                 <div className={`absolute bottom-6 ${isRTL ? 'right-6 text-right' : 'left-6 text-left'}`}>
                   <span className="text-[#D4A843] text-xs font-bold uppercase tracking-wider bg-black/60 px-3 py-1.5 rounded-full border border-[#D4A843]/20">{t("gallery.distinctive")}</span>

@@ -26,9 +26,8 @@ const Hero = () => {
   const statDesigns = homeCms?.stat_designs ?? siteStats.designs.value;
 
   const heroImages = [
-    "/hero.png",
+    "/asstes/internal6.png",
     "/asstes/office-projects/BARJIS FRONT FACADE (05.08.2025).jpg",
-    "/asstes/office-projects/BARJIS - ROOF (05.24.2025).jpg",
     "/asstes/office-projects/BARJIS - INNER COURT (05.24.2025).jpg",
     "/asstes/office-projects/BARJIS - BACK ENTRANCE (07.07.2025).jpg",
   ];
