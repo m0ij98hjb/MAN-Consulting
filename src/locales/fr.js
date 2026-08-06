@@ -1,19 +1,21 @@
 export const fr = {
   nav: {
     home: "Accueil",
-    about: "Qui Sommes-Nous",
-    services: "Nos Services",
-    projects: "Nos Projets",
+    about: "À Propos",
+    services: "Services",
+    projects: "Projets",
     engineeringDesign: "Conception d'Ingénierie",
     buildingPermits: "Permis de Construire",
     engineeringReports: "Rapports d'Ingénierie",
     siteSupervision: "Supervision de Chantier",
     blog: "Blog",
-    contact: "Contactez-Nous",
+    contact: "Contact",
     profile: "Télécharger le Profil",
     careers: "Emplois",
     more: "Plus",
-    ariaLabel: "Navigation Principale"
+    ariaLabel: "Navigation Principale",
+    openMenu: "Ouvrir le menu",
+    closeMenu: "Fermer le menu"
   },
   hero: {
     badge: "Excellence en Ingénierie",

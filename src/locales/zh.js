@@ -2,8 +2,8 @@ export const zh = {
   nav: {
     home: "首页",
     about: "关于我们",
-    services: "我们的服务",
-    projects: "我们的项目",
+    services: "服务",
+    projects: "项目",
     engineeringDesign: "工程设计",
     buildingPermits: "建筑许可",
     engineeringReports: "工程报告",
@@ -13,7 +13,9 @@ export const zh = {
     profile: "下载简介",
     careers: "招聘",
     more: "更多",
-    ariaLabel: "主导航"
+    ariaLabel: "主导航",
+    openMenu: "打开菜单",
+    closeMenu: "关闭菜单"
   },
   hero: {
     badge: "卓越工程",

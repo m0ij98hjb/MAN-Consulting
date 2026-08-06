@@ -2,18 +2,20 @@ export const tr = {
   nav: {
     home: "Ana Sayfa",
     about: "Hakkımızda",
-    services: "Hizmetlerimiz",
-    projects: "Projelerimiz",
+    services: "Hizmetler",
+    projects: "Projeler",
     engineeringDesign: "Mühendislik Tasarımı",
     buildingPermits: "İnşaat İzinleri",
     engineeringReports: "Mühendislik Raporları",
     siteSupervision: "Saha Denetimi",
     blog: "Blog",
-    contact: "Bize Ulaşın",
+    contact: "İletişim",
     profile: "Profil İndir",
     careers: "Kariyer",
     more: "Daha Fazla",
-    ariaLabel: "Ana Gezinme"
+    ariaLabel: "Ana Gezinme",
+    openMenu: "Menüyü aç",
+    closeMenu: "Menüyü kapat"
   },
   hero: {
     badge: "Mühendislik Mükemmelliği",

@@ -95,7 +95,7 @@ export default function AdminNavbar() {
       dir="rtl"
     >
       {/* ── Main row ── */}
-      <div className="h-full flex items-center px-5 lg:px-8 gap-0">
+      <div className="h-full flex items-center px-4 lg:px-5 xl:px-8 gap-0">
 
         {/* ── RIGHT: Logo ── */}
         <Link href="/" className="flex-shrink-0 pe-4">
@@ -105,7 +105,7 @@ export default function AdminNavbar() {
             width={1029}
             height={461}
             unoptimized
-            className="h-10 sm:h-11 w-auto object-contain"
+            className="h-9 lg:h-10 xl:h-11 w-auto object-contain"
             priority
           />
         </Link>
@@ -114,15 +114,15 @@ export default function AdminNavbar() {
         <div className="w-px h-8 bg-[#F2B233]/18 flex-shrink-0" />
 
         {/* ── CENTER: ADMIN PANEL + page name ── */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-0.5 min-w-0 px-4">
+        <div className="flex-1 flex flex-col items-center justify-center gap-0.5 min-w-0 px-2 lg:px-3 xl:px-4">
           <p
-            className="text-[7.5px] font-black tracking-[5px] uppercase leading-none select-none"
+            className="text-[7px] lg:text-[7.5px] font-black tracking-[3px] lg:tracking-[5px] uppercase leading-none select-none"
             style={{ color: 'rgba(201,163,77,0.28)' }}
           >
             {roleLabel?.toUpperCase() || 'ADMIN PANEL'}
           </p>
           <p
-            className="text-[13px] sm:text-[14px] font-bold leading-tight truncate max-w-full"
+            className="text-[12px] lg:text-[13px] xl:text-[14px] font-bold leading-tight truncate max-w-full"
             style={{ color: 'rgba(255,255,255,0.88)', direction: 'rtl' }}
           >
             {pageTitle}
@@ -133,10 +133,10 @@ export default function AdminNavbar() {
         <div className="w-px h-8 bg-[#F2B233]/18 flex-shrink-0" />
 
         {/* ── LEFT ACTIONS (RTL: first child is visually rightmost of the left group) ── */}
-        <div className="flex items-center flex-shrink-0 ps-3">
+        <div className="flex items-center flex-shrink-0 ps-2 xl:ps-3">
 
           {/* 1. Manager badge + dropdown */}
-          <div className="relative px-2" ref={userRef}>
+          <div className="relative px-1.5" ref={userRef}>
             <button
               onClick={() => setIsUserOpen(v => !v)}
               className="flex items-center gap-1.5 py-1.5 px-2 rounded-xl transition-all duration-200 active:scale-95 group"
@@ -145,8 +145,8 @@ export default function AdminNavbar() {
               onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(201,163,77,0.20)'}
             >
               <div
-                className="relative w-7 h-7 rounded-full overflow-hidden flex-shrink-0"
-                style={{ 
+                className="relative w-6 h-6 rounded-full overflow-hidden flex-shrink-0"
+                style={{
                   boxShadow: '0 0 0 1.5px rgba(201,163,77,0.45)',
                   backgroundColor: 'transparent'
                 }}
@@ -156,11 +156,11 @@ export default function AdminNavbar() {
                   unoptimized={displayPhoto.startsWith('http')}
                   alt="Admin"
                   fill
-                  sizes="28px"
+                  sizes="24px"
                   className="object-cover object-top"
                 />
               </div>
-              <span className="hidden sm:block text-[11px] font-bold text-[#F2B233] whitespace-nowrap leading-none">
+              <span className="hidden xl:block text-[10.5px] font-bold text-[#F2B233] whitespace-nowrap leading-none">
                 {displayName}
               </span>
               <ChevronDown
@@ -185,8 +185,8 @@ export default function AdminNavbar() {
                 style={{ borderBottom: '2px solid rgba(201,163,77,0.3)' }}
               >
                 <div
-                  className="relative w-9 h-9 rounded-full overflow-hidden flex-shrink-0"
-                  style={{ 
+                  className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0"
+                  style={{
                     boxShadow: '0 0 0 3px rgba(201,163,77,0.6), 0 6px 16px rgba(0,0,0,0.5)',
                     backgroundColor: 'transparent'
                   }}
@@ -196,7 +196,7 @@ export default function AdminNavbar() {
                     unoptimized={displayPhoto.startsWith('http')}
                     alt="Admin"
                     fill
-                    sizes="36px"
+                    sizes="32px"
                     className="object-cover object-top"
                   />
                 </div>
@@ -229,19 +229,19 @@ export default function AdminNavbar() {
           <GoldSep />
 
           {/* 2. Bell */}
-          <div className="relative px-2" ref={bellRef}>
+          <div className="relative px-1.5" ref={bellRef}>
             <button
               onClick={() => {
                 const opening = !isBellOpen;
                 setIsBellOpen(opening);
                 if (opening && markBellOpened) markBellOpened();
               }}
-              className="relative flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 active:scale-95 flex-shrink-0"
+              className="relative flex items-center justify-center w-7 h-7 rounded-lg transition-all duration-200 active:scale-95 flex-shrink-0"
               style={{ border: '1px solid rgba(201,163,77,0.18)', color: 'rgba(255,255,255,0.55)' }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,163,77,0.40)'; e.currentTarget.style.color = 'rgba(255,255,255,0.9)'; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(201,163,77,0.18)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
             >
-              <Bell size={15} />
+              <Bell size={14} />
               {unreadCount > 0 && (
                 <span
                   className="absolute -top-1.5 -right-1.5 min-w-[17px] h-[17px] px-0.5 rounded-full bg-red-500 text-white text-[9px] font-black flex items-center justify-center leading-none"
@@ -333,16 +333,16 @@ export default function AdminNavbar() {
           <GoldSep />
 
           {/* 3. Language selector */}
-          <div className="relative px-2" ref={langRef}>
+          <div className="relative px-1.5" ref={langRef}>
             <button
               onClick={() => setIsLangOpen(v => !v)}
-              className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg transition-all duration-200"
+              className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-all duration-200"
               style={{ border: '1px solid rgba(201,163,77,0.18)', color: 'rgba(255,255,255,0.55)' }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,163,77,0.40)'; e.currentTarget.style.color = 'rgba(255,255,255,0.9)'; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(201,163,77,0.18)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
             >
-              <span className="text-base leading-none">{currentLang.flag}</span>
-              <span className="hidden sm:inline text-[10px] font-bold tracking-widest uppercase">
+              <span className="text-sm leading-none">{currentLang.flag}</span>
+              <span className="hidden xl:inline text-[10px] font-bold tracking-widest uppercase">
                 {currentLang.code.toUpperCase()}
               </span>
               <Globe size={10} style={{ color: 'rgba(201,163,77,0.45)' }} />
@@ -389,12 +389,12 @@ export default function AdminNavbar() {
           <GoldSep />
 
           {/* 4. Main site link */}
-          <div className="px-2">
+          <div className="px-1.5">
             <a
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold whitespace-nowrap transition-all duration-200 active:scale-95"
+              className="flex items-center gap-1.5 px-2 xl:px-3 py-1.5 rounded-lg text-[10.5px] font-bold whitespace-nowrap transition-all duration-200 active:scale-95"
               style={{
                 color: '#F2B233',
                 border: '1px dashed rgba(201,163,77,0.50)',
@@ -403,7 +403,7 @@ export default function AdminNavbar() {
               onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
             >
               <ExternalLink size={11} />
-              {t('admin.siteLink')}
+              <span className="hidden xl:inline">{t('admin.siteLink')}</span>
             </a>
           </div>
 

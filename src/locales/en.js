@@ -1,19 +1,21 @@
 export const en = {
   nav: {
     home: "Home",
-    about: "About Us",
-    services: "Engineering Services",
+    about: "About",
+    services: "Services",
     projects: "Projects",
     engineeringDesign: "Engineering Design",
     buildingPermits: "Building Permits",
     engineeringReports: "Engineering Reports",
     siteSupervision: "Site Supervision",
     blog: "Blog",
-    contact: "Contact Us",
+    contact: "Contact",
     profile: "Download Profile",
     careers: "Careers",
     more: "More",
-    ariaLabel: "Main Navigation"
+    ariaLabel: "Main Navigation",
+    openMenu: "Open menu",
+    closeMenu: "Close menu"
   },
   hero: {
     badge: "Engineering Excellence",

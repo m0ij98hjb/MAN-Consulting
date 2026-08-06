@@ -2,18 +2,20 @@ export const ur = {
   nav: {
     home: "ہوم",
     about: "ہمارے بارے میں",
-    services: "ہماری خدمات",
-    projects: "ہمارے منصوبے",
+    services: "خدمات",
+    projects: "منصوبے",
     engineeringDesign: "انجینئرنگ ڈیزائن",
     buildingPermits: "تعمیراتی اجازت نامے",
     engineeringReports: "انجینئرنگ رپورٹس",
     siteSupervision: "سائٹ کی نگرانی",
     blog: "بلاگ",
-    contact: "ہم سے رابطہ",
+    contact: "رابطہ",
     profile: "پروفائل ڈاؤنلوڈ",
     careers: "ملازمتیں",
     more: "مزید",
-    ariaLabel: "مرکزی نیویگیشن"
+    ariaLabel: "مرکزی نیویگیشن",
+    openMenu: "مینو کھولیں",
+    closeMenu: "مینو بند کریں"
   },
   hero: {
     badge: "انجینئرنگ میں عمدگی",

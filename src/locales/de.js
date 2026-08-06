@@ -2,18 +2,20 @@ export const de = {
   nav: {
     home: "Startseite",
     about: "Über Uns",
-    services: "Unsere Dienstleistungen",
-    projects: "Unsere Projekte",
+    services: "Leistungen",
+    projects: "Projekte",
     engineeringDesign: "Ingenieurdesign",
     buildingPermits: "Baugenehmigungen",
     engineeringReports: "Technische Berichte",
     siteSupervision: "Bauüberwachung",
     blog: "Blog",
-    contact: "Kontaktieren Sie Uns",
+    contact: "Kontakt",
     profile: "Profil Herunterladen",
     careers: "Karriere",
     more: "Mehr",
-    ariaLabel: "Hauptnavigation"
+    ariaLabel: "Hauptnavigation",
+    openMenu: "Menü öffnen",
+    closeMenu: "Menü schließen"
   },
   hero: {
     badge: "Technische Exzellenz",

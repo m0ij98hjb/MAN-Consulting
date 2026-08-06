@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -115,8 +115,24 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Escape closes any open dropdown/menu, mobile panel included
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key !== "Escape") return;
+      setIsLangOpen(false);
+      setIsAdminOpen(false);
+      setIsBellOpen(false);
+      setIsMoreOpen(false);
+      setIsServicesOpen(false);
+      setIsProfileOpen(false);
+      setIsOpen(false);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
+
   const handleLogoTap = (e) => {
-    if (window.innerWidth >= 1024) return; // desktop: use Ctrl+Shift+A instead
+    if (window.innerWidth >= 1280) return; // desktop: use Ctrl+Shift+A instead
     logoTapCount.current += 1;
     if (logoTapTimer.current) clearTimeout(logoTapTimer.current);
     if (logoTapCount.current >= 3) {
@@ -135,28 +151,38 @@ const Navbar = () => {
     router.replace('/admin/login');
   };
 
-  const navLinks = [
+  /* ── Priority tiers ──────────────────────────────────────────────
+     tier 1 (no tier field): always inline, every width ≥1024px. Home,
+       Services, Projects, Contact, About, Engineering Design and Careers
+       are all required to be permanently visible — never collapsed —
+       so the space budget for them is covered by the compact label
+       text (see locales) plus the tightened gap/font/action-zone
+       values below, not by hiding items.
+     isSecondary (tier 3, unchanged): inline only from 1650px up, else
+       lives in the "More" menu. These 4 service sub-pages are the only
+       genuinely lower-priority items in the list. ── */
+  const navLinks = useMemo(() => [
     { name: t('nav.home'),     href: "/",                icon: Home },
-    { name: t('nav.about'),    href: "/us",              icon: Info },
     { name: t('nav.services'), href: "/#services",       icon: Briefcase, isServicesDropdown: true },
-    { name: t('nav.engineeringDesign'), href: "/engineering-design", icon: Ruler },
     { name: t('nav.projects'), href: "/projects",        icon: FolderOpen },
-    { name: t('nav.careers'), href: "/careers",          icon: Users },
     { name: t('nav.contact'), href: "/contact",          icon: PhoneCall },
+    { name: t('nav.about'),    href: "/us",              icon: Info },
+    { name: t('nav.engineeringDesign'), href: "/engineering-design", icon: Ruler },
+    { name: t('nav.careers'), href: "/careers",          icon: Users },
     { name: t('nav.buildingPermits'),    href: "/building-permits",    icon: FileCheck,     isSecondary: true },
     { name: t('nav.engineeringReports'), href: "/engineering-reports", icon: ClipboardList, isSecondary: true },
     { name: t('nav.siteSupervision'),    href: "/site-supervision",    icon: Eye,           isSecondary: true },
     { name: t('nav.blog'),    href: "/blog",            icon: Newspaper,          isSecondary: true },
-  ];
+  ], [t]);
 
   /* â”€â”€ Engineering Services dropdown items â€” the 4 core service pages,
        same slugs/labels as the homepage services teaser. â”€â”€ */
-  const servicesList = [
+  const servicesList = useMemo(() => [
     { name: t('servicesSection.items.construction.title'), href: "/services/contracting",         icon: Building2 },
     { name: t('servicesSection.items.architecture.title'), href: "/services/architectural-design", icon: Compass },
     { name: t('servicesSection.items.management.title'),   href: "/services/project-management",  icon: FolderKanban },
     { name: t('servicesSection.items.interior.title'),     href: "/services/interior-design",      icon: Sofa },
-  ];
+  ], [t]);
 
   const currentLang = LANGUAGES.find(l => l.code === lang) || LANGUAGES[0];
 
@@ -172,6 +198,10 @@ const Navbar = () => {
   };
   const tPortfolio = portfolioTranslations[lang] || portfolioTranslations['en'];
 
+  /* Shared nav-link typography — Laptop (xl, 1280px) 15px, Desktop
+     (min-1600) 16px, Large desktop (min-2560) 17px. Never below 14px. */
+  const navLinkTextClass = "text-[15px] min-[1600px]:text-[16px] min-[2560px]:text-[17px] font-semibold tracking-[0.01em]";
+
   return (
     <>
       {/* â•â•â• MAIN NAVBAR â•â•â• */}
@@ -186,10 +216,10 @@ const Navbar = () => {
         borderBottomColor: 'rgba(255,255,255,.08)',
         transition: 'background-color .35s ease, box-shadow .35s ease, border-color .35s ease',
       }}>
-        <div className="w-full max-w-7xl lg:max-w-[1440px] mx-auto flex items-center lg:grid lg:grid-cols-[minmax(150px,auto)_minmax(0,1fr)_auto] nav-container-responsive px-4 sm:px-6 md:px-8 lg:px-[40px] py-3 sm:py-3.5 lg:py-0 lg:h-[92px]">
+        <div className="w-full max-w-[1600px] mx-auto flex items-center xl:flex-nowrap px-6 sm:px-8 lg:px-10 xl:px-12 h-[72px] md:h-[76px] xl:h-[80px] min-[1600px]:h-[84px]">
 
-          {/* â”€â”€ Zone 1 â€” Logo â”€â”€ */}
-          <div className="flex items-center lg:justify-center flex-shrink-0 nav-logo-responsive lg:pe-6">
+          {/* â”€â”€ Zone 1 â€” Logo (fixed width, never shrinks) â”€â”€ */}
+          <div className="flex items-center flex-shrink-0 xl:pe-8">
             <Link href="/" onClick={handleLogoTap} className="flex items-center flex-shrink-0">
               <Image
                 src="/brand/logo-navbar-real.png"
@@ -197,15 +227,18 @@ const Navbar = () => {
                 width={1029}
                 height={461}
                 unoptimized
-                className="h-11 sm:h-12 lg:h-11 xl:h-12 w-auto object-contain transition-all duration-500"
+                className="w-[100px] md:w-[120px] xl:w-[135px] 2xl:w-[150px] min-[1600px]:w-[160px] min-[2560px]:w-[170px] h-auto object-contain transition-all duration-500"
                 priority
               />
             </Link>
           </div>
 
-          {/* ── Zone 2 ── Center Nav, perfectly centered ── */}
-          <div className={`hidden lg:flex items-center lg:justify-center min-w-0 ${lang === 'ar' ? 'gap-6' : 'gap-3'}`}>
-            <nav className={`flex items-center flex-shrink-0 ${lang === 'ar' ? 'gap-6' : 'gap-3'}`} aria-label={t('nav.ariaLabel')}>
+          {/* ── Zone 2 ── Nav fills the space between logo and actions,
+               and centers its own content within that space — it never
+               gets a fixed width, so it can never be "clustered" off to
+               one side or forced to overflow a rigid column. ── */}
+          <div className="hidden xl:flex items-center justify-center flex-1 min-w-0 overflow-hidden gap-6 2xl:gap-7 min-[1920px]:gap-8">
+            <nav className="flex items-center flex-shrink-0 gap-6 2xl:gap-7 min-[1920px]:gap-8" aria-label={t('nav.ariaLabel')}>
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
 
@@ -235,7 +268,9 @@ const Navbar = () => {
                     >
                       <button
                         onClick={() => setIsServicesOpen(v => !v)}
-                        className={`relative flex items-center gap-1 text-[19px] py-2.5 transition-colors duration-200 whitespace-nowrap font-semibold tracking-[0.018em] nav-link-responsive ${lang === 'ar' ? 'nav-link-ar' : ''} ${
+                        aria-haspopup="menu"
+                        aria-expanded={isServicesOpen}
+                        className={`relative flex items-center gap-1 py-2.5 transition-colors duration-200 whitespace-nowrap rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 ${navLinkTextClass} ${
                           isServicesActive
                             ? "text-[#D4A843]"
                             : "text-white hover:text-[#D4A843]"
@@ -244,7 +279,7 @@ const Navbar = () => {
                         {link.name}
                         <ChevronDown size={13} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180" : ""}`} />
                       </button>
-                      <div className={`absolute top-full pt-2.5 ${isRTL ? 'right-0' : 'left-0'} w-[240px] z-50 transition-all duration-200 ${
+                      <div className={`absolute top-full pt-2.5 start-0 w-[240px] z-50 transition-all duration-200 ${
                         isServicesOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
                       }`}>
                         <div className="rounded-2xl overflow-hidden" style={{ background: '#44474F', border: '1px solid rgba(212,168,67,0.18)', boxShadow: '0 20px 60px rgba(0,0,0,0.45)' }}>
@@ -274,7 +309,8 @@ const Navbar = () => {
 
                 return (
                   <Link key={link.name} href={link.href}
-                    className={`relative text-[19px] py-2.5 transition-colors duration-200 whitespace-nowrap group font-semibold tracking-[0.018em] nav-link-responsive ${lang === 'ar' ? 'nav-link-ar' : ''} ${
+                    aria-current={isActive ? "page" : undefined}
+                    className={`relative py-2.5 transition-colors duration-200 whitespace-nowrap group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 ${navLinkTextClass} ${
                       isActive
                         ? "text-[#D4A843]"
                         : "text-white hover:text-[#D4A843]"
@@ -293,19 +329,21 @@ const Navbar = () => {
 
             {/* ── "More" dropdown ── holds secondary links ── */}
             <div
-              className="relative min-[1650px]:hidden flex-shrink-0 me-1"
+              className="relative min-[1650px]:hidden me-1"
               ref={moreDropdownRef}
               onMouseEnter={() => setIsMoreOpen(true)}
               onMouseLeave={() => setIsMoreOpen(false)}
             >
               <button
                 onClick={() => setIsMoreOpen(v => !v)}
-                className={`relative flex items-center gap-1.5 text-[19px] py-2.5 transition-colors duration-200 whitespace-nowrap font-semibold tracking-[0.018em] nav-link-responsive ${lang === 'ar' ? 'nav-link-ar' : ''} text-white hover:text-[#D4A843]`}
+                aria-haspopup="menu"
+                aria-expanded={isMoreOpen}
+                className={`relative flex items-center gap-1.5 py-2.5 transition-colors duration-200 whitespace-nowrap rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-white hover:text-[#D4A843] ${navLinkTextClass}`}
               >
                 {t('nav.more')}
                 <ChevronDown size={13} className={`transition-transform duration-300 ${isMoreOpen ? "rotate-180" : ""}`} />
               </button>
-              <div className={`absolute top-full pt-2.5 ${isRTL ? 'left-0' : 'right-0'} w-[220px] z-50 transition-all duration-200 ${
+              <div className={`absolute top-full pt-2.5 end-0 w-[220px] z-50 transition-all duration-200 ${
                 isMoreOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
               }`}>
                 <div className="rounded-2xl overflow-hidden" style={{ background: '#44474F', border: '1px solid rgba(212,168,67,0.18)', boxShadow: '0 20px 60px rgba(0,0,0,0.45)' }}>
@@ -333,7 +371,7 @@ const Navbar = () => {
           </div>
 
           {/* ── Zone 3 ── Admin Controls ── */}
-          <div className="hidden lg:flex items-center lg:justify-center lg:ps-4 nav-actions-responsive gap-2 flex-shrink-0">
+          <div className="hidden xl:flex items-center xl:ps-4 gap-2 min-[1600px]:gap-3 flex-shrink-0">
 
             {/* â”€â”€ ADMIN MODE â”€â”€ */}
             {isAdmin ? (
@@ -342,13 +380,14 @@ const Navbar = () => {
                 <div className="relative" ref={langDropdownRef}>
                   <button
                     onClick={() => setIsLangOpen(!isLangOpen)}
-                    className="flex items-center gap-1.5 px-2.5 xl:px-3 py-2 xl:py-2 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-300 nav-action-btn-responsive text-white/65 hover:text-white"
+                    aria-haspopup="menu"
+                    aria-expanded={isLangOpen}
+                    className="flex items-center gap-1.5 min-h-11 px-3 min-[1600px]:px-3.5 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[13px] min-[1600px]:text-[14px] text-white/65 hover:text-white"
                   >
-                    <span className="text-base leading-none">{currentLang.flag}</span>
                     <span className="text-[11px] font-bold tracking-widest uppercase">{currentLang.code.toUpperCase()}</span>
-                    <Globe size={12} className="text-[#D4A843]/45" />
+                    <Globe size={9} className="text-[#D4A843]/45" />
                   </button>
-                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[262px] bg-[#44474F] border border-[#D4A843]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                  <div className={`absolute top-[calc(100%+10px)] end-0 w-[262px] bg-[#44474F] border border-[#D4A843]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                     isLangOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-3 pointer-events-none"
                   }`}>
                     <div className="p-3">
@@ -390,7 +429,10 @@ const Navbar = () => {
                         setIsBellOpen(opening);
                         if (opening && markBellOpened) markBellOpened();
                       }}
-                      className="relative flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 nav-action-icon-btn-responsive"
+                      aria-haspopup="menu"
+                      aria-expanded={isBellOpen}
+                      aria-label={t('admin.notifications')}
+                      className="relative flex items-center justify-center w-11 h-11 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
                     >
                       <Bell size={15} />
                       {unreadCount > 0 && (
@@ -402,7 +444,7 @@ const Navbar = () => {
 
                     {/* Bell dropdown */}
                     <div
-                      className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[300px] rounded-2xl overflow-hidden z-50 transition-all duration-250 ${
+                      className={`absolute top-[calc(100%+10px)] end-0 w-[300px] rounded-2xl overflow-hidden z-50 transition-all duration-250 ${
                         isBellOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
                       }`}
                       style={{ background: '#44474F', border: '1px solid rgba(212,168,67,0.18)', boxShadow: '0 20px 60px rgba(0,0,0,0.45)' }}
@@ -459,16 +501,15 @@ const Navbar = () => {
                 {!isAdminPage && (
                   <div className="relative">
                     <button onClick={() => setIsProfileOpen(!isProfileOpen)}
-                      className="flex items-center gap-1.5 group">
-                      <span className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 border border-[#D4A843]/22 text-[#D4A843] rounded-lg transition-all duration-300 group-hover:bg-[#D4A843]/10 group-hover:border-[#D4A843]/40 active:scale-95 nav-action-icon-btn-responsive">
-                        <HiDocumentText size={17} />
-                      </span>
-                      <span className="bg-[#D4A843] text-black px-3 xl:px-4 py-[7px] xl:py-2 rounded-lg font-bold text-[12.5px] xl:text-[13.5px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-300 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center gap-1.5 whitespace-nowrap nav-action-btn-responsive">
+                      aria-haspopup="menu"
+                      aria-expanded={isProfileOpen}
+                      className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 rounded-lg">
+                      <span className="bg-[#D4A843] text-black px-2 xl:px-2.5 py-[4px] xl:py-[5px] rounded-lg font-bold text-[10.5px] xl:text-[11px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-300 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center gap-1 whitespace-nowrap">
                         {t('nav.profile')}
-                        <ChevronDown size={11} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
+                        <ChevronDown size={9} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                       </span>
                     </button>
-                    <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[178px] bg-[#44474F] border border-[#D4A843]/14 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                    <div className={`absolute top-[calc(100%+10px)] end-0 w-[178px] bg-[#44474F] border border-[#D4A843]/14 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                       isProfileOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
                     }`}>
                       <a href="/Portfolio%20MAN/ARABIC%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
@@ -491,7 +532,7 @@ const Navbar = () => {
                   <button
                     id="staff-portal-btn-admin"
                     onClick={handlePortalClick}
-                    className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 nav-action-icon-btn-responsive"
+                    className="flex items-center justify-center w-11 h-11 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
                   >
                     <Briefcase size={15} />
                   </button>
@@ -504,7 +545,9 @@ const Navbar = () => {
                 <div className="relative" ref={adminDropdownRef}>
                   <button
                     onClick={() => setIsAdminOpen(!isAdminOpen)}
-                    className="flex items-center gap-1.5 px-2.5 xl:px-3 py-2 xl:py-2 rounded-lg border border-[#D4A843]/30 hover:border-[#D4A843]/50 hover:bg-[#D4A843]/8 transition-all duration-300 active:scale-95 nav-action-btn-responsive"
+                    aria-haspopup="menu"
+                    aria-expanded={isAdminOpen}
+                    className="flex items-center gap-1.5 min-h-11 px-3 min-[1600px]:px-3.5 rounded-lg border border-[#D4A843]/30 hover:border-[#D4A843]/50 hover:bg-[#D4A843]/8 transition-all duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
                   >
                     <UserCog size={14} className="text-[#D4A843] flex-shrink-0" />
                     <span className="text-[12.5px] xl:text-[13px] font-bold text-[#D4A843] whitespace-nowrap">
@@ -513,7 +556,7 @@ const Navbar = () => {
                     <ChevronDown size={10} className={`text-[#D4A843]/50 transition-transform duration-300 ${isAdminOpen ? 'rotate-180' : ''}`} />
                   </button>
 
-                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[185px] bg-[#44474F] border border-[#D4A843]/15 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                  <div className={`absolute top-[calc(100%+10px)] end-0 w-[185px] bg-[#44474F] border border-[#D4A843]/15 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                     isAdminOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
                   }`}>
                     <Link
@@ -542,17 +585,16 @@ const Navbar = () => {
                 {/* Profile / Portfolio Dropdown */}
                 <div className="relative">
                   <button onClick={() => setIsProfileOpen(!isProfileOpen)}
-                    className="flex items-center gap-1.5 group">
-                    <span className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 border border-[#D4A843]/22 text-[#D4A843] rounded-lg transition-all duration-300 group-hover:bg-[#D4A843]/10 group-hover:border-[#D4A843]/40 active:scale-95 nav-action-icon-btn-responsive">
-                      <HiDocumentText size={16} />
-                    </span>
-                    <span className="bg-[#D4A843] text-black px-3 xl:px-3.5 py-2 xl:py-2 rounded-lg font-bold text-[12.5px] xl:text-[13.5px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-300 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center gap-1.5 whitespace-nowrap nav-action-btn-responsive">
+                    aria-haspopup="menu"
+                    aria-expanded={isProfileOpen}
+                    className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 rounded-lg">
+                    <span className="bg-[#D4A843] text-black px-2 xl:px-2.5 py-[4px] xl:py-[5px] rounded-lg font-bold text-[10.5px] xl:text-[11px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-300 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center gap-1 whitespace-nowrap">
                       {t('nav.profile')}
-                      <ChevronDown size={11} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown size={9} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                     </span>
                   </button>
 
-                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[178px] bg-[#44474F] border border-[#D4A843]/14 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                  <div className={`absolute top-[calc(100%+10px)] end-0 w-[178px] bg-[#44474F] border border-[#D4A843]/14 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                     isProfileOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
                   }`}>
                     <a href="/Portfolio%20MAN/ARABIC%20PORTFOLIO.pdf" target="_blank" rel="noopener noreferrer"
@@ -574,7 +616,7 @@ const Navbar = () => {
                   <button
                     id="staff-portal-btn"
                     onClick={handlePortalClick}
-                    className="flex items-center justify-center w-8 h-8 xl:w-9 xl:h-9 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 nav-action-icon-btn-responsive"
+                    className="flex items-center justify-center w-11 h-11 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
                   >
                     <Briefcase size={15} />
                   </button>
@@ -587,14 +629,15 @@ const Navbar = () => {
                 <div className="relative" ref={langDropdownRef}>
                   <button
                     onClick={() => setIsLangOpen(!isLangOpen)}
-                    className="flex items-center gap-1.5 px-2.5 xl:px-3 py-2 xl:py-2 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-300 nav-action-btn-responsive text-white/65 hover:text-white"
+                    aria-haspopup="menu"
+                    aria-expanded={isLangOpen}
+                    className="flex items-center gap-1.5 min-h-11 px-3 min-[1600px]:px-3.5 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[13px] min-[1600px]:text-[14px] text-white/65 hover:text-white"
                   >
-                    <span className="text-base leading-none">{currentLang.flag}</span>
                     <span className="text-[11px] font-bold tracking-widest uppercase">{currentLang.code.toUpperCase()}</span>
-                    <Globe size={12} className="text-[#D4A843]/45" />
+                    <Globe size={9} className="text-[#D4A843]/45" />
                   </button>
 
-                  <div className={`absolute top-[calc(100%+10px)] ${isRTL ? 'left-0' : 'right-0'} w-[262px] bg-[#44474F] border border-[#D4A843]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
+                  <div className={`absolute top-[calc(100%+10px)] end-0 w-[262px] bg-[#44474F] border border-[#D4A843]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                     isLangOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-3 pointer-events-none"
                   }`}>
                     <div className="p-3">
@@ -631,10 +674,13 @@ const Navbar = () => {
           </div>
 
           {/* â”€â”€ Mobile Header Actions â”€â”€ */}
-          <div className="flex items-center gap-2 lg:hidden ms-auto">
+          <div className="flex items-center gap-2 xl:hidden ms-auto">
             <button
-              className="p-2 rounded-lg border border-[#D4A843]/22 hover:bg-[#D4A843]/10 transition-colors text-white/80"
+              className="flex items-center justify-center w-11 h-11 rounded-lg border border-[#D4A843]/22 hover:bg-[#D4A843]/10 transition-colors text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
               onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              aria-controls="mobile-nav-panel"
+              aria-label={isOpen ? t('nav.closeMenu') : t('nav.openMenu')}
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -645,14 +691,19 @@ const Navbar = () => {
 
       {/* â•â•â• MOBILE OVERLAY â•â•â• */}
       <div
-        className={`lg:hidden fixed inset-0 z-[110] transition-opacity duration-500 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`xl:hidden fixed inset-0 z-[110] transition-opacity duration-500 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         style={{ backgroundColor: 'rgba(0,0,0,0.72)' }}
         onClick={() => setIsOpen(false)}
+        aria-hidden="true"
       />
 
       {/* â•â•â• MOBILE PANEL â•â•â• */}
       <div
-        className={`lg:hidden fixed top-0 bottom-0 w-full z-[120] transition-transform duration-500 ease-out ${isRTL ? 'right-0' : 'left-0'}`}
+        id="mobile-nav-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label={t('nav.ariaLabel')}
+        className="xl:hidden fixed top-0 bottom-0 w-full z-[120] transition-transform duration-500 ease-out start-0"
         style={{
           backgroundColor: '#2E3038',
           boxShadow: isRTL ? '-6px 0 50px rgba(0,0,0,1)' : '6px 0 50px rgba(0,0,0,1)',

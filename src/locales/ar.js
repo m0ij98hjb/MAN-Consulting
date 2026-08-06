@@ -2,7 +2,7 @@ export const ar = {
   nav: {
     home: "الرئيسية",
     about: "من نحن",
-    services: "خدماتنا الهندسية",
+    services: "خدماتنا",
     projects: "مشاريعنا",
     engineeringDesign: "التصميم الهندسي",
     buildingPermits: "التراخيص",
@@ -13,7 +13,9 @@ export const ar = {
     profile: "البروفايل",
     careers: "وظائف",
     more: "أكثر",
-    ariaLabel: "التنقل الرئيسي"
+    ariaLabel: "التنقل الرئيسي",
+    openMenu: "فتح القائمة",
+    closeMenu: "إغلاق القائمة"
   },
   hero: {
     badge: "التميز الهندسي",

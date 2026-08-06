@@ -9,11 +9,13 @@ export const ru = {
     engineeringReports: "Инженерные отчёты",
     siteSupervision: "Надзор на объекте",
     blog: "Блог",
-    contact: "Связаться с нами",
+    contact: "Контакты",
     profile: "Скачать профиль",
     careers: "Карьера",
     more: "Ещё",
-    ariaLabel: "Главная навигация"
+    ariaLabel: "Главная навигация",
+    openMenu: "Открыть меню",
+    closeMenu: "Закрыть меню"
   },
   hero: {
     badge: "Инженерное превосходство",

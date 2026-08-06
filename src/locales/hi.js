@@ -9,11 +9,13 @@ export const hi = {
     engineeringReports: "इंजीनियरिंग रिपोर्ट",
     siteSupervision: "साइट पर्यवेक्षण",
     blog: "ब्लॉग",
-    contact: "संपर्क करें",
+    contact: "संपर्क",
     profile: "प्रोफ़ाइल डाउनलोड करें",
     careers: "करियर",
     more: "अधिक",
-    ariaLabel: "मुख्य नेविगेशन"
+    ariaLabel: "मुख्य नेविगेशन",
+    openMenu: "मेनू खोलें",
+    closeMenu: "मेनू बंद करें"
   },
   hero: {
     badge: "इंजीनियरिंग उत्कृष्टता",

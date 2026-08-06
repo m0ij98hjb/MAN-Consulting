@@ -26,11 +26,11 @@ const Hero = () => {
   const statDesigns = homeCms?.stat_designs ?? siteStats.designs.value;
 
   const heroImages = [
+    "/asstes/office-projects/60.jpg",
     "/asstes/office-projects/16.jpg",
     "/asstes/office-projects/21.jpg",
     "/asstes/office-projects/20.jpg",
     "/asstes/office-projects/44.jpg",
-    "/asstes/office-projects/60.jpg",
   ];
 
   const descFallback = t('hero.liveDescription');
