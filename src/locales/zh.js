@@ -383,6 +383,7 @@ export const zh = {
     loginError: "凭据无效。请检查您的电子邮件和密码。",
     managerTitle: "公司经理",
     logout: "退出登录",
+    menu: "主菜单",
     dashboard: "仪表板",
     reportsMenu: "报告",
     new: "新请求",

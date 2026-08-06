@@ -110,10 +110,6 @@ export default function VideoShowcase() {
   return (
     <section ref={sectionRef} className="py-20 md:py-28 bg-[var(--background)] relative overflow-hidden">
 
-      {/* ── Background ── */}
-      <div className="absolute inset-0 opacity-[0.02]"
-        style={{ backgroundImage: "repeating-linear-gradient(45deg,#D4A843 0,#D4A843 1px,transparent 1px,transparent 80px)" }}
-      />
       <div className="absolute top-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
       <div className="absolute bottom-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">

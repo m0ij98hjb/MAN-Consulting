@@ -383,6 +383,7 @@ export const fr = {
     loginError: "Identifiants invalides. Vérifiez votre e-mail et mot de passe.",
     managerTitle: "Directeur Général",
     logout: "Déconnexion",
+    menu: "Menu Principal",
     dashboard: "Tableau de Bord",
     reportsMenu: "Rapports",
     new: "Nouvelles Demandes",

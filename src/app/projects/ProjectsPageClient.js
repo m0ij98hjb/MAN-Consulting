@@ -19,14 +19,14 @@ export default function ProjectsPageClient({ projects, categories }) {
       title: t("gallery.barjisTitle"),
       description: t("gallery.clickEnlarge"),
       images: [
-        "/asstes/office-projects/BARJIS FRONT FACADE (05.08.2025).jpg",
-        "/asstes/office-projects/BARJIS - BACK ENTRANCE (07.07.2025).jpg",
-        "/asstes/office-projects/BARJIS - BACK ENTRANCE 02 (07.07.2025).jpg",
-        "/asstes/office-projects/BARJIS - INNER COURT (05.24.2025).jpg",
-        "/asstes/office-projects/BARJIS - INNER COURT (TWO) (05.24.2025).jpg",
-        "/asstes/office-projects/BARJIS - PARKING ENTRANCE (07.07.2025).jpg",
-        "/asstes/office-projects/BARJIS - ROOF (05.24.2025).jpg",
-        "/asstes/office-projects/BARJIS BASEMENT - TWO (07.13.2025).jpg",
+        "/asstes/office-projects/projects-ph/WhatsApp Image 2025-12-29 at 02.52.48.jpeg",
+        "/asstes/office-projects/projects-ph/WhatsApp Image 2025-12-29 at 09.08.25.jpeg",
+        "/asstes/office-projects/projects-ph/WhatsApp Image 2025-12-30 at 03.35.41.jpeg",
+        "/asstes/office-projects/projects-ph/WhatsApp Image 2025-12-30 at 05.15.23.jpeg",
+        "/asstes/office-projects/projects-ph/WhatsApp Image 2025-12-29 at 02.52.49.jpeg",
+        "/asstes/office-projects/projects-ph/WhatsApp Image 2025-12-29 at 09.08.27.jpeg",
+        "/asstes/office-projects/projects-ph/WhatsApp Image 2025-12-30 at 03.35.42.jpeg",
+        "/asstes/office-projects/projects-ph/WhatsApp Image 2025-12-29 at 02.52.48 (5).jpeg",
       ]
     },
     {

@@ -383,6 +383,7 @@ export const ur = {
     loginError: "غلط اسناد۔ ای میل اور پاس ورڈ چیک کریں۔",
     managerTitle: "کمپنی مینیجر",
     logout: "لاگ آؤٹ",
+    menu: "مرکزی مینو",
     dashboard: "ڈیش بورڈ",
     reportsMenu: "رپورٹس",
     new: "نئی درخواستیں",

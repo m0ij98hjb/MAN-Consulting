@@ -62,7 +62,7 @@ export default function AdminBottomNav() {
               <Link
                 key={href}
                 href={href}
-                className="flex flex-col items-center justify-center flex-1 gap-1.5 transition-all duration-150 active:scale-95 relative px-1"
+                className="relative flex flex-col items-center justify-center flex-1 gap-1 transition-all duration-150 active:scale-95 px-1"
               >
                 {/* Active top indicator */}
                 {active && (
@@ -71,12 +71,17 @@ export default function AdminBottomNav() {
                     style={{ background: 'linear-gradient(90deg,transparent,#F2B233,transparent)' }}
                   />
                 )}
-                {Icon && (
-                  <Icon
-                    size={active ? 20 : 18}
-                    style={{ color: active ? '#F2B233' : 'rgba(255,255,255,0.65)', transition: 'all 0.2s' }}
-                  />
-                )}
+                <span
+                  className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-200"
+                  style={{ background: active ? 'rgba(242,178,51,0.14)' : 'transparent' }}
+                >
+                  {Icon && (
+                    <Icon
+                      size={active ? 19 : 18}
+                      style={{ color: active ? '#F2B233' : 'rgba(255,255,255,0.65)', transition: 'all 0.2s' }}
+                    />
+                  )}
+                </span>
                 <span
                   className="text-[10px] font-bold leading-tight text-center w-full"
                   style={{ color: active ? '#F2B233' : 'rgba(255,255,255,0.65)' }}
@@ -90,9 +95,11 @@ export default function AdminBottomNav() {
           {/* Logout button */}
           <button
             onClick={handleLogout}
-            className="flex flex-col items-center justify-center flex-1 gap-1.5 transition-all duration-150 active:scale-95 px-1"
+            className="flex flex-col items-center justify-center flex-1 gap-1 transition-all duration-150 active:scale-95 px-1"
           >
-            <LogOut size={18} style={{ color: 'rgba(248,113,113,0.75)' }} />
+            <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-red-500/[0.06]">
+              <LogOut size={18} style={{ color: 'rgba(248,113,113,0.75)' }} />
+            </span>
             <span
               className="text-[10px] font-bold leading-tight text-center w-full"
               style={{ color: 'rgba(248,113,113,0.75)' }}

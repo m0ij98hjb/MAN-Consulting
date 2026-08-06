@@ -161,8 +161,11 @@ export default function AdminSidebar() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-2 py-3">
-          <div className="space-y-0.5">
+        <nav className="flex-1 px-3 py-4 flex flex-col">
+          <p className="px-2.5 mb-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white/25 select-none">
+            {t('admin.menu')}
+          </p>
+          <div className="space-y-1">
             {navigationItems.map(({ href, label, icon: iconName }) => {
               const Icon = ICON_MAP[iconName];
               const active = pathname === href || pathname.startsWith(href + '/');
@@ -170,28 +173,49 @@ export default function AdminSidebar() {
                 <Link
                   key={href}
                   href={href}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200
-                    ${active
-                      ? 'bg-[#F2B233]/10 text-[#F2B233] font-semibold'
-                      : 'text-white/45 hover:text-white hover:bg-white/5'
-                    }`}
+                  className={`group relative flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13px] font-medium overflow-hidden transition-colors duration-200
+                    ${active ? 'text-[#F2B233] font-semibold' : 'text-white/45 hover:text-white'}`}
                 >
-                  {Icon && <Icon size={15} className="shrink-0" />}
-                  <span className="flex-1">{label}</span>
-                  {active && <ChevronIcon size={12} className="opacity-50 shrink-0" />}
+                  {/* Background fill */}
+                  <span
+                    className={`absolute inset-0 rounded-xl transition-all duration-200 ${
+                      active
+                        ? 'bg-gradient-to-r from-[#F2B233]/14 via-[#F2B233]/[0.06] to-transparent'
+                        : 'bg-transparent group-hover:bg-white/[0.05]'
+                    }`}
+                  />
+                  {/* Active side accent bar */}
+                  <span
+                    className={`absolute inset-y-2 ${isRTL ? 'right-0 rounded-l-full' : 'left-0 rounded-r-full'} w-[3px] bg-[#F2B233] transition-opacity duration-200 ${
+                      active ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                  {/* Icon chip */}
+                  <span
+                    className={`relative z-10 flex items-center justify-center w-8 h-8 rounded-lg shrink-0 transition-all duration-200 ${
+                      active ? 'bg-[#F2B233]/15 shadow-[0_0_0_1px_rgba(242,178,51,0.25)]' : 'bg-white/[0.04] group-hover:bg-white/10'
+                    }`}
+                  >
+                    {Icon && <Icon size={14} />}
+                  </span>
+                  <span className="relative z-10 flex-1 truncate">{label}</span>
+                  {active && <ChevronIcon size={12} className="relative z-10 opacity-60 shrink-0" />}
                 </Link>
               );
             })}
           </div>
 
           {/* Logout */}
-          <div className="mt-2 pt-2 border-t border-white/[0.06]">
+          <div className="mt-auto pt-3 border-t border-white/[0.06]">
             <button
               onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] text-red-400/60 hover:text-red-400 hover:bg-red-500/6 border border-transparent hover:border-red-500/12 transition-all duration-200"
+              className="group relative w-full flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13px] font-medium text-red-400/60 hover:text-red-400 transition-colors duration-200"
             >
-              <LogOut size={15} className="shrink-0" />
-              <span>{t('admin.logout')}</span>
+              <span className="absolute inset-0 rounded-xl bg-transparent group-hover:bg-red-500/[0.06] border border-transparent group-hover:border-red-500/15 transition-all duration-200" />
+              <span className="relative z-10 flex items-center justify-center w-8 h-8 rounded-lg bg-red-500/[0.05] group-hover:bg-red-500/10 shrink-0 transition-all duration-200">
+                <LogOut size={14} />
+              </span>
+              <span className="relative z-10">{t('admin.logout')}</span>
             </button>
           </div>
         </nav>

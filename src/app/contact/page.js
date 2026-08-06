@@ -365,12 +365,6 @@ export default function ContactPage() {
         {/* Top accent line */}
         <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-secondary to-transparent z-10" />
 
-        {/* Diagonal pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.04] z-0"
-          style={{ backgroundImage: "repeating-linear-gradient(45deg, #D4A843 0px, #D4A843 1px, transparent 1px, transparent 80px)" }}
-        />
-
         <div className="container relative z-10 mx-auto px-4 sm:px-6 max-w-4xl py-6 sm:py-16">
           <div className="text-center" data-aos="fade-up">
             {/* Badge */}

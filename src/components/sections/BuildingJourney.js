@@ -413,10 +413,6 @@ export default function BuildingJourney() {
 
   return (
     <section ref={sectionRef} className="py-24 md:py-32 bg-[#04090F] relative overflow-hidden">
-      {/* bg texture */}
-      <div className="absolute inset-0 opacity-[0.022]"
-        style={{ backgroundImage: "repeating-linear-gradient(45deg,#D4A843 0px,#D4A843 1px,transparent 1px,transparent 80px)" }}
-      />
       <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

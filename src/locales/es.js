@@ -383,6 +383,7 @@ export const es = {
     loginError: "Credenciales inválidas.",
     managerTitle: "Director de la Empresa",
     logout: "Cerrar Sesión",
+    menu: "Menú Principal",
     dashboard: "Panel de Control",
     reportsMenu: "Informes",
     new: "Nuevas Solicitudes",

@@ -383,6 +383,7 @@ export const en = {
     loginError: "Invalid credentials. Please check your email and password.",
     managerTitle: "Company Manager",
     logout: "Sign Out",
+    menu: "Main Menu",
     dashboard: "Dashboard",
     reportsMenu: "Reports",
     new: "New Requests",

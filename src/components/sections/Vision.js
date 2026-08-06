@@ -78,19 +78,6 @@ const Vision = () => {
       dir={isRTL ? "rtl" : "ltr"}
     >
 
-      {/* ── Blueprint grid ──────────────────────────────────────────────── */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(212,168,67,0.035) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(212,168,67,0.035) 1px, transparent 1px)
-          `,
-          backgroundSize: "64px 64px",
-        }}
-      />
-
       {/* ── Ambient glows ───────────────────────────────────────────────── */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A843]/20 to-transparent" />

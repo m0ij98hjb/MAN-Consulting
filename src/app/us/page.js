@@ -85,12 +85,6 @@ export default function AboutUsPage() {
         {/* Top gold accent line */}
         <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-secondary to-transparent z-10" />
 
-        {/* Diagonal grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.04] z-0"
-          style={{ backgroundImage: "repeating-linear-gradient(45deg, #D4A843 0px, #D4A843 1px, transparent 1px, transparent 80px)" }}
-        />
-
         {/* Content */}
         <div className="container relative z-10 mx-auto px-6 max-w-7xl pt-24 md:pt-28">
           <div className={isRTL ? "text-right" : "text-left"} data-aos="fade-up">

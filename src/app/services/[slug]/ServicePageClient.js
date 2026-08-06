@@ -61,10 +61,6 @@ export default function ServicePageClient({ slug }) {
         </div>
 
         <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent z-10" />
-        <div
-          className="absolute inset-0 opacity-[0.04] z-0"
-          style={{ backgroundImage: "repeating-linear-gradient(45deg,#D4A843 0px,#D4A843 1px,transparent 1px,transparent 80px)" }}
-        />
 
         <div className="container relative z-10 mx-auto px-6 max-w-7xl pt-24 md:pt-28">
           <div className={isRTLLang ? "text-right" : "text-left"} data-aos="fade-up">
@@ -214,8 +210,6 @@ export default function ServicePageClient({ slug }) {
 
       {/* ═══════ CTA ═══════ */}
       <section className="py-28 bg-[#060E1A] relative overflow-hidden">
-        {/* Diagonal texture */}
-        <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: "repeating-linear-gradient(45deg,#D4A843 0px,#D4A843 1px,transparent 1px,transparent 80px)" }} />
         {/* Top & bottom gold lines */}
         <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" />

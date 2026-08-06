@@ -383,6 +383,7 @@ export const hi = {
     loginError: "अमान्य क्रेडेंशियल। कृपया अपना ईमेल और पासवर्ड जांचें।",
     managerTitle: "कंपनी प्रबंधक",
     logout: "साइन आउट",
+    menu: "मुख्य मेनू",
     dashboard: "डैशबोर्ड",
     reportsMenu: "रिपोर्ट",
     new: "नए अनुरोध",

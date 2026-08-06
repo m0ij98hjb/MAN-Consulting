@@ -167,23 +167,6 @@ body {
   position: relative;
 }
 
-/* Ambient diagonal gold-line pattern — more visible on the lighter bg */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.055;
-  background-image: repeating-linear-gradient(
-    45deg,
-    #D4A843 0px,
-    #D4A843 1px,
-    transparent 1px,
-    transparent 80px
-  );
-}
-
 /* Responsive base improvements */
 * {
   box-sizing: border-box;

@@ -84,10 +84,7 @@ export default function GalleryClient({ galleries }) {
                 grabCursor={true}
                 centeredSlides={true}
                 slidesPerView={"auto"}
-                loop={true}
-                loopedSlides={gallery.images.length}
-                loopPreventsSliding={false}
-                loopAddBlankSlides={false}
+                initialSlide={gallery.images.length}
                 coverflowEffect={{
                   rotate: 30,
                   stretch: 0,
@@ -104,6 +101,24 @@ export default function GalleryClient({ galleries }) {
                   dynamicBullets: true,
                 }}
                 navigation={true}
+                onSlideChange={(sw) => {
+                  // Manual infinite loop: three real copies of the deck are
+                  // rendered back to back so coverflow's 3D transform math only
+                  // ever sees real neighboring slides. Native Swiper `loop`
+                  // mode was dropped here because its slide-recycling combined
+                  // with the coverflow effect's continuous rotate/depth
+                  // calculation drifts to extreme values after many cycles,
+                  // rendering slides invisible (huge rotateY/translateZ).
+                  // Once the view drifts into the first or third copy, snap
+                  // (speed 0, no callbacks) back to the equivalent position in
+                  // the middle copy — invisible to the viewer.
+                  const len = gallery.images.length;
+                  if (sw.activeIndex < len) {
+                    sw.slideTo(sw.activeIndex + len, 0, false);
+                  } else if (sw.activeIndex >= len * 2) {
+                    sw.slideTo(sw.activeIndex - len, 0, false);
+                  }
+                }}
                 modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                 className="architecture-swiper py-10"
                 breakpoints={{
@@ -112,27 +127,31 @@ export default function GalleryClient({ galleries }) {
                   1024: { slidesPerView: 3, spaceBetween: 40 },
                 }}
               >
-                {gallery.images.map((imgSrc, imgIndex) => (
-                  <SwiperSlide key={imgIndex} className="max-w-[320px]">
-                    <div
-                      onClick={() => openLightbox(gallery.images, imgIndex, gallery.title)}
-                      className="group relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl cursor-pointer bg-slate-100 border-4 border-white"
-                    >
-                      <Image
-                        src={imgSrc}
-                        alt={`${gallery.title} - Image ${imgIndex + 1}`}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        unoptimized
-                      />
-                      <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                        <div className="bg-[var(--card-bg)]/20 p-4 rounded-full transform scale-50 group-hover:scale-100 transition-transform duration-500">
-                          <ZoomIn size={32} className="text-[var(--foreground)]" />
+                {[...gallery.images, ...gallery.images, ...gallery.images].map((imgSrc, slotIndex) => {
+                  const imgIndex = slotIndex % gallery.images.length;
+                  return (
+                    <SwiperSlide key={slotIndex} className="max-w-[320px]">
+                      <div
+                        onClick={() => openLightbox(gallery.images, imgIndex, gallery.title)}
+                        className="group relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl cursor-pointer bg-slate-100 border-4 border-white"
+                      >
+                        <Image
+                          src={imgSrc}
+                          alt={`${gallery.title} - Image ${imgIndex + 1}`}
+                          fill
+                          loading="eager"
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          unoptimized
+                        />
+                        <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                          <div className="bg-[var(--card-bg)]/20 p-4 rounded-full transform scale-50 group-hover:scale-100 transition-transform duration-500">
+                            <ZoomIn size={32} className="text-[var(--foreground)]" />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
               <style jsx global>{`
                 .architecture-swiper .swiper-pagination-bullet-active {
@@ -187,8 +206,6 @@ export default function GalleryClient({ galleries }) {
                   prevEl: `.swiper-prev-${gallery.id}`,
                 }}
                 loop={true}
-                loopedSlides={gallery.images.length}
-                loopAddBlankSlides={false}
                 modules={[Pagination, Navigation, Autoplay]}
                 className="interior-swiper rounded-[2rem] overflow-visible"
                 breakpoints={{
@@ -207,6 +224,7 @@ export default function GalleryClient({ galleries }) {
                         src={imgSrc}
                         alt={`${gallery.title} - Image ${imgIndex + 1}`}
                         fill
+                        loading="eager"
                         className="object-cover transition-transform duration-[2000ms] group-hover/slide:scale-110"
                         unoptimized
                       />

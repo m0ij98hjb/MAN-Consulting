@@ -188,10 +188,6 @@ export default function CareersPage() {
             alt="MAN Careers" fill className="object-contain object-center" priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-[#070d1a]/97" />
-          <div className="absolute inset-0 opacity-[0.07]"
-            style={{ backgroundImage: "repeating-linear-gradient(45deg,#D4A843 0px,#D4A843 1px,transparent 1px,transparent 80px)" }} />
-          
-          
         </div>
         <div className="relative z-10 container mx-auto px-6 text-center max-w-5xl pt-32 pb-24">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#D4A843]/40 bg-[#D4A843]/10 text-[#D4A843] text-xs font-bold uppercase tracking-[3px] mb-8" data-aos="fade-down">

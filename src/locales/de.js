@@ -383,6 +383,7 @@ export const de = {
     loginError: "Ungültige Zugangsdaten.",
     managerTitle: "Unternehmensleiter",
     logout: "Abmelden",
+    menu: "Hauptmenü",
     dashboard: "Dashboard",
     reportsMenu: "Berichte",
     new: "Neue Anfragen",

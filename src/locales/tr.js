@@ -383,6 +383,7 @@ export const tr = {
     loginError: "Geçersiz kimlik bilgileri.",
     managerTitle: "Şirket Müdürü",
     logout: "Çıkış Yap",
+    menu: "Ana Menü",
     dashboard: "Gösterge Paneli",
     reportsMenu: "Raporlar",
     new: "Yeni Talepler",

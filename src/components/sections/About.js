@@ -152,25 +152,6 @@ const About = () => {
         {/* base layered gradient */}
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,168,67,0.06) 0%, transparent 55%), radial-gradient(ellipse 60% 50% at 100% 100%, rgba(212,168,67,0.04) 0%, transparent 60%), linear-gradient(180deg, #3B3E46 0%, #202227 50%, #1A1B1F 100%)' }} />
 
-        {/* subtle architectural grid */}
-        <div className="absolute inset-0 opacity-[0.035]" style={{
-          backgroundImage: 'linear-gradient(rgba(212,168,67,1) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,1) 1px,transparent 1px)',
-          backgroundSize: '64px 64px',
-        }} />
-
-        {/* abstract architectural line art */}
-        <svg className="absolute top-10 right-6 w-40 h-40 md:w-56 md:h-56 opacity-[0.08]" viewBox="0 0 200 200" fill="none">
-          <path d="M20 180 L100 40 L180 180" stroke="#D4A843" strokeWidth="1.2" />
-          <path d="M50 180 L100 90 L150 180" stroke="#D4A843" strokeWidth="1.2" />
-          <line x1="20" y1="180" x2="180" y2="180" stroke="#D4A843" strokeWidth="1.2" />
-          <circle cx="100" cy="40" r="4" stroke="#D4A843" strokeWidth="1.2" />
-        </svg>
-        <svg className="absolute bottom-8 left-6 w-32 h-32 md:w-44 md:h-44 opacity-[0.06]" viewBox="0 0 200 200" fill="none">
-          <rect x="30" y="60" width="140" height="120" stroke="#D4A843" strokeWidth="1.2" />
-          <line x1="30" y1="100" x2="170" y2="100" stroke="#D4A843" strokeWidth="1.2" />
-          <line x1="80" y1="60" x2="80" y2="180" stroke="#D4A843" strokeWidth="1.2" />
-          <line x1="130" y1="60" x2="130" y2="180" stroke="#D4A843" strokeWidth="1.2" />
-        </svg>
       </div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
