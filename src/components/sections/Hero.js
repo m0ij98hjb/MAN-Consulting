@@ -26,11 +26,18 @@ const Hero = () => {
   const statDesigns = homeCms?.stat_designs ?? siteStats.designs.value;
 
   const heroImages = [
-    "/asstes/office-projects/60.jpg",
     "/asstes/office-projects/16.jpg",
-    "/asstes/office-projects/21.jpg",
-    "/asstes/office-projects/20.jpg",
-    "/asstes/office-projects/44.jpg",
+    "/asstes/office-projects/17.jpg",
+    "/asstes/office-projects/18.jpg",
+    "/asstes/office-projects/19.jpg",
+    "/asstes/office-projects/10.jpg",
+    "/asstes/office-projects/11.jpg",
+    "/asstes/office-projects/42.jpg",
+    "/asstes/office-projects/h1.jpeg",
+    "/asstes/office-projects/h2.jpeg",
+    "/asstes/office-projects/h3.jpeg",
+    "/asstes/office-projects/h4.jpeg",
+
   ];
 
   const descFallback = t('hero.liveDescription');
