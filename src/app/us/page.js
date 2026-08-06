@@ -291,7 +291,7 @@ export default function AboutUsPage() {
             <div className="group relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 hover:border-[#D4A843]/30 transition-all duration-500 bg-white/5" data-aos="fade-up" data-aos-delay="100">
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
-                  src="/asstes/shorka1.png"
+                  src="/asstes/shorkaa.png"
                   alt="MAN Team"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -314,7 +314,7 @@ export default function AboutUsPage() {
             <div className="group relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 hover:border-[#D4A843]/30 transition-all duration-500 bg-white/5" data-aos="fade-up" data-aos-delay="200">
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
-                  src="/asstes/shorka2.png"
+                  src="/asstes/shorka01.png"
                   alt="MAN Team"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
