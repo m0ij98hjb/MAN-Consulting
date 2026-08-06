@@ -382,10 +382,10 @@ const Navbar = () => {
                     onClick={() => setIsLangOpen(!isLangOpen)}
                     aria-haspopup="menu"
                     aria-expanded={isLangOpen}
-                    className="flex items-center gap-1.5 min-h-11 px-3 min-[1600px]:px-3.5 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[13px] min-[1600px]:text-[14px] text-white/65 hover:text-white"
+                    className="flex items-center justify-center gap-2 h-10 min-[1600px]:h-11 px-4 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[15px] min-[1600px]:text-[16px] font-semibold text-white/65 hover:text-white"
                   >
-                    <span className="text-[11px] font-bold tracking-widest uppercase">{currentLang.code.toUpperCase()}</span>
-                    <Globe size={9} className="text-[#D4A843]/45" />
+                    <Globe size={18} className="text-[#D4A843]/45 shrink-0" />
+                    <span className="tracking-widest uppercase leading-none">{currentLang.code.toUpperCase()}</span>
                   </button>
                   <div className={`absolute top-[calc(100%+10px)] end-0 w-[262px] bg-[#44474F] border border-[#D4A843]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
                     isLangOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-3 pointer-events-none"
@@ -504,7 +504,7 @@ const Navbar = () => {
                       aria-haspopup="menu"
                       aria-expanded={isProfileOpen}
                       className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 rounded-lg">
-                      <span className="bg-[#D4A843] text-black px-2 xl:px-2.5 py-[4px] xl:py-[5px] rounded-lg font-bold text-[10.5px] xl:text-[11px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-300 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center gap-1 whitespace-nowrap">
+                      <span className="bg-[#D4A843] text-black h-10 min-[1600px]:h-11 px-4 rounded-lg font-semibold text-[15px] min-[1600px]:text-[16px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-200 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
                         {t('nav.profile')}
                         <ChevronDown size={9} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                       </span>
@@ -532,11 +532,12 @@ const Navbar = () => {
                   <button
                     id="staff-portal-btn-admin"
                     onClick={handlePortalClick}
-                    className="flex items-center justify-center w-11 h-11 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
+                    aria-label={portalTooltipText}
+                    className="flex items-center justify-center w-10 h-10 min-[1600px]:w-11 min-[1600px]:h-11 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
                   >
-                    <Briefcase size={15} />
+                    <Briefcase size={18} />
                   </button>
-                  <div className={`absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-white/95 border border-[#D4A843]/30 text-[#D4A843] text-[10.5px] font-black py-1.5 px-3 rounded-lg shadow-lg`}>
+                  <div className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-[#2B2B2B] border border-[#D4A843]/30 text-[#D4A843] text-[12px] font-bold py-2 px-4 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.45)]`}>
                     {portalTooltipText}
                   </div>
                 </div>
@@ -588,7 +589,7 @@ const Navbar = () => {
                     aria-haspopup="menu"
                     aria-expanded={isProfileOpen}
                     className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 rounded-lg">
-                    <span className="bg-[#D4A843] text-black px-2 xl:px-2.5 py-[4px] xl:py-[5px] rounded-lg font-bold text-[10.5px] xl:text-[11px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-300 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center gap-1 whitespace-nowrap">
+                    <span className="bg-[#D4A843] text-black h-10 min-[1600px]:h-11 px-4 rounded-lg font-semibold text-[15px] min-[1600px]:text-[16px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-200 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
                       {t('nav.profile')}
                       <ChevronDown size={9} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                     </span>
@@ -616,11 +617,12 @@ const Navbar = () => {
                   <button
                     id="staff-portal-btn"
                     onClick={handlePortalClick}
-                    className="flex items-center justify-center w-11 h-11 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
+                    aria-label={portalTooltipText}
+                    className="flex items-center justify-center w-10 h-10 min-[1600px]:w-11 min-[1600px]:h-11 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
                   >
-                    <Briefcase size={15} />
+                    <Briefcase size={18} />
                   </button>
-                  <div className={`absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-white/95 border border-[#D4A843]/30 text-[#D4A843] text-[10.5px] font-black py-1.5 px-3 rounded-lg shadow-lg`}>
+                  <div className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-[#2B2B2B] border border-[#D4A843]/30 text-[#D4A843] text-[12px] font-bold py-2 px-4 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.45)]`}>
                     {portalTooltipText}
                   </div>
                 </div>
@@ -631,10 +633,10 @@ const Navbar = () => {
                     onClick={() => setIsLangOpen(!isLangOpen)}
                     aria-haspopup="menu"
                     aria-expanded={isLangOpen}
-                    className="flex items-center gap-1.5 min-h-11 px-3 min-[1600px]:px-3.5 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[13px] min-[1600px]:text-[14px] text-white/65 hover:text-white"
+                    className="flex items-center justify-center gap-2 h-10 min-[1600px]:h-11 px-4 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[15px] min-[1600px]:text-[16px] font-semibold text-white/65 hover:text-white"
                   >
-                    <span className="text-[11px] font-bold tracking-widest uppercase">{currentLang.code.toUpperCase()}</span>
-                    <Globe size={9} className="text-[#D4A843]/45" />
+                    <Globe size={18} className="text-[#D4A843]/45 shrink-0" />
+                    <span className="tracking-widest uppercase leading-none">{currentLang.code.toUpperCase()}</span>
                   </button>
 
                   <div className={`absolute top-[calc(100%+10px)] end-0 w-[262px] bg-[#44474F] border border-[#D4A843]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
