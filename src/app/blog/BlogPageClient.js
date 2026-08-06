@@ -22,7 +22,7 @@ export default function BlogPageClient() {
             src="/asstes/office-projects/17.jpg"
             alt="MAN Engineering Consultancy Blog"
             fill
-            className="object-cover object-center scale-105"
+            className="object-contain object-center"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-[#070d1a]/97" />

@@ -64,9 +64,9 @@ const structuredData = {
   telephone: "+966598242385",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Al-Andalus District - Abdulrahman Al-Tubaishi St. Villa 72",
+    streetAddress: "Al-Andalus District - 2781 Abdulrahman Al-Tubaishi St.",
     addressLocality: "Jeddah",
-    postalCode: "21451",
+    postalCode: "23326",
     addressCountry: "SA",
   },
   areaServed: "SA",

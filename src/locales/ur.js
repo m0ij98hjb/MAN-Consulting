@@ -154,6 +154,7 @@ export const ur = {
       photosCount: "تصاویر",
       fullScreen: "فل اسکرین",
       imageCounter: "تصویر {current} از {total}",
+      imageUnavailable: "تصویر دستیاب نہیں",
       projectSingular: "پروجیکٹ",
       projectDual: "پروجیکٹس",
       projectPlural: "پروجیکٹس"
@@ -190,7 +191,7 @@ export const ur = {
   contactPage: {
     typewriter: ["ہم سے رابطہ کریں", "ہم آپ کے منتظر ہیں"],
     explore: "دریافت کریں",
-    address: "الاندلس ڈسٹرکٹ - عبدالرحمن الطپیشی اسٹریٹ۔ ولا 72 - پی او باکس 2164 جدہ 21451",
+    address: "الاندلس ڈسٹرکٹ - عبدالرحمن الطپیشی اسٹریٹ 2781 - پی او باکس 2164 جدہ 23326",
     formNamePlaceholder: "اپنا نام درج کریں",
     formMessagePlaceholder: "ہم آپ کی کیا مدد کر سکتے ہیں؟",
     formServiceOptions: {
@@ -203,7 +204,7 @@ export const ur = {
     locationBadge: "ہمارا مقام",
     visitTitle: "ہمارے دفتر تشریف لائیں",
     mapTitle: "ایم این سی کنسلٹنگ آفس",
-    mapDesc: "الاندلس ڈسٹرکٹ - عبدالرحمن الطپیشی اسٹریٹ۔ ولا 72 - جدہ",
+    mapDesc: "الاندلس ڈسٹرکٹ - عبدالرحمن الطپیشی اسٹریٹ 2781 - جدہ",
     openMaps: "گوگل میپس میں کھولیں",
     mapControls: {
       map: "نقشہ",
@@ -217,8 +218,8 @@ export const ur = {
     riyadhAddress: "انس بن مالک روڈ — ابہا اسٹریٹ، ریاض",
     riyadhAddressStreetOnly: "انس بن مالک روڈ — ابہا اسٹریٹ",
     riyadhInfoDesc: "انس بن مالک روڈ — ابہا اسٹریٹ، ریاض، سعودی عرب",
-    jeddahAddressShort: "الاندلس ڈسٹرکٹ — عبدالرحمن الطبیشی اسٹریٹ، ولا 72",
-    jeddahInfoDesc: "الاندلس ڈسٹرکٹ — عبدالرحمن الطبیشی اسٹریٹ، ولا 72 — جدہ 21451",
+    jeddahAddressShort: "الاندلس ڈسٹرکٹ — عبدالرحمن الطبیشی اسٹریٹ 2781",
+    jeddahInfoDesc: "الاندلس ڈسٹرکٹ — عبدالرحمن الطبیشی اسٹریٹ 2781 — جدہ 23326",
     formEmailLabel: "ای میل",
     formCompanyLabel: "کمپنی (اختیاری)",
     formCompanyPlaceholder: "آپ کی کمپنی کا نام",

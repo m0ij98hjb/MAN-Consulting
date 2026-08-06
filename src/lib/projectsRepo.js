@@ -97,7 +97,7 @@ export function toLegacyProjectShape(p) {
     year: p.year ?? null,
     status: p.constructionStatus,
     coverImage: p.coverImage,
-    gallery: (p.gallery || []).map((g) => g.url),
+    gallery: (p.gallery || []).map((g) => g?.url).filter((url) => typeof url === "string" && url.trim() !== ""),
   };
 }
 

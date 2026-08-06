@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import { ZoomIn, X, ChevronLeft, ChevronRight, Maximize2, Minimize2, Search, Calendar, MapPin, Layers } from "lucide-react";
+import { ZoomIn, X, ChevronLeft, ChevronRight, Maximize2, Minimize2, Search, Calendar, MapPin, Layers, ImageOff } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ProjectDirectory({ projects, categories }) {
@@ -30,7 +30,8 @@ export default function ProjectDirectory({ projects, categories }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  
+  const [brokenImages, setBrokenImages] = useState(() => new Set());
+
   const lightboxRef = useRef(null);
 
   // Extract cities and years from projects for filters
@@ -83,8 +84,13 @@ export default function ProjectDirectory({ projects, categories }) {
   const handleOpenProject = (project) => {
     setActiveProject(project);
     setCurrentImageIndex(0);
+    setBrokenImages(new Set());
     setLightboxOpen(true);
   };
+
+  const markImageBroken = useCallback((idx) => {
+    setBrokenImages((prev) => (prev.has(idx) ? prev : new Set(prev).add(idx)));
+  }, []);
 
   // Keyboard navigation inside lightbox
   const goNext = useCallback(() => {
@@ -140,7 +146,7 @@ export default function ProjectDirectory({ projects, categories }) {
     commercial: "/asstes/office-projects/BARJIS FRONT FACADE (05.08.2025).jpg",
     residential: "/asstes/office-projects/1.jpg",
     recent: "/asstes/office-projects/projects-ph/WhatsApp Image 2025-12-29 at 02.52.48.jpeg",
-    architectural: "/asstes/mamary1.png",
+    architectural: "/asstes/office-projects/8.jpg",
     archive: "/asstes/office-projects/WhatsApp Image 2023-02-16 at 09.49.49.jpeg",
   };
 
@@ -479,14 +485,22 @@ export default function ProjectDirectory({ projects, categories }) {
               className="relative w-[90vw] h-[55vh] md:h-[65vh] max-w-5xl transition-all duration-500"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
-                src={activeProject.gallery[currentImageIndex]}
-                alt={`${projectLabel(activeProject)} - ${currentImageIndex + 1}`}
-                fill
-                className="object-contain"
-                priority
-                unoptimized
-              />
+              {brokenImages.has(currentImageIndex) ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl text-white/40">
+                  <ImageOff size={40} />
+                  <span className="text-xs font-bold">{t("projectsSection.directory.imageUnavailable")}</span>
+                </div>
+              ) : (
+                <Image
+                  src={activeProject.gallery[currentImageIndex]}
+                  alt={`${projectLabel(activeProject)} - ${currentImageIndex + 1}`}
+                  fill
+                  className="object-contain"
+                  priority
+                  unoptimized
+                  onError={() => markImageBroken(currentImageIndex)}
+                />
+              )}
             </div>
 
             {/* Next Arrow */}
@@ -535,13 +549,20 @@ export default function ProjectDirectory({ projects, categories }) {
                         isCurrent ? "border-secondary scale-105 shadow-lg shadow-secondary/25" : "border-white/10 hover:border-white/30"
                       }`}
                     >
-                      <Image
-                        src={img}
-                        alt="Thumbnail"
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
+                      {brokenImages.has(tIdx) ? (
+                        <div className="absolute inset-0 flex items-center justify-center bg-white/5 text-white/30">
+                          <ImageOff size={18} />
+                        </div>
+                      ) : (
+                        <Image
+                          src={img}
+                          alt="Thumbnail"
+                          fill
+                          className="object-cover"
+                          unoptimized
+                          onError={() => markImageBroken(tIdx)}
+                        />
+                      )}
                     </button>
                   );
                 })}

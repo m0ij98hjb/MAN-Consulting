@@ -154,6 +154,7 @@ export const fr = {
       photosCount: "Photos",
       fullScreen: "Plein écran",
       imageCounter: "Image {current} sur {total}",
+      imageUnavailable: "Image indisponible",
       projectSingular: "Projet",
       projectDual: "Projets",
       projectPlural: "Projets"
@@ -190,7 +191,7 @@ export const fr = {
   contactPage: {
     typewriter: ["Contactez-nous", "Nous vous attendons"],
     explore: "Explorer",
-    address: "Quartier Al-Andalus - Rue Abdulrahman Al-Tubaishi. Villa 72 - B.P. 2164 Djeddah 21451",
+    address: "Quartier Al-Andalus - Rue Abdulrahman Al-Tubaishi 2781 - B.P. 2164 Djeddah 23326",
     formNamePlaceholder: "Entrez votre nom",
     formMessagePlaceholder: "Comment pouvons-nous vous aider ?",
     formServiceOptions: {
@@ -203,7 +204,7 @@ export const fr = {
     locationBadge: "Notre Emplacement",
     visitTitle: "Visitez Notre Bureau",
     mapTitle: "MAN Cabinet de Conseil",
-    mapDesc: "Quartier Al-Andalus - Rue Abdulrahman Al-Tubaishi. Villa 72 - Djeddah",
+    mapDesc: "Quartier Al-Andalus - Rue Abdulrahman Al-Tubaishi 2781 - Djeddah",
     openMaps: "Ouvrir dans Google Maps",
     mapControls: {
       map: "Carte",
@@ -217,8 +218,8 @@ export const fr = {
     riyadhAddress: "Rue Anas Ibn Malik — Rue Abha, Riyad",
     riyadhAddressStreetOnly: "Rue Anas Ibn Malik — Rue Abha",
     riyadhInfoDesc: "Rue Anas Ibn Malik — Rue Abha, Riyad, Arabie Saoudite",
-    jeddahAddressShort: "Quartier Al-Andalus — Rue Abdulrahman Al-Tubaishi, Villa 72",
-    jeddahInfoDesc: "Quartier Al-Andalus — Rue Abdulrahman Al-Tubaishi, Villa 72 — Djeddah 21451",
+    jeddahAddressShort: "Quartier Al-Andalus — Rue Abdulrahman Al-Tubaishi, 2781",
+    jeddahInfoDesc: "Quartier Al-Andalus — Rue Abdulrahman Al-Tubaishi, 2781 — Djeddah 23326",
     formEmailLabel: "E-mail",
     formCompanyLabel: "Entreprise (Facultatif)",
     formCompanyPlaceholder: "Nom de votre entreprise",

@@ -103,10 +103,10 @@ export default function ProjectsPageClient({ projects, categories }) {
       <section className="image-hero relative h-screen min-h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/asstes/office-projects/BARJIS FRONT FACADE (05.08.2025).jpg"
+            src="/asstes/office-projects/27.jpg"
             alt="Projects Background"
             fill
-            className="object-cover object-center opacity-90 scale-105 animate-slow-zoom"
+            className="object-contain object-center opacity-90 animate-slow-zoom"
             priority
             unoptimized
           />

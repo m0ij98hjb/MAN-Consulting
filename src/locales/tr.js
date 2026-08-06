@@ -154,6 +154,7 @@ export const tr = {
       photosCount: "Fotoğraf",
       fullScreen: "Tam Ekran",
       imageCounter: "Görsel {current} / {total}",
+      imageUnavailable: "Görsel kullanılamıyor",
       projectSingular: "Proje",
       projectDual: "Proje",
       projectPlural: "Proje"
@@ -190,7 +191,7 @@ export const tr = {
   contactPage: {
     typewriter: ["Bize Ulaşın", "Sizi Bekliyoruz"],
     explore: "Keşfet",
-    address: "Al-Andalus Bölgesi - Abdulrahman Al-Tubaishi Cad. Villa 72 - P.K. 2164 Cidde 21451",
+    address: "Al-Andalus Bölgesi - Abdulrahman Al-Tubaishi Cad. No. 2781 - P.K. 2164 Cidde 23326",
     formNamePlaceholder: "Adınızı girin",
     formMessagePlaceholder: "Size nasıl yardımcı olabiliriz?",
     formServiceOptions: {
@@ -203,7 +204,7 @@ export const tr = {
     locationBadge: "Konumumuz",
     visitTitle: "Ofisimizi Ziyaret Edin",
     mapTitle: "MAN Danışmanlık Ofisi",
-    mapDesc: "Al-Andalus Bölgesi - Abdulrahman Al-Tubaishi Cad. Villa 72 - Cidde",
+    mapDesc: "Al-Andalus Bölgesi - Abdulrahman Al-Tubaishi Cad. No. 2781 - Cidde",
     openMaps: "Google Haritalar'da Aç",
     mapControls: {
       map: "Harita",
@@ -217,8 +218,8 @@ export const tr = {
     riyadhAddress: "Enes bin Malik Cd. — Ebha Sk., Riyad",
     riyadhAddressStreetOnly: "Enes bin Malik Cd. — Ebha Sk.",
     riyadhInfoDesc: "Enes bin Malik Cd. — Ebha Sk., Riyad, Suudi Arabistan",
-    jeddahAddressShort: "El-Endelüs Mahallesi — Abdurrahman El-Tubeyşi Sk. Villa 72",
-    jeddahInfoDesc: "El-Endelüs Mahallesi — Abdurrahman El-Tubeyşi Sk. Villa 72 — Cidde 21451",
+    jeddahAddressShort: "El-Endelüs Mahallesi — Abdurrahman El-Tubeyşi Sk. No. 2781",
+    jeddahInfoDesc: "El-Endelüs Mahallesi — Abdurrahman El-Tubeyşi Sk. No. 2781 — Cidde 23326",
     formEmailLabel: "E-posta",
     formCompanyLabel: "Şirket (İsteğe Bağlı)",
     formCompanyPlaceholder: "Şirket adınız",

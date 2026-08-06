@@ -85,8 +85,9 @@ export default function GalleryClient({ galleries }) {
                 centeredSlides={true}
                 slidesPerView={"auto"}
                 loop={true}
-                loopedSlides={5}
+                loopedSlides={gallery.images.length}
                 loopPreventsSliding={false}
+                loopAddBlankSlides={false}
                 coverflowEffect={{
                   rotate: 30,
                   stretch: 0,
@@ -186,6 +187,8 @@ export default function GalleryClient({ galleries }) {
                   prevEl: `.swiper-prev-${gallery.id}`,
                 }}
                 loop={true}
+                loopedSlides={gallery.images.length}
+                loopAddBlankSlides={false}
                 modules={[Pagination, Navigation, Autoplay]}
                 className="interior-swiper rounded-[2rem] overflow-visible"
                 breakpoints={{

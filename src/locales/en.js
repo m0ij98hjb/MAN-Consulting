@@ -154,6 +154,7 @@ export const en = {
       photosCount: "Photos",
       fullScreen: "Full Screen",
       imageCounter: "Image {current} of {total}",
+      imageUnavailable: "Image unavailable",
       projectSingular: "Project",
       projectDual: "Project",
       projectPlural: "Projects"
@@ -190,7 +191,7 @@ export const en = {
   contactPage: {
     typewriter: ["Contact Us", "We are waiting for you"],
     explore: "Explore",
-    address: "Al-Andalus District - Abdulrahman Al-Tubaishi St. Villa 72 - P.O. Box 2164 Jeddah 21451",
+    address: "Al-Andalus District - 2781 Abdulrahman Al-Tubaishi St. - P.O. Box 2164 Jeddah 23326",
     formNamePlaceholder: "Enter your name",
     formMessagePlaceholder: "How can we help you?",
     formServiceOptions: {
@@ -203,7 +204,7 @@ export const en = {
     locationBadge: "Our Location",
     visitTitle: "Visit Our Office",
     mapTitle: "MAN Engineering Consultancy",
-    mapDesc: "Al-Andalus District - Abdulrahman Al-Tubaishi St. Villa 72 - Jeddah",
+    mapDesc: "Al-Andalus District - 2781 Abdulrahman Al-Tubaishi St. - Jeddah",
     openMaps: "Open in Google Maps",
     mapControls: {
       map: "Map",
@@ -217,8 +218,8 @@ export const en = {
     riyadhAddress: "Anas Ibn Malik Rd — Abha St, Riyadh",
     riyadhAddressStreetOnly: "Anas Ibn Malik Rd — Abha St",
     riyadhInfoDesc: "Anas Ibn Malik Rd — Abha St, Riyadh, Saudi Arabia",
-    jeddahAddressShort: "Al-Andalus District — Abdulrahman Al-Tubaishi St. Villa 72",
-    jeddahInfoDesc: "Al-Andalus District — Abdulrahman Al-Tubaishi St. Villa 72 — Jeddah 21451",
+    jeddahAddressShort: "Al-Andalus District — 2781 Abdulrahman Al-Tubaishi St.",
+    jeddahInfoDesc: "Al-Andalus District — 2781 Abdulrahman Al-Tubaishi St. — Jeddah 23326",
     formEmailLabel: "Email",
     formCompanyLabel: "Company (Optional)",
     formCompanyPlaceholder: "Your company name",

@@ -52,7 +52,7 @@ export default function ServicePageClient({ slug }) {
             src={serviceData.heroImage}
             alt={content.title}
             fill
-            className="object-cover object-center"
+            className="object-contain object-center"
             priority
             unoptimized
           />

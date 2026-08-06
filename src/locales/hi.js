@@ -154,6 +154,7 @@ export const hi = {
       photosCount: "तस्वीरें",
       fullScreen: "पूर्ण स्क्रीन",
       imageCounter: "छवि {current} में से {total}",
+      imageUnavailable: "छवि उपलब्ध नहीं है",
       projectSingular: "परियोजना",
       projectDual: "परियोजनाएं",
       projectPlural: "परियोजनाएं"
@@ -190,7 +191,7 @@ export const hi = {
   contactPage: {
     typewriter: ["संपर्क करें", "हम आपका इंतज़ार कर रहे हैं"],
     explore: "अन्वेषण करें",
-    address: "अल-अंडालस जिला - अब्दुर्रहमान अल-तुबैशी सड़क विला 72 - पीओ बॉक्स 2164 जेद्दाह 21451",
+    address: "अल-अंडालस जिला - अब्दुर्रहमान अल-तुबैशी सड़क 2781 - पीओ बॉक्स 2164 जेद्दाह 23326",
     formNamePlaceholder: "अपना नाम दर्ज करें",
     formMessagePlaceholder: "हम आपकी कैसे मदद कर सकते हैं?",
     formServiceOptions: {
@@ -203,7 +204,7 @@ export const hi = {
     locationBadge: "हमारा स्थान",
     visitTitle: "हमारे कार्यालय पर जाएं",
     mapTitle: "MAN परामर्श कार्यालय",
-    mapDesc: "अल-अंडालस जिला - अब्दुर्रहमान अल-तुबैशी सड़क विला 72 - जेद्दाह",
+    mapDesc: "अल-अंडालस जिला - अब्दुर्रहमान अल-तुबैशी सड़क 2781 - जेद्दाह",
     openMaps: "गूगल मैप्स में खोलें",
     mapControls: {
       map: "मानचित्र",
@@ -217,8 +218,8 @@ export const hi = {
     riyadhAddress: "अनस बिन मलिक रोड — अबहा स्ट्रीट, रियाद",
     riyadhAddressStreetOnly: "अनस बिन मलिक रोड — अबहा स्ट्रीट",
     riyadhInfoDesc: "अनस बिन मलिक रोड — अबहा स्ट्रीट, रियाद, सऊदी अरब",
-    jeddahAddressShort: "अल-अंदलुस जिला — अब्दुलरहमान अल-तुबैशी स्ट्रीट, विला 72",
-    jeddahInfoDesc: "अल-अंदलुस जिला — अब्दुलरहमान अल-तुबैशी स्ट्रीट, विला 72 — जेद्दा 21451",
+    jeddahAddressShort: "अल-अंदलुस जिला — अब्दुलरहमान अल-तुबैशी स्ट्रीट, 2781",
+    jeddahInfoDesc: "अल-अंदलुस जिला — अब्दुलरहमान अल-तुबैशी स्ट्रीट, 2781 — जेद्दा 23326",
     formEmailLabel: "ईमेल",
     formCompanyLabel: "कंपनी (वैकल्पिक)",
     formCompanyPlaceholder: "आपकी कंपनी का नाम",

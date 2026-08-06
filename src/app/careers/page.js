@@ -184,8 +184,8 @@ export default function CareersPage() {
       <section className="image-hero relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=85&w=2070&auto=format&fit=crop"
-            alt="MAN Careers" fill className="object-cover object-center scale-105" priority
+            src="/asstes/shorka1.png"
+            alt="MAN Careers" fill className="object-contain object-center" priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-[#070d1a]/97" />
           <div className="absolute inset-0 opacity-[0.07]"

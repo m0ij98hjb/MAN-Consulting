@@ -12,7 +12,7 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 export default function AboutUsPage() {
   const { lang, t, isRTL } = useLanguage();
   const { data: aboutCms } = useSiteContent('about');
-  const directorImage = aboutCms?.director_image || '/asstes/directort.png';
+  const directorImage = aboutCms?.director_image || '/asstes/directoret.png';
   const RIYADH_BASE = '/asstes/Photos%20of%20the%20Riyadh/';
   const riyadhPhotoAlts = t('aboutUsPage.riyadhPhotoAlts');
   const riyadhPhotos = [
@@ -73,7 +73,7 @@ export default function AboutUsPage() {
             src="/asstes/office-projects/BARJIS - PARKING ENTRANCE (07.07.2025).jpg"
             alt="About MAN Engineering Consultancy"
             fill
-            className="object-cover object-center"
+            className="object-contain object-center"
             priority
             unoptimized
           />

@@ -24,7 +24,7 @@ export default function BlogPostClient({ post }) {
             src={post.coverImage}
             alt={post.title[lang] || post.title.en}
             fill
-            className="object-cover object-center"
+            className="object-contain object-center"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-[#070d1a]" />

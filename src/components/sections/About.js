@@ -56,22 +56,25 @@ const About = () => {
   const isRTL = lang === 'ar' || lang === 'ur';
   const { data: aboutCms } = useSiteContent('about');
 
-  const directorImage = aboutCms?.director_image || '/asstes/directort.png';
-  const directorName  = aboutCms?.director_name  || t('about.directorName');
+  const directorImage = aboutCms?.director_image || '/asstes/directoret.png';
+  const directorName = aboutCms?.director_name || t('about.directorName');
   const directorTitle = isRTL
     ? (aboutCms?.director_pos_ar || t('about.directorTitle'))
     : (aboutCms?.director_pos_en || t('about.directorTitle'));
 
-  const ceoImage = aboutCms?.ceo_image || '/asstes/directorr.png';
-  const ceoName  = aboutCms?.ceo_name  || t('about.ceoName');
+  const ceoImage = aboutCms?.ceo_image || '/asstes/directore.png';
+  const ceoName = aboutCms?.ceo_name || t('about.ceoName');
   const ceoTitle = (isRTL ? aboutCms?.ceo_pos_ar : aboutCms?.ceo_pos_en) || t('about.ceoTitle');
 
-  const companyName = { ar: "مكتب MAN للاستشارات الهندسية", en: "MAN Engineering Consultancy",
+  const companyName = {
+    ar: "مكتب MAN للاستشارات الهندسية", en: "MAN Engineering Consultancy",
     zh: "MAN工程咨询公司", es: "MAN Engineering Consultancy", fr: "MAN Engineering Consultancy",
     de: "MAN Engineering Consultancy", tr: "MAN Engineering Consultancy", ur: "ایم اے این انجینئرنگ کنسلٹنسی",
-    hi: "एमएएन इंजीनियरिंग कंसल्टेंसी", ru: "MAN Engineering Consultancy" }[lang] || "MAN Engineering Consultancy";
+    hi: "एमएएन इंजीनियरिंग कंसल्टेंसी", ru: "MAN Engineering Consultancy"
+  }[lang] || "MAN Engineering Consultancy";
 
-  const shortDesc = { ar: "نهندس بصمتنا في عالم التصميم والاستشارات الهندسية بأعلى معايير الجودة والاحترافية.",
+  const shortDesc = {
+    ar: "نهندس بصمتنا في عالم التصميم والاستشارات الهندسية بأعلى معايير الجودة والاحترافية.",
     en: "We engineer our mark in the world of design and engineering consultancy with the highest standards of quality and professionalism.",
     zh: "我们以最高的质量和专业标准，在设计与工程咨询领域打造我们的印记。",
     es: "Forjamos nuestra huella en el diseño y la consultoría de ingeniería con los más altos estándares de calidad y profesionalismo.",
@@ -80,24 +83,32 @@ const About = () => {
     tr: "Tasarım ve mühendislik danışmanlığı dünyasında en yüksek kalite ve profesyonellik standartlarıyla izimizi bırakıyoruz.",
     ur: "ہم ڈیزائن اور انجینئرنگ مشاورت کی دنیا میں اعلیٰ ترین معیار اور پیشہ ورانہ مہارت کے ساتھ اپنا نقش بناتے ہیں۔",
     hi: "हम डिज़ाइन और इंजीनियरिंग परामर्श की दुनिया में उच्चतम गुणवत्ता और व्यावसायिकता के मानकों के साथ अपनी छाप बनाते हैं।",
-    ru: "Мы создаём свой след в мире дизайна и инженерного консалтинга, соблюдая высочайшие стандарты качества и профессионализма." }[lang]
+    ru: "Мы создаём свой след в мире дизайна и инженерного консалтинга, соблюдая высочайшие стандарты качества и профессионализма."
+  }[lang]
     || "We engineer our mark in the world of design and engineering consultancy with the highest standards of quality and professionalism.";
 
-  const eyebrowText = { ar: "قيادة وخبرة", en: "Leadership & Expertise", zh: "领导力与专长",
+  const eyebrowText = {
+    ar: "قيادة وخبرة", en: "Leadership & Expertise", zh: "领导力与专长",
     es: "Liderazgo y experiencia", fr: "Leadership et expertise",
     de: "Führung & Expertise", tr: "Liderlik & Uzmanlık", ur: "قیادت اور مہارت",
-    hi: "नेतृत्व और विशेषज्ञता", ru: "Лидерство и опыт" }[lang] || "Leadership & Expertise";
+    hi: "नेतृत्व और विशेषज्ञता", ru: "Лидерство и опыт"
+  }[lang] || "Leadership & Expertise";
 
-  const titlePre = { ar: "القيادة التي", en: "The Leadership That", zh: "建立信任的",
+  const titlePre = {
+    ar: "القيادة التي", en: "The Leadership That", zh: "建立信任的",
     es: "El liderazgo que", fr: "Le leadership qui",
     de: "Die Führung, die", tr: "Güven İnşa Eden", ur: "وہ قیادت جو",
-    hi: "विश्वास बनाने वाला", ru: "Лидерство, создающее" }[lang] || "The Leadership That";
-  const titleGold = { ar: "تبني الثقة", en: "Builds Trust", zh: "领导力",
+    hi: "विश्वास बनाने वाला", ru: "Лидерство, создающее"
+  }[lang] || "The Leadership That";
+  const titleGold = {
+    ar: "تبني الثقة", en: "Builds Trust", zh: "领导力",
     es: "construye confianza", fr: "construit la confiance",
     de: "Vertrauen aufbaut", tr: "Liderlik", ur: "اعتماد بناتی ہے",
-    hi: "नेतृत्व", ru: "доверие" }[lang] || "Builds Trust";
+    hi: "नेतृत्व", ru: "доверие"
+  }[lang] || "Builds Trust";
 
-  const descText = { ar: "نؤمن بأن الهندسة رسالة قبل أن تكون مهنة، وخلف كل مشروع ناجح قيادة راسخة منذ عام 1986 — بخبرة تمتد لأكثر من ثلاثة عقود تحوّل الرؤية إلى واقع وتصنع الفارق في كل تفصيلة.",
+  const descText = {
+    ar: "نؤمن بأن الهندسة رسالة قبل أن تكون مهنة، وخلف كل مشروع ناجح قيادة راسخة منذ عام 1986 — بخبرة تمتد لأكثر من ثلاثة عقود تحوّل الرؤية إلى واقع وتصنع الفارق في كل تفصيلة.",
     en: "We believe engineering is a calling before a profession — behind every successful project stands leadership rooted since 1986, with over three decades of experience turning vision into reality.",
     zh: "我们相信工程是一种使命——自1986年以来，每个成功项目背后都有深厚的领导力，三十余年经验将愿景变为现实。",
     fr: "Nous croyons que l'ingénierie est une vocation — derrière chaque projet réussi se trouve un leadership ancré depuis 1986, fort de plus de trois décennies d'expérience.",
@@ -110,19 +121,27 @@ const About = () => {
   }[lang] || "We believe engineering is a calling before a profession — behind every successful project stands leadership rooted since 1986, with over three decades of experience.";
 
   const stats = [
-    { icon: Calendar,   value: 1986, prefix: "", suffix: "",
-      label: { ar: "تأسست عام", en: "Since", zh: "始于", es: "Desde", fr: "Depuis", de: "Seit", tr: "Kuruluş", ur: "قیام", hi: "स्थापना", ru: "С" }[lang] || "Since" },
-    { icon: Building2,  value: 500, prefix: "+", suffix: "",
-      label: { ar: "مشروع", en: "Projects", zh: "项目", es: "Proyectos", fr: "Projets", de: "Projekte", tr: "Proje", ur: "منصوبے", hi: "परियोजनाएं", ru: "Проектов" }[lang] || "Projects" },
-    { icon: Users,      value: 35, prefix: "+", suffix: "",
-      label: { ar: "مهندس", en: "Engineers", zh: "工程师", es: "Ingenieros", fr: "Ingénieurs", de: "Ingenieure", tr: "Mühendis", ur: "انجینئرز", hi: "इंजीनियर", ru: "Инженеров" }[lang] || "Engineers" },
-    { icon: Award,      value: 30, prefix: "+", suffix: "",
-      label: { ar: "عام خبرة", en: "Years Experience", zh: "年经验", es: "Años de experiencia", fr: "Ans d'expérience", de: "Jahre Erfahrung", tr: "Yıl Deneyim", ur: "سال تجربہ", hi: "वर्षों का अनुभव", ru: "Лет опыта" }[lang] || "Years Experience" },
+    {
+      icon: Calendar, value: 1986, prefix: "", suffix: "",
+      label: { ar: "تأسست عام", en: "Since", zh: "始于", es: "Desde", fr: "Depuis", de: "Seit", tr: "Kuruluş", ur: "قیام", hi: "स्थापना", ru: "С" }[lang] || "Since"
+    },
+    {
+      icon: Building2, value: 500, prefix: "+", suffix: "",
+      label: { ar: "مشروع", en: "Projects", zh: "项目", es: "Proyectos", fr: "Projets", de: "Projekte", tr: "Proje", ur: "منصوبے", hi: "परियोजनाएं", ru: "Проектов" }[lang] || "Projects"
+    },
+    {
+      icon: Users, value: 35, prefix: "+", suffix: "",
+      label: { ar: "مهندس", en: "Engineers", zh: "工程师", es: "Ingenieros", fr: "Ingénieurs", de: "Ingenieure", tr: "Mühendis", ur: "انجینئرز", hi: "इंजीनियर", ru: "Инженеров" }[lang] || "Engineers"
+    },
+    {
+      icon: Award, value: 30, prefix: "+", suffix: "",
+      label: { ar: "عام خبرة", en: "Years Experience", zh: "年经验", es: "Años de experiencia", fr: "Ans d'expérience", de: "Jahre Erfahrung", tr: "Yıl Deneyim", ur: "سال تجربہ", hi: "वर्षों का अनुभव", ru: "Лет опыта" }[lang] || "Years Experience"
+    },
   ];
 
   const people = [
     { image: directorImage, name: directorName, title: directorTitle, delay: '100' },
-    { image: ceoImage,      name: ceoName,      title: ceoTitle,      delay: '250' },
+    { image: ceoImage, name: ceoName, title: ceoTitle, delay: '250' },
   ];
 
   return (

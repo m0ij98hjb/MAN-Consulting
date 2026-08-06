@@ -154,6 +154,7 @@ export const es = {
       photosCount: "Fotos",
       fullScreen: "Pantalla Completa",
       imageCounter: "Imagen {current} de {total}",
+      imageUnavailable: "Imagen no disponible",
       projectSingular: "Proyecto",
       projectDual: "Proyectos",
       projectPlural: "Proyectos"
@@ -190,7 +191,7 @@ export const es = {
   contactPage: {
     typewriter: ["Contáctenos", "Le estamos esperando"],
     explore: "Explorar",
-    address: "Distrito de Al-Andalus - Calle Abdulrahman Al-Tubaishi. Villa 72 - P.O. Box 2164 Yeda 21451",
+    address: "Distrito de Al-Andalus - Calle Abdulrahman Al-Tubaishi 2781 - P.O. Box 2164 Yeda 23326",
     formNamePlaceholder: "Escriba su nombre",
     formMessagePlaceholder: "¿Cómo podemos ayudarle?",
     formServiceOptions: {
@@ -203,7 +204,7 @@ export const es = {
     locationBadge: "Nuestra Ubicación",
     visitTitle: "Visite Nuestra Oficina",
     mapTitle: "MAN Consultoría",
-    mapDesc: "Distrito de Al-Andalus - Calle Abdulrahman Al-Tubaishi. Villa 72 - Yeda",
+    mapDesc: "Distrito de Al-Andalus - Calle Abdulrahman Al-Tubaishi 2781 - Yeda",
     openMaps: "Abrir en Google Maps",
     mapControls: {
       map: "Mapa",
@@ -217,8 +218,8 @@ export const es = {
     riyadhAddress: "Calle Anas Ibn Malik — Calle Abha, Riad",
     riyadhAddressStreetOnly: "Calle Anas Ibn Malik — Calle Abha",
     riyadhInfoDesc: "Calle Anas Ibn Malik — Calle Abha, Riad, Arabia Saudita",
-    jeddahAddressShort: "Distrito Al-Ándalus — Calle Abdulrahman Al-Tubaishi, Villa 72",
-    jeddahInfoDesc: "Distrito Al-Ándalus — Calle Abdulrahman Al-Tubaishi, Villa 72 — Yeda 21451",
+    jeddahAddressShort: "Distrito Al-Ándalus — Calle Abdulrahman Al-Tubaishi, 2781",
+    jeddahInfoDesc: "Distrito Al-Ándalus — Calle Abdulrahman Al-Tubaishi, 2781 — Yeda 23326",
     formEmailLabel: "Correo Electrónico",
     formCompanyLabel: "Empresa (Opcional)",
     formCompanyPlaceholder: "Nombre de su empresa",

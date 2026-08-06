@@ -26,10 +26,11 @@ const Hero = () => {
   const statDesigns = homeCms?.stat_designs ?? siteStats.designs.value;
 
   const heroImages = [
-    "/asstes/internal6.png",
-    "/asstes/office-projects/BARJIS FRONT FACADE (05.08.2025).jpg",
-    "/asstes/office-projects/BARJIS - INNER COURT (05.24.2025).jpg",
-    "/asstes/office-projects/BARJIS - BACK ENTRANCE (07.07.2025).jpg",
+    "/asstes/office-projects/16.jpg",
+    "/asstes/office-projects/21.jpg",
+    "/asstes/office-projects/20.jpg",
+    "/asstes/office-projects/44.jpg",
+    "/asstes/office-projects/60.jpg",
   ];
 
   const descFallback = t('hero.liveDescription');
@@ -66,7 +67,7 @@ const Hero = () => {
                   src={src}
                   alt={`MAN Hero Slideshow ${idx + 1}`}
                   fill
-                  className="object-cover object-center opacity-90 scale-105 animate-slow-zoom"
+                  className="object-contain object-center opacity-90 animate-slow-zoom"
                   priority={idx === 0}
                   unoptimized
                 />
@@ -112,9 +113,9 @@ const Hero = () => {
 
           {/* Description */}
           <p
-            className="text-sm text-white/85 font-medium mb-6 leading-relaxed"
+            className="text-sm text-white font-medium mb-6 leading-relaxed"
             data-aos="fade-up" data-aos-delay="320"
-            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.95), 0 4px 22px rgba(0,0,0,0.65)" }}
           >
             {descText}
           </p>
@@ -179,7 +180,7 @@ const Hero = () => {
                   src={src}
                   alt={`MAN Hero Slideshow ${idx + 1}`}
                   fill
-                  className="object-cover object-center opacity-90 scale-105 animate-slow-zoom"
+                  className="object-contain object-center opacity-90 animate-slow-zoom"
                   priority={idx === 0}
                   unoptimized
                 />
@@ -229,9 +230,9 @@ const Hero = () => {
           </h1>
 
           <p
-            className="text-base md:text-xl text-slate-100 font-semibold mb-10 max-w-2xl leading-relaxed"
+            className="text-base md:text-xl text-white font-semibold mb-10 max-w-2xl leading-relaxed"
             data-aos="fade-up" data-aos-delay="600"
-            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.95), 0 4px 22px rgba(0,0,0,0.65)" }}
           >
             {descText}
           </p>

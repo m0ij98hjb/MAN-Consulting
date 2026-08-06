@@ -29,7 +29,7 @@ export const BLOG_POSTS = [
   },
   {
     slug: "bim-coordination-prevents-clashes",
-    coverImage: "/asstes/mamary9.png",
+    coverImage: "/asstes/office-projects/BARJIS - ROOF (05.24.2025).jpg",
     date: "2025-11-04",
     category: { ar: "BIM والتصميم", en: "BIM & Design" },
     title: {
@@ -55,7 +55,7 @@ export const BLOG_POSTS = [
   },
   {
     slug: "building-permit-process-jeddah",
-    coverImage: "/asstes/internal9.png",
+    coverImage: "/asstes/office-projects/12.jpg",
     date: "2025-09-20",
     category: { ar: "التراخيص", en: "Permits" },
     title: {

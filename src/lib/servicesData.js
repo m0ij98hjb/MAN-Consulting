@@ -115,14 +115,14 @@ export const SERVICES_DATA = {
   },
 
   "architectural-design": {
-    heroImage: "/asstes/mamary1.png",
+    heroImage: "/asstes/office-projects/40.jpg",
     projectImages: [
-      "/asstes/mamary2.png",
-      "/asstes/mamary3.png",
-      "/asstes/mamary4.png",
-      "/asstes/mamary5.png",
-      "/asstes/mamary6.png",
-      "/asstes/mamary7.png",
+      "/asstes/office-projects/35.jpg",
+      "/asstes/office-projects/45.jpg",
+      "/asstes/office-projects/50.jpg",
+      "/asstes/office-projects/52.jpg",
+      "/asstes/office-projects/60.jpg",
+      "/asstes/office-projects/30.jpg",
     ],
     content: {
       ar: {
@@ -163,9 +163,9 @@ export const SERVICES_DATA = {
         ],
         projectsTitle: "أبرز تصاميمنا",
         projects: [
-          { img: "/asstes/mamary2.png", title: "تصميم واجهة معمارية عصرية", desc: "واجهة خارجية بلمسة معاصرة تجمع بين الأناقة والوظيفية العملية." },
-          { img: "/asstes/mamary3.png", title: "مخطط عام لمشروع سكني", desc: "تخطيط شامل لموقع سكني يراعي التوزيع الأمثل للمساحات والخدمات." },
-          { img: "/asstes/mamary4.png", title: "تصور ثلاثي الأبعاد لمبنى إداري", desc: "رندر تفصيلي يوضح الشكل النهائي للمبنى قبل بدء التنفيذ." },
+          { img: "/asstes/office-projects/50.jpg", title: "تصميم واجهة معمارية لبرج تجاري", desc: "واجهة خارجية بلمسة معاصرة تجمع بين الأناقة والوظيفية العملية." },
+          { img: "/asstes/office-projects/52.jpg", title: "مخطط عام لمجمع تعليمي", desc: "تخطيط شامل للموقع يراعي التوزيع الأمثل للمساحات والخدمات." },
+          { img: "/asstes/office-projects/60.jpg", title: "تصور ثلاثي الأبعاد لمنتجع ساحلي", desc: "رندر تفصيلي يوضح الشكل النهائي للمبنى قبل بدء التنفيذ." },
         ],
         ctaTitle: "ابدأ رحلة تصميم مشروعك اليوم",
         ctaBtn: "تواصل مع المصممين",
@@ -208,9 +208,9 @@ export const SERVICES_DATA = {
         ],
         projectsTitle: "Our Featured Designs",
         projects: [
-          { img: "/asstes/mamary2.png", title: "Modern Architectural Facade Design", desc: "An exterior facade with a contemporary touch combining elegance and practical functionality." },
-          { img: "/asstes/mamary3.png", title: "Master Plan for a Residential Project", desc: "Comprehensive site planning with optimal distribution of spaces and services." },
-          { img: "/asstes/mamary4.png", title: "3D Visualization of an Administrative Building", desc: "A detailed render showing the final look of the building before execution begins." },
+          { img: "/asstes/office-projects/50.jpg", title: "Architectural Facade Design for a Commercial Tower", desc: "An exterior facade with a contemporary touch combining elegance and practical functionality." },
+          { img: "/asstes/office-projects/52.jpg", title: "Master Plan for an Educational Complex", desc: "Comprehensive site planning with optimal distribution of spaces and services." },
+          { img: "/asstes/office-projects/60.jpg", title: "3D Visualization of a Waterfront Resort", desc: "A detailed render showing the final look of the project before execution begins." },
         ],
         ctaTitle: "Start your design journey today",
         ctaBtn: "Contact Our Designers",
@@ -325,14 +325,14 @@ export const SERVICES_DATA = {
   },
 
   "interior-design": {
-    heroImage: "/asstes/internal1.png",
+    heroImage: "/asstes/office-projects/8.jpg",
     projectImages: [
-      "/asstes/internal2.png",
-      "/asstes/internal3.png",
-      "/asstes/internal4.png",
-      "/asstes/internal5.png",
-      "/asstes/internal6.png",
-      "/asstes/internal7.png",
+      "/asstes/office-projects/8.jpg",
+      "/asstes/office-projects/BARJIS BASEMENT - TWO (07.13.2025).jpg",
+      "/asstes/office-projects/35.jpg",
+      "/asstes/office-projects/45.jpg",
+      "/asstes/office-projects/30.jpg",
+      "/asstes/office-projects/52.jpg",
     ],
     content: {
       ar: {
@@ -373,9 +373,9 @@ export const SERVICES_DATA = {
         ],
         projectsTitle: "تصاميم داخلية أنجزناها",
         projects: [
-          { img: "/asstes/internal2.png", title: "تصميم داخلي لصالة استقبال", desc: "مساحة استقبال أنيقة تجمع بين الراحة والفخامة في التفاصيل." },
-          { img: "/asstes/internal3.png", title: "تصميم مطبخ عصري متكامل", desc: "مطبخ عملي بتصميم عصري يراعي أحدث معايير التخزين والتوزيع." },
-          { img: "/asstes/internal4.png", title: "تصميم غرفة معيشة أنيقة", desc: "غرفة معيشة مريحة بألوان متناسقة وإضاءة مدروسة." },
+          { img: "/asstes/office-projects/8.jpg", title: "تصميم داخلي لمدخل واستقبال مجمع تجاري", desc: "مساحة استقبال أنيقة تجمع بين الراحة والفخامة في التفاصيل." },
+          { img: "/asstes/office-projects/BARJIS BASEMENT - TWO (07.13.2025).jpg", title: "تصميم داخلي لمواقف سيارات مغطاة", desc: "تصميم عملي يراعي أحدث معايير التهوية والتوزيع والسلامة." },
+          { img: "/asstes/office-projects/35.jpg", title: "تصميم فناء داخلي ومساحات مشتركة", desc: "فناء مريح بألوان متناسقة وإضاءة مدروسة." },
         ],
         ctaTitle: "جاهزون لتحويل فضاءك الداخلي",
         ctaBtn: "استشر فريق التصميم",
@@ -418,9 +418,9 @@ export const SERVICES_DATA = {
         ],
         projectsTitle: "Interior Designs We've Completed",
         projects: [
-          { img: "/asstes/internal2.png", title: "Interior Design for a Reception Lounge", desc: "An elegant reception space combining comfort and luxury in the details." },
-          { img: "/asstes/internal3.png", title: "Modern Integrated Kitchen Design", desc: "A practical kitchen with a modern design considering the latest storage and layout standards." },
-          { img: "/asstes/internal4.png", title: "Elegant Living Room Design", desc: "A comfortable living room with coordinated colors and thoughtful lighting." },
+          { img: "/asstes/office-projects/8.jpg", title: "Interior Design for a Mall Entrance & Reception", desc: "An elegant reception space combining comfort and luxury in the details." },
+          { img: "/asstes/office-projects/BARJIS BASEMENT - TWO (07.13.2025).jpg", title: "Interior Design for a Covered Parking Garage", desc: "A practical design considering the latest ventilation, layout, and safety standards." },
+          { img: "/asstes/office-projects/35.jpg", title: "Interior Courtyard & Common Area Design", desc: "A comfortable courtyard with coordinated colors and thoughtful lighting." },
         ],
         ctaTitle: "Ready to transform your interior space",
         ctaBtn: "Consult Our Design Team",
@@ -429,14 +429,14 @@ export const SERVICES_DATA = {
   },
 
   "engineering-design": {
-    heroImage: "/asstes/mamary8.png",
+    heroImage: "/asstes/office-projects/50.jpg",
     projectImages: [
-      "/asstes/mamary9.png",
-      "/asstes/mamary10.png",
-      "/asstes/office-projects/6.jpg",
-      "/asstes/office-projects/7.jpg",
-      "/asstes/office-projects/8.jpg",
-      "/asstes/office-projects/9.jpg",
+      "/asstes/office-projects/BARJIS - ROOF (05.24.2025).jpg",
+      "/asstes/office-projects/60.jpg",
+      "/asstes/office-projects/30.jpg",
+      "/asstes/office-projects/45.jpg",
+      "/asstes/office-projects/52.jpg",
+      "/asstes/office-projects/35.jpg",
     ],
     content: {
       ar: {
@@ -477,9 +477,9 @@ export const SERVICES_DATA = {
         ],
         projectsTitle: "أبرز مشاريعنا",
         projects: [
-          { img: "/asstes/mamary9.png", title: "تصميم كهروميكانيكي لمبنى إداري", desc: "تصميم متكامل للأنظمة الكهربائية والميكانيكية لمبنى إداري متعدد الطوابق." },
-          { img: "/asstes/mamary10.png", title: "تنسيق أنظمة MEP لمجمع تجاري", desc: "تنسيق كامل بين الأنظمة الهندسية المختلفة باستخدام نمذجة BIM." },
-          { img: "/asstes/office-projects/6.jpg", title: "تصميم أنظمة السلامة لمنشأة صناعية", desc: "تصميم أنظمة الحريق والسلامة وفق أعلى معايير الأمان." },
+          { img: "/asstes/office-projects/BARJIS - ROOF (05.24.2025).jpg", title: "تصميم أنظمة MEP لسطح المبنى", desc: "تصميم متكامل للأنظمة الكهربائية والميكانيكية على مستوى السطح لمبنى متعدد الطوابق." },
+          { img: "/asstes/office-projects/60.jpg", title: "التصميم الهندسي المتكامل لمجمع ساحلي", desc: "تنسيق كامل بين الأنظمة الهندسية المختلفة باستخدام نمذجة BIM." },
+          { img: "/asstes/office-projects/30.jpg", title: "تنسيق أنظمة البنية التحتية والمرافق", desc: "تصميم أنظمة الري والإنارة الخارجية وفق أعلى معايير الكفاءة." },
         ],
         ctaTitle: "جاهزون لتصميم أنظمة مشروعك",
         ctaBtn: "تواصل مع فريقنا الهندسي",
@@ -522,9 +522,9 @@ export const SERVICES_DATA = {
         ],
         projectsTitle: "Our Featured Projects",
         projects: [
-          { img: "/asstes/mamary9.png", title: "Electromechanical Design for an Administrative Building", desc: "Integrated electrical and mechanical system design for a multi-story administrative building." },
-          { img: "/asstes/mamary10.png", title: "MEP Coordination for a Commercial Complex", desc: "Full coordination between engineering systems using BIM modeling." },
-          { img: "/asstes/office-projects/6.jpg", title: "Safety System Design for an Industrial Facility", desc: "Fire protection and safety system design to the highest safety standards." },
+          { img: "/asstes/office-projects/BARJIS - ROOF (05.24.2025).jpg", title: "Rooftop MEP Systems Design", desc: "Integrated electrical and mechanical system design at roof level for a multi-story building." },
+          { img: "/asstes/office-projects/60.jpg", title: "Integrated Engineering Design for a Waterfront Complex", desc: "Full coordination between engineering systems using BIM modeling." },
+          { img: "/asstes/office-projects/30.jpg", title: "Infrastructure & Utility Systems Coordination", desc: "Irrigation and exterior lighting system design to the highest efficiency standards." },
         ],
         ctaTitle: "Ready to design your project's systems",
         ctaBtn: "Contact Our Engineering Team",
@@ -533,10 +533,10 @@ export const SERVICES_DATA = {
   },
 
   "building-permits": {
-    heroImage: "/asstes/internal8.png",
+    heroImage: "/asstes/office-projects/BARJIS - PARKING ENTRANCE (07.07.2025).jpg",
     projectImages: [
-      "/asstes/internal9.png",
-      "/asstes/internal10.png",
+      "/asstes/office-projects/12.jpg",
+      "/asstes/office-projects/13.jpg",
       "/asstes/office-projects/10.jpg",
       "/asstes/office-projects/11.jpg",
     ],
@@ -579,8 +579,8 @@ export const SERVICES_DATA = {
         ],
         projectsTitle: "معاملات أنجزناها",
         projects: [
-          { img: "/asstes/internal9.png", title: "اعتماد رخصة بناء مبنى سكني", desc: "استخراج رخصة بناء كاملة عبر منصة بلدي خلال مدة قياسية." },
-          { img: "/asstes/internal10.png", title: "اعتماد مخططات مجمع تجاري", desc: "متابعة اعتماد المخططات المعمارية والإنشائية لمجمع تجاري متكامل." },
+          { img: "/asstes/office-projects/12.jpg", title: "اعتماد رخصة بناء مبنى سكني", desc: "استخراج رخصة بناء كاملة عبر منصة بلدي خلال مدة قياسية." },
+          { img: "/asstes/office-projects/13.jpg", title: "اعتماد مخططات مجمع تجاري", desc: "متابعة اعتماد المخططات المعمارية والإنشائية لمجمع تجاري متكامل." },
           { img: "/asstes/office-projects/10.jpg", title: "شهادة إشغال لمنشأة صناعية", desc: "استكمال إجراءات الدفاع المدني والحصول على شهادة الإشغال النهائية." },
         ],
         ctaTitle: "جاهزون لتسريع اعتماد مشروعك",
@@ -624,8 +624,8 @@ export const SERVICES_DATA = {
         ],
         projectsTitle: "Transactions We've Completed",
         projects: [
-          { img: "/asstes/internal9.png", title: "Building Permit Approval for a Residential Building", desc: "Obtaining a complete building permit via the Balady platform within a record time." },
-          { img: "/asstes/internal10.png", title: "Drawing Approval for a Commercial Complex", desc: "Follow-up on architectural and structural drawing approval for an integrated commercial complex." },
+          { img: "/asstes/office-projects/12.jpg", title: "Building Permit Approval for a Residential Building", desc: "Obtaining a complete building permit via the Balady platform within a record time." },
+          { img: "/asstes/office-projects/13.jpg", title: "Drawing Approval for a Commercial Complex", desc: "Follow-up on architectural and structural drawing approval for an integrated commercial complex." },
           { img: "/asstes/office-projects/10.jpg", title: "Occupancy Certificate for an Industrial Facility", desc: "Completing Civil Defense procedures and obtaining the final occupancy certificate." },
         ],
         ctaTitle: "Ready to accelerate your project's approval",

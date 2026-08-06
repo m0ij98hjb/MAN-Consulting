@@ -6,10 +6,25 @@ import { db } from "@/lib/firebase";
 import Navbar from "@/components/layout/Navbar";
 import { Phone, Mail, MapPin, Send, ChevronDown, ArrowLeft, CheckCircle2, Loader2, Satellite, Map as MapIcon, Layers, Clock } from "lucide-react";
 import Image from "next/image";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { COMPANY } from "@/config/company";
+
+/* ── Themed pin icon (gold gradient, matches site theme) for the Google Maps JS API marker ── */
+const MAP_PIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="38" height="50" viewBox="0 0 38 50" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="38" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8C46A" />
+      <stop offset="100%" stop-color="#D4A843" />
+    </linearGradient>
+  </defs>
+  <path d="M19 0C8.5 0 0 8.5 0 19c0 14.25 19 31 19 31s19-16.75 19-31C38 8.5 29.5 0 19 0Z" fill="url(#g)" stroke="rgba(0,0,0,0.25)" stroke-width="0.5" />
+  <circle cx="19" cy="19" r="8" fill="#15161A" />
+  <circle cx="19" cy="19" r="8" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+  <path d="M15 19.5l2.6 2.6L23.5 16" stroke="#D4A843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+</svg>`;
+const mapPinIconUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(MAP_PIN_SVG)}`;
 
 /* ── Reusable Map Toggle (Segmented Control) ── */
 function MapToggle({ mode, onChange }) {
@@ -148,7 +163,16 @@ function MapCard({
           center={mapCenter}
           zoom={16}
           options={mapOptions}
-        />
+        >
+          <Marker
+            position={mapCenter}
+            icon={{
+              url: mapPinIconUrl,
+              scaledSize: new window.google.maps.Size(38, 50),
+              anchor: new window.google.maps.Point(19, 50),
+            }}
+          />
+        </GoogleMap>
       ) : (
         <iframe
           src={iframeSrc}
@@ -161,6 +185,14 @@ function MapCard({
           className="grayscale-[0.6] contrast-[1.2] invert-[0.9] hue-rotate-[180deg] hover:grayscale-0 hover:invert-0 hover:hue-rotate-0 transition-all duration-700"
         />
       )}
+
+      {/* Note: the themed gold pin only renders via the native <Marker/> above,
+          once the JS API is active (a Maps API key is configured). Without a
+          key, the map falls back to a plain Google embed whose own default
+          pin (q=lat,lng) is used instead — that one stays correctly anchored
+          to the real coordinate while the visitor drags/zooms the map, which
+          a CSS-positioned overlay pin cannot do here since we don't get pan
+          events back from the plain iframe. */}
 
       {/* ── Floating Info Card ── */}
       <div
@@ -200,12 +232,16 @@ export default function ContactPage() {
   /* ── Riyadh branch (طريق أنس بن مالك - شارع أبها) ── */
   const riyadhCenter = useMemo(() => ({ lat: 24.7987098, lng: 46.5940801 }), []);
   const riyadhIframeSrc = useMemo(() => {
-    const base =
-      "https://www.google.com/maps?q=طريق+أنس+بن+مالك+شارع+أبها+الرياض&output=embed";
-    if (riyadhMode === "satellite") return base + "&t=s";
+    // q=lat,lng (place mode) drops Google's own marker anchored to the exact
+    // coordinate — unlike a CSS overlay, it stays correctly stuck to the real
+    // location when the visitor drags/zooms the embedded map (no JS API key
+    // required for this). We lose the gold theming on the pin itself here;
+    // the themed <Marker/> above only lights up once a Maps JS API key is set.
+    const base = `https://maps.google.com/maps?q=${riyadhCenter.lat},${riyadhCenter.lng}&z=17&output=embed`;
+    if (riyadhMode === "satellite") return base + "&t=k";
     if (riyadhMode === "hybrid") return base + "&t=h";
     return base;
-  }, [riyadhMode]);
+  }, [riyadhMode, riyadhCenter]);
   const riyadhMapOptions = useMemo(
     () => ({
       mapTypeId:
@@ -223,15 +259,19 @@ export default function ContactPage() {
     [riyadhMode]
   );
 
-  /* ── Jeddah branch (حي الأندلس – شارع عبدالرحمن الطبيشي. فيلا 72) ── */
-  const jeddahCenter = useMemo(() => ({ lat: 21.5796, lng: 39.1925 }), []);
+  /* ── Jeddah branch (حي الأندلس – شارع عبدالرحمن الطبيشي 2781) ── */
+  const jeddahCenter = useMemo(() => ({ lat: 21.5485434, lng: 39.1603351 }), []);
   const jeddahIframeSrc = useMemo(() => {
-    const base =
-      "https://www.google.com/maps?q=حي+الأندلس+شارع+عبدالرحمن+الطبيشي+جدة&output=embed";
-    if (jeddahMode === "satellite") return base + "&t=s";
+    // q=lat,lng (place mode) drops Google's own marker anchored to the exact
+    // coordinate — unlike a CSS overlay, it stays correctly stuck to the real
+    // location when the visitor drags/zooms the embedded map (no JS API key
+    // required for this). We lose the gold theming on the pin itself here;
+    // the themed <Marker/> above only lights up once a Maps JS API key is set.
+    const base = `https://maps.google.com/maps?q=${jeddahCenter.lat},${jeddahCenter.lng}&z=17&output=embed`;
+    if (jeddahMode === "satellite") return base + "&t=k";
     if (jeddahMode === "hybrid") return base + "&t=h";
     return base;
-  }, [jeddahMode]);
+  }, [jeddahMode, jeddahCenter]);
   const jeddahMapOptions = useMemo(
     () => ({
       mapTypeId:
@@ -314,7 +354,7 @@ export default function ContactPage() {
             src="/images/heroes/hero-contact.jpg"
             alt="Contact MAN"
             fill
-            className="object-cover object-center"
+            className="object-contain object-center"
             priority
             unoptimized
           />
@@ -635,7 +675,7 @@ export default function ContactPage() {
                 iframeSrc={jeddahIframeSrc}
                 infoTitle={t("contactPage.jeddahBranchAndalus")}
                 infoDesc={t("contactPage.jeddahInfoDesc")}
-                mapsHref="https://www.google.com/maps?q=حي+الأندلس+شارع+عبدالرحمن+الطبيشي+جدة"
+                mapsHref="https://www.google.com/maps?q=21.5485434,39.1603351"
                 openMapsLabel={t("contactPage.openMaps")}
                 isRTL={isRTL}
               />

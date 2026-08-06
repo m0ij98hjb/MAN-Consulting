@@ -154,6 +154,7 @@ export const ru = {
       photosCount: "Фото",
       fullScreen: "Полноэкранный режим",
       imageCounter: "Изображение {current} из {total}",
+      imageUnavailable: "Изображение недоступно",
       projectSingular: "Проект",
       projectDual: "Проекта",
       projectPlural: "Проекты"
@@ -190,7 +191,7 @@ export const ru = {
   contactPage: {
     typewriter: ["Свяжитесь с нами", "Мы ждём вас"],
     explore: "Исследовать",
-    address: "Район Аль-Андалус — ул. Абдурахман Аль-Тубайши, вилла 72 — а/я 2164, Джидда 21451",
+    address: "Район Аль-Андалус — ул. Абдурахман Аль-Тубайши, 2781 — а/я 2164, Джидда 23326",
     formNamePlaceholder: "Введите ваше имя",
     formMessagePlaceholder: "Чем мы можем вам помочь?",
     formServiceOptions: {
@@ -217,8 +218,8 @@ export const ru = {
     riyadhAddress: "ул. Анас ибн Малик — ул. Абха, Эр-Рияд",
     riyadhAddressStreetOnly: "ул. Анас ибн Малик — ул. Абха",
     riyadhInfoDesc: "ул. Анас ибн Малик — ул. Абха, Эр-Рияд, Саудовская Аравия",
-    jeddahAddressShort: "Район Аль-Андалус — ул. Абдулрахман Аль-Тубайши, вилла 72",
-    jeddahInfoDesc: "Район Аль-Андалус — ул. Абдулрахман Аль-Тубайши, вилла 72 — Джидда 21451",
+    jeddahAddressShort: "Район Аль-Андалус — ул. Абдулрахман Аль-Тубайши, 2781",
+    jeddahInfoDesc: "Район Аль-Андалус — ул. Абдулрахман Аль-Тубайши, 2781 — Джидда 23326",
     formEmailLabel: "Эл. почта",
     formCompanyLabel: "Компания (необязательно)",
     formCompanyPlaceholder: "Название вашей компании",

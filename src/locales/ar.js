@@ -154,6 +154,7 @@ export const ar = {
       photosCount: "صور",
       fullScreen: "ملء الشاشة",
       imageCounter: "{current} من {total}",
+      imageUnavailable: "الصورة غير متوفرة",
       projectSingular: "مشروع",
       projectDual: "مشروعين",
       projectPlural: "مشاريع"
@@ -190,7 +191,7 @@ export const ar = {
   contactPage: {
     typewriter: ["تواصل معنا", "نحن في انتظارك"],
     explore: "استكشف",
-    address: "حي الأندلس – شارع عبدالرحمن الطبيشي. فيلا 72 – ص ب 2164 جدة 21451",
+    address: "حي الأندلس – شارع عبدالرحمن الطبيشي 2781 – ص ب 2164 جدة 23326",
     formNamePlaceholder: "أدخل اسمك هنا",
     formMessagePlaceholder: "كيف يمكننا مساعدتك؟",
     formServiceOptions: {
@@ -203,7 +204,7 @@ export const ar = {
     locationBadge: "موقعنا",
     visitTitle: "تفضل بزيارة مقرنا",
     mapTitle: "مكتب MAN للاستشارات الهندسية",
-    mapDesc: "حي الأندلس – شارع عبدالرحمن الطبيشي. فيلا 72 – جدة",
+    mapDesc: "حي الأندلس – شارع عبدالرحمن الطبيشي 2781 – جدة",
     openMaps: "فتح في خرائط Google",
     mapControls: {
       map: "الخريطة",
@@ -217,8 +218,8 @@ export const ar = {
     riyadhAddress: "طريق أنس بن مالك - شارع أبها، الرياض",
     riyadhAddressStreetOnly: "طريق أنس بن مالك - شارع أبها",
     riyadhInfoDesc: "طريق أنس بن مالك - شارع أبها، الرياض، المملكة العربية السعودية",
-    jeddahAddressShort: "حي الأندلس – شارع عبدالرحمن الطبيشي. فيلا 72",
-    jeddahInfoDesc: "حي الأندلس – شارع عبدالرحمن الطبيشي. فيلا 72 – جدة 21451",
+    jeddahAddressShort: "حي الأندلس – شارع عبدالرحمن الطبيشي 2781",
+    jeddahInfoDesc: "حي الأندلس – شارع عبدالرحمن الطبيشي 2781 – جدة 23326",
     formEmailLabel: "البريد الإلكتروني",
     formCompanyLabel: "الشركة / المؤسسة (اختياري)",
     formCompanyPlaceholder: "اسم شركتك أو مؤسستك",

@@ -154,6 +154,7 @@ export const de = {
       photosCount: "Fotos",
       fullScreen: "Vollbild",
       imageCounter: "Bild {current} von {total}",
+      imageUnavailable: "Bild nicht verfügbar",
       projectSingular: "Projekt",
       projectDual: "Projekte",
       projectPlural: "Projekte"
@@ -190,7 +191,7 @@ export const de = {
   contactPage: {
     typewriter: ["Kontaktieren Sie uns", "Wir warten auf Sie"],
     explore: "Erkunden",
-    address: "Al-Andalus Bezirk - Abdulrahman Al-Tubaishi Str. Villa 72 - P.O. Box 2164 Dschidda 21451",
+    address: "Al-Andalus Bezirk - Abdulrahman-Al-Tubaishi-Str. 2781 - P.O. Box 2164 Dschidda 23326",
     formNamePlaceholder: "Geben Sie Ihren Namen ein",
     formMessagePlaceholder: "Wie können wir Ihnen helfen?",
     formServiceOptions: {
@@ -203,7 +204,7 @@ export const de = {
     locationBadge: "Unser Standort",
     visitTitle: "Besuchen Sie unser Büro",
     mapTitle: "MAN Engineering Consultancy",
-    mapDesc: "Al-Andalus Bezirk - Abdulrahman Al-Tubaishi Str. Villa 72 - Dschidda",
+    mapDesc: "Al-Andalus Bezirk - Abdulrahman-Al-Tubaishi-Str. 2781 - Dschidda",
     openMaps: "In Google Maps öffnen",
     mapControls: {
       map: "Karte",
@@ -217,8 +218,8 @@ export const de = {
     riyadhAddress: "Anas-Ibn-Malik-Straße — Abha-Straße, Riad",
     riyadhAddressStreetOnly: "Anas-Ibn-Malik-Straße — Abha-Straße",
     riyadhInfoDesc: "Anas-Ibn-Malik-Straße — Abha-Straße, Riad, Saudi-Arabien",
-    jeddahAddressShort: "Stadtteil Al-Andalus — Abdulrahman-Al-Tubaishi-Straße, Villa 72",
-    jeddahInfoDesc: "Stadtteil Al-Andalus — Abdulrahman-Al-Tubaishi-Straße, Villa 72 — Dschidda 21451",
+    jeddahAddressShort: "Stadtteil Al-Andalus — Abdulrahman-Al-Tubaishi-Straße 2781",
+    jeddahInfoDesc: "Stadtteil Al-Andalus — Abdulrahman-Al-Tubaishi-Straße 2781 — Dschidda 23326",
     formEmailLabel: "E-Mail",
     formCompanyLabel: "Unternehmen (Optional)",
     formCompanyPlaceholder: "Name Ihres Unternehmens",

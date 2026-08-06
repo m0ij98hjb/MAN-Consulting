@@ -154,6 +154,7 @@ export const zh = {
       photosCount: "张照片",
       fullScreen: "全屏",
       imageCounter: "第 {current} 张，共 {total} 张",
+      imageUnavailable: "图片无法显示",
       projectSingular: "项目",
       projectDual: "项目",
       projectPlural: "项目"
@@ -190,7 +191,7 @@ export const zh = {
   contactPage: {
     typewriter: ["联系我们", "我们正在等候您"],
     explore: "探索",
-    address: "Al-Andalus 区 - Abdulrahman Al-Tubaishi 街. 72号别墅 - 邮政信箱 2164 吉达 21451",
+    address: "Al-Andalus 区 - Abdulrahman Al-Tubaishi 街2781号 - 邮政信箱 2164 吉达 23326",
     formNamePlaceholder: "输入您的名字",
     formMessagePlaceholder: "我们能为您做些什么？",
     formServiceOptions: {
@@ -203,7 +204,7 @@ export const zh = {
     locationBadge: "我们的位置",
     visitTitle: "访问我们的办公室",
     mapTitle: "MAN 咨询办公室",
-    mapDesc: "Al-Andalus 区 - Abdulrahman Al-Tubaishi 街. 72号别墅 - 吉达",
+    mapDesc: "Al-Andalus 区 - Abdulrahman Al-Tubaishi 街2781号 - 吉达",
     openMaps: "在 Google 地图中打开",
     mapControls: {
       map: "地图",
@@ -217,8 +218,8 @@ export const zh = {
     riyadhAddress: "阿纳斯·本·马利克路 — 阿卜哈街，利雅得",
     riyadhAddressStreetOnly: "阿纳斯·本·马利克路 — 阿卜哈街",
     riyadhInfoDesc: "阿纳斯·本·马利克路 — 阿卜哈街，利雅得，沙特阿拉伯",
-    jeddahAddressShort: "安达卢斯区 — 阿卜杜拉赫曼·图拜希街，72号别墅",
-    jeddahInfoDesc: "安达卢斯区 — 阿卜杜拉赫曼·图拜希街，72号别墅 — 吉达 21451",
+    jeddahAddressShort: "安达卢斯区 — 阿卜杜拉赫曼·图拜希街2781号",
+    jeddahInfoDesc: "安达卢斯区 — 阿卜杜拉赫曼·图拜希街2781号 — 吉达 23326",
     formEmailLabel: "电子邮箱",
     formCompanyLabel: "公司（可选）",
     formCompanyPlaceholder: "您的公司名称",
