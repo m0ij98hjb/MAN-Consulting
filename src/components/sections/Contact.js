@@ -11,7 +11,7 @@ const Contact = () => {
   const { data: cms } = useSiteContent('contact');
 
   const phone1   = cms?.phone1    || '0598242385';
-  const phone2   = cms?.phone2    || '0505649859';
+  const phone2   = cms?.phone2    || '';
   const email    = cms?.email     || COMPANY.email;
   const address  = (isRTL ? cms?.address_ar : cms?.address_en) || t('footer.location');
 

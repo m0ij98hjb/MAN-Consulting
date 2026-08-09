@@ -8,7 +8,7 @@ import { COMPANY } from '@/config/company';
 
 const DEF = {
   phone1: '0598242385',
-  phone2: '0505649859',
+  phone2: '',
   email: COMPANY.email,
   address_ar: 'جدة، المملكة العربية السعودية',
   address_en: 'Jeddah, Saudi Arabia',

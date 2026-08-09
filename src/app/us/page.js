@@ -70,7 +70,7 @@ export default function AboutUsPage() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/asstes/office-projects/BARJIS - PARKING ENTRANCE (07.07.2025).jpg"
+            src="/images/heroes/hero-us.png"
             alt="About MAN Engineering Consultancy"
             fill
             className="object-contain object-center"

@@ -301,7 +301,7 @@ export default function ContactPage() {
   const [formError, setFormError]           = useState("");
 
   const phone1   = cms?.phone1   || "0598242385";
-  const phone2   = cms?.phone2   || "0505649859";
+  const phone2   = cms?.phone2   || "";
   const email    = cms?.email    || COMPANY.email;
   const whatsapp = cms?.whatsapp || "966598242385";
 

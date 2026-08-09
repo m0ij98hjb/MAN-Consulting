@@ -163,11 +163,11 @@ const Navbar = () => {
        genuinely lower-priority items in the list. ── */
   const navLinks = useMemo(() => [
     { name: t('nav.home'),     href: "/",                icon: Home },
+    { name: t('nav.about'),    href: "/us",              icon: Info },
     { name: t('nav.services'), href: "/#services",       icon: Briefcase, isServicesDropdown: true },
     { name: t('nav.projects'), href: "/projects",        icon: FolderOpen },
-    { name: t('nav.contact'), href: "/contact",          icon: PhoneCall },
-    { name: t('nav.about'),    href: "/us",              icon: Info },
     { name: t('nav.engineeringDesign'), href: "/engineering-design", icon: Ruler },
+    { name: t('nav.contact'), href: "/contact",          icon: PhoneCall },
     { name: t('nav.careers'), href: "/careers",          icon: Users },
     { name: t('nav.buildingPermits'),    href: "/building-permits",    icon: FileCheck,     isSecondary: true },
     { name: t('nav.engineeringReports'), href: "/engineering-reports", icon: ClipboardList, isSecondary: true },
