@@ -23,7 +23,7 @@ export async function POST(req) {
       ? ({ in_person: 'حضوري', video: 'مكالمة فيديو', phone: 'مكالمة هاتفية' }[interviewType] || interviewType)
       : ({ in_person: 'In Person', video: 'Video Call', phone: 'Phone Call' }[interviewType] || interviewType);
 
-    const logoPath = join(process.cwd(), 'public', 'asstes', 'logo-navbar.png');
+    const logoPath = join(process.cwd(), 'public', 'brand', 'logo-navbar-real.png');
 
     const html = isAr ? `
 <!DOCTYPE html>

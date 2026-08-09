@@ -56,13 +56,13 @@ const About = () => {
   const isRTL = lang === 'ar' || lang === 'ur';
   const { data: aboutCms } = useSiteContent('about');
 
-  const directorImage = aboutCms?.director_image || '/asstes/directoret.png';
+  const directorImage = aboutCms?.director_image || '/asstes/directoret.webp';
   const directorName = aboutCms?.director_name || t('about.directorName');
   const directorTitle = isRTL
     ? (aboutCms?.director_pos_ar || t('about.directorTitle'))
     : (aboutCms?.director_pos_en || t('about.directorTitle'));
 
-  const ceoImage = aboutCms?.ceo_image || '/asstes/directore.png';
+  const ceoImage = aboutCms?.ceo_image || '/asstes/directore.webp';
   const ceoName = aboutCms?.ceo_name || t('about.ceoName');
   const ceoTitle = (isRTL ? aboutCms?.ceo_pos_ar : aboutCms?.ceo_pos_en) || t('about.ceoTitle');
 

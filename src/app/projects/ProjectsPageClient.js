@@ -108,7 +108,7 @@ export default function ProjectsPageClient({ projects, categories }) {
             fill
             className="object-contain object-center opacity-90 animate-slow-zoom"
             priority
-            unoptimized
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-black/15" />
         </div>

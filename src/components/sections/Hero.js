@@ -74,9 +74,10 @@ const Hero = () => {
                   src={src}
                   alt={`MAN Hero Slideshow ${idx + 1}`}
                   fill
+                  sizes="100vw"
                   className="object-cover object-center opacity-90 animate-slow-zoom"
                   priority={idx === 0}
-                  unoptimized
+                  fetchPriority={idx === 0 ? "high" : undefined}
                 />
               </SwiperSlide>
             ))}
@@ -187,9 +188,10 @@ const Hero = () => {
                   src={src}
                   alt={`MAN Hero Slideshow ${idx + 1}`}
                   fill
+                  sizes="100vw"
                   className="object-cover object-center opacity-90 animate-slow-zoom"
                   priority={idx === 0}
-                  unoptimized
+                  fetchPriority={idx === 0 ? "high" : undefined}
                 />
               </SwiperSlide>
             ))}

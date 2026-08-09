@@ -12,7 +12,7 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 export default function AboutUsPage() {
   const { lang, t, isRTL } = useLanguage();
   const { data: aboutCms } = useSiteContent('about');
-  const directorImage = aboutCms?.director_image || '/asstes/directoret.png';
+  const directorImage = aboutCms?.director_image || '/asstes/directoret.webp';
   const RIYADH_BASE = '/asstes/Photos%20of%20the%20Riyadh/';
   const riyadhPhotoAlts = t('aboutUsPage.riyadhPhotoAlts');
   const riyadhPhotos = [
@@ -75,7 +75,8 @@ export default function AboutUsPage() {
             fill
             className="object-contain object-center"
             priority
-            unoptimized
+            fetchPriority="high"
+            sizes="100vw"
           />
           {/* Rich multi-layer gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
@@ -196,7 +197,7 @@ export default function AboutUsPage() {
               {/* Stacked Images Column */}
               <div className={`grid grid-rows-2 gap-6 ${isRTL ? 'order-last md:order-2' : 'order-first md:order-1'}`}>
                 <div className="relative h-[220px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer">
-                  <Image src="/project1.png" alt="MAN Residential Project" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src="/project1.webp" alt="MAN Residential Project" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent transition-opacity duration-500" />
                   <div className={`absolute bottom-4 ${isRTL ? 'right-4 text-right' : 'left-4 text-left'}`}>
                     <span className="text-[#D4A843] text-xs font-bold uppercase tracking-wider bg-black/60 px-3 py-1.5 rounded-full border border-[#D4A843]/20">{t("gallery.distinctive")}</span>
@@ -204,7 +205,7 @@ export default function AboutUsPage() {
                 </div>
                 
                 <div className="relative h-[220px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer">
-                  <Image src="/project2.png" alt="MAN Commercial Project" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src="/project2.webp" alt="MAN Commercial Project" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent transition-opacity duration-500" />
                   <div className={`absolute bottom-4 ${isRTL ? 'right-4 text-right' : 'left-4 text-left'}`}>
                     <span className="text-[#D4A843] text-xs font-bold uppercase tracking-wider bg-black/60 px-3 py-1.5 rounded-full border border-[#D4A843]/20">{t("gallery.distinctive")}</span>
@@ -285,7 +286,7 @@ export default function AboutUsPage() {
             <div className="group relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 hover:border-[#D4A843]/30 transition-all duration-500 bg-white/5" data-aos="fade-up" data-aos-delay="100">
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
-                  src="/asstes/shorkaa.png"
+                  src="/asstes/shorkaa.webp"
                   alt="MAN Team"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -308,7 +309,7 @@ export default function AboutUsPage() {
             <div className="group relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 hover:border-[#D4A843]/30 transition-all duration-500 bg-white/5" data-aos="fade-up" data-aos-delay="200">
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
-                  src="/asstes/shorka01.png"
+                  src="/asstes/shorka01.webp"
                   alt="MAN Team"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -375,7 +376,6 @@ export default function AboutUsPage() {
                   alt={photo.alt}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  unoptimized
                 />
 
                 {/* Hover gradient overlay */}

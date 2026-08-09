@@ -62,7 +62,7 @@ export default function ProjectPageClient({ project, related }) {
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[420px] flex items-end overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
-          <Image src={project.coverImage} alt={name} fill className="object-cover object-center" priority unoptimized />
+          <Image src={project.coverImage} alt={name} fill className="object-cover object-center" priority fetchPriority="high" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
         </div>
         <div className="container relative z-10 mx-auto px-6 pb-14">
@@ -143,7 +143,7 @@ export default function ProjectPageClient({ project, related }) {
                   onClick={() => setLightboxIndex(idx)}
                   className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-secondary/40 transition-all"
                 >
-                  <Image src={url} alt={`${name} ${idx + 1}`} fill className="object-cover" unoptimized />
+                  <Image src={url} alt={`${name} ${idx + 1}`} fill className="object-cover" />
                 </button>
               ))}
             </div>
@@ -196,7 +196,6 @@ export default function ProjectPageClient({ project, related }) {
                       alt={t("projectsSection.genericProjectName").replace("{location}", getLocalizedText(rp, "location", lang))}
                       fill
                       className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                      unoptimized
                     />
                   </div>
                   <div className="p-5">
@@ -232,7 +231,7 @@ export default function ProjectPageClient({ project, related }) {
             </button>
           )}
           <div className="relative w-[90vw] h-[70vh] max-w-5xl" onClick={(e) => e.stopPropagation()}>
-            <Image src={galleryUrls[lightboxIndex]} alt="" fill className="object-contain" unoptimized />
+            <Image src={galleryUrls[lightboxIndex]} alt={`${name} ${lightboxIndex + 1}`} fill className="object-contain" />
           </div>
           {galleryUrls.length > 1 && (
             <button

@@ -139,9 +139,7 @@ export default function GalleryClient({ galleries }) {
                           src={imgSrc}
                           alt={`${gallery.title} - Image ${imgIndex + 1}`}
                           fill
-                          loading="eager"
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
-                          unoptimized
                         />
                         <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                           <div className="bg-[var(--card-bg)]/20 p-4 rounded-full transform scale-50 group-hover:scale-100 transition-transform duration-500">
@@ -224,9 +222,7 @@ export default function GalleryClient({ galleries }) {
                         src={imgSrc}
                         alt={`${gallery.title} - Image ${imgIndex + 1}`}
                         fill
-                        loading="eager"
                         className="object-cover transition-transform duration-[2000ms] group-hover/slide:scale-110"
-                        unoptimized
                       />
                       
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover/slide:opacity-100 transition-opacity duration-700"></div>
@@ -278,7 +274,6 @@ export default function GalleryClient({ galleries }) {
                     alt={`${gallery.title} - Image ${imgIndex + 1}`}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    unoptimized
                   />
                   <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <div className="bg-[var(--card-bg)]/20 p-4 rounded-full transform scale-50 group-hover:scale-100 transition-transform duration-500">
@@ -330,8 +325,6 @@ export default function GalleryClient({ galleries }) {
               alt={`${lightbox.title} - Image ${lightbox.currentIndex + 1}`}
               fill
               className="object-contain"
-              priority
-              unoptimized
             />
           </div>
 

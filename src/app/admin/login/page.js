@@ -70,7 +70,6 @@ export default function AdminLoginPage() {
               alt="MAN Engineering Consultancy"
               width={1029}
               height={461}
-              unoptimized
               className="relative h-24 sm:h-28 w-auto object-contain"
               style={{ filter: 'drop-shadow(0 4px 24px rgba(242,178,51,0.25))' }}
               priority

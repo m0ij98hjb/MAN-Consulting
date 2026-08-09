@@ -351,12 +351,13 @@ export default function ContactPage() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/heroes/hero-contact.jpg"
+            src="/images/heroes/hero-contact.webp"
             alt="Contact MAN"
             fill
             className="object-contain object-center"
             priority
-            unoptimized
+            fetchPriority="high"
+            sizes="100vw"
           />
           <div className={`absolute inset-0 ${isRTL ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-black/85 via-black/55 to-black/20`} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />

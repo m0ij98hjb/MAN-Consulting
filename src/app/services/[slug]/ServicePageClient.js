@@ -54,7 +54,8 @@ export default function ServicePageClient({ slug }) {
             fill
             className="object-contain object-center"
             priority
-            unoptimized
+            fetchPriority="high"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
           <div className={`absolute inset-0 ${isRTLLang ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-black/70 to-transparent`} />
@@ -190,7 +191,6 @@ export default function ServicePageClient({ slug }) {
                   alt={proj.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                 <div className="absolute bottom-6 left-6 right-6 z-10">

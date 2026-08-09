@@ -1,7 +1,7 @@
+import dynamic from "next/dynamic";
 import { Cairo } from "next/font/google";
 import "./globals.css";
 import { AOSInit } from "@/components/AOSInit";
-import VoicePresentation from "@/components/VoicePresentation";
 import Footer from "@/components/layout/Footer";
 import FloatingContact from "@/components/layout/FloatingContact";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -11,14 +11,22 @@ import { AuthProvider } from "@/context/AuthContext";
 import AdminShortcut from "@/components/AdminShortcut";
 import ParallaxHeroEffect from "@/components/ui/ParallaxHeroEffect";
 
+// Floating voice-presentation widget: not part of the initial view (fixed
+// overlay, renders null until mounted), so it's code-split out of the main
+// bundle instead of shipping its framer-motion usage on every first load.
+const VoicePresentation = dynamic(() => import("@/components/VoicePresentation"));
+
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
   variable: "--font-cairo",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  // 300 (font-light) dropped: verified unused anywhere in the codebase (grep for
+  // `font-light` across src/ returned zero matches). The rest are all in active use.
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://man-consultancy.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://marwannazer.com"),
   title: {
     default: "مكتب MAN للاستشارات الهندسية | MAN Engineering Consultancy",
     template: "%s | MAN Engineering Consultancy",

@@ -144,9 +144,8 @@ const Footer = () => {
                 alt="MAN Engineering Consultancy"
                 width={1029}
                 height={461}
-                unoptimized
+                loading="lazy"
                 className="logo-footer w-auto h-28 sm:max-h-32 md:max-h-36 object-contain"
-                priority
               />
             </div>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">

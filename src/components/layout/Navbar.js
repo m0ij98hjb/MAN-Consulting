@@ -226,7 +226,6 @@ const Navbar = () => {
                 alt="MAN Engineering Consultancy"
                 width={1029}
                 height={461}
-                unoptimized
                 className="w-[100px] md:w-[120px] xl:w-[110px] 2xl:w-[120px] min-[1600px]:w-[130px] min-[2560px]:w-[140px] h-auto object-contain transition-all duration-500"
                 priority
               />
@@ -717,7 +716,7 @@ const Navbar = () => {
           {/* Panel Header */}
           <div className="flex items-center justify-between px-5 pt-8 pb-4 flex-shrink-0" style={{ backgroundColor: '#2E3038', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
             <Link href="/" onClick={() => setIsOpen(false)}>
-              <Image src="/brand/logo-navbar-real.png" alt="MAN Engineering Consultancy" width={1029} height={461} unoptimized className="h-9 w-auto object-contain" priority />
+              <Image src="/brand/logo-navbar-real.png" alt="MAN Engineering Consultancy" width={1029} height={461} className="h-9 w-auto object-contain" priority />
             </Link>
             <button onClick={() => setIsOpen(false)}
               className="w-8 h-8 rounded-[10px] border border-[#D4A843]/22 bg-[#D4A843]/5 flex items-center justify-center text-[#D4A843] hover:bg-[#D4A843]/12 transition-all active:scale-95">

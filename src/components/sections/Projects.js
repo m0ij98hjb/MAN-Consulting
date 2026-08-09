@@ -99,7 +99,6 @@ const Projects = () => {
                 alt={project.title}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
-                unoptimized
               />
 
               {/* Overlay */}
@@ -139,7 +138,6 @@ const Projects = () => {
               width={1200}
               height={800}
               className="rounded-xl object-contain max-h-[80vh] w-auto"
-              unoptimized
             />
             <p className="text-white mt-3 font-bold text-lg">{selectedImage.title}</p>
           </div>

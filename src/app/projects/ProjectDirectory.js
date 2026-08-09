@@ -190,7 +190,6 @@ export default function ProjectDirectory({ projects, categories }) {
                 alt={cat.label.en}
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                unoptimized
               />
               
               {/* Dark Overlay */}
@@ -368,7 +367,6 @@ export default function ProjectDirectory({ projects, categories }) {
                     fill
                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
                     sizes="(max-w-728px) 100vw, (max-w-1024px) 50vw, 33vw"
-                    unoptimized
                   />
                   
                   {/* Status Badge */}
@@ -497,7 +495,6 @@ export default function ProjectDirectory({ projects, categories }) {
                   fill
                   className="object-contain"
                   priority
-                  unoptimized
                   onError={() => markImageBroken(currentImageIndex)}
                 />
               )}
@@ -559,7 +556,6 @@ export default function ProjectDirectory({ projects, categories }) {
                           alt="Thumbnail"
                           fill
                           className="object-cover"
-                          unoptimized
                           onError={() => markImageBroken(tIdx)}
                         />
                       )}
