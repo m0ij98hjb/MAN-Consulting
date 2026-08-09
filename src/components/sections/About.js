@@ -224,7 +224,7 @@ const About = () => {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <h4 className="text-white font-black text-2xl md:text-[28px] leading-tight">{person.name}</h4>
+                  <h3 className="text-white font-black text-2xl md:text-[28px] leading-tight">{person.name}</h3>
                   <p className="font-bold text-sm md:text-base tracking-wide" style={{ color: '#D4A843' }}>{person.title}</p>
                 </div>
 

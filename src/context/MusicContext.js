@@ -14,13 +14,20 @@ export function MusicProvider({ children }) {
   const wasHiddenPlayingRef = useRef(false);
 
   useEffect(() => {
-    const audio = new Audio('/assets/audio/divine-music.mp3');
+    const audio = new Audio();
+    audio.preload = 'none';
     audio.loop = true;
     audio.volume = 0.35;
+    audio.src = '/assets/audio/divine-music.mp3';
     musicRef.current = audio;
     // Deferred so the "ready" flag isn't set synchronously in the effect body.
     queueMicrotask(() => setIsMusicReady(true));
 
+    // No unmuted browser allows autoplay without a prior user gesture, so
+    // attempting audio.play() here would only ever eagerly fetch the 1.4MB
+    // file for nothing. Start on the visitor's first interaction instead —
+    // functionally identical from the user's perspective, without the
+    // wasted network cost for anyone who never interacts.
     const onFirstInteraction = () => {
       window.removeEventListener('click', onFirstInteraction);
       window.removeEventListener('touchstart', onFirstInteraction);
@@ -29,15 +36,10 @@ export function MusicProvider({ children }) {
       if (!musicRef.current || musicUserPausedRef.current) return;
       musicRef.current.play().then(() => setIsMusicPlaying(true)).catch(() => {});
     };
-
-    audio.play().then(() => {
-      setIsMusicPlaying(true);
-    }).catch(() => {
-      window.addEventListener('click', onFirstInteraction);
-      window.addEventListener('touchstart', onFirstInteraction, { passive: true });
-      window.addEventListener('touchend', onFirstInteraction, { passive: true });
-      window.addEventListener('keydown', onFirstInteraction);
-    });
+    window.addEventListener('click', onFirstInteraction);
+    window.addEventListener('touchstart', onFirstInteraction, { passive: true });
+    window.addEventListener('touchend', onFirstInteraction, { passive: true });
+    window.addEventListener('keydown', onFirstInteraction);
 
     return () => {
       window.removeEventListener('click', onFirstInteraction);

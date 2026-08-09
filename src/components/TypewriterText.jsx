@@ -39,16 +39,26 @@ export default function TypewriterText({
   className = "",
   textClassNames = [],
 }) {
-  const [displayText, setDisplayText] = useState("");
+  // First paint shows the full first phrase already typed out, instead of
+  // starting empty and growing character-by-character. This headline is the
+  // page's Largest Contentful Paint element: a text node that keeps growing
+  // after first paint gets treated as a new, larger LCP candidate on every
+  // keystroke of the animation, so the metric never settles on an early
+  // value. Painting the final size immediately fixes that; the animation
+  // still types/deletes/loops exactly as before starting from the pause
+  // after this first phrase.
+  const initialText = texts[0] ?? "";
+  const [displayText, setDisplayText] = useState(initialText);
   const [activeTextIndex, setActiveTextIndex] = useState(0);
 
   // Refs avoid stale-closure issues inside setTimeout callbacks.
   const stateRef = useRef({
     textIndex: 0,
     isDeleting: false,
-    currentText: "",
+    currentText: initialText,
   });
   const timeoutRef = useRef(null);
+  const isFirstRunRef = useRef(true);
 
   // SSR-safe page direction read (false on server/initial hydration, then the
   // real value) — no effect/state pair needed for a value this simple.
@@ -63,10 +73,6 @@ export default function TypewriterText({
   // ------------------------------------------------------------------
   useEffect(() => {
     let active = true;
-
-    // Reset whenever the text array or timing props change.
-    stateRef.current = { textIndex: 0, isDeleting: false, currentText: "" };
-    clearTimeout(timeoutRef.current);
 
     const tick = () => {
       if (!active) return;
@@ -114,22 +120,40 @@ export default function TypewriterText({
       }
     };
 
-    // Clear the displayed text, then kick off after one typing-speed delay.
-    // Deferred into the timeout callback (rather than set synchronously in
-    // the effect body) so the visual reset happens as a reaction to the
-    // scheduled timer firing, not as a direct effect-body state update.
-    timeoutRef.current = setTimeout(() => {
-      if (!active) return;
-      setDisplayText("");
-      tick();
-    }, typingSpeed);
+    if (isFirstRunRef.current) {
+      isFirstRunRef.current = false;
+      // Already painted with the full first phrase (see initial state).
+      // Jump straight to "just finished typing": pause, then delete.
+      stateRef.current = { textIndex: 0, isDeleting: false, currentText: initialText };
+      const hasMore = loop || texts.length > 1;
+      if (hasMore) {
+        timeoutRef.current = setTimeout(() => {
+          if (!active) return;
+          stateRef.current.isDeleting = true;
+          tick();
+        }, pauseDuration);
+      }
+    } else {
+      // Reset whenever the text array or timing props change.
+      stateRef.current = { textIndex: 0, isDeleting: false, currentText: "" };
+      clearTimeout(timeoutRef.current);
+      // Clear the displayed text, then kick off after one typing-speed delay.
+      // Deferred into the timeout callback (rather than set synchronously in
+      // the effect body) so the visual reset happens as a reaction to the
+      // scheduled timer firing, not as a direct effect-body state update.
+      timeoutRef.current = setTimeout(() => {
+        if (!active) return;
+        setDisplayText("");
+        tick();
+      }, typingSpeed);
+    }
 
     // Cleanup: flag + clear any pending timeout.
     return () => {
       active = false;
       clearTimeout(timeoutRef.current);
     };
-  }, [texts, typingSpeed, deletingSpeed, pauseDuration, loop]);
+  }, [texts, typingSpeed, deletingSpeed, pauseDuration, loop]); // eslint-disable-line react-hooks/exhaustive-deps -- initialText is derived from texts[0] and only consulted on the first run
 
   return (
     <span className={`inline-block ${className}`} dir={isRTL ? "rtl" : "ltr"}>

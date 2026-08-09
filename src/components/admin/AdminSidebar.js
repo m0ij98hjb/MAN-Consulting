@@ -9,7 +9,8 @@ import { useDirectorPhoto } from '@/hooks/useDirectorPhoto';
 import { useRoleAccess } from '@/hooks/useRoleAccess';
 import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
-import { storage, db } from '@/lib/firebase';
+import { db } from '@/lib/firebase';
+import { storage } from '@/lib/firebaseStorage';
 import {
   LayoutDashboard, Users, CheckCircle, BarChart2,
   ChevronRight, ChevronLeft, LogOut, Briefcase, PenSquare,

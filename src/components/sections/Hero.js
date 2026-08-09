@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -40,6 +41,27 @@ const Hero = () => {
 
   ];
 
+  // With effect="fade", every slide sits at the same rect (only opacity
+  // toggles, nothing is translated off-screen), so the browser's native lazy
+  // loading treats all of them as "in viewport" and fetches all 11 images
+  // immediately. Only mount the <Image> for slides that have actually been
+  // shown (or are one transition away), and swap in a plain color panel for
+  // the rest — the fade visual is unchanged, but 9 of 11 requests are
+  // deferred until the carousel actually reaches them. Each slide change
+  // pre-loads one slide ahead so the next fade transition never shows blank.
+  const [loadedSlides, setLoadedSlides] = useState(() => new Set([0, 1]));
+  const handleSlideChange = (swiper) => {
+    const i = swiper.realIndex;
+    const j = (i + 1) % heroImages.length;
+    setLoadedSlides((prev) => {
+      if (prev.has(i) && prev.has(j)) return prev;
+      const next = new Set(prev);
+      next.add(i);
+      next.add(j);
+      return next;
+    });
+  };
+
   const descFallback = t('hero.liveDescription');
   const descText = isRTL
     ? (homeCms?.hero_sub_ar || descFallback)
@@ -66,19 +88,22 @@ const Hero = () => {
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             speed={2000}
             loop
+            onSlideChange={handleSlideChange}
             className="h-full w-full"
           >
             {heroImages.map((src, idx) => (
               <SwiperSlide key={idx} className="relative h-full w-full overflow-hidden">
-                <Image
-                  src={src}
-                  alt={`MAN Hero Slideshow ${idx + 1}`}
-                  fill
-                  sizes="100vw"
-                  className="object-cover object-center opacity-90 animate-slow-zoom"
-                  priority={idx === 0}
-                  fetchPriority={idx === 0 ? "high" : undefined}
-                />
+                {loadedSlides.has(idx) && (
+                  <Image
+                    src={src}
+                    alt={`MAN Hero Slideshow ${idx + 1}`}
+                    fill
+                    sizes="100vw"
+                    className="object-cover object-center opacity-90 animate-slow-zoom"
+                    priority={idx === 0}
+                    fetchPriority={idx === 0 ? "high" : undefined}
+                  />
+                )}
               </SwiperSlide>
             ))}
           </Swiper>
@@ -180,19 +205,22 @@ const Hero = () => {
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             speed={2000}
             loop
+            onSlideChange={handleSlideChange}
             className="h-full w-full"
           >
             {heroImages.map((src, idx) => (
               <SwiperSlide key={idx} className="relative h-full w-full overflow-hidden">
-                <Image
-                  src={src}
-                  alt={`MAN Hero Slideshow ${idx + 1}`}
-                  fill
-                  sizes="100vw"
-                  className="object-cover object-center opacity-90 animate-slow-zoom"
-                  priority={idx === 0}
-                  fetchPriority={idx === 0 ? "high" : undefined}
-                />
+                {loadedSlides.has(idx) && (
+                  <Image
+                    src={src}
+                    alt={`MAN Hero Slideshow ${idx + 1}`}
+                    fill
+                    sizes="100vw"
+                    className="object-cover object-center opacity-90 animate-slow-zoom"
+                    priority={idx === 0}
+                    fetchPriority={idx === 0 ? "high" : undefined}
+                  />
+                )}
               </SwiperSlide>
             ))}
           </Swiper>

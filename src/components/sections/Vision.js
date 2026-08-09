@@ -233,9 +233,9 @@ const Vision = () => {
 
               {/* Text */}
               <div className="flex flex-col gap-1 min-w-0">
-                <h4 className="text-white font-bold text-sm md:text-base leading-snug group-hover:text-[#D4A843] transition-colors duration-300">
+                <h3 className="text-white font-bold text-sm md:text-base leading-snug group-hover:text-[#D4A843] transition-colors duration-300">
                   {tx(val.title)}
-                </h4>
+                </h3>
                 <p className="text-white/40 text-xs md:text-sm leading-relaxed group-hover:text-white/55 transition-colors duration-300">
                   {tx(val.desc)}
                 </p>

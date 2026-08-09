@@ -57,7 +57,9 @@ export default function VoicePresentation() {
     queueMicrotask(() => setIsPlaying(false));
 
     if (MP3_LANGS.has(lang)) {
-      const audio = new Audio(`/asstes/presentation-${lang}.mp3?v=${AUDIO_VERSION}`);
+      const audio = new Audio();
+      audio.preload = 'none';
+      audio.src = `/asstes/presentation-${lang}.mp3?v=${AUDIO_VERSION}`;
       audio.playbackRate = 1.1;
       audio.volume = volume;
       audio.onended = () => { setIsPlaying(false); resumeMusicAfterVoice(); };

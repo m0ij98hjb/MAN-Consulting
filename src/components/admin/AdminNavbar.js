@@ -104,6 +104,7 @@ export default function AdminNavbar() {
             alt="MAN Engineering Consultancy"
             width={1029}
             height={461}
+            sizes="110px"
             className="h-9 lg:h-10 xl:h-11 w-auto object-contain"
             priority
           />

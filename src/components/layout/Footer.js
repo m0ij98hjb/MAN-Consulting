@@ -145,6 +145,7 @@ const Footer = () => {
                 width={1029}
                 height={461}
                 loading="lazy"
+                sizes="320px"
                 className="logo-footer w-auto h-28 sm:max-h-32 md:max-h-36 object-contain"
               />
             </div>
@@ -157,19 +158,22 @@ const Footer = () => {
                 {
                   icon: FaFacebookF,
                   href: "https://www.facebook.com/",
+                  name: "Facebook",
                 },
                 {
                   icon: FaInstagram,
                   href: "https://www.instagram.com//",
+                  name: "Instagram",
                 },
-                { icon: BsTwitterX, href: "https://x.com/" },
-                { icon: FaWhatsapp, href: "https://wa.me/" },
+                { icon: BsTwitterX, href: "https://x.com/", name: "X (Twitter)" },
+                { icon: FaWhatsapp, href: "https://wa.me/", name: "WhatsApp" },
               ].map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={social.name}
                   whileHover={{ scale: 1.1, y: -3 }}
                   style={socialBtnStyle}
                 >

@@ -25,7 +25,13 @@ const Button = ({ className, variant = "primary", size = "md", children, as: Com
   return (
     <Tag
       className={cn(
-        "inline-flex items-center justify-center rounded-full transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:pointer-events-none",
+        // `transition` (not `transition-all`): Tailwind's default transition
+        // property list covers color/background/border/opacity/transform/shadow —
+        // everything this button actually animates — without also picking up
+        // unrelated properties like the global `scrollbar-color` rule in
+        // globals.css, which Chrome can't run on the compositor and was
+        // flagging as a non-composited animation on every button.
+        "inline-flex items-center justify-center rounded-full transition duration-300 active:scale-95 disabled:opacity-50 disabled:pointer-events-none",
         variants[variant],
         sizes[size],
         className
