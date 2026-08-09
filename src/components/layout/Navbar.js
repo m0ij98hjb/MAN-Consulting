@@ -216,7 +216,7 @@ const Navbar = () => {
         borderBottomColor: 'rgba(255,255,255,.08)',
         transition: 'background-color .35s ease, box-shadow .35s ease, border-color .35s ease',
       }}>
-        <div className="w-full max-w-[1600px] mx-auto flex items-center xl:flex-nowrap px-6 sm:px-8 lg:px-10 xl:px-12 h-[72px] md:h-[76px] xl:h-[80px] min-[1600px]:h-[84px]">
+        <div className="w-full max-w-[1600px] mx-auto flex items-center xl:flex-nowrap px-6 sm:px-8 lg:px-10 xl:px-12 h-[72px] md:h-[76px] xl:h-[88px] min-[1600px]:h-[92px]">
 
           {/* â”€â”€ Zone 1 â€” Logo (fixed width, never shrinks) â”€â”€ */}
           <div className="flex items-center flex-shrink-0 xl:pe-8">
@@ -227,7 +227,7 @@ const Navbar = () => {
                 width={1029}
                 height={461}
                 unoptimized
-                className="w-[100px] md:w-[120px] xl:w-[135px] 2xl:w-[150px] min-[1600px]:w-[160px] min-[2560px]:w-[170px] h-auto object-contain transition-all duration-500"
+                className="w-[100px] md:w-[120px] xl:w-[110px] 2xl:w-[120px] min-[1600px]:w-[130px] min-[2560px]:w-[140px] h-auto object-contain transition-all duration-500"
                 priority
               />
             </Link>
@@ -237,7 +237,7 @@ const Navbar = () => {
                and centers its own content within that space — it never
                gets a fixed width, so it can never be "clustered" off to
                one side or forced to overflow a rigid column. ── */}
-          <div className="hidden xl:flex items-center justify-center flex-1 min-w-0 overflow-hidden gap-6 2xl:gap-7 min-[1920px]:gap-8">
+          <div className="hidden xl:flex items-center justify-center flex-1 min-w-0 gap-6 2xl:gap-7 min-[1920px]:gap-8">
             <nav className="flex items-center flex-shrink-0 gap-6 2xl:gap-7 min-[1920px]:gap-8" aria-label={t('nav.ariaLabel')}>
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
@@ -273,7 +273,7 @@ const Navbar = () => {
                         className={`relative flex items-center gap-1 py-2.5 transition-colors duration-200 whitespace-nowrap rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 ${navLinkTextClass} ${
                           isServicesActive
                             ? "text-[#D4A843]"
-                            : "text-white hover:text-[#D4A843]"
+                            : "text-[#B4AFA3] hover:text-[#D4A843]"
                         }`}
                       >
                         {link.name}
@@ -293,7 +293,7 @@ const Navbar = () => {
                               className={`flex items-center gap-2.5 px-4 py-3 text-[13px] font-semibold transition-colors ${
                                 isSvcActive
                                   ? "text-[#D4A843]"
-                                  : "text-white hover:bg-white/[0.08] hover:text-[#D4A843]"
+                                  : "text-[#B4AFA3] hover:bg-white/[0.08] hover:text-[#D4A843]"
                               }`}
                             >
                               <svc.icon size={14} className="shrink-0" />
@@ -313,7 +313,7 @@ const Navbar = () => {
                     className={`relative py-2.5 transition-colors duration-200 whitespace-nowrap group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 ${navLinkTextClass} ${
                       isActive
                         ? "text-[#D4A843]"
-                        : "text-white hover:text-[#D4A843]"
+                        : "text-[#B4AFA3] hover:text-[#D4A843]"
                     } ${link.isSecondary ? "hidden min-[1650px]:inline-flex" : ""}`}>
                     {link.name}
                     {/* Underline indicator */}
@@ -338,7 +338,7 @@ const Navbar = () => {
                 onClick={() => setIsMoreOpen(v => !v)}
                 aria-haspopup="menu"
                 aria-expanded={isMoreOpen}
-                className={`relative flex items-center gap-1.5 py-2.5 transition-colors duration-200 whitespace-nowrap rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-white hover:text-[#D4A843] ${navLinkTextClass}`}
+                className={`relative flex items-center gap-1.5 py-2.5 transition-colors duration-200 whitespace-nowrap rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[#B4AFA3] hover:text-[#D4A843] ${navLinkTextClass}`}
               >
                 {t('nav.more')}
                 <ChevronDown size={13} className={`transition-transform duration-300 ${isMoreOpen ? "rotate-180" : ""}`} />
@@ -357,7 +357,7 @@ const Navbar = () => {
                       className={`flex items-center gap-2.5 px-4 py-3 text-[13px] font-semibold transition-colors ${
                         isActive
                           ? "text-[#D4A843]"
-                          : "text-white hover:bg-white/[0.08] hover:text-[#D4A843]"
+                          : "text-[#B4AFA3] hover:bg-white/[0.08] hover:text-[#D4A843]"
                       }`}
                     >
                       <link.icon size={14} className="shrink-0" />
@@ -382,9 +382,9 @@ const Navbar = () => {
                     onClick={() => setIsLangOpen(!isLangOpen)}
                     aria-haspopup="menu"
                     aria-expanded={isLangOpen}
-                    className="flex items-center justify-center gap-2 h-10 min-[1600px]:h-11 px-4 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[15px] min-[1600px]:text-[16px] font-semibold text-white/65 hover:text-white"
+                    className="flex items-center justify-center gap-1 h-8 min-[1600px]:h-9 px-2.5 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[12px] min-[1600px]:text-[13px] font-semibold text-white/65 hover:text-white"
                   >
-                    <Globe size={18} className="text-[#D4A843]/45 shrink-0" />
+                    <Globe size={13} className="text-[#D4A843]/45 shrink-0" />
                     <span className="tracking-widest uppercase leading-none">{currentLang.code.toUpperCase()}</span>
                   </button>
                   <div className={`absolute top-[calc(100%+10px)] end-0 w-[262px] bg-[#44474F] border border-[#D4A843]/12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
@@ -402,7 +402,7 @@ const Navbar = () => {
                             className={`flex items-center gap-2.5 px-3 py-2.5 rounded-[10px] transition-all duration-200 text-start ${
                               lang === language.code
                                 ? "bg-[#D4A843]/10 border border-[#D4A843]/22 text-[#D4A843]"
-                                : "hover:bg-white/8 border border-transparent text-white/55 hover:text-white"
+                                : "hover:bg-white/8 border border-transparent text-[#B4AFA3] hover:text-[#D4A843]"
                             }`}
                           >
                             <span className="text-xl leading-none">{language.flag}</span>
@@ -504,9 +504,9 @@ const Navbar = () => {
                       aria-haspopup="menu"
                       aria-expanded={isProfileOpen}
                       className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 rounded-lg">
-                      <span className="bg-[#D4A843] text-black h-10 min-[1600px]:h-11 px-4 rounded-lg font-semibold text-[15px] min-[1600px]:text-[16px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-200 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
+                      <span className="bg-[#D4A843] text-black h-8 min-[1600px]:h-9 px-3 rounded-lg font-semibold text-[12px] min-[1600px]:text-[13px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-200 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center justify-center gap-1.5 whitespace-nowrap">
                         {t('nav.profile')}
-                        <ChevronDown size={9} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
+                        <ChevronDown size={8} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                       </span>
                     </button>
                     <div className={`absolute top-[calc(100%+10px)] end-0 w-[178px] bg-[#44474F] border border-[#D4A843]/14 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden z-50 ${
@@ -533,9 +533,9 @@ const Navbar = () => {
                     id="staff-portal-btn-admin"
                     onClick={handlePortalClick}
                     aria-label={portalTooltipText}
-                    className="flex items-center justify-center w-10 h-10 min-[1600px]:w-11 min-[1600px]:h-11 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
+                    className="flex items-center justify-center w-8 h-8 min-[1600px]:w-9 min-[1600px]:h-9 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
                   >
-                    <Briefcase size={18} />
+                    <Briefcase size={13} />
                   </button>
                   <div className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-[#2B2B2B] border border-[#D4A843]/30 text-[#D4A843] text-[12px] font-bold py-2 px-4 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.45)]`}>
                     {portalTooltipText}
@@ -563,7 +563,7 @@ const Navbar = () => {
                     <Link
                       href="/admin/dashboard"
                       onClick={() => setIsAdminOpen(false)}
-                      className="flex items-center gap-2.5 w-full px-4 py-3 text-[12px] font-bold text-white/65 hover:text-white hover:bg-white/8 transition-colors"
+                      className="flex items-center gap-2.5 w-full px-4 py-3 text-[12px] font-bold text-[#B4AFA3] hover:text-[#D4A843] hover:bg-white/8 transition-colors"
                     >
                       <LayoutDashboard size={13} className="text-[#D4A843] flex-shrink-0" />
                       {t('admin.dashboard')}
@@ -589,9 +589,9 @@ const Navbar = () => {
                     aria-haspopup="menu"
                     aria-expanded={isProfileOpen}
                     className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 rounded-lg">
-                    <span className="bg-[#D4A843] text-black h-10 min-[1600px]:h-11 px-4 rounded-lg font-semibold text-[15px] min-[1600px]:text-[16px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-200 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
+                    <span className="bg-[#D4A843] text-black h-8 min-[1600px]:h-9 px-3 rounded-lg font-semibold text-[12px] min-[1600px]:text-[13px] shadow-[0_2px_12px_rgba(212,168,67,0.25)] transition-all duration-200 hover:bg-[#E8C46A] hover:shadow-[0_4px_20px_rgba(212,168,67,0.35)] active:scale-95 flex items-center justify-center gap-1.5 whitespace-nowrap">
                       {t('nav.profile')}
-                      <ChevronDown size={9} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown size={8} className={`transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
                     </span>
                   </button>
 
@@ -618,9 +618,9 @@ const Navbar = () => {
                     id="staff-portal-btn"
                     onClick={handlePortalClick}
                     aria-label={portalTooltipText}
-                    className="flex items-center justify-center w-10 h-10 min-[1600px]:w-11 min-[1600px]:h-11 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
+                    className="flex items-center justify-center w-8 h-8 min-[1600px]:w-9 min-[1600px]:h-9 rounded-lg border border-[#D4A843]/22 text-[#D4A843]/70 hover:text-[#D4A843] hover:bg-[#D4A843]/10 hover:border-[#D4A843]/40 transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
                   >
-                    <Briefcase size={18} />
+                    <Briefcase size={13} />
                   </button>
                   <div className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-50 whitespace-nowrap bg-[#2B2B2B] border border-[#D4A843]/30 text-[#D4A843] text-[12px] font-bold py-2 px-4 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.45)]`}>
                     {portalTooltipText}
@@ -633,9 +633,9 @@ const Navbar = () => {
                     onClick={() => setIsLangOpen(!isLangOpen)}
                     aria-haspopup="menu"
                     aria-expanded={isLangOpen}
-                    className="flex items-center justify-center gap-2 h-10 min-[1600px]:h-11 px-4 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[15px] min-[1600px]:text-[16px] font-semibold text-white/65 hover:text-white"
+                    className="flex items-center justify-center gap-1 h-8 min-[1600px]:h-9 px-2.5 rounded-lg border border-[#D4A843]/22 hover:border-[#D4A843]/42 hover:bg-[#D4A843]/7 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60 text-[12px] min-[1600px]:text-[13px] font-semibold text-white/65 hover:text-white"
                   >
-                    <Globe size={18} className="text-[#D4A843]/45 shrink-0" />
+                    <Globe size={13} className="text-[#D4A843]/45 shrink-0" />
                     <span className="tracking-widest uppercase leading-none">{currentLang.code.toUpperCase()}</span>
                   </button>
 
@@ -654,7 +654,7 @@ const Navbar = () => {
                             className={`flex items-center gap-2.5 px-3 py-2.5 rounded-[10px] transition-all duration-200 text-start ${
                               lang === language.code
                                 ? "bg-[#D4A843]/10 border border-[#D4A843]/22 text-[#D4A843]"
-                                : "hover:bg-white/8 border border-transparent text-white/55 hover:text-white"
+                                : "hover:bg-white/8 border border-transparent text-[#B4AFA3] hover:text-[#D4A843]"
                             }`}
                           >
                             <span className="text-xl leading-none">{language.flag}</span>

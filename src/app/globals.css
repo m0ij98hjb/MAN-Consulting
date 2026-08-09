@@ -122,12 +122,18 @@ p, label {
   color: var(--text-muted);
 }
 
-/* Links: white by default, gold on hover */
-a {
-  color: #ffffff;
-}
-a:hover {
-  color: var(--primary);
+/* Links: white by default, gold on hover.
+   Wrapped in @layer base so Tailwind text-color utilities (which live in
+   the higher-priority `utilities` layer) can actually override this —
+   an unlayered rule here would beat any Tailwind class regardless of
+   specificity, silently ignoring text-[#...] on every <a>/<Link>. */
+@layer base {
+  a {
+    color: #ffffff;
+  }
+  a:hover {
+    color: var(--primary);
+  }
 }
 
 /* ── GLOBAL STYLES ──────────────────────────────────────────────────────── */

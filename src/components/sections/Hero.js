@@ -74,7 +74,7 @@ const Hero = () => {
                   src={src}
                   alt={`MAN Hero Slideshow ${idx + 1}`}
                   fill
-                  className="object-contain object-center opacity-90 animate-slow-zoom"
+                  className="object-cover object-center opacity-90 animate-slow-zoom"
                   priority={idx === 0}
                   unoptimized
                 />
@@ -187,7 +187,7 @@ const Hero = () => {
                   src={src}
                   alt={`MAN Hero Slideshow ${idx + 1}`}
                   fill
-                  className="object-contain object-center opacity-90 animate-slow-zoom"
+                  className="object-cover object-center opacity-90 animate-slow-zoom"
                   priority={idx === 0}
                   unoptimized
                 />
