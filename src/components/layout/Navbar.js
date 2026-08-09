@@ -779,6 +779,7 @@ const Navbar = () => {
                 }
                 return (
                   <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)}
+                    prefetch={false}
                     className={`flex items-center gap-3 py-[11px] px-3 rounded-[12px] border transition-all duration-200 active:scale-[0.98] ${
                       isActive ? "bg-[#D4A843]/10 border-[#D4A843]/20" : "border-transparent hover:bg-white/8"
                     }`}>

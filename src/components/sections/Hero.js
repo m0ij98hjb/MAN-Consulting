@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -61,6 +61,24 @@ const Hero = () => {
       return next;
     });
   };
+
+  // Memoized so TypewriterText's effect (keyed on `texts` by reference) doesn't
+  // see a "new" array on every Hero re-render — e.g. when the useSiteContent
+  // CMS fetch above resolves — which was resetting the typewriter mid-animation.
+  const mobileTaglineTexts = useMemo(
+    () => [t('hero.taglineLine1'), t('hero.taglineLine2')],
+    [lang] // eslint-disable-line react-hooks/exhaustive-deps -- t()'s output only depends on lang; t itself isn't a stable reference
+  );
+  const desktopTaglineTexts = useMemo(
+    () => ({
+      ar: ["حلول هندسية", "مبنية على الخبرة"], en: ["Engineering Solutions", "Built on Experience"],
+      zh: ["工程解决方案", "基于丰富经验"], es: ["Soluciones de Ingeniería", "Construidas sobre la Experiencia"],
+      fr: ["Solutions d'Ingénierie", "Fondées sur l'Expérience"], de: ["Ingenieurlösungen", "Gebaut auf Erfahrung"],
+      tr: ["Mühendislik Çözümleri", "Deneyim Üzerine İnşa Edildi"], ur: ["انجینئرنگ حل", "تجربے کی بنیاد پر"],
+      hi: ["इंजीनियरिंग समाधान", "अनुभव पर निर्मित"], ru: ["Инженерные решения", "Построенные на опыте"]
+    }[lang] || ["Engineering Solutions", "Built on Experience"]),
+    [lang]
+  );
 
   const descFallback = t('hero.liveDescription');
   const descText = isRTL
@@ -134,11 +152,10 @@ const Hero = () => {
           {/* Headline */}
           <h1
             className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight w-full"
-            data-aos="fade-up" data-aos-delay="200"
             style={{ textShadow: "0 4px 20px rgba(0,0,0,0.8)" }}
           >
             <TypewriterText
-              texts={[t('hero.taglineLine1'), t('hero.taglineLine2')]}
+              texts={mobileTaglineTexts}
               typingSpeed={120} deletingSpeed={60} pauseDuration={2000} loop
               className="text-white" textClassNames={["", "text-[#D4A843]"]}
             />
@@ -159,7 +176,7 @@ const Hero = () => {
               as={Link}
               href="/contact"
               size="lg"
-              className="flex-1 flex items-center justify-center text-sm font-bold rounded-[4px] border border-white hover:bg-[#f2f2f2] active:scale-95 transition-all duration-300 py-3"
+              className="flex-1 flex items-center justify-center text-sm font-bold rounded-[4px] border border-white hover:bg-[#f2f2f2] py-3"
               style={{ backgroundColor: '#ffffff', color: '#000000' }}
             >
               {requestConsultText}
@@ -169,7 +186,7 @@ const Hero = () => {
               href="/projects"
               variant="outline"
               size="lg"
-              className="flex-1 flex items-center justify-center text-sm font-bold rounded-[4px] border border-white text-white hover:bg-white hover:text-slate-950 active:scale-95 transition-all duration-300 py-3"
+              className="flex-1 flex items-center justify-center text-sm font-bold rounded-[4px] border border-white text-white hover:bg-white hover:text-slate-950 py-3"
             >
               {viewWorksText}
             </Button>
@@ -248,19 +265,10 @@ const Hero = () => {
 
           <h1
             className="text-4xl md:text-6xl lg:text-5xl font-bold text-white mb-6 leading-tight"
-            data-aos="fade-up" data-aos-delay="400"
             style={{ textShadow: "0 4px 16px rgba(0,0,0,0.7)" }}
           >
             <TypewriterText
-              texts={
-                {
-                  ar: ["حلول هندسية", "مبنية على الخبرة"], en: ["Engineering Solutions", "Built on Experience"],
-                  zh: ["工程解决方案", "基于丰富经验"], es: ["Soluciones de Ingeniería", "Construidas sobre la Experiencia"],
-                  fr: ["Solutions d'Ingénierie", "Fondées sur l'Expérience"], de: ["Ingenieurlösungen", "Gebaut auf Erfahrung"],
-                  tr: ["Mühendislik Çözümleri", "Deneyim Üzerine İnşa Edildi"], ur: ["انجینئرنگ حل", "تجربے کی بنیاد پر"],
-                  hi: ["इंजीनियरिंग समाधान", "अनुभव पर निर्मित"], ru: ["Инженерные решения", "Построенные на опыте"]
-                }[lang] || ["Engineering Solutions", "Built on Experience"]
-              }
+              texts={desktopTaglineTexts}
               typingSpeed={120} deletingSpeed={60} pauseDuration={2000} loop
               className="text-white" textClassNames={["", "text-[#D4A843]"]}
             />
@@ -279,7 +287,7 @@ const Hero = () => {
               as={Link}
               href="/contact"
               size="lg"
-              className="flex items-center justify-center text-base font-bold rounded-[4px] border border-white hover:bg-[#f2f2f2] active:scale-95 transition-all duration-300 px-8 py-3.5"
+              className="flex items-center justify-center text-base font-bold rounded-[4px] border border-white hover:bg-[#f2f2f2] px-8 py-3.5"
               style={{ backgroundColor: '#ffffff', color: '#000000' }}
             >
               {requestConsultText}
@@ -289,7 +297,7 @@ const Hero = () => {
               href="/projects"
               variant="outline"
               size="lg"
-              className="flex items-center justify-center text-base font-bold rounded-[4px] border border-white text-white hover:bg-white hover:text-slate-950 active:scale-95 transition-all duration-300 px-8 py-3.5"
+              className="flex items-center justify-center text-base font-bold rounded-[4px] border border-white text-white hover:bg-white hover:text-slate-950 px-8 py-3.5"
             >
               {viewWorksText}
             </Button>
