@@ -14,7 +14,7 @@ const MP3_LANGS = new Set(['ar', 'de', 'en', 'es', 'fr', 'hi', 'tr', 'ur', 'zh']
 // Bump this whenever the presentation MP3s are regenerated, so browsers
 // that cached the old audio by URL are forced to fetch the new file
 // instead of replaying a stale cached/buffered copy.
-const AUDIO_VERSION = '6';
+const AUDIO_VERSION = '9';
 
 // BCP-47 tags used by SpeechSynthesis for languages without an MP3
 const LANG_BCP47 = {

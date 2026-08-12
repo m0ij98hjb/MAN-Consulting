@@ -48,7 +48,7 @@ export async function createAdminUser({
       department,
       role,                      // Main role for RBAC
       permissions,                // ['jobs_module', 'messages_module', ...]
-      photoURL: role === 'company_manager' ? '/asstes/directoret.webp' : (role === 'super_admin' ? '/asstes/super-admin.jpg' : '/asstes/ph dashborad.png'),
+      photoURL: role === 'company_manager' ? '/asstes/directorett.png' : (role === 'super_admin' ? '/asstes/super-admin.jpg' : '/asstes/ph dashborad.png'),
       active: true,
       createdAt: serverTimestamp(),
       createdBy: createdByUid,

@@ -7,19 +7,21 @@ export async function POST(req) {
     const { customerName, customerEmail, subject, replyMessage, lang } = await req.json();
     const isAr = !lang || lang === 'ar'; // default to Arabic when omitted, preserving prior behavior for callers not yet updated
 
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-      return Response.json({ success: false, error: 'SMTP_USER or SMTP_PASS env vars not set' }, { status: 500 });
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      return Response.json({ success: false, error: 'SMTP_HOST, SMTP_USER or SMTP_PASS env vars not set' }, { status: 500 });
     }
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT) || 465,
+      secure: process.env.SMTP_SECURE !== 'false', // cPanel mail — SSL/TLS on port 465 by default
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
     });
 
-    const logoPath = join(process.cwd(), 'public', 'brand', 'logo-navbar-real.png');
+    const logoPath = join(process.cwd(), 'public', 'asstes', 'dashbored-ph.png');
 
     // Two shipped templates (Arabic + English). Other site languages fall
     // back to English rather than fabricating unreviewed translations for

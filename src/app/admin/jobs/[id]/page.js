@@ -9,7 +9,7 @@ import {
   ArrowLeft, ArrowRight, XCircle, CheckCircle, Loader2,
   User, Phone, Mail, MapPin, Calendar,
   Briefcase, FileText, Clock, Download, Building2,
-  CalendarCheck, Sparkles, Send, ChevronDown,
+  CalendarCheck, Sparkles, Send, ChevronDown, Search,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -38,6 +38,7 @@ function scoreApp(app) {
 /* ─── Status config ─── */
 const STATUS_CONFIG = {
   pending:             { color: '#3b82f6', labelKey: 'admin.statusPending' },
+  under_review:        { color: '#a855f7', labelKey: 'admin.statusUnderReview' },
   accepted:            { color: '#22c55e', labelKey: 'admin.statusAccepted' },
   interview_scheduled: { color: '#f59e0b', labelKey: 'admin.statusInterviewScheduled' },
   rejected:            { color: '#ef4444', labelKey: 'admin.statusRejected' },
@@ -72,6 +73,12 @@ export default function JobDetailPage() {
     });
     return unsub;
   }, [id]);
+
+  const reviewApp = async () => {
+    setActioning('review');
+    await updateDoc(doc(db, 'jobApplications', id), { status: 'under_review', reviewedAt: new Date() });
+    setActioning('');
+  };
 
   const acceptApp = async () => {
     setActioning('accept');
@@ -175,6 +182,16 @@ export default function JobDetailPage() {
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
+            {app.status === 'pending' && (
+              <button
+                onClick={reviewApp}
+                disabled={actioning === 'review'}
+                className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border transition-colors disabled:opacity-50 text-purple-400 border-purple-500/20 hover:bg-purple-500/10"
+              >
+                {actioning === 'review' ? <Loader2 size={14} className="animate-spin" /> : <Search size={14} />}
+                {t('admin.jobReviewBtn')}
+              </button>
+            )}
             {app.status !== 'accepted' && app.status !== 'interview_scheduled' && app.status !== 'rejected' && (
               <button
                 onClick={acceptApp}

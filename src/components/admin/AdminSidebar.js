@@ -134,9 +134,9 @@ export default function AdminSidebar() {
           ) : (
             <div
               className="relative w-[72px] h-[72px] rounded-full overflow-hidden mb-3"
-              style={{ 
+              style={{
                 boxShadow: '0 0 0 2px rgba(200,169,110,0.35)',
-                backgroundColor: 'transparent'
+                backgroundColor: '#ffffff'
               }}
             >
               <div
@@ -148,7 +148,7 @@ export default function AdminSidebar() {
                 alt="User Profile"
                 fill
                 sizes="72px"
-                className="object-cover object-top"
+                className="object-contain object-center"
               />
             </div>
           )}

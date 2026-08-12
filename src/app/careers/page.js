@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useState, useRef, useEffect } from "react";
+import { collection, addDoc, serverTimestamp, doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Navbar from "@/components/layout/Navbar";
 import Image from "next/image";
@@ -9,13 +9,24 @@ import { useLanguage } from "@/context/LanguageContext";
 import {
   Award, TrendingUp, Users, Building2,
   MapPin, Clock, Upload, Send, CheckCircle2,
-  Briefcase, ChevronDown, FileText, ArrowDown, GraduationCap, Zap,
+  Briefcase, ChevronDown, FileText, ArrowDown, GraduationCap,
   HardHat,
 } from "lucide-react";
 import { DEPARTMENTS, TRADES } from "@/lib/recruitmentConfig";
 import { uploadAsset } from "@/lib/cloudinary";
 
 const BENEFIT_ICONS = [Award, TrendingUp, Users, Building2];
+
+/* ── Firestore-driven job listings (siteContent/jobs → { listings: [...] }) ──
+   type: 'full' | 'part' | 'training' | 'supervision' | 'trades'
+   visible !== false is treated as published (missing flag defaults to visible). */
+const TYPE_BADGE_KEYS = {
+  full: "careers.fullTime",
+  part: "careers.partTimeLabel",
+  training: "careers.trainingLabel",
+  supervision: "careers.supervisionLabel",
+  trades: "careers.tradesLabel",
+};
 
 async function uploadToCloudinary(file) {
   const { url } = await uploadAsset(file, {
@@ -25,12 +36,71 @@ async function uploadToCloudinary(file) {
   return url;
 }
 
+function JobCard({ job, lang, isRTL, t, onApply, delay = 0 }) {
+  const title = job[`title_${lang}`] || job.title_en || job.title_ar || "";
+  const desc  = job[`desc_${lang}`]  || job.desc_en  || job.desc_ar  || "";
+  const typeLabel = t(TYPE_BADGE_KEYS[job.type] || "careers.fullTime");
+  const location  = job.location || t("careers.jeddah");
+  return (
+    <div className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#D4A843]/30 hover:bg-[#D4A843]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay={delay}>
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#D4A843]/0 to-transparent group-hover:via-[#D4A843]/50 transition-all duration-500" />
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#D4A843]/12 text-[#D4A843] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#D4A843]/20">{typeLabel}</span>
+          <h3 className="text-white font-black text-xl leading-tight">{title}</h3>
+        </div>
+        <div className="w-12 h-12 rounded-xl bg-[#D4A843]/8 border border-[#D4A843]/15 flex items-center justify-center text-[#D4A843] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#D4A843]/15 transition-all duration-300">
+          <Briefcase size={19} />
+        </div>
+      </div>
+      <p className="text-white/55 text-sm leading-relaxed flex-1">{desc}</p>
+      <div className="flex items-center justify-between pt-4 border-t border-white/5">
+        <div className={`flex items-center gap-4 text-white/35 text-xs ${isRTL ? "flex-row" : ""}`}>
+          <span className="flex items-center gap-1.5"><MapPin size={11} />{location}</span>
+          <span className="flex items-center gap-1.5"><Clock size={11} />{typeLabel}</span>
+        </div>
+        <button onClick={() => onApply(job)}
+          className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D4A843] to-[#D4A843] text-black font-black text-xs hover:shadow-lg hover:shadow-[#D4A843]/25 hover:-translate-y-0.5 transition-all duration-300 active:scale-95">
+          {t("careers.applyNow")}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function EmptyJobsState({ t }) {
+  return (
+    <div className="col-span-full flex flex-col items-center justify-center gap-3 py-14 px-6 rounded-2xl border border-dashed border-white/10 bg-white/[0.015]" data-aos="fade-up">
+      <div className="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/8 flex items-center justify-center text-white/20">
+        <Briefcase size={20} />
+      </div>
+      <p className="text-white/30 text-sm text-center">{t("careers.emptyStateMessage")}</p>
+    </div>
+  );
+}
+
 export default function CareersPage() {
   const { t, lang, isRTL } = useLanguage();
 
-  /* ── Card selection state ── */
-  const [cardFormalDept, setCardFormalDept] = useState("");
-  const [cardSkillTrade, setCardSkillTrade] = useState("");
+  /* ── Firestore job listings ── */
+  const [jobs, setJobs] = useState([]);
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, "siteContent", "jobs"), (snap) => {
+      setJobs(snap.exists() ? (snap.data().listings || []) : []);
+    }, (err) => {
+      console.error("Failed to load job listings:", err);
+    });
+    return unsub;
+  }, []);
+  const published = jobs.filter((j) => j.visible !== false);
+  const availableJobs   = published.filter((j) => j.type === "full" || j.type === "part");
+  const trainingJobs    = published.filter((j) => j.type === "training");
+  const supervisionJobs = published.filter((j) => j.type === "supervision");
+  const tradesJobs      = published.filter((j) => j.type === "trades");
+  const hasAnyPublishedJob = published.length > 0;
+
+  /* ── Apply Now from a Firestore job card ── */
+  const [jobCardMode, setJobCardMode] = useState(false);
 
   /* ── Personal Info ── */
   const [fullName, setFullName]       = useState("");
@@ -63,10 +133,7 @@ export default function CareersPage() {
   const availPosRef     = useRef(null);
 
   const benefits           = t("careers.benefits");
-  const positions          = t("careers.positions");
-  const trainingPositions  = t("careers.trainingPositions");
   const expOptions         = t("careers.expOptions");
-  const supervisorPositions = t("careers.supervisorPositions");
 
   /* ─── Derived options from recruitmentConfig ─── */
   const departmentOptions = Object.entries(DEPARTMENTS).map(([key, val]) => ({
@@ -85,50 +152,14 @@ export default function CareersPage() {
     label: val[lang] || val.en,
   }));
 
-  /* ── handleApplyClick for locale-driven legacy cards ──
-     `posCard` is an item from the already-localized `careers.positions` /
-     `careers.trainingPositions` arrays, so `posCard.title` is correctly
-     translated for the active language — no ar/en branching needed here.
-     Only the internal DEPARTMENTS key (an identifier, not user-facing text)
-     needs a lookup table. */
-  const APPLY_DEPARTMENT_BY_KEY = {
-    architect: "architecture", senior_architect: "architecture", interior: "architecture", cad: "architecture",
-    civil: "civil_structural", structural: "civil_structural", site_eng: "civil_structural",
-    mech: "mep", elec: "mep",
-    bim: "bim", revit: "bim",
-    qty: "quantities_cost", cost_eng: "quantities_cost",
-    pm: "project_management", planning: "project_management", tech_office: "project_management",
-    permit_eng: "permits_compliance", inspector: "permits_compliance",
-    doccontrol: "administration", admin_asst: "administration",
-    intern_eng: "civil_structural", intern_design: "architecture",
-  };
-  const handleApplyClick = (posCard) => {
-    const dept = APPLY_DEPARTMENT_BY_KEY[posCard.key];
-    if (dept) {
-      setJobType("formal"); setDepartment(dept); setPosition(posCard.title || ""); setTrade("");
-    } else {
-      setJobType("formal"); setDepartment(""); setPosition(posCard.title || ""); setTrade("");
-    }
-    setTimeout(() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
-  };
-
-  /* ── handleApplyFromFormalCard — supervisory positions card ── */
-  const handleApplyFromFormalCard = () => {
-    if (!cardFormalDept) return;
-    setJobType("formal");
-    setDepartment("");
-    setPosition(cardFormalDept);
-    setTrade("");
-    setTimeout(() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
-  };
-
-  /* ── handleApplyFromSkillCard — two-card section ── */
-  const handleApplyFromSkillCard = () => {
-    if (!cardSkillTrade) return;
-    setJobType("skilled");
-    setDepartment("");
-    setPosition("");
-    setTrade(cardSkillTrade);
+  /* ── handleApplyFromJob — Apply Now from any Firestore-driven job card.
+     Works for any job created from the dashboard automatically: the card's
+     own title/type are used directly, no per-job code changes needed. ── */
+  const handleApplyFromJob = (job) => {
+    const title = job[`title_${lang}`] || job.title_en || job.title_ar || "";
+    setJobCardMode(true);
+    setJobType(job.type || "full");
+    setDepartment(""); setPosition(title); setTrade("");
     setTimeout(() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
   };
 
@@ -139,9 +170,11 @@ export default function CareersPage() {
     const file = e.dataTransfer.files[0]; if (file) setCvFile(file);
   };
 
-  const resolvedPosition = jobType === "formal"
+  const resolvedPosition = jobCardMode
     ? position
-    : trade ? (TRADES[trade]?.[lang] || TRADES[trade]?.en) ?? trade : "";
+    : jobType === "formal"
+      ? position
+      : trade ? (TRADES[trade]?.[lang] || TRADES[trade]?.en) ?? trade : "";
 
   const handleSubmit = async (e) => {
     e.preventDefault(); setSubmitting(true); setSubmitError("");
@@ -168,6 +201,7 @@ export default function CareersPage() {
     setSubmitted(false);
     setFullName(""); setPhone(""); setEmail(""); setCity("");
     setNationality(""); setCountry("");
+    setJobCardMode(false);
     setJobType(""); setDepartment(""); setPosition(""); setTrade("");
     setExperience(""); setCoverLetter(""); setCvFile(null); setSubmitError("");
   };
@@ -261,126 +295,13 @@ export default function CareersPage() {
             <div className="w-20 h-1 bg-gradient-to-r from-[#D4A843] to-[#D4A843] mx-auto mt-6 rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {Array.isArray(positions) && positions.map((pos, i) => (
-              <div key={i} className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#D4A843]/30 hover:bg-[#D4A843]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay={i * 60}>
-                <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#D4A843]/0 to-transparent group-hover:via-[#D4A843]/50 transition-all duration-500" />
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#D4A843]/12 text-[#D4A843] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#D4A843]/20">{pos.dept}</span>
-                    <h3 className="text-white font-black text-xl leading-tight">{pos.title}</h3>
-                  </div>
-                  <div className="w-12 h-12 rounded-xl bg-[#D4A843]/8 border border-[#D4A843]/15 flex items-center justify-center text-[#D4A843] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#D4A843]/15 transition-all duration-300">
-                    <Briefcase size={19} />
-                  </div>
-                </div>
-                <p className="text-white/55 text-sm leading-relaxed flex-1">{pos.desc}</p>
-                <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                  <div className={`flex items-center gap-4 text-white/35 text-xs ${isRTL ? "flex-row" : ""}`}>
-                    <span className="flex items-center gap-1.5"><MapPin size={11} />{t("careers.jeddah")}</span>
-                    <span className="flex items-center gap-1.5"><Clock size={11} />{t("careers.fullTime")}</span>
-                  </div>
-                  <button onClick={() => handleApplyClick(pos)}
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D4A843] to-[#D4A843] text-black font-black text-xs hover:shadow-lg hover:shadow-[#D4A843]/25 hover:-translate-y-0.5 transition-all duration-300 active:scale-95">
-                    {t("careers.applyNow")}
-                  </button>
-                </div>
-              </div>
-            ))}
-
-            {/* ── Card: وظائف الإشراف والإدارة الميدانية ── */}
-            <div className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#D4A843]/30 hover:bg-[#D4A843]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up">
-              <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#D4A843]/0 to-transparent group-hover:via-[#D4A843]/50 transition-all duration-500" />
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#D4A843]/12 text-[#D4A843] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#D4A843]/20">
-                    {t("careers.siteSupervisionBadge")}
-                  </span>
-                  <h3 className="text-white font-black text-xl leading-tight">
-                    {t("careers.siteSupervisionTitle")}
-                  </h3>
-                </div>
-                <div className="w-12 h-12 rounded-xl bg-[#D4A843]/8 border border-[#D4A843]/15 flex items-center justify-center text-[#D4A843] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#D4A843]/15 transition-all duration-300">
-                  <Briefcase size={19} />
-                </div>
-              </div>
-              <p className="text-white/55 text-sm leading-relaxed flex-1">
-                {t("careers.siteSupervisionDesc")}
-              </p>
-              <div className="flex flex-col gap-3 pt-4 border-t border-white/5">
-                <div className="relative">
-                  <select value={cardFormalDept} onChange={e => setCardFormalDept(e.target.value)} className={selectCls}>
-                    <option value="" className="bg-[#111]">{t("careers.selectPositionPlaceholder")}</option>
-                    {supervisorPositions.map(pos => (
-                      <option key={pos} value={pos} className="bg-[#111]">
-                        {pos}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown size={14} className={`absolute ${isRTL ? "left-3" : "right-3"} top-1/2 -translate-y-1/2 text-white/40 pointer-events-none`} />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className={`flex items-center gap-4 text-white/35 text-xs ${isRTL ? "flex-row" : ""}`}>
-                    <span className="flex items-center gap-1.5"><MapPin size={11} />{t("careers.jeddah")}</span>
-                    <span className="flex items-center gap-1.5"><Clock size={11} />{t("careers.fullTime")}</span>
-                  </div>
-                  <button onClick={handleApplyFromFormalCard} disabled={!cardFormalDept}
-                    className={`px-5 py-2.5 rounded-xl font-black text-xs hover:-translate-y-0.5 transition-all duration-300 active:scale-95 ${
-                      cardFormalDept
-                        ? "bg-gradient-to-r from-[#D4A843] to-[#D4A843] text-black hover:shadow-lg hover:shadow-[#D4A843]/25"
-                        : "bg-white/5 border border-white/8 text-white/25 cursor-not-allowed"
-                    }`}>
-                    {t("careers.applyNow")}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* ── Card: وظائف المعلمين ── */}
-            <div className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-[#D4A843]/30 hover:bg-[#D4A843]/4 transition-all duration-400 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay="80">
-              <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#D4A843]/0 to-transparent group-hover:via-[#D4A843]/50 transition-all duration-500" />
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#D4A843]/12 text-[#D4A843] text-[10px] font-black uppercase tracking-widest mb-2.5 border border-[#D4A843]/20">
-                    {t("careers.skilledTradesBadge")}
-                  </span>
-                  <h3 className="text-white font-black text-xl leading-tight">
-                    {t("careers.skilledTradesTitle")}
-                  </h3>
-                </div>
-                <div className="w-12 h-12 rounded-xl bg-[#D4A843]/8 border border-[#D4A843]/15 flex items-center justify-center text-[#D4A843] flex-shrink-0 group-hover:scale-110 group-hover:bg-[#D4A843]/15 transition-all duration-300">
-                  <HardHat size={19} />
-                </div>
-              </div>
-              <p className="text-white/55 text-sm leading-relaxed flex-1">
-                {t("careers.skilledTradesDesc")}
-              </p>
-              <div className="flex flex-col gap-3 pt-4 border-t border-white/5">
-                <div className="relative">
-                  <select value={cardSkillTrade} onChange={e => setCardSkillTrade(e.target.value)} className={selectCls}>
-                    <option value="" className="bg-[#111]">{t("careers.selectTradePlaceholder")}</option>
-                    {tradeOptions.map(opt => (
-                      <option key={opt.key} value={opt.key} className="bg-[#111]">{opt.label}</option>
-                    ))}
-                  </select>
-                  <ChevronDown size={14} className={`absolute ${isRTL ? "left-3" : "right-3"} top-1/2 -translate-y-1/2 text-white/40 pointer-events-none`} />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className={`flex items-center gap-4 text-white/35 text-xs ${isRTL ? "flex-row" : ""}`}>
-                    <span className="flex items-center gap-1.5"><MapPin size={11} />{t("careers.jeddah")}</span>
-                    <span className="flex items-center gap-1.5"><Clock size={11} />{t("careers.fullTime")}</span>
-                  </div>
-                  <button onClick={handleApplyFromSkillCard} disabled={!cardSkillTrade}
-                    className={`px-5 py-2.5 rounded-xl font-black text-xs hover:-translate-y-0.5 transition-all duration-300 active:scale-95 ${
-                      cardSkillTrade
-                        ? "bg-gradient-to-r from-[#D4A843] to-[#D4A843] text-black hover:shadow-lg hover:shadow-[#D4A843]/25"
-                        : "bg-white/5 border border-white/8 text-white/25 cursor-not-allowed"
-                    }`}>
-                    {t("careers.applyNow")}
-                  </button>
-                </div>
-              </div>
-            </div>
-
+            {availableJobs.length === 0 ? (
+              <EmptyJobsState t={t} />
+            ) : (
+              availableJobs.map((job, i) => (
+                <JobCard key={job.id} job={job} lang={lang} isRTL={isRTL} t={t} onApply={handleApplyFromJob} delay={i * 60} />
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -400,36 +321,66 @@ export default function CareersPage() {
             <div className="w-20 h-1 bg-gradient-to-r from-[#D4A843] to-[#D4A843] mx-auto mt-6 rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {Array.isArray(trainingPositions) && trainingPositions.map((pos, i) => (
-              <div key={i} className="group relative bg-gradient-to-br from-[#D4A843]/8 to-[#D4A843]/3 border border-[#D4A843]/20 rounded-2xl p-7 hover:border-[#D4A843]/45 hover:from-[#D4A843]/12 hover:to-[#D4A843]/6 transition-all duration-500 flex flex-col gap-4 overflow-hidden" data-aos="fade-up" data-aos-delay={i * 100}>
-                <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#D4A843]/8 blur-3xl group-hover:bg-[#D4A843]/14 transition-all duration-500" />
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-[#D4A843]/15 border border-[#D4A843]/30 flex items-center justify-center text-[#D4A843] flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                    <GraduationCap size={24} />
-                  </div>
-                  <div>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#D4A843]/15 text-[#D4A843] text-[10px] font-black uppercase tracking-widest mb-2 border border-[#D4A843]/25">{pos.dept}</span>
-                    <h3 className="text-white font-black text-lg leading-tight">{pos.title}</h3>
-                  </div>
-                </div>
-                <p className="text-white/55 text-sm leading-relaxed flex-1">{pos.desc}</p>
-                <div className="flex items-center justify-between pt-4 border-t border-[#D4A843]/12">
-                  <div className="flex items-center gap-1.5 text-white/35 text-xs">
-                    <Zap size={11} className="text-[#D4A843]" />
-                    <span className="text-[#D4A843]/70">{t("careers.jeddah")}</span>
-                  </div>
-                  <button onClick={() => handleApplyClick(pos)}
-                    className="px-5 py-2.5 rounded-xl bg-[#D4A843]/15 border border-[#D4A843]/35 text-[#D4A843] font-black text-xs hover:bg-[#D4A843]/25 hover:border-[#D4A843]/60 hover:-translate-y-0.5 transition-all duration-300 active:scale-95">
-                    {t("careers.applyNow")}
-                  </button>
-                </div>
-              </div>
-            ))}
+            {trainingJobs.length === 0 ? (
+              <EmptyJobsState t={t} />
+            ) : (
+              trainingJobs.map((job, i) => (
+                <JobCard key={job.id} job={job} lang={lang} isRTL={isRTL} t={t} onApply={handleApplyFromJob} delay={i * 100} />
+              ))
+            )}
           </div>
         </div>
       </section>
 
-      {/* ===== APPLICATION FORM ===== */}
+      {/* ===== SUPERVISION & MANAGEMENT JOBS ===== */}
+      <section className="py-28 bg-[var(--background)] relative">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <span className="text-[#D4A843] text-xs font-bold uppercase tracking-[3px] mb-3 block">{t("careers.supervisionSectionBadge")}</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">{t("careers.supervisionSectionTitle")}</h2>
+            <p className="text-white/50 text-base max-w-xl mx-auto">{t("careers.supervisionSectionDesc")}</p>
+            <div className="w-20 h-1 bg-gradient-to-r from-[#D4A843] to-[#D4A843] mx-auto mt-6 rounded-full" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {supervisionJobs.length === 0 ? (
+              <EmptyJobsState t={t} />
+            ) : (
+              supervisionJobs.map((job, i) => (
+                <JobCard key={job.id} job={job} lang={lang} isRTL={isRTL} t={t} onApply={handleApplyFromJob} delay={i * 60} />
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TRADES JOBS ===== */}
+      <section className="py-28 bg-[var(--card-bg)] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #D4A843 1px, transparent 0)", backgroundSize: "28px 28px" }} />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4A843]/30 to-transparent" />
+        <div className="container mx-auto px-6 max-w-6xl relative z-10">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <span className="inline-flex items-center gap-2 text-[#D4A843] text-xs font-bold uppercase tracking-[3px] mb-3">
+              <HardHat size={14} />{t("careers.tradesSectionBadge")}
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">{t("careers.tradesSectionTitle")}</h2>
+            <p className="text-white/50 text-base max-w-2xl mx-auto">{t("careers.tradesSectionDesc")}</p>
+            <div className="w-20 h-1 bg-gradient-to-r from-[#D4A843] to-[#D4A843] mx-auto mt-6 rounded-full" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {tradesJobs.length === 0 ? (
+              <EmptyJobsState t={t} />
+            ) : (
+              tradesJobs.map((job, i) => (
+                <JobCard key={job.id} job={job} lang={lang} isRTL={isRTL} t={t} onApply={handleApplyFromJob} delay={i * 60} />
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== APPLICATION FORM — hidden while no job is published anywhere on the page ===== */}
+      {hasAnyPublishedJob && (
       <section ref={formRef} className="py-28 bg-[var(--card-bg)] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #D4A843 1px, transparent 0)", backgroundSize: "28px 28px" }} />
@@ -466,7 +417,20 @@ export default function CareersPage() {
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
 
                 {/* Selected job summary banner */}
-                {jobType && (
+                {jobCardMode ? (
+                  <div className="p-4 rounded-2xl bg-gradient-to-r from-[#D4A843]/10 to-[#D4A843]/5 border border-[#D4A843]/25">
+                    <div className={`flex items-center gap-2 mb-3 ${isRTL ? "flex-row-reverse" : ""}`}>
+                      <CheckCircle2 size={14} className="text-[#D4A843] flex-shrink-0" />
+                      <span className="text-[#D4A843] text-[11px] font-black uppercase tracking-widest">
+                        {t("careers.selectedPositionBannerLabel")}
+                      </span>
+                    </div>
+                    <p className="text-white/35 text-[10px] uppercase tracking-wider mb-1">
+                      {t("careers.positionShort")}
+                    </p>
+                    <p className="text-white font-bold text-sm">{position}</p>
+                  </div>
+                ) : jobType && (
                   <div className="p-4 rounded-2xl bg-gradient-to-r from-[#D4A843]/10 to-[#D4A843]/5 border border-[#D4A843]/25">
                     <div className={`flex items-center gap-2 mb-3 ${isRTL ? "flex-row-reverse" : ""}`}>
                       <CheckCircle2 size={14} className="text-[#D4A843] flex-shrink-0" />
@@ -545,20 +509,22 @@ export default function CareersPage() {
                   </div>
                 </div>
 
-                {/* Job Type */}
-                <div className="space-y-2">
-                  <label className={labelCls}>{t("careers.jobType")}</label>
-                  <div className="relative">
-                    <select required value={jobType}
-                      onChange={e => { setJobType(e.target.value); setDepartment(""); setPosition(""); setTrade(""); }}
-                      className={selectCls}>
-                      <option value="" className="bg-[#111]">{t("careers.chooseJobType")}</option>
-                      <option value="formal"  className="bg-[#111]">{t("careers.formalStaffTab")}</option>
-                      <option value="skilled" className="bg-[#111]">{t("careers.skilledWorkersTab")}</option>
-                    </select>
-                    <ChevronDown size={14} className={`absolute ${isRTL ? "left-3" : "right-3"} top-1/2 -translate-y-1/2 text-white/40 pointer-events-none`} />
+                {/* Job Type — hidden once a specific job card has been selected */}
+                {!jobCardMode && (
+                  <div className="space-y-2">
+                    <label className={labelCls}>{t("careers.jobType")}</label>
+                    <div className="relative">
+                      <select required value={jobType}
+                        onChange={e => { setJobType(e.target.value); setDepartment(""); setPosition(""); setTrade(""); }}
+                        className={selectCls}>
+                        <option value="" className="bg-[#111]">{t("careers.chooseJobType")}</option>
+                        <option value="formal"  className="bg-[#111]">{t("careers.formalStaffTab")}</option>
+                        <option value="skilled" className="bg-[#111]">{t("careers.skilledWorkersTab")}</option>
+                      </select>
+                      <ChevronDown size={14} className={`absolute ${isRTL ? "left-3" : "right-3"} top-1/2 -translate-y-1/2 text-white/40 pointer-events-none`} />
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Department (formal) */}
                 {jobType === "formal" && (
@@ -678,6 +644,7 @@ export default function CareersPage() {
           )}
         </div>
       </section>
+      )}
     </main>
   );
 }

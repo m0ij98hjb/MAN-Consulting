@@ -6,6 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useConfirm } from '@/context/ConfirmContext';
 import AdminPageLayout from '@/components/admin/AdminPageLayout';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Search, Trash2, XCircle, Loader2,
   FileText, Eye, Sparkles,
@@ -15,10 +16,12 @@ import {
 /* ─── Status config ─── */
 const STATUS_CONFIG = {
   pending:             { color: '#3b82f6', bg: 'rgba(59,130,246,0.12)',  labelKey: 'admin.statusPending' },
+  under_review:        { color: '#a855f7', bg: 'rgba(168,85,247,0.12)', labelKey: 'admin.statusUnderReview' },
+  accepted:            { color: '#22c55e', bg: 'rgba(34,197,94,0.12)',  labelKey: 'admin.statusAccepted' },
   interview_scheduled: { color: '#f59e0b', bg: 'rgba(245,158,11,0.12)', labelKey: 'admin.statusInterviewScheduled' },
   rejected:            { color: '#ef4444', bg: 'rgba(239,68,68,0.12)',  labelKey: 'admin.statusRejected' },
 };
-const STATUS_FILTERS = ['all', 'pending', 'interview_scheduled', 'rejected'];
+const STATUS_FILTERS = ['all', 'pending', 'under_review', 'accepted', 'interview_scheduled', 'rejected'];
 
 function StatusChip({ status, t }) {
   const cfg = STATUS_CONFIG[status] || STATUS_CONFIG.pending;
@@ -55,6 +58,7 @@ function scoreApp(app) {
 export default function JobsPage() {
   const { t, isRTL } = useLanguage();
   const { confirm } = useConfirm();
+  const router = useRouter();
   const [apps, setApps]         = useState([]);
   const [filter, setFilter]     = useState('all');
   const [search, setSearch]     = useState('');
@@ -200,7 +204,8 @@ export default function JobsPage() {
                 </thead>
                 <tbody className="divide-y divide-white/[0.04]">
                   {visible.map(app => (
-                    <tr key={app.id} className={`hover:bg-white/[0.02] transition-colors ${agentOn && bestIds.has(app.id) ? 'bg-purple-500/[0.03]' : ''}`}>
+                    <tr key={app.id} onClick={() => router.push(`/admin/jobs/${app.id}`)}
+                      className={`hover:bg-white/[0.02] transition-colors cursor-pointer ${agentOn && bestIds.has(app.id) ? 'bg-purple-500/[0.03]' : ''}`}>
                       <td className="px-4 py-3.5">
                         <div className="flex items-center gap-2">
                           {agentOn && bestIds.has(app.id) && (
@@ -221,7 +226,7 @@ export default function JobsPage() {
                         {app.createdAt?.seconds ? new Date(app.createdAt.seconds * 1000).toLocaleDateString('en-GB') : '—'}
                       </td>
                       <td className="px-4 py-3.5"><StatusChip status={app.status} t={t} /></td>
-                      <td className="px-4 py-3.5">
+                      <td className="px-4 py-3.5" onClick={e => e.stopPropagation()}>
                         <div className="flex items-center gap-1">
                           {/* View — links to detail page */}
                           <Link href={`/admin/jobs/${app.id}`}

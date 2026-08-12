@@ -52,15 +52,15 @@ export default function AdminNavbar() {
   const { allNotifications = [], unreadCount = 0, markBellOpened } = useNotifications() ?? {};
   const directorPhoto = useDirectorPhoto();
 
+  const isRegularUserPhoto = !(isSuperAdmin || role === 'super_admin') && role !== 'company_manager';
   const displayPhoto = (isSuperAdmin || role === 'super_admin')
     ? '/asstes/super-admin.jpg'
     : role === 'company_manager'
     ? directorPhoto
     : (profile?.photoURL || '/asstes/ph dashborad.png');
 
-  // Display role label instead of user name
   const roleLabel = getRoleLabel();
-  const displayName = roleLabel;
+  const displayName = profile?.name || user?.displayName || roleLabel;
 
   useEffect(() => {
     const handler = (e) => {
@@ -80,7 +80,9 @@ export default function AdminNavbar() {
 
   const pageTitleKey =
     PAGE_TITLE_KEYS[pathname] ??
-    (pathname.startsWith('/admin/jobs/') ? 'admin.jobDetailTitle' : 'admin.dashboard');
+    (pathname.startsWith('/admin/jobs/') ? 'admin.jobDetailTitle'
+      : pathname.startsWith('/admin/messages/') ? 'admin.messages.detailsTitle'
+      : 'admin.dashboard');
   const pageTitle = t(pageTitleKey);
 
   const currentLang = LANGUAGES.find(l => l.code === lang) || LANGUAGES[0];
@@ -148,7 +150,7 @@ export default function AdminNavbar() {
                 className="relative w-6 h-6 rounded-full overflow-hidden flex-shrink-0"
                 style={{
                   boxShadow: '0 0 0 1.5px rgba(201,163,77,0.45)',
-                  backgroundColor: 'transparent'
+                  backgroundColor: isRegularUserPhoto ? '#ffffff' : 'transparent'
                 }}
               >
                 <Image
@@ -157,7 +159,7 @@ export default function AdminNavbar() {
                   alt="Admin"
                   fill
                   sizes="24px"
-                  className="object-cover object-top"
+                  className={isRegularUserPhoto ? 'object-contain object-center' : 'object-cover object-top'}
                 />
               </div>
               <span className="hidden xl:block text-[10.5px] font-bold text-[#F2B233] whitespace-nowrap leading-none">
@@ -188,7 +190,7 @@ export default function AdminNavbar() {
                   className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0"
                   style={{
                     boxShadow: '0 0 0 3px rgba(201,163,77,0.6), 0 6px 16px rgba(0,0,0,0.5)',
-                    backgroundColor: 'transparent'
+                    backgroundColor: isRegularUserPhoto ? '#ffffff' : 'transparent'
                   }}
                 >
                   <Image
@@ -197,7 +199,7 @@ export default function AdminNavbar() {
                     alt="Admin"
                     fill
                     sizes="32px"
-                    className="object-cover object-top"
+                    className={isRegularUserPhoto ? 'object-contain object-center' : 'object-cover object-top'}
                   />
                 </div>
                 <div className="min-w-0">

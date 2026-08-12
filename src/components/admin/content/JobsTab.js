@@ -15,11 +15,17 @@ const EMPTY_JOB = () => ({
   visible: true,
 });
 
-const TYPE_LABEL_KEYS = { full: 'admin.contentTabs.jobsTab.typeFullTime', part: 'admin.contentTabs.jobsTab.typePartTime', training: 'admin.contentTabs.jobsTab.typeTraining' };
+const TYPE_LABEL_KEYS = {
+  full: 'admin.contentTabs.jobsTab.typeFullTime',
+  part: 'admin.contentTabs.jobsTab.typePartTime',
+  training: 'admin.contentTabs.jobsTab.typeTraining',
+  supervision: 'admin.contentTabs.jobsTab.typeSupervision',
+  trades: 'admin.contentTabs.jobsTab.typeTrades',
+};
 
 export default function JobsTab() {
   const { t } = useLanguage();
-  const { confirm } = useConfirm();
+  const { confirm, alert } = useConfirm();
   const [jobs, setJobs]       = useState([]);
   const [loading, setLoading] = useState(true);
   const [editId, setEditId]   = useState(null);
@@ -51,8 +57,14 @@ export default function JobsTab() {
 
   const save = async () => {
     setSaving(true);
-    try { await saveSiteContent('jobs', { listings: jobs }); setSaved(true); setTimeout(() => setSaved(false), 3000); }
-    finally { setSaving(false); }
+    try {
+      await saveSiteContent('jobs', { listings: jobs });
+      setSaved(true); setTimeout(() => setSaved(false), 3000);
+    } catch (err) {
+      await alert(t('admin.contentTabs.jobsTab.saveFailed') + (err?.message || ''), { variant: 'danger' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (loading) return <TabLoading />;
@@ -125,6 +137,8 @@ export default function JobsTab() {
                   <option value="full">{t(TYPE_LABEL_KEYS.full)}</option>
                   <option value="part">{t(TYPE_LABEL_KEYS.part)}</option>
                   <option value="training">{t(TYPE_LABEL_KEYS.training)}</option>
+                  <option value="supervision">{t(TYPE_LABEL_KEYS.supervision)}</option>
+                  <option value="trades">{t(TYPE_LABEL_KEYS.trades)}</option>
                 </select>
               </div>
               <Field label={t('admin.contentTabs.jobsTab.locationLabel')} value={draft.location} onChange={v => setF('location', v)} placeholder={t('admin.contentTabs.jobsTab.locationPlaceholder')} />

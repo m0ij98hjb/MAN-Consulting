@@ -85,6 +85,10 @@ export const NAV_LABELS_MULTILANG = {
     ar: 'أفضل المرشحين', en: 'Top Candidates', hi: 'शीर्ष उम्मीदवार', ru: 'Лучшие кандидаты',
     de: 'Top-Kandidaten', fr: 'Meilleurs candidats', es: 'Mejores candidatos', tr: 'En İyi Adaylar', ur: 'بہترین امیدوار', zh: '最佳候选人'
   },
+  '/admin/jobs/postings': {
+    ar: 'الوظائف الحالية', en: 'Current Jobs', hi: 'वर्तमान नौकरियां', ru: 'Текущие вакансии',
+    de: 'Aktuelle Stellen', fr: 'Postes actuels', es: 'Empleos actuales', tr: 'Güncel İlanlar', ur: 'موجودہ نوکریاں', zh: '当前职位'
+  },
   '/admin/messages': {
     ar: 'رسائل العملاء', en: 'Customer Messages', hi: 'ग्राहक संदेश', ru: 'Сообщения клиентов',
     de: 'Kundennachrichten', fr: 'Messages clients', es: 'Mensajes de clientes', tr: 'Müşteri Mesajları', ur: 'گاہکوں کے پیغامات', zh: '客户消息'
@@ -124,8 +128,10 @@ export const ROLE_NAVIGATION = {
   [ROLES.HR_MANAGER]: [
     { href: '/admin/dashboard', label: 'لوحة التحكم', icon: 'LayoutDashboard' },
     { href: '/admin/jobs', label: 'طلبات التوظيف', icon: 'Briefcase' },
+    { href: '/admin/jobs/postings', label: 'الوظائف الحالية', icon: 'FileText' },
     { href: '/admin/jobs/approved', label: 'المقبولون للمقابلة', icon: 'CheckCircle' },
     { href: '/admin/jobs/best', label: 'أفضل المرشحين', icon: 'Award' },
+    { href: '/admin/messages', label: 'رسائل العملاء', icon: 'MessageSquare' },
     { href: '/admin/reports', label: 'التقارير', icon: 'BarChart2' },
   ],
 
@@ -150,6 +156,7 @@ export const ROLE_NAVIGATION = {
     { href: '/admin/media', label: 'مكتبة الوسائط', icon: 'ImageIcon' },
     { href: '/admin/users', label: 'إدارة المستخدمين', icon: 'UserCog' },
     { href: '/admin/jobs', label: 'طلبات التوظيف', icon: 'Briefcase' },
+    { href: '/admin/jobs/postings', label: 'الوظائف الحالية', icon: 'FileText' },
     { href: '/admin/messages', label: 'رسائل العملاء', icon: 'MessageSquare' },
     { href: '/admin/reports', label: 'التقارير', icon: 'BarChart2' },
   ],
@@ -162,6 +169,7 @@ export const ROLE_ALLOWED_ROUTES = {
     '/admin/jobs',
     '/admin/jobs/*',
     '/admin/messages',
+    '/admin/messages/*',
     '/admin/reports',
   ],
 
@@ -176,6 +184,8 @@ export const ROLE_ALLOWED_ROUTES = {
     '/admin/dashboard',
     '/admin/jobs',
     '/admin/jobs/*',
+    '/admin/messages',
+    '/admin/messages/*',
     '/admin/reports',
   ],
 

@@ -7,12 +7,14 @@ export async function POST(req) {
     const { applicantName, applicantEmail, position, interviewDate, interviewTime, interviewType, interviewLocation, additionalMessage, lang } = await req.json();
     const isAr = !lang || lang === 'ar'; // default to Arabic when omitted, preserving prior behavior for callers not yet updated
 
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-      return Response.json({ success: false, error: 'SMTP_USER or SMTP_PASS env vars not set' }, { status: 500 });
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      return Response.json({ success: false, error: 'SMTP_HOST, SMTP_USER or SMTP_PASS env vars not set' }, { status: 500 });
     }
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT) || 465,
+      secure: process.env.SMTP_SECURE !== 'false', // cPanel mail — SSL/TLS on port 465 by default
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -23,7 +25,7 @@ export async function POST(req) {
       ? ({ in_person: 'حضوري', video: 'مكالمة فيديو', phone: 'مكالمة هاتفية' }[interviewType] || interviewType)
       : ({ in_person: 'In Person', video: 'Video Call', phone: 'Phone Call' }[interviewType] || interviewType);
 
-    const logoPath = join(process.cwd(), 'public', 'brand', 'logo-navbar-real.png');
+    const logoPath = join(process.cwd(), 'public', 'asstes', 'dashbored-ph.png');
 
     const html = isAr ? `
 <!DOCTYPE html>

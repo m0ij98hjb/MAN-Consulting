@@ -12,7 +12,7 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 export default function AboutUsPage() {
   const { lang, t, isRTL } = useLanguage();
   const { data: aboutCms } = useSiteContent('about');
-  const directorImage = aboutCms?.director_image || '/asstes/directoret.webp';
+  const directorImage = aboutCms?.director_image || '/asstes/directorett.png';
   const RIYADH_BASE = '/asstes/Photos%20of%20the%20Riyadh/';
   const riyadhPhotoAlts = t('aboutUsPage.riyadhPhotoAlts');
   const riyadhPhotos = [

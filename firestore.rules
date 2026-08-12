@@ -264,6 +264,16 @@ service cloud.firestore {
       allow update, delete: if cmsIsSuperAdmin();
     }
 
+    // Jobs Postings — `siteContent/jobs` holds { listings: [...] } (public job cards
+    // shown on /careers, with a `visible` flag = publish/unpublish). More specific
+    // than the generic `siteContent/{section}` rule above, so only this document
+    // gets HR Manager write access; every other siteContent section stays
+    // super-admin-only, unchanged.
+    match /siteContent/jobs {
+      allow read: if true;
+      allow write: if cmsIsSuperAdmin() || (request.auth != null && calcRole() == 'hr_manager');
+    }
+
     // Deny everything else by default
     match /{document=**} {
       allow read, write: if false;
