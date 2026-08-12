@@ -56,7 +56,7 @@ const About = () => {
   const isRTL = lang === 'ar' || lang === 'ur';
   const { data: aboutCms } = useSiteContent('about');
 
-  const directorImage = aboutCms?.director_image || '/asstes/directoret.png';
+  const directorImage = aboutCms?.director_image || '/asstes/Company-manager.png';
   const directorName = aboutCms?.director_name || t('about.directorName');
   const directorTitle = isRTL
     ? (aboutCms?.director_pos_ar || t('about.directorTitle'))
