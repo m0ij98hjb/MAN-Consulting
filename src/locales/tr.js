@@ -24,6 +24,7 @@ export const tr = {
     description: "Vizyonunuzu dinliyor ve en yüksek teknik ve düzenleyici standartları karşılayan mühendislik çözümlerine dönüştürüyoruz. Bugün bir MAN Engineering Consultancy uzmanıyla görüşün.",
     taglineLine1: "Mühendislik Çözümleri",
     taglineLine2: "Deneyim Üzerine İnşa Edildi",
+    taglineLine3: "1986'dan Beri Deneyim",
     liveDescription: "MAN Engineering Consultancy - Mimari ve statik tasarım, mühendislik etütleri ve proje denetiminde en yüksek uluslararası kalite standartlarında derin uzmanlık.",
     requestConsultationCta: "Danışmanlık Talep Et",
     viewWorkCta: "Çalışmalarımızı İnceleyin",

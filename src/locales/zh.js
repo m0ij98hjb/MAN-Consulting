@@ -24,6 +24,7 @@ export const zh = {
     description: "我们倾听您的愿景，并将其转化为符合最高技术与法规标准的工程解决方案。立即联系MAN工程咨询的专家。",
     taglineLine1: "工程解决方案",
     taglineLine2: "基于丰富经验",
+    taglineLine3: "自1986年经验",
     liveDescription: "MAN工程咨询 - 在建筑与结构设计、工程研究和项目监理方面拥有深厚专长，符合最高国际质量标准。",
     requestConsultationCta: "请求咨询",
     viewWorkCta: "查看我们的作品",

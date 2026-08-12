@@ -24,6 +24,7 @@ export const de = {
     description: "Wir hören Ihre Vision und übersetzen sie in Ingenieurlösungen, die höchste technische und behördliche Standards erfüllen. Sprechen Sie noch heute mit einem Experten von MAN Engineering Consultancy.",
     taglineLine1: "Ingenieurlösungen",
     taglineLine2: "Gebaut auf Erfahrung",
+    taglineLine3: "Erfahrung Seit 1986",
     liveDescription: "MAN Engineering Consultancy - Tiefgreifende Expertise in Architektur- und Tragwerksplanung, Ingenieurstudien und Projektüberwachung nach höchsten internationalen Qualitätsstandards.",
     requestConsultationCta: "Beratung anfordern",
     viewWorkCta: "Unsere Arbeiten ansehen",

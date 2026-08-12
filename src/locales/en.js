@@ -24,6 +24,7 @@ export const en = {
     description: "We listen to your vision and translate it into engineering solutions that meet the highest technical and regulatory standards. Speak with a MAN Engineering Consultancy specialist today.",
     taglineLine1: "Engineering Solutions",
     taglineLine2: "Built on Experience",
+    taglineLine3: "Experience Since 1986",
     liveDescription: "MAN Engineering Consultancy - Deep expertise in architectural and structural design, engineering studies, and project supervision to the highest international quality standards.",
     requestConsultationCta: "Request a Consultation",
     viewWorkCta: "View Our Work",

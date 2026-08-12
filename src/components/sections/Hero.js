@@ -27,17 +27,24 @@ const Hero = () => {
   const statDesigns = homeCms?.stat_designs ?? siteStats.designs.value;
 
   const heroImages = [
-    "/asstes/office-projects/16.jpg",
-    "/asstes/office-projects/17.jpg",
-    "/asstes/office-projects/18.jpg",
-    "/asstes/office-projects/19.jpg",
-    "/asstes/office-projects/10.jpg",
-    "/asstes/office-projects/11.jpg",
-    "/asstes/office-projects/42.jpg",
-    "/asstes/office-projects/h1.jpeg",
-    "/asstes/office-projects/h2.jpeg",
-    "/asstes/office-projects/h3.jpeg",
-    "/asstes/office-projects/h4.jpeg",
+    "/asstes/office-projects/ph-hero/image1.jpg",
+    "/asstes/office-projects/ph-hero/image2.jpg",
+    "/asstes/office-projects/ph-hero/image3.jpg",
+    "/asstes/office-projects/ph-hero/image4.png",
+    "/asstes/office-projects/ph-hero/image5.jpg",
+    "/asstes/office-projects/ph-hero/image6.jpg",
+    "/asstes/office-projects/ph-hero/image7.jpg",
+    "/asstes/office-projects/ph-hero/image8.jpg",
+    "/asstes/office-projects/ph-hero/image9.jpg",
+    "/asstes/office-projects/ph-hero/image10.jpg",
+    "/asstes/office-projects/ph-hero/image11.jpeg",
+    "/asstes/office-projects/ph-hero/image12.jpg",
+    "/asstes/office-projects/ph-hero/image13.jpg",
+    "/asstes/office-projects/ph-hero/image14.jpg",
+    "/asstes/office-projects/ph-hero/image15.jpg",
+    "/asstes/office-projects/ph-hero/image16.jpg",
+    "/asstes/office-projects/ph-hero/image17.jpg",
+    
 
   ];
 
@@ -66,17 +73,17 @@ const Hero = () => {
   // see a "new" array on every Hero re-render — e.g. when the useSiteContent
   // CMS fetch above resolves — which was resetting the typewriter mid-animation.
   const mobileTaglineTexts = useMemo(
-    () => [t('hero.taglineLine1'), t('hero.taglineLine2')],
+    () => [t('hero.taglineLine1'), t('hero.taglineLine2'), t('hero.taglineLine3')],
     [lang] // eslint-disable-line react-hooks/exhaustive-deps -- t()'s output only depends on lang; t itself isn't a stable reference
   );
   const desktopTaglineTexts = useMemo(
     () => ({
-      ar: ["حلول هندسية", "مبنية على الخبرة"], en: ["Engineering Solutions", "Built on Experience"],
-      zh: ["工程解决方案", "基于丰富经验"], es: ["Soluciones de Ingeniería", "Construidas sobre la Experiencia"],
-      fr: ["Solutions d'Ingénierie", "Fondées sur l'Expérience"], de: ["Ingenieurlösungen", "Gebaut auf Erfahrung"],
-      tr: ["Mühendislik Çözümleri", "Deneyim Üzerine İnşa Edildi"], ur: ["انجینئرنگ حل", "تجربے کی بنیاد پر"],
-      hi: ["इंजीनियरिंग समाधान", "अनुभव पर निर्मित"], ru: ["Инженерные решения", "Построенные на опыте"]
-    }[lang] || ["Engineering Solutions", "Built on Experience"]),
+      ar: ["حلول هندسية", "مبنية على الخبرة", "خبرة منذ عام 1986"], en: ["Engineering Solutions", "Built on Experience", "Experience Since 1986"],
+      zh: ["工程解决方案", "基于丰富经验", "自1986年经验"], es: ["Soluciones de Ingeniería", "Construidas sobre la Experiencia", "Experiencia Desde 1986"],
+      fr: ["Solutions d'Ingénierie", "Fondées sur l'Expérience", "Expérience Depuis 1986"], de: ["Ingenieurlösungen", "Gebaut auf Erfahrung", "Erfahrung Seit 1986"],
+      tr: ["Mühendislik Çözümleri", "Deneyim Üzerine İnşa Edildi", "1986'dan Beri Deneyim"], ur: ["انجینئرنگ حل", "تجربے کی بنیاد پر", "1986 سے تجربہ"],
+      hi: ["इंजीनियरिंग समाधान", "अनुभव पर निर्मित", "1986 से अनुभव"], ru: ["Инженерные решения", "Построенные на опыте", "Опыт с 1986 года"]
+    }[lang] || ["Engineering Solutions", "Built on Experience", "Experience Since 1986"]),
     [lang]
   );
 
@@ -157,7 +164,7 @@ const Hero = () => {
             <TypewriterText
               texts={mobileTaglineTexts}
               typingSpeed={120} deletingSpeed={60} pauseDuration={2000} loop
-              className="text-white" textClassNames={["", "text-[#D4A843]"]}
+              className="text-white" textClassNames={["", "text-[#D4A843]", "text-[#D4A843]"]}
             />
           </h1>
 
@@ -270,7 +277,7 @@ const Hero = () => {
             <TypewriterText
               texts={desktopTaglineTexts}
               typingSpeed={120} deletingSpeed={60} pauseDuration={2000} loop
-              className="text-white" textClassNames={["", "text-[#D4A843]"]}
+              className="text-white" textClassNames={["", "text-[#D4A843]", "text-[#D4A843]"]}
             />
           </h1>
 
