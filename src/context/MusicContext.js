@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useRef, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 
 const MusicContext = createContext(null);
 
@@ -12,10 +13,14 @@ export function MusicProvider({ children }) {
   const wasMusicPlayingRef = useRef(false);
   const musicUserPausedRef = useRef(false);
   const wasHiddenPlayingRef = useRef(false);
+  const wasAdminPausedRef = useRef(false);
+  const isAdminPageRef = useRef(false);
+  const pathname = usePathname();
+  const isAdminPage = pathname.startsWith('/admin');
 
   useEffect(() => {
     const audio = new Audio();
-    audio.preload = 'none';
+    audio.preload = 'auto';
     audio.loop = true;
     audio.volume = 0.35;
     audio.src = '/assets/audio/divine-music.mp3';
@@ -23,17 +28,31 @@ export function MusicProvider({ children }) {
     // Deferred so the "ready" flag isn't set synchronously in the effect body.
     queueMicrotask(() => setIsMusicReady(true));
 
-    // No unmuted browser allows autoplay without a prior user gesture, so
-    // attempting audio.play() here would only ever eagerly fetch the 1.4MB
-    // file for nothing. Start on the visitor's first interaction instead —
-    // functionally identical from the user's perspective, without the
-    // wasted network cost for anyone who never interacts.
+    // Browsers only allow autoplay-with-sound once a visitor has built up
+    // enough engagement with the site, so try that first and fall back to a
+    // silent autoplay (always permitted) that gets unmuted on the visitor's
+    // first real gesture — the timeline is already advancing in the
+    // background, so sound kicks in instantly on that first click/tap/key
+    // instead of waiting on a fresh play() call.
+    audio.play().then(() => {
+      if (isAdminPageRef.current) { audio.pause(); return; }
+      setIsMusicPlaying(true);
+    }).catch(() => {
+      if (isAdminPageRef.current) return;
+      audio.muted = true;
+      audio.play().catch(() => {});
+    });
+
     const onFirstInteraction = () => {
+      // A gesture made in the admin area doesn't count — stay armed so
+      // the first gesture after leaving it still unmutes.
+      if (isAdminPageRef.current) return;
       window.removeEventListener('click', onFirstInteraction);
       window.removeEventListener('touchstart', onFirstInteraction);
       window.removeEventListener('touchend', onFirstInteraction);
       window.removeEventListener('keydown', onFirstInteraction);
       if (!musicRef.current || musicUserPausedRef.current) return;
+      musicRef.current.muted = false;
       musicRef.current.play().then(() => setIsMusicPlaying(true)).catch(() => {});
     };
     window.addEventListener('click', onFirstInteraction);
@@ -53,6 +72,27 @@ export function MusicProvider({ children }) {
     };
   }, []);
 
+  // Admin area (dashboard + login): stop the music while it's shown, resume
+  // on returning to the rest of the site (unless the user had paused it).
+  useEffect(() => {
+    isAdminPageRef.current = isAdminPage;
+    if (isAdminPage) {
+      if (musicRef.current && !musicRef.current.paused) {
+        wasAdminPausedRef.current = true;
+        musicRef.current.pause();
+        setIsMusicPlaying(false);
+      }
+    } else if (wasAdminPausedRef.current) {
+      wasAdminPausedRef.current = false;
+      if (musicRef.current && !musicUserPausedRef.current) {
+        const audio = musicRef.current;
+        audio.play().then(() => {
+          if (!audio.muted) setIsMusicPlaying(true);
+        }).catch(() => {});
+      }
+    }
+  }, [pathname, isAdminPage]);
+
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -65,7 +105,10 @@ export function MusicProvider({ children }) {
         }
       } else if (musicRef.current && wasHiddenPlayingRef.current && !musicUserPausedRef.current) {
         wasHiddenPlayingRef.current = false;
-        musicRef.current.play().then(() => setIsMusicPlaying(true)).catch(() => {});
+        const audio = musicRef.current;
+        audio.play().then(() => {
+          if (!audio.muted) setIsMusicPlaying(true);
+        }).catch(() => {});
       }
     };
 
@@ -75,6 +118,7 @@ export function MusicProvider({ children }) {
 
   const playMusic = useCallback(() => {
     if (musicRef.current) {
+      musicRef.current.muted = false;
       musicRef.current.play().then(() => {
         setIsMusicPlaying(true);
         setMusicUserPaused(false);
