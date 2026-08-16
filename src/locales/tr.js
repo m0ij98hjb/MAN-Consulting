@@ -817,6 +817,13 @@ export const tr = {
     confirmDeleteBtn: "Silmeyi Onayla",
     genericError: "Bir hata oluştu.",
     deleteUserError: "Kullanıcı silinirken bir hata oluştu.",
+    changePasswordTitle: "Şifreyi Değiştir",
+    changePasswordLabel: "Şifreyi Değiştir",
+    newPasswordLabel: "Yeni Şifre",
+    changePasswordBtn: "Şifreyi Değiştir",
+    changePasswordSuccess: "Şifre başarıyla değiştirildi",
+    changePasswordError: "Şifre değiştirilirken bir hata oluştu.",
+    changePasswordFor: "Şifresini değiştir:",
     messages: {
       deleteConfirm: "Bu mesajı silmek istediğinizden emin misiniz?",
       replySubjectPrefix: "Yanıt: Mesajınız",

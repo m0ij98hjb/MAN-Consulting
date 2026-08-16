@@ -817,6 +817,13 @@ export const es = {
     confirmDeleteBtn: "Confirmar Eliminación",
     genericError: "Ocurrió un error.",
     deleteUserError: "Ocurrió un error al eliminar el usuario.",
+    changePasswordTitle: "Cambiar contraseña",
+    changePasswordLabel: "Cambiar contraseña",
+    newPasswordLabel: "Nueva contraseña",
+    changePasswordBtn: "Cambiar contraseña",
+    changePasswordSuccess: "Contraseña cambiada con éxito",
+    changePasswordError: "Ocurrió un error al cambiar la contraseña.",
+    changePasswordFor: "Cambiar contraseña para",
     messages: {
       deleteConfirm: "¿Está seguro de que desea eliminar este mensaje?",
       replySubjectPrefix: "Re: Su Mensaje",

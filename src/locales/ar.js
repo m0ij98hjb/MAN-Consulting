@@ -909,6 +909,13 @@ export const ar = {
     confirmDeleteBtn: "تأكيد الحذف",
     genericError: "حدث خطأ.",
     deleteUserError: "حدث خطأ أثناء حذف المستخدم.",
+    changePasswordTitle: "تغيير كلمة المرور",
+    changePasswordLabel: "تغيير كلمة المرور",
+    newPasswordLabel: "كلمة المرور الجديدة",
+    changePasswordBtn: "تغيير كلمة المرور",
+    changePasswordSuccess: "تم تغيير كلمة المرور بنجاح",
+    changePasswordError: "حدث خطأ أثناء تغيير كلمة المرور.",
+    changePasswordFor: "تغيير كلمة المرور لـ",
     messages: {
       deleteConfirm: "هل أنت متأكد من حذف هذه الرسالة؟",
       replySubjectPrefix: "رد على رسالتك",

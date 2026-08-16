@@ -817,6 +817,13 @@ export const zh = {
     confirmDeleteBtn: "确认删除",
     genericError: "发生错误。",
     deleteUserError: "删除用户时发生错误。",
+    changePasswordTitle: "更改密码",
+    changePasswordLabel: "更改密码",
+    newPasswordLabel: "新密码",
+    changePasswordBtn: "更改密码",
+    changePasswordSuccess: "密码更改成功",
+    changePasswordError: "更改密码时发生错误。",
+    changePasswordFor: "更改密码：",
     messages: {
       deleteConfirm: "您确定要删除此消息吗？",
       replySubjectPrefix: "回复：您的留言",

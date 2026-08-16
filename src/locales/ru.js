@@ -898,6 +898,13 @@ export const ru = {
     confirmDeleteBtn: "Подтвердить удаление",
     genericError: "Произошла ошибка.",
     deleteUserError: "Произошла ошибка при удалении пользователя.",
+    changePasswordTitle: "Изменить пароль",
+    changePasswordLabel: "Изменить пароль",
+    newPasswordLabel: "Новый пароль",
+    changePasswordBtn: "Изменить пароль",
+    changePasswordSuccess: "Пароль успешно изменен",
+    changePasswordError: "Произошла ошибка при изменении пароля.",
+    changePasswordFor: "Изменить пароль для",
     messages: {
       deleteConfirm: "Вы уверены, что хотите удалить это сообщение?",
       replySubjectPrefix: "Re: Ваше сообщение",

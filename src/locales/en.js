@@ -903,6 +903,13 @@ export const en = {
     confirmDeleteBtn: "Confirm Delete",
     genericError: "An error occurred.",
     deleteUserError: "An error occurred while deleting the user.",
+    changePasswordTitle: "Change Password",
+    changePasswordLabel: "Change Password",
+    newPasswordLabel: "New Password",
+    changePasswordBtn: "Change Password",
+    changePasswordSuccess: "Password changed successfully",
+    changePasswordError: "An error occurred while changing the password.",
+    changePasswordFor: "Change password for",
     messages: {
       deleteConfirm: "Are you sure you want to delete this message?",
       replySubjectPrefix: "Re: Your Message",

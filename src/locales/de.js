@@ -817,6 +817,13 @@ export const de = {
     confirmDeleteBtn: "Löschen Bestätigen",
     genericError: "Ein Fehler ist aufgetreten.",
     deleteUserError: "Beim Löschen des Benutzers ist ein Fehler aufgetreten.",
+    changePasswordTitle: "Passwort ändern",
+    changePasswordLabel: "Passwort ändern",
+    newPasswordLabel: "Neues Passwort",
+    changePasswordBtn: "Passwort ändern",
+    changePasswordSuccess: "Passwort erfolgreich geändert",
+    changePasswordError: "Beim Ändern des Passworts ist ein Fehler aufgetreten.",
+    changePasswordFor: "Passwort ändern für",
     messages: {
       deleteConfirm: "Möchten Sie diese Nachricht wirklich löschen?",
       replySubjectPrefix: "Re: Ihre Nachricht",

@@ -903,6 +903,13 @@ export const hi = {
     confirmDeleteBtn: "हटाने की पुष्टि करें",
     genericError: "एक त्रुटि हुई।",
     deleteUserError: "उपयोगकर्ता को हटाते समय एक त्रुटि हुई।",
+    changePasswordTitle: "पासवर्ड बदलें",
+    changePasswordLabel: "पासवर्ड बदलें",
+    newPasswordLabel: "नया पासवर्ड",
+    changePasswordBtn: "पासवर्ड बदलें",
+    changePasswordSuccess: "पासवर्ड सफलतापूर्वक बदल दिया गया",
+    changePasswordError: "पासवर्ड बदलते समय एक त्रुटि हुई।",
+    changePasswordFor: "पासवर्ड बदलें",
     messages: {
       deleteConfirm: "क्या आप वाकई इस संदेश को हटाना चाहते हैं?",
       replySubjectPrefix: "उत्तर: आपका संदेश",

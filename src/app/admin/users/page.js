@@ -9,10 +9,11 @@ import AdminPageLayout from '@/components/admin/AdminPageLayout';
 import { createAdminUser, updateAdminUserPermissions, deleteAdminUser } from '@/lib/adminUserCreation';
 import { ROLES, ROLE_LABELS } from '@/lib/roleBasedAccess';
 import { useRouter } from 'next/navigation';
+import ChangePasswordModal from '@/components/admin/ChangePasswordModal';
 import {
   Users, Plus, X, Loader2, Power, ShieldCheck, ShieldOff,
   Briefcase, MessageSquare, BarChart2,
-  Check, User, Phone, Mail, Lock, Edit2, Trash2,
+  Check, User, Phone, Mail, Lock, Edit2, Trash2, Key,
 } from 'lucide-react';
 
 /* ─── Permission definitions ─── */
@@ -272,6 +273,7 @@ function UsersContent() {
   const [showModal, setShowModal] = useState(false);
   const [editUser, setEditUser] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState(null);
+  const [passwordTarget, setPasswordTarget] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -407,6 +409,13 @@ function UsersContent() {
                         >
                           <Power size={13} />
                         </button>
+                        <button
+                          onClick={() => setPasswordTarget(u)}
+                          className="p-1.5 rounded-lg text-white/40 hover:text-[#F2B233] hover:bg-[#F2B233]/10 transition-all"
+                          title={t('admin.changePasswordLabel')}
+                        >
+                          <Key size={13} />
+                        </button>
                         {u.id !== user?.uid && (
                           <button
                             onClick={() => setDeleteTarget(u)}
@@ -431,6 +440,13 @@ function UsersContent() {
           onClose={closeModal}
           currentUid={user?.uid}
           editUser={editUser}
+        />
+      )}
+
+      {passwordTarget && (
+        <ChangePasswordModal
+          onClose={() => setPasswordTarget(null)}
+          targetUser={passwordTarget}
         />
       )}
 

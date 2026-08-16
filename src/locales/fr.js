@@ -820,6 +820,13 @@ export const fr = {
     confirmDeleteBtn: "Confirmer la Suppression",
     genericError: "Une erreur s'est produite.",
     deleteUserError: "Une erreur s'est produite lors de la suppression de l'utilisateur.",
+    changePasswordTitle: "Changer le mot de passe",
+    changePasswordLabel: "Changer le mot de passe",
+    newPasswordLabel: "Nouveau mot de passe",
+    changePasswordBtn: "Changer le mot de passe",
+    changePasswordSuccess: "Mot de passe changé avec succès",
+    changePasswordError: "Une erreur s'est produite lors du changement du mot de passe.",
+    changePasswordFor: "Changer le mot de passe pour",
     messages: {
       deleteConfirm: "Êtes-vous sûr de vouloir supprimer ce message ?",
       replySubjectPrefix: "Re : Votre Message",

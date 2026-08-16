@@ -817,6 +817,13 @@ export const ur = {
     confirmDeleteBtn: "حذف کی تصدیق کریں",
     genericError: "خرابی پیش آگئی۔",
     deleteUserError: "صارف کو حذف کرتے وقت خرابی پیش آگئی۔",
+    changePasswordTitle: "پاس ورڈ تبدیل کریں",
+    changePasswordLabel: "پاس ورڈ تبدیل کریں",
+    newPasswordLabel: "نیا پاس ورڈ",
+    changePasswordBtn: "پاس ورڈ تبدیل کریں",
+    changePasswordSuccess: "پاس ورڈ کامیابی سے تبدیل ہو گیا",
+    changePasswordError: "پاس ورڈ تبدیل کرتے وقت خرابی پیش آگئی۔",
+    changePasswordFor: "پاس ورڈ تبدیل کریں برائے",
     messages: {
       deleteConfirm: "کیا آپ واقعی اس پیغام کو حذف کرنا چاہتے ہیں؟",
       replySubjectPrefix: "جواب: آپ کا پیغام",
