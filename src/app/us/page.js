@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import TypewriterText from "@/components/TypewriterText";
+import LogoRevealTypewriter from "@/components/LogoRevealTypewriter";
 import { ArrowRight, ArrowLeft, CheckCircle2, Users, Building2, Target, X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import { useLanguage } from "@/context/LanguageContext";
@@ -70,7 +70,7 @@ export default function AboutUsPage() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/heroes/hero-us.png"
+            src="/images/heroes/hero-cous.png"
             alt="About MAN Engineering Consultancy"
             fill
             className="object-contain object-center"
@@ -100,7 +100,7 @@ export default function AboutUsPage() {
 
             {/* Main title */}
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 font-heading leading-none">
-              <TypewriterText
+              <LogoRevealTypewriter
                 texts={t("aboutUsPage.titleTypewriter") || ["تعرف علينا", "MAN Contracting"]}
                 typingSpeed={120}
                 deletingSpeed={60}
@@ -108,6 +108,7 @@ export default function AboutUsPage() {
                 loop={true}
                 className="text-white"
                 textClassNames={["text-white", "text-gradient"]}
+                lang={lang}
               />
             </h1>
 
