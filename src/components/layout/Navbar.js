@@ -219,7 +219,7 @@ const Navbar = () => {
         <div className="w-full max-w-[1600px] mx-auto flex items-center xl:justify-center xl:flex-nowrap px-6 sm:px-8 lg:px-10 xl:px-12 h-[72px] md:h-[76px] xl:h-[88px] min-[1600px]:h-[92px]">
 
           {/* â”€â”€ Zone 1 â€” Logo (fixed width, never shrinks) â”€â”€ */}
-          <div className="flex items-center flex-shrink-0 xl:pe-8">
+          <div className="flex items-center flex-shrink-0 xl:pe-25">
             <Link href="/" onClick={handleLogoTap} className="flex items-center flex-shrink-0">
               <Image
                 src="/brand/logo-navbar-real.png"
@@ -227,7 +227,7 @@ const Navbar = () => {
                 width={1029}
                 height={461}
                 sizes="140px"
-                className="w-[100px] md:w-[120px] xl:w-[110px] 2xl:w-[120px] min-[1600px]:w-[130px] min-[2560px]:w-[140px] h-auto object-contain transition-all duration-500"
+                className="w-[100px] md:w-[100px] xl:w-[100px] 2xl:w-[110px] min-[1600px]:w-[120px] min-[2560px]:w-[130px] h-auto object-contain transition-all duration-500"
                 priority
               />
             </Link>
@@ -371,7 +371,7 @@ const Navbar = () => {
           </div>
 
           {/* ── Zone 3 ── Admin Controls ── */}
-          <div className="hidden xl:flex items-center xl:ps-4 gap-2 min-[1600px]:gap-3 flex-shrink-0">
+          <div className="hidden xl:flex items-center xl:ps-16 gap-2 min-[1600px]:gap-3 flex-shrink-0">
 
             {/* â”€â”€ ADMIN MODE â”€â”€ */}
             {isAdmin ? (
