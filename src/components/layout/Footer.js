@@ -120,8 +120,8 @@ const Footer = () => {
     services: [
       { label: t("servicesSection.items.construction.title"), href: "/services/contracting" },
       { label: t("servicesSection.items.architecture.title"), href: "/services/architectural-design" },
-      { label: t("servicesSection.items.management.title"),   href: "/services/project-management" },
-      { label: t("servicesSection.items.interior.title"),     href: "/services/interior-design" },
+      { label: t("servicesSection.items.management.title"), href: "/services/project-management" },
+      { label: t("servicesSection.items.interior.title"), href: "/services/interior-design" },
     ],
   };
 
@@ -157,16 +157,16 @@ const Footer = () => {
               {[
                 {
                   icon: FaFacebookF,
-                  href: "https://www.facebook.com/",
+                  href: "https://www.facebook.com/mnc.nazer/?locale=ar_AR",
                   name: "Facebook",
                 },
                 {
                   icon: FaInstagram,
-                  href: "https://www.instagram.com//",
+                  href: "https://www.instagram.com/mnc_sa/",
                   name: "Instagram",
                 },
-                { icon: BsTwitterX, href: "https://x.com/", name: "X (Twitter)" },
-                { icon: FaWhatsapp, href: "https://wa.me/", name: "WhatsApp" },
+                { icon: BsTwitterX, href: "http://x.com/KsaMnc?lang=ar", name: "X (Twitter)" },
+                { icon: FaWhatsapp, href: "https://wa.me/966598242385", name: "WhatsApp" },
               ].map((social, index) => (
                 <motion.a
                   key={index}
