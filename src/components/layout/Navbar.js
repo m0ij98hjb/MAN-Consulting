@@ -216,7 +216,7 @@ const Navbar = () => {
         borderBottomColor: 'rgba(255,255,255,.08)',
         transition: 'background-color .35s ease, box-shadow .35s ease, border-color .35s ease',
       }}>
-        <div className="w-full max-w-[1600px] mx-auto flex items-center xl:flex-nowrap px-6 sm:px-8 lg:px-10 xl:px-12 h-[72px] md:h-[76px] xl:h-[88px] min-[1600px]:h-[92px]">
+        <div className="w-full max-w-[1600px] mx-auto flex items-center xl:justify-center xl:flex-nowrap px-6 sm:px-8 lg:px-10 xl:px-12 h-[72px] md:h-[76px] xl:h-[88px] min-[1600px]:h-[92px]">
 
           {/* â”€â”€ Zone 1 â€” Logo (fixed width, never shrinks) â”€â”€ */}
           <div className="flex items-center flex-shrink-0 xl:pe-8">
@@ -233,11 +233,11 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* ── Zone 2 ── Nav fills the space between logo and actions,
-               and centers its own content within that space — it never
-               gets a fixed width, so it can never be "clustered" off to
-               one side or forced to overflow a rigid column. ── */}
-          <div className="hidden xl:flex items-center justify-center flex-1 min-w-0 gap-6 2xl:gap-7 min-[1920px]:gap-8">
+          {/* ── Zone 2 ── Nav sits directly next to the logo (fixed gap via
+               Zone 1's xl:pe-8 / Zone 3's xl:ps-4), not stretched across a
+               flex-1 region. The outer row's xl:justify-center centers the
+               whole [Logo][Nav][Actions] group as one block instead. ── */}
+          <div className="hidden xl:flex items-center gap-6 2xl:gap-7 min-[1920px]:gap-8">
             <nav className="flex items-center flex-shrink-0 gap-6 2xl:gap-7 min-[1920px]:gap-8" aria-label={t('nav.ariaLabel')}>
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
