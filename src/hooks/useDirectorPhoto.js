@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
-const FALLBACK = '/asstes/Company-manager.png';
+const FALLBACK = '/asstes/Company-manager-lader.jpg';
 
 export function useDirectorPhoto() {
   const [photoURL, setPhotoURL] = useState(FALLBACK);
