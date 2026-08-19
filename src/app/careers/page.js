@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { collection, addDoc, serverTimestamp, doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Navbar from "@/components/layout/Navbar";
 import Image from "next/image";
@@ -121,6 +121,7 @@ export default function CareersPage() {
   const [coverLetter, setCoverLetter] = useState("");
   const [cvFile, setCvFile]           = useState(null);
   const [isDragging, setIsDragging]   = useState(false);
+  const [website, setWebsite]         = useState(""); // honeypot — must stay empty; real visitors never see/fill this
 
   /* ── Submission state ── */
   const [submitted, setSubmitted]     = useState(false);
@@ -183,13 +184,18 @@ export default function CareersPage() {
       if (cvFile) cvUrl = await uploadToCloudinary(cvFile);
       const deptLabel = department && DEPARTMENTS[department]
         ? (DEPARTMENTS[department][lang] || DEPARTMENTS[department].en) : "";
-      await addDoc(collection(db, "jobApplications"), {
-        fullName, phone, email, city, nationality, country,
-        jobType, department: deptLabel,
-        position: resolvedPosition, experience, coverLetter, cvUrl,
-        status: "pending", createdAt: serverTimestamp(),
-        reviewedAt: null, interviewDetails: null,
+      const res = await fetch("/api/careers/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName, phone, email, city, nationality, country,
+          jobType, department: deptLabel,
+          position: resolvedPosition, experience, coverLetter, cvUrl,
+          website, // honeypot
+        }),
       });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data?.error || "Error. Please try again.");
       setSubmitted(true);
       window.scrollTo({ top: formRef.current?.offsetTop - 100, behavior: "smooth" });
     } catch (err) {
@@ -203,7 +209,7 @@ export default function CareersPage() {
     setNationality(""); setCountry("");
     setJobCardMode(false);
     setJobType(""); setDepartment(""); setPosition(""); setTrade("");
-    setExperience(""); setCoverLetter(""); setCvFile(null); setSubmitError("");
+    setExperience(""); setCoverLetter(""); setCvFile(null); setWebsite(""); setSubmitError("");
   };
 
   const selectCls = `w-full bg-black/40 border border-white/10 rounded-xl py-3.5 text-sm text-white focus:border-[#D4A843]/60 outline-none transition-all duration-300 appearance-none cursor-pointer ${isRTL ? "pe-4 ps-10" : "ps-4 pe-10"}`;
@@ -415,6 +421,23 @@ export default function CareersPage() {
               <div className="absolute -bottom-20 -left-20 w-44 h-44 bg-[#D4A843]/4 rounded-full blur-3xl pointer-events-none" />
 
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+
+                {/* Honeypot — invisible to real visitors, left in the DOM/tab order out of reach so bots that auto-fill every field trip it. Never surface this in visible validation. */}
+                <div
+                  style={{ position: "absolute", left: "-9999px", top: "-9999px", opacity: 0, pointerEvents: "none" }}
+                  aria-hidden="true"
+                >
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    tabIndex="-1"
+                    autoComplete="off"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                  />
+                </div>
 
                 {/* Selected job summary banner */}
                 {jobCardMode ? (

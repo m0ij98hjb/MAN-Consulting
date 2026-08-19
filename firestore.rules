@@ -230,13 +230,17 @@ service cloud.firestore {
         || (request.auth != null && exists(/databases/$(database)/documents/adminUsers/$(request.auth.uid)));
     }
 
+    // Public submissions now go through /api/careers/apply and /api/contact
+    // (server-side, honeypot-checked, written via Admin SDK — which bypasses
+    // these rules entirely). Client-side create is denied so a bot can't
+    // skip the honeypot by writing to Firestore directly from the browser.
     match /jobApplications/{id} {
-      allow create: if true;
+      allow create: if false;
       allow read, update, delete: if isAdminUser();
     }
 
     match /contacts/{id} {
-      allow create: if true;
+      allow create: if false;
       allow read, update, delete: if isAdminUser();
     }
 

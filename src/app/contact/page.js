@@ -1,8 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/lib/firebase";
 import Navbar from "@/components/layout/Navbar";
 import { Phone, Mail, MapPin, Send, ChevronDown, ArrowLeft, CheckCircle2, Loader2, Satellite, Map as MapIcon, Layers, Clock } from "lucide-react";
 import Image from "next/image";
@@ -296,6 +294,7 @@ export default function ContactPage() {
   const [formCompany, setFormCompany]       = useState("");
   const [formService, setFormService]       = useState("construction");
   const [formMessage, setFormMessage]       = useState("");
+  const [formWebsite, setFormWebsite]       = useState(""); // honeypot — must stay empty; real visitors never see/fill this
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted]   = useState(false);
   const [formError, setFormError]           = useState("");
@@ -311,19 +310,22 @@ export default function ContactPage() {
     setFormSubmitting(true);
     setFormError("");
     try {
-      await addDoc(collection(db, "contacts"), {
-        fullName:   formName.trim(),
-        email:      formEmail.trim(),
-        phone:      formPhone.trim(),
-        company:    formCompany.trim(),
-        subject:    formService,
-        message:    formMessage.trim(),
-        lang,
-        status:     "new",
-        adminReply: "",
-        createdAt:  serverTimestamp(),
-        updatedAt:  null,
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formName.trim(),
+          email:    formEmail.trim(),
+          phone:    formPhone.trim(),
+          company:  formCompany.trim(),
+          subject:  formService,
+          message:  formMessage.trim(),
+          lang,
+          website:  formWebsite, // honeypot
+        }),
       });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data?.error || "Error. Please try again.");
       setFormSubmitted(true);
     } catch (err) {
       setFormError(err?.message || "Error. Please try again.");
@@ -335,7 +337,7 @@ export default function ContactPage() {
   const handleContactReset = () => {
     setFormSubmitted(false);
     setFormName(""); setFormEmail(""); setFormPhone(""); setFormCompany("");
-    setFormService("construction"); setFormMessage(""); setFormError("");
+    setFormService("construction"); setFormMessage(""); setFormWebsite(""); setFormError("");
   };
 
   const address = (isRTL ? cms?.address_ar : cms?.address_en) || t("contactPage.address");
@@ -501,6 +503,22 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleContactSubmit} className="space-y-6 relative z-10">
+                    {/* Honeypot — invisible to real visitors, left in the DOM/tab order out of reach so bots that auto-fill every field trip it. Never surface this in visible validation. */}
+                    <div
+                      style={{ position: "absolute", left: "-9999px", top: "-9999px", opacity: 0, pointerEvents: "none" }}
+                      aria-hidden="true"
+                    >
+                      <label htmlFor="website">Website</label>
+                      <input
+                        type="text"
+                        id="website"
+                        name="website"
+                        tabIndex="-1"
+                        autoComplete="off"
+                        value={formWebsite}
+                        onChange={(e) => setFormWebsite(e.target.value)}
+                      />
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-[#D4A843] px-1 uppercase tracking-wider">{t("contact.form.name")}</label>
