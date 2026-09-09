@@ -6,6 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useConfirm } from '@/context/ConfirmContext';
 import { COMPANY } from '@/config/company';
 import AdminPageLayout from '@/components/admin/AdminPageLayout';
+import { openPrintReport } from '@/lib/printReport';
 import {
   ArrowLeft, ArrowRight, XCircle, CheckCircle, Loader2,
   User, Mail, Phone, Building2, Tag, Calendar, Clock,
@@ -132,6 +133,37 @@ export default function MessageDetailPage() {
   const subjectLabel = SUBJECT_LABEL_KEYS[msg.subject] ? t(SUBJECT_LABEL_KEYS[msg.subject]) : (msg.subject || '—');
   const status = msg.status || 'new';
 
+  const downloadReport = () => {
+    openPrintReport({
+      lang, isRTL,
+      docTitle: `${t('admin.messages.detailsTitle')} — ${msg.fullName || msg.name || ''}`,
+      heading: msg.fullName || msg.name || '—',
+      refLine: `${t('admin.messages.subjectCol')}: ${subjectLabel}`,
+      statusLabel: t(STATUS_CONFIG[status]?.labelKey ?? 'admin.messages.statusNew'),
+      statusColor: STATUS_CONFIG[status]?.color ?? '#3b82f6',
+      generatedLabel: `${t('admin.reportGeneratedOn')}: ${new Date().toLocaleString(lang === 'ar' ? 'ar-SA' : 'en-GB')}`,
+      printLabel: t('admin.downloadReport'),
+      confidentialNote: t('admin.reportConfidentialNote'),
+      sections: [
+        {
+          title: t('admin.messages.detailsTitle'),
+          fields: [
+            { label: t('admin.fullNameLabel'),         value: msg.fullName || msg.name },
+            { label: t('admin.emailLabel'),             value: msg.email, ltr: true },
+            { label: t('admin.phoneCol'),               value: msg.phone, ltr: true },
+            { label: t('admin.messages.companyLabel'),  value: msg.company },
+            { label: t('admin.messages.subjectCol'),    value: subjectLabel },
+            { label: t('admin.dateLabel'),               value: fmtFull(msg.createdAt), ltr: true },
+          ],
+        },
+      ],
+      longSections: [
+        { title: t('admin.messages.messageLabel'),    text: msg.message },
+        { title: t('admin.messages.adminReplyLabel'), text: msg.adminReply },
+      ],
+    });
+  };
+
   return (
     <AdminPageLayout>
       <div className="p-6 lg:p-8 max-w-5xl mx-auto" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -158,6 +190,13 @@ export default function MessageDetailPage() {
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
+            <button
+              onClick={downloadReport}
+              className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border transition-colors text-[#F2B233] border-[#F2B233]/25 hover:bg-[#F2B233]/10"
+            >
+              <FileText size={14} />
+              {t('admin.downloadReport')}
+            </button>
             {msg.email && (
               <button
                 onClick={openReplyForm}
