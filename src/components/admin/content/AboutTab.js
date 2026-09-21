@@ -6,7 +6,7 @@ import { Field, TextArea, Section, SaveBtn, ImageUpload, Grid2, TabLoading } fro
 import { useLanguage } from '@/context/LanguageContext';
 
 const DEF = {
-  about_ar: 'مكتب MAN للاستشارات الهندسية، رائد في تقديم حلول التصميم والاستشارات الهندسية بالمملكة العربية السعودية منذ أكثر من 38 عامًا.',
+  about_ar: 'شركة MAN للاستشارات الهندسية، رائدة في تقديم حلول التصميم والاستشارات الهندسية بالمملكة العربية السعودية منذ أكثر من 38 عامًا.',
   about_en: 'MAN Engineering Consultancy, a leader in engineering design and consultancy solutions in Saudi Arabia for over 38 years.',
   director_name: 'م. مروان أحمد ناظر',
   director_pos_ar: 'المدير العام',
@@ -22,8 +22,8 @@ const DEF = {
     { value: '99%', label_ar: 'رضى العملاء',   label_en: 'Client Satisfaction' },
     { value: '300+', label_ar: 'عضو في الفريق', label_en: 'Team Members' },
   ],
-  vision_ar: 'أن نكون مكتب الاستشارات الهندسية الأول في المنطقة',
-  vision_en: 'To be the leading engineering consultancy office in the region',
+  vision_ar: 'أن نكون شركة الاستشارات الهندسية الأولى في المنطقة',
+  vision_en: 'To be the leading engineering consultancy company in the region',
   mission_ar: 'تقديم حلول هندسية متكاملة بأعلى معايير الجودة والاحترافية',
   mission_en: 'Providing comprehensive engineering solutions with the highest quality and professionalism',
   values: [

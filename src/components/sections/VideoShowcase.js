@@ -37,7 +37,7 @@ const TX = {
     zh: "自1986年以来的建筑与圆梦专业经验",
   },
   badge: {
-    ar: "مكتب MAN للاستشارات الهندسية",
+    ar: "شركة MAN للاستشارات الهندسية",
     en: "MAN Engineering Consultancy",
     hi: "MAN जनरल कॉन्ट्रैक्टिंग",
     ru: "MAN Engineering Consultancy",

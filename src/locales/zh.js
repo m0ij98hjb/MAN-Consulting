@@ -116,7 +116,7 @@ export const zh = {
     titlePart1: "我们的 ",
     titlePart2: "实地",
     titlePart3: " 印记",
-    description: "MAN 办公室项目精选亮点",
+    description: "MAN 公司项目精选亮点",
     more: "还有更多项目正在进行中...",
     viewAll: "查看所有项目",
     categories: {
@@ -206,7 +206,7 @@ export const zh = {
     },
     locationBadge: "我们的位置",
     visitTitle: "访问我们的办公室",
-    mapTitle: "MAN 咨询办公室",
+    mapTitle: "MAN 咨询公司",
     mapDesc: "Al-Andalus 区 - Abdulrahman Al-Tubaishi 街2781号 - 吉达",
     openMaps: "在 Google 地图中打开",
     mapControls: {

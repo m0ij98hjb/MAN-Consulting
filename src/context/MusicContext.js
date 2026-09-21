@@ -14,6 +14,8 @@ export function MusicProvider({ children }) {
   const musicUserPausedRef = useRef(false);
   const wasHiddenPlayingRef = useRef(false);
   const wasAdminPausedRef = useRef(false);
+  const voiceActiveRef = useRef(false);
+  const firstInteractionDoneRef = useRef(false);
   const pathname = usePathname();
   const isAdminPage = pathname.startsWith('/admin');
 
@@ -33,11 +35,15 @@ export function MusicProvider({ children }) {
     // functionally identical from the user's perspective, without the
     // wasted network cost for anyone who never interacts.
     const onFirstInteraction = () => {
+      firstInteractionDoneRef.current = true;
       window.removeEventListener('click', onFirstInteraction);
       window.removeEventListener('touchstart', onFirstInteraction);
       window.removeEventListener('touchend', onFirstInteraction);
       window.removeEventListener('keydown', onFirstInteraction);
       if (!musicRef.current || musicUserPausedRef.current) return;
+      // The voice button click itself counts as the first interaction — do not
+      // let the music start on top of the voice; it starts when the voice ends.
+      if (voiceActiveRef.current) { wasMusicPlayingRef.current = true; return; }
       musicRef.current.play().then(() => setIsMusicPlaying(true)).catch(() => {});
     };
     window.addEventListener('click', onFirstInteraction);
@@ -84,7 +90,7 @@ export function MusicProvider({ children }) {
         } else {
           wasHiddenPlayingRef.current = false;
         }
-      } else if (musicRef.current && wasHiddenPlayingRef.current && !musicUserPausedRef.current) {
+      } else if (musicRef.current && wasHiddenPlayingRef.current && !musicUserPausedRef.current && !voiceActiveRef.current) {
         wasHiddenPlayingRef.current = false;
         musicRef.current.play().then(() => setIsMusicPlaying(true)).catch(() => {});
       }
@@ -124,24 +130,28 @@ export function MusicProvider({ children }) {
 
   // Called when voice starts — pause music temporarily
   const pauseMusicForVoice = useCallback(() => {
-    if (musicRef.current && isMusicPlaying) {
+    voiceActiveRef.current = true;
+    const audio = musicRef.current;
+    if (audio && !audio.paused) {
       wasMusicPlayingRef.current = true;
-      musicRef.current.pause();
+      audio.pause();
       setIsMusicPlaying(false);
     } else {
-      wasMusicPlayingRef.current = false;
+      // Music that is about to auto-start on the first interaction counts too.
+      wasMusicPlayingRef.current = !firstInteractionDoneRef.current && !musicUserPausedRef.current;
     }
-  }, [isMusicPlaying]);
+  }, []);
 
   // Called when voice stops — resume only if music was playing before voice started
   const resumeMusicAfterVoice = useCallback(() => {
-    if (musicRef.current && wasMusicPlayingRef.current && !musicUserPaused) {
+    voiceActiveRef.current = false;
+    if (musicRef.current && wasMusicPlayingRef.current && !musicUserPausedRef.current) {
       wasMusicPlayingRef.current = false;
       musicRef.current.play().then(() => {
         setIsMusicPlaying(true);
       }).catch(() => {});
     }
-  }, [musicUserPaused]);
+  }, []);
 
   return (
     <MusicContext.Provider value={{

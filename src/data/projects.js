@@ -37,7 +37,7 @@ export const PROJECTS = [
     title: { ar: "مجمع تجاري ومكاتب", en: "Commercial & Office Complex", hi: "वाणिज्यिक और कार्यालय परिसर", ru: "Коммерческий и офисный комплекс", de: "Gewerbe- und Bürokomplex", es: "Complejo Comercial y de Oficinas", fr: "Complexe Commercial et de Bureaux", tr: "Ticari ve Ofis Kompleksi", ur: "تجارتی اور دفاتری کمپلیکس", zh: "商业及办公综合楼" },
     category: "commercial",
     description: {
-      ar: "نموذج توضيحي لمبنى تجاري ومكاتب متكامل في جدة، يضم واجهات أمامية وخلفية مميزة، فناء داخلي رحب، ومداخل سيارات احترافية — يعكس أسلوب مكتب MAN في تصميم المشاريع التجارية والمكتبية.",
+      ar: "نموذج توضيحي لمبنى تجاري ومكاتب متكامل في جدة، يضم واجهات أمامية وخلفية مميزة، فناء داخلي رحب، ومداخل سيارات احترافية — يعكس أسلوب شركة MAN في تصميم المشاريع التجارية والمكتبية.",
       en: "An illustrative example of a premium commercial and office building in Jeddah featuring distinctive front and rear facades, a spacious inner courtyard, and professional vehicle entrances — representative of MAN Engineering Consultancy's approach to commercial and office project design.",
       hi: "जेद्दा में एक प्रीमियम वाणिज्यिक और कार्यालय भवन, जिसमें विशिष्ट आगे और पीछे के अग्रभाग, एक विशाल आंतरिक प्रांगण और पेशेवर वाहन प्रवेश द्वार शामिल हैं। परियोजना 2025 में उच्चतम मानकों के साथ प्रगति पर है।",
       ru: "Премиальное коммерческое и офисное здание в Джидде с уникальными фасадами, просторным внутренним двором и профессиональными въездами.",

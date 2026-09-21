@@ -67,7 +67,7 @@ const About = () => {
   const ceoTitle = (isRTL ? aboutCms?.ceo_pos_ar : aboutCms?.ceo_pos_en) || t('about.ceoTitle');
 
   const companyName = {
-    ar: "مكتب MAN للاستشارات الهندسية", en: "MAN Engineering Consultancy",
+    ar: "شركة MAN للاستشارات الهندسية", en: "MAN Engineering Consultancy",
     zh: "MAN工程咨询公司", es: "MAN Engineering Consultancy", fr: "MAN Engineering Consultancy",
     de: "MAN Engineering Consultancy", tr: "MAN Engineering Consultancy", ur: "ایم اے این انجینئرنگ کنسلٹنسی",
     hi: "एमएएन इंजीनियरिंग कंसल्टेंसी", ru: "MAN Engineering Consultancy"
@@ -141,7 +141,7 @@ const About = () => {
 
   const people = [
     { image: directorImage, name: directorName, title: directorTitle, delay: '100', pos: 'center 2%' },
-    { image: ceoImage, name: ceoName, title: ceoTitle, delay: '250', pos: 'center 18%' },
+    { image: ceoImage, name: ceoName, title: ceoTitle, delay: '250', pos: 'center top', tall: true },
   ];
 
   return (
@@ -202,7 +202,7 @@ const About = () => {
               data-aos-delay={person.delay}
             >
               {/* Image — ~45% width on desktop */}
-              <div className="relative w-full md:w-[45%] aspect-4/3 md:aspect-auto shrink-0 overflow-hidden">
+              <div className={`relative w-full md:w-[45%] shrink-0 overflow-hidden ${person.tall ? "aspect-[1019/1600]" : "aspect-4/3 md:aspect-auto"}`}>
                 <Image
                   src={person.image}
                   alt={person.name}
@@ -216,7 +216,7 @@ const About = () => {
               </div>
 
               {/* Info */}
-              <div className="flex-1 flex flex-col justify-center gap-4 p-8 md:p-10">
+              <div className={`flex-1 flex flex-col justify-center ${person.tall ? "gap-6 p-8 md:p-14" : "gap-4 p-8 md:p-10"}`}>
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center"
                   style={{ background: 'rgba(212,168,67,0.15)', border: '1px solid rgba(212,168,67,0.35)' }}
                 >
@@ -224,14 +224,14 @@ const About = () => {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <h3 className="text-white font-black text-2xl md:text-[28px] leading-tight">{person.name}</h3>
+                  <h3 className={`text-white font-black leading-tight ${person.tall ? "text-3xl md:text-4xl" : "text-2xl md:text-[28px]"}`}>{person.name}</h3>
                   <p className="font-bold text-sm md:text-base tracking-wide" style={{ color: '#D4A843' }}>{person.title}</p>
                 </div>
 
                 <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, #D4A843, transparent)' }} />
 
                 <p className="text-white/50 text-[13px] font-semibold uppercase tracking-widest">{companyName}</p>
-                <p className="text-white/40 text-sm md:text-[15px] leading-relaxed max-w-md">{shortDesc}</p>
+                <p className={`text-white/40 leading-relaxed max-w-md ${person.tall ? "text-base md:text-[17px]" : "text-sm md:text-[15px]"}`}>{shortDesc}</p>
               </div>
             </div>
           ))}

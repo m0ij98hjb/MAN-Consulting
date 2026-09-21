@@ -41,7 +41,7 @@ export async function POST(req) {
             <div style="display:inline-block;background:#ffffff;border-radius:14px;padding:10px 18px;margin-bottom:18px;">
               <img src="cid:mnc-logo" alt="MAN" width="160" style="display:block;max-height:60px;width:auto;" />
             </div>
-            <h1 style="color:#D4A843;margin:0;font-size:22px;font-weight:900;letter-spacing:1px;">مكتب MAN للاستشارات الهندسية</h1>
+            <h1 style="color:#D4A843;margin:0;font-size:22px;font-weight:900;letter-spacing:1px;">شركة MAN للاستشارات الهندسية</h1>
             <p style="color:rgba(255,255,255,0.4);margin:8px 0 0;font-size:13px;">MAN Engineering Consultancy</p>
           </td>
         </tr>
@@ -72,7 +72,7 @@ export async function POST(req) {
         <tr>
           <td style="background:rgba(0,0,0,0.3);padding:24px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.05);">
             <p style="color:rgba(255,255,255,0.2);font-size:12px;margin:0;line-height:1.8;">
-              مكتب MAN للاستشارات الهندسية — جدة، المملكة العربية السعودية
+              شركة MAN للاستشارات الهندسية — جدة، المملكة العربية السعودية
               <br/>
               <span style="color:rgba(200,169,110,0.35);">هذه رسالة رسمية من فريق خدمة العملاء</span>
             </p>
@@ -99,7 +99,7 @@ export async function POST(req) {
               <img src="cid:mnc-logo" alt="MAN" width="160" style="display:block;max-height:60px;width:auto;" />
             </div>
             <h1 style="color:#D4A843;margin:0;font-size:22px;font-weight:900;letter-spacing:1px;">MAN Engineering Consultancy</h1>
-            <p style="color:rgba(255,255,255,0.4);margin:8px 0 0;font-size:13px;">مكتب MAN للاستشارات الهندسية</p>
+            <p style="color:rgba(255,255,255,0.4);margin:8px 0 0;font-size:13px;">شركة MAN للاستشارات الهندسية</p>
           </td>
         </tr>
 
@@ -143,9 +143,9 @@ export async function POST(req) {
 </html>`;
 
     await transporter.sendMail({
-      from:    isAr ? `"مكتب MAN للاستشارات الهندسية" <${COMPANY.email}>` : `"${COMPANY.name}" <${COMPANY.email}>`,
+      from:    isAr ? `"شركة MAN للاستشارات الهندسية" <${COMPANY.email}>` : `"${COMPANY.name}" <${COMPANY.email}>`,
       to:      customerEmail,
-      subject: subject || (isAr ? 'رد من مكتب MAN للاستشارات الهندسية' : 'Reply from MAN Engineering Consultancy'),
+      subject: subject || (isAr ? 'رد من شركة MAN للاستشارات الهندسية' : 'Reply from MAN Engineering Consultancy'),
       html,
       attachments: [{
         filename: 'logo.png',

@@ -28,13 +28,13 @@ const cairo = Cairo({
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://marwannazer.com"),
   title: {
-    default: "مكتب MAN للاستشارات الهندسية | MAN Engineering Consultancy",
+    default: "شركة MAN للاستشارات الهندسية | MAN Engineering Consultancy",
     template: "%s | MAN Engineering Consultancy",
   },
-  description: "مكتب MAN للاستشارات الهندسية — استشارات هندسية متكاملة في جدة والمملكة العربية السعودية: تصميم معماري وإنشائي، تصميم كهروميكانيكي، تراخيص بناء، تقارير هندسية، إدارة مشاريع وإشراف موقعي.",
+  description: "شركة MAN للاستشارات الهندسية — استشارات هندسية متكاملة في جدة والمملكة العربية السعودية: تصميم معماري وإنشائي، تصميم كهروميكانيكي، تراخيص بناء، تقارير هندسية، إدارة مشاريع وإشراف موقعي.",
   keywords: ["Engineering Consultancy", "استشارات هندسية", "Architecture", "تصميم معماري", "Structural Design", "تصميم إنشائي", "Saudi Arabia", "Jeddah", "جدة", "MAN Engineering Consultancy"],
   openGraph: {
-    title: "مكتب MAN للاستشارات الهندسية | MAN Engineering Consultancy",
+    title: "شركة MAN للاستشارات الهندسية | MAN Engineering Consultancy",
     description: "استشارات هندسية متكاملة في جدة والمملكة العربية السعودية: تصميم معماري وإنشائي، تراخيص بناء، تقارير هندسية، إدارة مشاريع وإشراف موقعي.",
     siteName: "MAN Engineering Consultancy",
     locale: "ar_SA",
@@ -42,7 +42,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "مكتب MAN للاستشارات الهندسية | MAN Engineering Consultancy",
+    title: "شركة MAN للاستشارات الهندسية | MAN Engineering Consultancy",
     description: "استشارات هندسية متكاملة في جدة والمملكة العربية السعودية.",
   },
   icons: {
@@ -66,7 +66,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "MAN Engineering Consultancy",
-  alternateName: "مكتب MAN للاستشارات الهندسية",
+  alternateName: "شركة MAN للاستشارات الهندسية",
   url: siteUrl,
   email: "hr@mnc.sa",
   telephone: "+966598242385",

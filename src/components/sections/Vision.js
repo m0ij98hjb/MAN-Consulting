@@ -126,7 +126,7 @@ const Vision = () => {
 
           {/* Description */}
           <p className="mt-6 text-white/50 text-base md:text-lg leading-relaxed max-w-2xl" data-aos="fade-up" data-aos-delay="200">
-            {{ ar: "مكتب MAN للاستشارات الهندسية يجمع بين الخبرة الراسخة والرؤية الاستشرافية لتقديم مشاريع تتجاوز التوقعات — من التصميم إلى التسليم.",
+            {{ ar: "شركة MAN للاستشارات الهندسية تجمع بين الخبرة الراسخة والرؤية الاستشرافية لتقديم مشاريع تتجاوز التوقعات — من التصميم إلى التسليم.",
                en: "MAN Engineering Consultancy bridges deep expertise with forward-thinking vision to deliver projects that exceed expectations — from design to handover.",
                zh: "MAN建筑将深厚的专业知识与前瞻性愿景相结合，提供超出预期的项目。",
                fr: "MAN Engineering Consultancy allie expertise solide et vision prospective pour livrer des projets dépassant les attentes.",
@@ -145,7 +145,7 @@ const Vision = () => {
           {[
             {
               label: { ar: "رؤيتنا",    en: "Our Vision",   zh: "我们的愿景", fr: "Notre Vision",   es: "Nuestra Visión",   de: "Unsere Vision",  tr: "Vizyonumuz",  ur: "ہمارا وژن",  hi: "हमारी दृष्टि",  ru: "Наше видение"  },
-              text:  { ar: "أن نكون مكتب الاستشارات الهندسية الرائد على مستوى المنطقة، من خلال تقديم مشاريع استثنائية تجمع بين الجودة والابتكار والاستدامة.",
+              text:  { ar: "أن نكون شركة الاستشارات الهندسية الرائدة على مستوى المنطقة، من خلال تقديم مشاريع استثنائية تجمع بين الجودة والابتكار والاستدامة.",
                        en: "To be the leading engineering consultancy in the region by delivering exceptional projects that blend quality, innovation, and sustainability.",
                        hi: "गुणवत्ता, नवाचार और स्थिरता को जोड़ने वाली असाधारण परियोजनाएं प्रदान करके क्षेत्र में अग्रणी निर्माण कंपनी बनना।",
                        ru: "Быть ведущей строительной компанией в регионе, реализуя исключительные проекты, сочетающие качество, инновации и устойчивость.",

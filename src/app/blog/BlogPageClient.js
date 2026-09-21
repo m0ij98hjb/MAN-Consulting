@@ -37,7 +37,7 @@ export default function BlogPageClient() {
           </h1>
           <p className="text-white/65 text-lg leading-relaxed max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
             {lang === "ar"
-              ? "مقالات ودلائل عملية حول التصميم الهندسي، التراخيص، والإشراف الموقعي من مكتب MAN للاستشارات الهندسية."
+              ? "مقالات ودلائل عملية حول التصميم الهندسي، التراخيص، والإشراف الموقعي من شركة MAN للاستشارات الهندسية."
               : "Practical articles and guides on engineering design, permitting, and site supervision from MAN Engineering Consultancy."}
           </p>
         </div>
