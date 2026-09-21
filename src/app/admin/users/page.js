@@ -355,7 +355,7 @@ function UsersContent() {
                               u.role === 'super_admin'
                                 ? '/asstes/super-admin.jpg'
                                 : u.role === 'company_manager'
-                                ? '/asstes/directore.webp'
+                                ? '/asstes/directorr-Company%20manager.jpeg'
                                 : (u.photoURL || '/asstes/ph dashborad.png')
                             }
                             alt={u.name || 'User'}

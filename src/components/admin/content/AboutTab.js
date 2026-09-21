@@ -12,6 +12,10 @@ const DEF = {
   director_pos_ar: 'المدير العام',
   director_pos_en: 'General Manager',
   director_image: '',
+  ceo_image: '',
+  ceo_name: '',
+  ceo_pos_ar: '',
+  ceo_pos_en: '',
   stats: [
     { value: '38+', label_ar: 'سنة خبرة',     label_en: 'Years of Experience' },
     { value: '230+', label_ar: 'مشروع منجز',   label_en: 'Completed Projects' },
@@ -77,6 +81,15 @@ export default function AboutTab() {
         <Grid2>
           <Field label={t('admin.contentTabs.aboutTab.positionArLabel')} value={form.director_pos_ar} onChange={v => set('director_pos_ar', v)} />
           <Field label={t('admin.contentTabs.aboutTab.positionEnLabel')} value={form.director_pos_en} onChange={v => set('director_pos_en', v)} />
+        </Grid2>
+      </Section>
+
+      <Section title="CEO / مدير الشركة" icon={User}>
+        <ImageUpload label="CEO Image / صورة مدير الشركة" value={form.ceo_image} onChange={v => set('ceo_image', v)} />
+        <Field label={t('admin.contentTabs.aboutTab.nameLabel')} value={form.ceo_name} onChange={v => set('ceo_name', v)} />
+        <Grid2>
+          <Field label={t('admin.contentTabs.aboutTab.positionArLabel')} value={form.ceo_pos_ar} onChange={v => set('ceo_pos_ar', v)} />
+          <Field label={t('admin.contentTabs.aboutTab.positionEnLabel')} value={form.ceo_pos_en} onChange={v => set('ceo_pos_en', v)} />
         </Grid2>
       </Section>
 

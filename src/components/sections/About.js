@@ -62,7 +62,7 @@ const About = () => {
     ? (aboutCms?.director_pos_ar || t('about.directorTitle'))
     : (aboutCms?.director_pos_en || t('about.directorTitle'));
 
-  const ceoImage = aboutCms?.ceo_image || '/asstes/directore.webp';
+  const ceoImage = aboutCms?.ceo_image || '/asstes/directorr-Company%20manager.jpeg';
   const ceoName = aboutCms?.ceo_name || t('about.ceoName');
   const ceoTitle = (isRTL ? aboutCms?.ceo_pos_ar : aboutCms?.ceo_pos_en) || t('about.ceoTitle');
 
@@ -140,8 +140,8 @@ const About = () => {
   ];
 
   const people = [
-    { image: directorImage, name: directorName, title: directorTitle, delay: '100' },
-    { image: ceoImage, name: ceoName, title: ceoTitle, delay: '250' },
+    { image: directorImage, name: directorName, title: directorTitle, delay: '100', pos: 'center 2%' },
+    { image: ceoImage, name: ceoName, title: ceoTitle, delay: '250', pos: 'center 18%' },
   ];
 
   return (
@@ -209,7 +209,7 @@ const About = () => {
                   fill
                   sizes="(max-width: 767px) 100vw, 460px"
                   className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                  style={{ objectPosition: 'center 2%' }}
+                  style={{ objectPosition: person.pos }}
                   unoptimized={person.image.startsWith('http')}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/10" />
